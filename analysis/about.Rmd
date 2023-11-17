@@ -3,8 +3,14 @@ title: "About"
 output:
   workflowr::wflow_html:
     toc: false
+    theme: yeti
 editor_options:
   chunk_output_type: console
 ---
 
-Describe your project.
+We are using phylogenetic analysis to understand the relationship between and 
+development of natal coats, sexual dichromatism and sexual dimorphism in the
+hair of non-human primates. We began with a literature review to create a 
+database of 244 primate species across all 14 families. We have also compiled
+the main hypotheses for the development of these traits both from the ultimate
+and proximate perspective. 
