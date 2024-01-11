@@ -9,6 +9,8 @@ navbar:
     href: about.html
   - text: License
     href: license.html
+  - text: Libary Tests
+    href: LibraryTests.html
   right:
   - icon: fab fa-github
     text: Source code
