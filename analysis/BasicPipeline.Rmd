@@ -7,7 +7,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-## Introduction
+## Loading in Data
 
 ```{r Load-R-Libraries, include=FALSE}
 # Load in the libraries
@@ -30,6 +30,7 @@ Binary_traits <- read_csv("data/Phylo_Project_Data/Masters_Binary_Traits.csv")
 head(Binary_traits)
 ```
 
+## Format Data
 
 ```{r Format-Binary-Data-SpeciesNames, echo=TRUE}
 #combine genus and species names and capitalize first letter
@@ -60,6 +61,7 @@ data_pruned_rownames = column_to_rownames(data_pruned, var = "species")
 head(data_pruned_rownames)
 ```
 
+## Sexual Dichromatism from Natal Coats Regression
 
 ```{r Run-phylolm}
 # run phylolm and get summary
