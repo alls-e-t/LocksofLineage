@@ -11,6 +11,8 @@ navbar:
     href: license.html
   - text: Basic Pipeline
     href: BasicPipeline.html
+  - text: Sexual Dimorphism from Natal Coat
+    href: DimorphismFromNatalCoat.html
   right:
   - icon: fab fa-github
     text: Source code
