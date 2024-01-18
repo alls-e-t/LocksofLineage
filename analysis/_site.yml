@@ -23,6 +23,8 @@ navbar:
     href: HeadDimorphism.html
   - text: Natal Coat Contrast to the Mother with Sexual Dichromatism
     href: ConMDichromatism.html
+  - text: Natal Coat Contrast to the Father with Sexual Dichromatism
+    href: ConDDichromatism.html
   right:
   - icon: fab fa-github
     text: Source code
