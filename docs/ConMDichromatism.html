@@ -13,7 +13,7 @@
 
 <meta name="date" content="2024-01-18" />
 
-<title>Sexual Dichromatism on the Head</title>
+<title>Natal Coat Contrast to the Mother with Sexual Dichromatism</title>
 
 <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -377,7 +377,8 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Sexual Dichromatism on the Head</h1>
+<h1 class="title toc-ignore">Natal Coat Contrast to the Mother with
+Sexual Dichromatism</h1>
 <h4 class="author">Sarah E Taylor</h4>
 <h4 class="date">2024-01-18</h4>
 
@@ -591,8 +592,8 @@ have uncommitted changes.
 
 <p>
 These are the previous versions of the repository in which changes were
-made to the R Markdown (<code>analysis/HeadDichromatism.Rmd</code>) and
-HTML (<code>docs/HeadDichromatism.html</code>) files. If you’ve
+made to the R Markdown (<code>analysis/ConMDichromatism.Rmd</code>) and
+HTML (<code>docs/ConMDichromatism.html</code>) files. If you’ve
 configured a remote Git repository (see <code>?wflow_git_remote</code>),
 click on the hyperlinks in the table below to view the files as they
 were in that past version.
@@ -621,61 +622,10 @@ Message
 <tbody>
 <tr>
 <td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/05b31cd4b0c49651e5668bc0af969f641d2885ce/docs/HeadDichromatism.html" target="_blank">05b31cd</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/9daebeefef0c77801f5c6aaed9ece180908f64cd/docs/HeadDichromatism.html" target="_blank">9daebee</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/b40af978b9f71e033562e1c7680a38138afa4e7a/docs/HeadDichromatism.html" target="_blank">b40af97</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
 Rmd
 </td>
 <td>
-<a href="https://github.com/alls-e-t/LocksofLineage/blob/8a8a10de0678818a9b29635889e78d6471e39740/analysis/HeadDichromatism.Rmd" target="_blank">8a8a10d</a>
+<a href="https://github.com/alls-e-t/LocksofLineage/blob/fb26b0674e9a13896513416413150dd3349b3814/analysis/ConMDichromatism.Rmd" target="_blank">fb26b06</a>
 </td>
 <td>
 Sarah E Taylor
@@ -684,8 +634,8 @@ Sarah E Taylor
 2024-01-18
 </td>
 <td>
-Changed NA to 0 in Binary_Data. Added Head Dichromatism regression
-analysis.
+Added Natal Coat Contrast to the Mother with Sexual Dichromatism
+regression
 </td>
 </tr>
 </tbody>
@@ -827,39 +777,35 @@ Alouatta_guariba                              1       0
 Alouatta_palliata                             0       0
 Alouatta_pigra                                0       0</code></pre>
 </div>
-<div id="sexual-dichromatism-on-the-head-regression"
+<div
+id="natal-coat-contrast-to-the-mother-with-sexual-dichromatism-regression"
 class="section level2">
-<h2>Sexual Dichromatism on the Head Regression</h2>
+<h2>Natal Coat Contrast to the Mother with Sexual Dichromatism
+Regression</h2>
 <pre class="r"><code># run phylolm and get summary
-HeadSDC &lt;- phyloglm(DC_Head ~ Sexual_Dichromatism, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)</code></pre>
-<pre><code>Warning in phyloglm(DC_Head ~ Sexual_Dichromatism, data_pruned_rownames, : will
-drop from the tree 6 taxa with missing data</code></pre>
-<pre><code>Warning in phyloglm(DC_Head ~ Sexual_Dichromatism, data_pruned_rownames, : The estimated coefficients in the absence of phylogenetic signal lead
+CONMSDC &lt;- phyloglm(ConM ~ Sexual_Dichromatism, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)</code></pre>
+<pre><code>Warning in phyloglm(ConM ~ Sexual_Dichromatism, data_pruned_rownames, phy = pruned.tree, : The estimated coefficients in the absence of phylogenetic signal lead
   to some linear predictors beyond &#39;btol&#39;. Increase btol?
   Starting from beta=0 other than intercept.</code></pre>
-<pre><code>Warning in phyloglm(DC_Head ~ Sexual_Dichromatism, data_pruned_rownames, : the estimate of &#39;alpha&#39; (0.000277871924406916) reached the lower bound (0.000276779412474107).
- This may reflect a flat likelihood at low alpha values near the lower bound,
- meaning that the phylogenetic correlation is estimated to be maximal
- under the model in Ives and Garland (2010).</code></pre>
-<pre class="r"><code>summary(HeadSDC)</code></pre>
+<pre class="r"><code>summary(CONMSDC)</code></pre>
 <pre><code>
 Call:
-phyloglm(formula = DC_Head ~ Sexual_Dichromatism, data = data_pruned_rownames, 
+phyloglm(formula = ConM ~ Sexual_Dichromatism, data = data_pruned_rownames, 
     phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
        AIC     logLik Pen.logLik 
-     77.34     -35.67     -35.34 
+    26.252    -10.126     -8.749 
 
 Method: logistic_MPLE
 Mean tip height: 66.17414
 Parameter estimate(s):
-alpha: 0.0002778719 
+alpha: 0.0002978229 
 
 Coefficients:
-                    Estimate  StdErr z.value p.value
-(Intercept)          -3.0152  2.7576 -1.0934  0.2742
-Sexual_Dichromatism   2.0309  1.4158  1.4344  0.1515
+                    Estimate   StdErr z.value p.value
+(Intercept)         -1.67824  2.65760 -0.6315  0.5277
+Sexual_Dichromatism  0.10151  0.15945  0.6366  0.5244
 
-Note: Wald-type p-values for coefficients, conditional on alpha=0.0002778719</code></pre>
+Note: Wald-type p-values for coefficients, conditional on alpha=0.0002978229</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
