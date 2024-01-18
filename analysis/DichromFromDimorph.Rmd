@@ -1,5 +1,5 @@
 ---
-title: "DichromFromDimorph"
+title: "Sexual Dichromatism from Sexual Dimorphism"
 author: "Sarah E Taylor"
 date: "2024-01-18"
 output: workflowr::wflow_html

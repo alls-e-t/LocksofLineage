@@ -1,5 +1,5 @@
 ---
-title: "DimorphismFromNatalCoat"
+title: "Sexual Dimorphism From Natal Coat"
 author: "Sarah E Taylor"
 date: "2024-01-18"
 output: workflowr::wflow_html
