@@ -387,7 +387,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+workflowr <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -398,8 +398,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> </a>
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -412,9 +412,9 @@ aria-hidden="true"></span> </a>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>LocksofLineage/</code> <span
@@ -437,21 +437,18 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
-changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges"
+<div id="strongRMarkdownfilestronguptodate"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of
-the R Markdown file created these results, you’ll want to first commit
-it to the Git repo. If you’re still working on the analysis, you can
-ignore this warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and build the
-HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
@@ -542,15 +539,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree9daebeefef0c77801f5c6aaed9ece180908f64cdtargetblank9daebeea">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetreedeb8b60018578cabeb9b9912d0de6766297442fatargetblankdeb8b60a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/alls-e-t/LocksofLineage/tree/9daebeefef0c77801f5c6aaed9ece180908f64cd" target="_blank">9daebee</a>
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/deb8b60018578cabeb9b9912d0de6766297442fa" target="_blank">deb8b60</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree9daebeefef0c77801f5c6aaed9ece180908f64cdtargetblank9daebeea"
+id="strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetreedeb8b60018578cabeb9b9912d0de6766297442fatargetblankdeb8b60a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -560,7 +557,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/alls-e-t/LocksofLineage/tree/9daebeefef0c77801f5c6aaed9ece180908f64cd" target="_blank">9daebee</a>.
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/deb8b60018578cabeb9b9912d0de6766297442fa" target="_blank">deb8b60</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -577,9 +574,6 @@ were generated:
 Ignored files:
     Ignored:    .Rproj.user/
     Ignored:    data/.DS_Store
-
-Unstaged changes:
-    Modified:   analysis/HeadDimorphism.Rmd
 
 </code></pre>
 <p>
@@ -625,6 +619,42 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/alls-e-t/LocksofLineage/blob/deb8b60018578cabeb9b9912d0de6766297442fa/analysis/HeadDimorphism.Rmd" target="_blank">deb8b60</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-01-18
+</td>
+<td>
+Changed NA to 0 in Binary_Data. Added Head Dimorphism regression
+analysis.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/deb8b60018578cabeb9b9912d0de6766297442fa/docs/HeadDimorphism.html" target="_blank">deb8b60</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-01-18
+</td>
+<td>
+Changed NA to 0 in Binary_Data. Added Head Dimorphism regression
+analysis.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -852,29 +882,31 @@ other attached packages:
  [1] lubridate_1.9.2 forcats_1.0.0   stringr_1.5.0   dplyr_1.1.0    
  [5] purrr_1.0.1     readr_2.1.4     tidyr_1.3.0     tibble_3.1.8   
  [9] ggplot2_3.4.1   tidyverse_2.0.0 phylolm_2.6.2   ape_5.7        
+[13] workflowr_1.7.1
 
 loaded via a namespace (and not attached):
  [1] Rcpp_1.0.11         lattice_0.20-45     listenv_0.9.0      
- [4] rprojroot_2.0.4     digest_0.6.30       utf8_1.2.2         
- [7] parallelly_1.36.0   R6_2.5.1            evaluate_0.20      
-[10] pillar_1.8.1        rlang_1.0.6         rstudioapi_0.14    
-[13] whisker_0.4.1       jquerylib_0.1.4     rmarkdown_2.20     
-[16] bit_4.0.5           munsell_0.5.0       compiler_4.2.1     
-[19] httpuv_1.6.11       xfun_0.41           pkgconfig_2.0.3    
-[22] globals_0.16.2      htmltools_0.5.4     tidyselect_1.2.0   
-[25] workflowr_1.7.1     codetools_0.2-18    fansi_1.0.3        
-[28] future_1.33.0       crayon_1.5.2        tzdb_0.3.0         
-[31] withr_2.5.0         later_1.3.1         grid_4.2.1         
-[34] nlme_3.1-160        jsonlite_1.8.4      gtable_0.3.1       
-[37] lifecycle_1.0.3     git2r_0.32.0        magrittr_2.0.3     
-[40] scales_1.2.1        vroom_1.6.1         future.apply_1.11.0
-[43] cli_3.6.0           stringi_1.7.8       cachem_1.0.6       
-[46] fs_1.6.1            promises_1.2.1      bslib_0.4.2        
-[49] ellipsis_0.3.2      vctrs_0.5.2         generics_0.1.3     
-[52] tools_4.2.1         bit64_4.0.5         glue_1.6.2         
-[55] hms_1.1.2           parallel_4.2.1      fastmap_1.1.0      
-[58] yaml_2.3.7          timechange_0.2.0    colorspace_2.0-3   
-[61] knitr_1.42          sass_0.4.5         </code></pre>
+ [4] getPass_0.2-2       ps_1.7.2            rprojroot_2.0.4    
+ [7] digest_0.6.30       utf8_1.2.2          parallelly_1.36.0  
+[10] R6_2.5.1            evaluate_0.20       httr_1.4.4         
+[13] pillar_1.8.1        rlang_1.0.6         rstudioapi_0.14    
+[16] whisker_0.4.1       callr_3.7.3         jquerylib_0.1.4    
+[19] rmarkdown_2.20      bit_4.0.5           munsell_0.5.0      
+[22] compiler_4.2.1      httpuv_1.6.11       xfun_0.41          
+[25] pkgconfig_2.0.3     globals_0.16.2      htmltools_0.5.4    
+[28] tidyselect_1.2.0    codetools_0.2-18    fansi_1.0.3        
+[31] future_1.33.0       crayon_1.5.2        tzdb_0.3.0         
+[34] withr_2.5.0         later_1.3.1         grid_4.2.1         
+[37] nlme_3.1-160        jsonlite_1.8.4      gtable_0.3.1       
+[40] lifecycle_1.0.3     git2r_0.32.0        magrittr_2.0.3     
+[43] scales_1.2.1        vroom_1.6.1         future.apply_1.11.0
+[46] cli_3.6.0           stringi_1.7.8       cachem_1.0.6       
+[49] fs_1.6.1            promises_1.2.1      bslib_0.4.2        
+[52] ellipsis_0.3.2      vctrs_0.5.2         generics_0.1.3     
+[55] tools_4.2.1         bit64_4.0.5         glue_1.6.2         
+[58] hms_1.1.2           processx_3.8.0      parallel_4.2.1     
+[61] fastmap_1.1.0       yaml_2.3.7          timechange_0.2.0   
+[64] colorspace_2.0-3    knitr_1.42          sass_0.4.5         </code></pre>
 </div>
 </div>
 
