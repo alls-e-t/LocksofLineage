@@ -17,6 +17,8 @@ navbar:
     href: DichromFromDimorph.html
   - text: Sexual Dimorphism from Sexual Dichromatism
     href: DimorphFromDichrom.html
+  - text: Head Dichromatism
+    href: HeadDichromatism.html
   right:
   - icon: fab fa-github
     text: Source code
