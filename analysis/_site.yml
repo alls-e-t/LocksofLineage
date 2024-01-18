@@ -19,6 +19,8 @@ navbar:
     href: DimorphFromDichrom.html
   - text: Head Dichromatism
     href: HeadDichromatism.html
+  - text: Head Dimorphism
+    href: HeadDimorphism.html
   right:
   - icon: fab fa-github
     text: Source code
