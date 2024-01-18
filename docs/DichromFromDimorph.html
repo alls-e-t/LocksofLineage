@@ -9,10 +9,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Sarah Taylor" />
+<meta name="author" content="Sarah E Taylor" />
 
+<meta name="date" content="2024-01-18" />
 
-<title>Basic Pipeline for Phylolm regression</title>
+<title>DichromFromDimorph</title>
 
 <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -367,9 +368,9 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Basic Pipeline for Phylolm regression</h1>
-<h4 class="author">Sarah Taylor</h4>
-<h4 class="date">2023-1-10</h4>
+<h1 class="title toc-ignore">DichromFromDimorph</h1>
+<h4 class="author">Sarah E Taylor</h4>
+<h4 class="date">2024-01-18</h4>
 
 </div>
 
@@ -581,11 +582,11 @@ have uncommitted changes.
 
 <p>
 These are the previous versions of the repository in which changes were
-made to the R Markdown (<code>analysis/BasicPipeline.Rmd</code>) and
-HTML (<code>docs/BasicPipeline.html</code>) files. If you’ve configured
-a remote Git repository (see <code>?wflow_git_remote</code>), click on
-the hyperlinks in the table below to view the files as they were in that
-past version.
+made to the R Markdown (<code>analysis/DichromFromDimorph.Rmd</code>)
+and HTML (<code>docs/DichromFromDimorph.html</code>) files. If you’ve
+configured a remote Git repository (see <code>?wflow_git_remote</code>),
+click on the hyperlinks in the table below to view the files as they
+were in that past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -611,10 +612,10 @@ Message
 <tbody>
 <tr>
 <td>
-html
+Rmd
 </td>
 <td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/3da0ef1d35ca55a46654982a763ebd3ed118ccc4/docs/BasicPipeline.html" target="_blank">3da0ef1</a>
+<a href="https://github.com/alls-e-t/LocksofLineage/blob/3f30aa24d78eb6118934185431b42db7fe2028aa/analysis/DichromFromDimorph.Rmd" target="_blank">3f30aa2</a>
 </td>
 <td>
 Sarah E Taylor
@@ -623,41 +624,7 @@ Sarah E Taylor
 2024-01-18
 </td>
 <td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/d74021c2318e9c0ca4466e0f1be4a02b702cf64a/docs/BasicPipeline.html" target="_blank">d74021c</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-12
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/alls-e-t/LocksofLineage/blob/c149db0f7aa65f47dabe4987306de45d878fe2d7/analysis/BasicPipeline.Rmd" target="_blank">c149db0</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-12
-</td>
-<td>
-Republishing workflowr website
+Added Dichromatism from Dimorphism regression analysis
 </td>
 </tr>
 </tbody>
@@ -799,32 +766,32 @@ Alouatta_guariba                              1       0
 Alouatta_palliata                             0      NA
 Alouatta_pigra                                0      NA</code></pre>
 </div>
-<div id="sexual-dichromatism-from-natal-coats-regression"
+<div id="sexual-dichromatism-from-sexual-dimorphism-regression"
 class="section level2">
-<h2>Sexual Dichromatism from Natal Coats Regression</h2>
+<h2>Sexual Dichromatism from Sexual Dimorphism Regression</h2>
 <pre class="r"><code># run phylolm and get summary
-SDCfromNC &lt;- phyloglm(Sexual_Dichromatism ~ Natal_Coat, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)
-summary(SDCfromNC)</code></pre>
+SDCfromSDM &lt;- phyloglm(Sexual_Dichromatism ~ Sexual_Dimorphism, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)
+summary(SDCfromSDM)</code></pre>
 <pre><code>
 Call:
-phyloglm(formula = Sexual_Dichromatism ~ Natal_Coat, data = data_pruned_rownames, 
+phyloglm(formula = Sexual_Dichromatism ~ Sexual_Dimorphism, data = data_pruned_rownames, 
     phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
        AIC     logLik Pen.logLik 
-     263.2     -128.6     -126.0 
+     250.7     -122.4     -119.8 
 
 Method: logistic_MPLE
 Mean tip height: 66.17414
 Parameter estimate(s):
-alpha: 0.2507059 
+alpha: 0.1804632 
 
 Coefficients:
-            Estimate   StdErr z.value   p.value    
-(Intercept) -1.85761  0.31771 -5.8469 5.009e-09 ***
-Natal_Coat   1.75392  0.36166  4.8496 1.237e-06 ***
+                  Estimate   StdErr z.value   p.value    
+(Intercept)       -1.48652  0.26220 -5.6694 1.433e-08 ***
+Sexual_Dimorphism  2.16530  0.35478  6.1032 1.040e-09 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Note: Wald-type p-values for coefficients, conditional on alpha=0.2507059</code></pre>
+Note: Wald-type p-values for coefficients, conditional on alpha=0.1804632</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
