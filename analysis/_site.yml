@@ -13,6 +13,8 @@ navbar:
     href: BasicPipeline.html
   - text: Sexual Dimorphism from Natal Coat
     href: DimorphismFromNatalCoat.html
+  - text: Sexual Dichromatism from Sexual Dimorphism
+    href: DichromFromDimorph.html
   right:
   - icon: fab fa-github
     text: Source code
