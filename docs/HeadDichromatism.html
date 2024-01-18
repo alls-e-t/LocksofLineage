@@ -13,7 +13,7 @@
 
 <meta name="date" content="2024-01-18" />
 
-<title>Sexual Dichromatism from Sexual Dimorphism</title>
+<title>Sexual Dichromatism on the Head</title>
 
 <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -374,8 +374,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Sexual Dichromatism from Sexual
-Dimorphism</h1>
+<h1 class="title toc-ignore">Sexual Dichromatism on the Head</h1>
 <h4 class="author">Sarah E Taylor</h4>
 <h4 class="date">2024-01-18</h4>
 
@@ -589,8 +588,8 @@ have uncommitted changes.
 
 <p>
 These are the previous versions of the repository in which changes were
-made to the R Markdown (<code>analysis/DichromFromDimorph.Rmd</code>)
-and HTML (<code>docs/DichromFromDimorph.html</code>) files. If you’ve
+made to the R Markdown (<code>analysis/HeadDichromatism.Rmd</code>) and
+HTML (<code>docs/HeadDichromatism.html</code>) files. If you’ve
 configured a remote Git repository (see <code>?wflow_git_remote</code>),
 click on the hyperlinks in the table below to view the files as they
 were in that past version.
@@ -619,44 +618,10 @@ Message
 <tbody>
 <tr>
 <td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/7da692e6ae9275d99c0c81f3d7238e9da9020711/docs/DichromFromDimorph.html" target="_blank">7da692e</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/f07be574ff145880d5a9dc82890cdb62d37d5e9c/docs/DichromFromDimorph.html" target="_blank">f07be57</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
 Rmd
 </td>
 <td>
-<a href="https://github.com/alls-e-t/LocksofLineage/blob/db6a8035697d46ad23abe1d4d455f4987912f3b2/analysis/DichromFromDimorph.Rmd" target="_blank">db6a803</a>
+<a href="https://github.com/alls-e-t/LocksofLineage/blob/8a8a10de0678818a9b29635889e78d6471e39740/analysis/HeadDichromatism.Rmd" target="_blank">8a8a10d</a>
 </td>
 <td>
 Sarah E Taylor
@@ -665,58 +630,8 @@ Sarah E Taylor
 2024-01-18
 </td>
 <td>
-Added Dichromatism from Dimorphism regression analysis
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/db6a8035697d46ad23abe1d4d455f4987912f3b2/docs/DichromFromDimorph.html" target="_blank">db6a803</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Added Dichromatism from Dimorphism regression analysis
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/8f37735c743c91b8dcd61af5add2865e65cfccac/docs/DichromFromDimorph.html" target="_blank">8f37735</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/alls-e-t/LocksofLineage/blob/3f30aa24d78eb6118934185431b42db7fe2028aa/analysis/DichromFromDimorph.Rmd" target="_blank">3f30aa2</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Added Dichromatism from Dimorphism regression analysis
+Changed NA to 0 in Binary_Data. Added Head Dichromatism regression
+analysis.
 </td>
 </tr>
 </tbody>
@@ -858,32 +773,39 @@ Alouatta_guariba                              1       0
 Alouatta_palliata                             0       0
 Alouatta_pigra                                0       0</code></pre>
 </div>
-<div id="sexual-dichromatism-from-sexual-dimorphism-regression"
+<div id="sexual-dichromatism-on-the-head-regression"
 class="section level2">
-<h2>Sexual Dichromatism from Sexual Dimorphism Regression</h2>
+<h2>Sexual Dichromatism on the Head Regression</h2>
 <pre class="r"><code># run phylolm and get summary
-SDCfromSDM &lt;- phyloglm(Sexual_Dichromatism ~ Sexual_Dimorphism, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)
-summary(SDCfromSDM)</code></pre>
+HeadSDC &lt;- phyloglm(DC_Head ~ Sexual_Dichromatism, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)</code></pre>
+<pre><code>Warning in phyloglm(DC_Head ~ Sexual_Dichromatism, data_pruned_rownames, : will
+drop from the tree 6 taxa with missing data</code></pre>
+<pre><code>Warning in phyloglm(DC_Head ~ Sexual_Dichromatism, data_pruned_rownames, : The estimated coefficients in the absence of phylogenetic signal lead
+  to some linear predictors beyond &#39;btol&#39;. Increase btol?
+  Starting from beta=0 other than intercept.</code></pre>
+<pre><code>Warning in phyloglm(DC_Head ~ Sexual_Dichromatism, data_pruned_rownames, : the estimate of &#39;alpha&#39; (0.000277871924406916) reached the lower bound (0.000276779412474107).
+ This may reflect a flat likelihood at low alpha values near the lower bound,
+ meaning that the phylogenetic correlation is estimated to be maximal
+ under the model in Ives and Garland (2010).</code></pre>
+<pre class="r"><code>summary(HeadSDC)</code></pre>
 <pre><code>
 Call:
-phyloglm(formula = Sexual_Dichromatism ~ Sexual_Dimorphism, data = data_pruned_rownames, 
+phyloglm(formula = DC_Head ~ Sexual_Dichromatism, data = data_pruned_rownames, 
     phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
        AIC     logLik Pen.logLik 
-     250.7     -122.4     -119.8 
+     77.34     -35.67     -35.34 
 
 Method: logistic_MPLE
 Mean tip height: 66.17414
 Parameter estimate(s):
-alpha: 0.1804632 
+alpha: 0.0002778719 
 
 Coefficients:
-                  Estimate   StdErr z.value   p.value    
-(Intercept)       -1.48652  0.26220 -5.6694 1.433e-08 ***
-Sexual_Dimorphism  2.16530  0.35478  6.1032 1.040e-09 ***
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+                    Estimate  StdErr z.value p.value
+(Intercept)          -3.0152  2.7576 -1.0934  0.2742
+Sexual_Dichromatism   2.0309  1.4158  1.4344  0.1515
 
-Note: Wald-type p-values for coefficients, conditional on alpha=0.1804632</code></pre>
+Note: Wald-type p-values for coefficients, conditional on alpha=0.0002778719</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
