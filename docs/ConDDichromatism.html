@@ -368,6 +368,9 @@ div.tocify {
 <li>
   <a href="ConBDichromatism.html">Natal Coat Contrast to Both Parents with Sexual Dichromatism</a>
 </li>
+<li>
+  <a href="SizeDichromatism.html">Sexual Dichromatism with Size Dimorphism</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -418,7 +421,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-01-18
+<strong>Last updated:</strong> 2024-01-19
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -549,15 +552,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetreedd1b532f0ca7a68fde67bcaeb17eb282449412b6targetblankdd1b532a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetreeeb3ad2645c60f1b2f7456ffdc0798028887e6c43targetblankeb3ad26a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/alls-e-t/LocksofLineage/tree/dd1b532f0ca7a68fde67bcaeb17eb282449412b6" target="_blank">dd1b532</a>
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/eb3ad2645c60f1b2f7456ffdc0798028887e6c43" target="_blank">eb3ad26</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetreedd1b532f0ca7a68fde67bcaeb17eb282449412b6targetblankdd1b532a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetreeeb3ad2645c60f1b2f7456ffdc0798028887e6c43targetblankeb3ad26a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -567,7 +570,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/alls-e-t/LocksofLineage/tree/dd1b532f0ca7a68fde67bcaeb17eb282449412b6" target="_blank">dd1b532</a>.
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/eb3ad2645c60f1b2f7456ffdc0798028887e6c43" target="_blank">eb3ad26</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -582,6 +585,7 @@ were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .DS_Store
     Ignored:    .Rproj.user/
     Ignored:    data/.DS_Store
 
@@ -629,6 +633,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/c8dd1c1bdc34650d4545b13a0c1fb7f52418469c/docs/ConDDichromatism.html" target="_blank">c8dd1c1</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-01-18
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -698,44 +719,45 @@ Phylogenetic tree: mammaltree
   No node labels.</code></pre>
 <pre class="r"><code>#read in the data
 Binary_traits &lt;- read_csv(&quot;data/Phylo_Project_Data/Masters_Binary_Traits.csv&quot;)</code></pre>
-<pre><code>Rows: 244 Columns: 12
+<pre><code>Rows: 244 Columns: 13
 ── Column specification ────────────────────────────────────────────────────────
 Delimiter: &quot;,&quot;
 chr (4): Family, Genus_names, species_name, subspecies
-dbl (8): Sexual_Dimorphism, DM_Head, Natal_Coat, ConD, ConM, ConB, Sexual_Di...
+dbl (9): Size_Dimorphism, Sexual_Dimorphism, DM_Head, Natal_Coat, ConD, ConM...
 
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>head(Binary_traits)</code></pre>
-<pre><code># A tibble: 6 × 12
-  Family       Genus…¹ speci…² subsp…³ Sexua…⁴ DM_Head Natal…⁵  ConD  ConM  ConB
-  &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 cercopithec… alleno… nigrov… &lt;NA&gt;          0       0       1     0     0     0
-2 cheirogalei… alloce… tricho… &lt;NA&gt;          0       0       0     0     0     0
-3 cebidae      alouat… caraya  &lt;NA&gt;          1       1       1     1     0     0
-4 cebidae      alouat… guariba &lt;NA&gt;          1       1       1     0     0     0
-5 cebidae      alouat… pallia… pallia…       1       0       1     0     0     0
-6 cebidae      alouat… pigra   &lt;NA&gt;          0       0       1     0     0     0
-# … with 2 more variables: Sexual_Dichromatism &lt;dbl&gt;, DC_Head &lt;dbl&gt;, and
-#   abbreviated variable names ¹​Genus_names, ²​species_name, ³​subspecies,
-#   ⁴​Sexual_Dimorphism, ⁵​Natal_Coat</code></pre>
+<pre><code># A tibble: 6 × 13
+  Family     Genus…¹ speci…² subsp…³ Size_…⁴ Sexua…⁵ DM_Head Natal…⁶  ConD  ConM
+  &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 cercopith… alleno… nigrov… &lt;NA&gt;          1       0       0       1     0     0
+2 cheirogal… alloce… tricho… &lt;NA&gt;          1       0       0       0     0     0
+3 cebidae    alouat… caraya  &lt;NA&gt;          1       1       1       1     1     0
+4 cebidae    alouat… guariba &lt;NA&gt;          1       1       1       1     0     0
+5 cebidae    alouat… pallia… pallia…       1       1       0       1     0     0
+6 cebidae    alouat… pigra   &lt;NA&gt;          1       0       0       1     0     0
+# … with 3 more variables: ConB &lt;dbl&gt;, Sexual_Dichromatism &lt;dbl&gt;,
+#   DC_Head &lt;dbl&gt;, and abbreviated variable names ¹​Genus_names, ²​species_name,
+#   ³​subspecies, ⁴​Size_Dimorphism, ⁵​Sexual_Dimorphism, ⁶​Natal_Coat</code></pre>
 </div>
 <div id="format-data" class="section level2">
 <h2>Format Data</h2>
 <pre class="r"><code>#combine genus and species names and capitalize first letter
 Binary_traits_combined = Binary_traits %&gt;% unite(&quot;species&quot;,`Genus_names`, `species_name`) %&gt;% mutate(species = str_to_title(species))
 head(Binary_traits_combined)</code></pre>
-<pre><code># A tibble: 6 × 11
-  Family       species subsp…¹ Sexua…² DM_Head Natal…³  ConD  ConM  ConB Sexua…⁴
-  &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-1 cercopithec… Alleno… &lt;NA&gt;          0       0       1     0     0     0       0
-2 cheirogalei… Alloce… &lt;NA&gt;          0       0       0     0     0     0       0
-3 cebidae      Alouat… &lt;NA&gt;          1       1       1     1     0     0       1
-4 cebidae      Alouat… &lt;NA&gt;          1       1       1     0     0     0       1
-5 cebidae      Alouat… pallia…       1       0       1     0     0     0       0
-6 cebidae      Alouat… &lt;NA&gt;          0       0       1     0     0     0       0
-# … with 1 more variable: DC_Head &lt;dbl&gt;, and abbreviated variable names
-#   ¹​subspecies, ²​Sexual_Dimorphism, ³​Natal_Coat, ⁴​Sexual_Dichromatism</code></pre>
+<pre><code># A tibble: 6 × 12
+  Family       species subsp…¹ Size_…² Sexua…³ DM_Head Natal…⁴  ConD  ConM  ConB
+  &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 cercopithec… Alleno… &lt;NA&gt;          1       0       0       1     0     0     0
+2 cheirogalei… Alloce… &lt;NA&gt;          1       0       0       0     0     0     0
+3 cebidae      Alouat… &lt;NA&gt;          1       1       1       1     1     0     0
+4 cebidae      Alouat… &lt;NA&gt;          1       1       1       1     0     0     0
+5 cebidae      Alouat… pallia…       1       1       0       1     0     0     0
+6 cebidae      Alouat… &lt;NA&gt;          1       0       0       1     0     0     0
+# … with 2 more variables: Sexual_Dichromatism &lt;dbl&gt;, DC_Head &lt;dbl&gt;, and
+#   abbreviated variable names ¹​subspecies, ²​Size_Dimorphism,
+#   ³​Sexual_Dimorphism, ⁴​Natal_Coat</code></pre>
 <pre class="r"><code># prune tree for species in data
 species_not_in_tree=setdiff(mammaltree$tip.label, Binary_traits_combined$species)
 pruned.tree&lt;-drop.tip(mammaltree,species_not_in_tree)
@@ -766,35 +788,36 @@ Phylogenetic tree: pruned.tree
 <pre class="r"><code>#prune data for species in tree
 data_pruned = Binary_traits_combined %&gt;% filter(species %in% pruned.tree$tip.label)
 head(data_pruned)</code></pre>
-<pre><code># A tibble: 6 × 11
-  Family       species subsp…¹ Sexua…² DM_Head Natal…³  ConD  ConM  ConB Sexua…⁴
-  &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
-1 cercopithec… Alleno… &lt;NA&gt;          0       0       1     0     0     0       0
-2 cheirogalei… Alloce… &lt;NA&gt;          0       0       0     0     0     0       0
-3 cebidae      Alouat… &lt;NA&gt;          1       1       1     1     0     0       1
-4 cebidae      Alouat… &lt;NA&gt;          1       1       1     0     0     0       1
-5 cebidae      Alouat… pallia…       1       0       1     0     0     0       0
-6 cebidae      Alouat… &lt;NA&gt;          0       0       1     0     0     0       0
-# … with 1 more variable: DC_Head &lt;dbl&gt;, and abbreviated variable names
-#   ¹​subspecies, ²​Sexual_Dimorphism, ³​Natal_Coat, ⁴​Sexual_Dichromatism</code></pre>
+<pre><code># A tibble: 6 × 12
+  Family       species subsp…¹ Size_…² Sexua…³ DM_Head Natal…⁴  ConD  ConM  ConB
+  &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 cercopithec… Alleno… &lt;NA&gt;          1       0       0       1     0     0     0
+2 cheirogalei… Alloce… &lt;NA&gt;          1       0       0       0     0     0     0
+3 cebidae      Alouat… &lt;NA&gt;          1       1       1       1     1     0     0
+4 cebidae      Alouat… &lt;NA&gt;          1       1       1       1     0     0     0
+5 cebidae      Alouat… pallia…       1       1       0       1     0     0     0
+6 cebidae      Alouat… &lt;NA&gt;          1       0       0       1     0     0     0
+# … with 2 more variables: Sexual_Dichromatism &lt;dbl&gt;, DC_Head &lt;dbl&gt;, and
+#   abbreviated variable names ¹​subspecies, ²​Size_Dimorphism,
+#   ³​Sexual_Dimorphism, ⁴​Natal_Coat</code></pre>
 <pre class="r"><code>#put data into useful form for phylolm
 colnames(data_pruned) = gsub(&quot; &quot;, &quot;_&quot;, colnames(data_pruned))
 data_pruned_rownames = column_to_rownames(data_pruned, var = &quot;species&quot;)
 head(data_pruned_rownames)</code></pre>
-<pre><code>                                     Family subspecies Sexual_Dimorphism
-Allenopithecus_nigroviridis cercopithecidae       &lt;NA&gt;                 0
-Allocebus_trichotis          cheirogaleidae       &lt;NA&gt;                 0
-Alouatta_caraya                     cebidae       &lt;NA&gt;                 1
-Alouatta_guariba                    cebidae       &lt;NA&gt;                 1
-Alouatta_palliata                   cebidae   palliata                 1
-Alouatta_pigra                      cebidae       &lt;NA&gt;                 0
-                            DM_Head Natal_Coat ConD ConM ConB
-Allenopithecus_nigroviridis       0          1    0    0    0
-Allocebus_trichotis               0          0    0    0    0
-Alouatta_caraya                   1          1    1    0    0
-Alouatta_guariba                  1          1    0    0    0
-Alouatta_palliata                 0          1    0    0    0
-Alouatta_pigra                    0          1    0    0    0
+<pre><code>                                     Family subspecies Size_Dimorphism
+Allenopithecus_nigroviridis cercopithecidae       &lt;NA&gt;               1
+Allocebus_trichotis          cheirogaleidae       &lt;NA&gt;               1
+Alouatta_caraya                     cebidae       &lt;NA&gt;               1
+Alouatta_guariba                    cebidae       &lt;NA&gt;               1
+Alouatta_palliata                   cebidae   palliata               1
+Alouatta_pigra                      cebidae       &lt;NA&gt;               1
+                            Sexual_Dimorphism DM_Head Natal_Coat ConD ConM ConB
+Allenopithecus_nigroviridis                 0       0          1    0    0    0
+Allocebus_trichotis                         0       0          0    0    0    0
+Alouatta_caraya                             1       1          1    1    0    0
+Alouatta_guariba                            1       1          1    0    0    0
+Alouatta_palliata                           1       0          1    0    0    0
+Alouatta_pigra                              0       0          1    0    0    0
                             Sexual_Dichromatism DC_Head
 Allenopithecus_nigroviridis                   0       0
 Allocebus_trichotis                           0       0
