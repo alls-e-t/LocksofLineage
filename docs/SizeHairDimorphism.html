@@ -11,9 +11,9 @@
 
 <meta name="author" content="Sarah E Taylor" />
 
-<meta name="date" content="2024-01-18" />
+<meta name="date" content="2024-01-19" />
 
-<title>Natal Coat Contrast to the Mother with Sexual Dichromatism</title>
+<title>Hair Sexual Dimorphism with Size Dimorphism</title>
 
 <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -392,10 +392,10 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Natal Coat Contrast to the Mother with
-Sexual Dichromatism</h1>
+<h1 class="title toc-ignore">Hair Sexual Dimorphism with Size
+Dimorphism</h1>
 <h4 class="author">Sarah E Taylor</h4>
-<h4 class="date">2024-01-18</h4>
+<h4 class="date">2024-01-19</h4>
 
 </div>
 
@@ -608,8 +608,8 @@ have uncommitted changes.
 
 <p>
 These are the previous versions of the repository in which changes were
-made to the R Markdown (<code>analysis/ConMDichromatism.Rmd</code>) and
-HTML (<code>docs/ConMDichromatism.html</code>) files. If you’ve
+made to the R Markdown (<code>analysis/SizeHairDimorphism.Rmd</code>)
+and HTML (<code>docs/SizeHairDimorphism.html</code>) files. If you’ve
 configured a remote Git repository (see <code>?wflow_git_remote</code>),
 click on the hyperlinks in the table below to view the files as they
 were in that past version.
@@ -638,10 +638,10 @@ Message
 <tbody>
 <tr>
 <td>
-html
+Rmd
 </td>
 <td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/2e682ede00b152b859fdd33c0915b9a1f52fea13/docs/ConMDichromatism.html" target="_blank">2e682ed</a>
+<a href="https://github.com/alls-e-t/LocksofLineage/blob/59385d0ee44894fac341dfb6f7cb3155fe4bdf47/analysis/SizeHairDimorphism.Rmd" target="_blank">59385d0</a>
 </td>
 <td>
 Sarah E Taylor
@@ -650,93 +650,7 @@ Sarah E Taylor
 2024-01-19
 </td>
 <td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/c8dd1c1bdc34650d4545b13a0c1fb7f52418469c/docs/ConMDichromatism.html" target="_blank">c8dd1c1</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/7f6ef4daa4984a912c8b811d5aa5db4380d5639a/docs/ConMDichromatism.html" target="_blank">7f6ef4d</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/9f0b8a5378cdf173946f81daca799bfe9ebf3a97/docs/ConMDichromatism.html" target="_blank">9f0b8a5</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/7fbf1073244cb752b730e8c350aa9fc6faf65fdc/docs/ConMDichromatism.html" target="_blank">7fbf107</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/alls-e-t/LocksofLineage/blob/fb26b0674e9a13896513416413150dd3349b3814/analysis/ConMDichromatism.Rmd" target="_blank">fb26b06</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Added Natal Coat Contrast to the Mother with Sexual Dichromatism
-regression
+Added Hair Sexual Dimorphism with Size Dimorphism regression analysis.
 </td>
 </tr>
 </tbody>
@@ -880,35 +794,32 @@ Alouatta_guariba                              1       0
 Alouatta_palliata                             0       0
 Alouatta_pigra                                0       0</code></pre>
 </div>
-<div
-id="natal-coat-contrast-to-the-mother-with-sexual-dichromatism-regression"
+<div id="hair-sexual-dimorphism-with-size-dimorphism-regression"
 class="section level2">
-<h2>Natal Coat Contrast to the Mother with Sexual Dichromatism
-Regression</h2>
+<h2>Hair Sexual Dimorphism with Size Dimorphism Regression</h2>
 <pre class="r"><code># run phylolm and get summary
-CONMSDC &lt;- phyloglm(ConM ~ Sexual_Dichromatism, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)</code></pre>
-<pre><code>Warning in phyloglm(ConM ~ Sexual_Dichromatism, data_pruned_rownames, phy = pruned.tree, : The estimated coefficients in the absence of phylogenetic signal lead
-  to some linear predictors beyond &#39;btol&#39;. Increase btol?
-  Starting from beta=0 other than intercept.</code></pre>
-<pre class="r"><code>summary(CONMSDC)</code></pre>
+SizeHSD &lt;- phyloglm(Sexual_Dimorphism ~ Size_Dimorphism, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)
+summary(SizeHSD)</code></pre>
 <pre><code>
 Call:
-phyloglm(formula = ConM ~ Sexual_Dichromatism, data = data_pruned_rownames, 
+phyloglm(formula = Sexual_Dimorphism ~ Size_Dimorphism, data = data_pruned_rownames, 
     phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
        AIC     logLik Pen.logLik 
-    26.252    -10.126     -8.749 
+     239.8     -116.9     -114.2 
 
 Method: logistic_MPLE
 Mean tip height: 66.17414
 Parameter estimate(s):
-alpha: 0.0002978229 
+alpha: 0.2836154 
 
 Coefficients:
-                    Estimate   StdErr z.value p.value
-(Intercept)         -1.67824  2.65760 -0.6315  0.5277
-Sexual_Dichromatism  0.10151  0.15945  0.6366  0.5244
+                Estimate   StdErr z.value   p.value    
+(Intercept)     -1.69149  0.30970 -5.4617 4.715e-08 ***
+Size_Dimorphism  0.74703  0.34023  2.1957   0.02811 *  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Note: Wald-type p-values for coefficients, conditional on alpha=0.0002978229</code></pre>
+Note: Wald-type p-values for coefficients, conditional on alpha=0.2836154</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
