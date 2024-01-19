@@ -29,6 +29,8 @@ navbar:
     href: ConBDichromatism.html
   - text: Sexual Dichromatism with Size Dimorphism
     href: SizeDichromatism.html
+  - text: Hair Sexual Dimorphism with Size Dimorphism
+    href: SizeHairDimorphism.html
   right:
   - icon: fab fa-github
     text: Source code
