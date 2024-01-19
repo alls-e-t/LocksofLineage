@@ -27,6 +27,8 @@ navbar:
     href: ConDDichromatism.html
   - text: Natal Coat Contrast to Both Parents with Sexual Dichromatism
     href: ConBDichromatism.html
+  - text: Sexual Dichromatism with Size Dimorphism
+    href: SizeDichromatism.html
   right:
   - icon: fab fa-github
     text: Source code
