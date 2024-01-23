@@ -9,28 +9,6 @@ navbar:
     href: about.html
   - text: License
     href: license.html
-  - text: Basic Pipeline
-    href: BasicPipeline.html
-  - text: Sexual Dimorphism from Natal Coat
-    href: DimorphismFromNatalCoat.html
-  - text: Sexual Dichromatism from Sexual Dimorphism
-    href: DichromFromDimorph.html
-  - text: Sexual Dimorphism from Sexual Dichromatism
-    href: DimorphFromDichrom.html
-  - text: Head Dichromatism
-    href: HeadDichromatism.html
-  - text: Head Dimorphism
-    href: HeadDimorphism.html
-  - text: Natal Coat Contrast to the Mother with Sexual Dichromatism
-    href: ConMDichromatism.html
-  - text: Natal Coat Contrast to the Father with Sexual Dichromatism
-    href: ConDDichromatism.html
-  - text: Natal Coat Contrast to Both Parents with Sexual Dichromatism
-    href: ConBDichromatism.html
-  - text: Sexual Dichromatism with Size Dimorphism
-    href: SizeDichromatism.html
-  - text: Hair Sexual Dimorphism with Size Dimorphism
-    href: SizeHairDimorphism.html
   right:
   - icon: fab fa-github
     text: Source code
