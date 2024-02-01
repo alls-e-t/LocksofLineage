@@ -1,0 +1,91 @@
+---
+title: "Cleaning up some of the data"
+author: "Sarah E Taylor"
+date: "2024-02-01"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Loading in Data
+
+```{r Libraries, include=FALSE}
+library(tidyverse)
+library(dplyr)
+```
+
+
+```{r Load in the data}
+# Read the CSV file
+data <- read_csv("~/Desktop/Primates/Full_Hair_Traits_Updated_Names.csv")
+
+```
+
+## Code the Data
+
+```{r Binarize the data that is two way}
+
+# Binarize the data
+data_test_multiple <- data %>%
+  mutate(across(c(Sexual_dimorphism, Natal_coat, Sexual_dichromatism), ~if_else(. == "Yes", 1, 0)))
+
+```
+
+```{r Other ways to binarize, include=FALSE}
+#Binarize the data keeping the NAs
+#data_test_SC_NA <- data_test_multiple %>%
+#mutate(
+# Sexual_dichromatism_type = if_else(Sexual_dichromatism_type == "Complete", 1, 0)
+#  )
+```
+
+```{r Code the columns that are not two way}
+#data_multiple_options <- data_test_SC_NA %>%
+  #mutate(Darker = match(Darker, unique(Darker)))
+
+data_multiple_multiple <- data_test_multiple %>%
+  mutate(across(c(Darker, Direction, Natal_Coat_Type), ~match(., unique(.)) - 1))
+
+write.csv(data_multiple_multiple, "~/Github/LocksofLineage/data/data_multiple_multiple.csv", row.names = FALSE)
+
+#data_multiple_options <- data %>%
+  #mutate(Darker = if_else(is.na(Darker), NA_integer_, match(Darker, unique(Darker))))
+```
+
+## Create the Legend
+
+```{r Create the Legend}
+#Create the legend function
+create_legend <- function(column) {
+  unique_values <- unique(column)
+  encoded_values <- match(unique_values, unique_values) - 1
+  legend <- tibble(Original = unique_values, Code = encoded_values)
+  return(legend)
+}
+
+#Create the legends for the columns
+legend_Sexual_Dimorphism <- create_legend(data$Sexual_dimorphism)
+legend_SD_Direction <- create_legend(data$Direction)
+legend_Natal_coat <- create_legend(data$Natal_coat)
+legend_Natal_coat_type <- create_legend(data$Natal_Coat_Type)
+legend_Sexual_Dichrom <- create_legend(data$Sexual_dichromatism)
+legend_Sexual_Dichrom_type <- create_legend(data$Sexual_dichromatism_type)
+legend_Darker <- create_legend(data$Darker)
+
+
+#Add column names
+legend_Sexual_Dimorphism <- legend_Sexual_Dimorphism %>% mutate(Column = 'Sexual_Dimorphism')
+legend_SD_Direction <- legend_SD_Direction %>% mutate(Column = 'SD_Direction')
+legend_Natal_coat <- legend_Natal_coat %>% mutate(Column = 'Natal_Coat')
+legend_Natal_coat_type <- legend_Natal_coat_type %>% mutate(Column = 'Natal_Coat_Type')
+legend_Sexual_Dichrom <- legend_Sexual_Dichrom %>% mutate(Column = 'Sexual_Dichromatism')
+legend_Sexual_Dichrom_type <- legend_Sexual_Dichrom %>% mutate(Column = 'Sexual_Dichrom_Type')
+legend_Darker <- legend_Darker %>% mutate(Column = 'Darker')
+
+#Combine the legends
+combined_legends <- bind_rows(legend_Sexual_Dimorphism, legend_SD_Direction, legend_Natal_coat, legend_Natal_coat_type, legend_Sexual_Dichrom, legend_Sexual_Dichrom_type, legend_Darker)
+
+#Create a csv for the legend
+write.csv(combined_legends, "~/Github/LocksofLineage/data/combined_legends.csv", row.names = FALSE)
+```
+
