@@ -9,14 +9,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Sarah E Taylor" />
 
+<meta name="date" content="2024-02-01" />
 
-<title>About</title>
+<title>Cleaning up some of the data</title>
 
 <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -29,6 +31,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -231,6 +236,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -238,6 +306,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -281,7 +359,9 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">About</h1>
+<h1 class="title toc-ignore">Cleaning up some of the data</h1>
+<h4 class="author">Sarah E Taylor</h4>
+<h4 class="date">2024-02-01</h4>
 
 </div>
 
@@ -289,7 +369,7 @@ $(document).ready(function () {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -300,8 +380,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -314,9 +394,9 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>LocksofLineage/</code> <span
@@ -351,6 +431,124 @@ class="panel-collapse collapse">
 <p>Great! Since the R Markdown file has been committed to the Git
 repository, you know the exact version of the code that produced these
 results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20231117code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20231117)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20231117code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20231117)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongabsolute">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>File paths:</strong> absolute </a>
+</p>
+</div>
+<div id="strongFilepathsstrongabsolute" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Using absolute paths to the files within your workflowr project makes it
+difficult for you and others to run your code on a different machine.
+Change the absolute path(s) below to the suggested relative path(s) to
+make your code more reproducible.
+</p>
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th style="text-align:left;">
+absolute
+</th>
+<th style="text-align:left;">
+relative
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+~/Github/LocksofLineage/data/data_multiple_multiple.csv
+</td>
+<td style="text-align:left;">
+data/data_multiple_multiple.csv
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+~/Github/LocksofLineage/data/combined_legends.csv
+</td>
+<td style="text-align:left;">
+data/combined_legends.csv
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -416,10 +614,11 @@ have uncommitted changes.
 
 <p>
 These are the previous versions of the repository in which changes were
-made to the R Markdown (<code>analysis/about.Rmd</code>) and HTML
-(<code>docs/about.html</code>) files. If you’ve configured a remote Git
-repository (see <code>?wflow_git_remote</code>), click on the hyperlinks
-in the table below to view the files as they were in that past version.
+made to the R Markdown (<code>analysis/expanded_trait_data.Rmd</code>)
+and HTML (<code>docs/expanded_trait_data.html</code>) files. If you’ve
+configured a remote Git repository (see <code>?wflow_git_remote</code>),
+click on the hyperlinks in the table below to view the files as they
+were in that past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -445,308 +644,19 @@ Message
 <tbody>
 <tr>
 <td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/f182c3815c5b93171a8229a080577a7a7ff6def4/docs/about.html" target="_blank">f182c38</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-19
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/2e682ede00b152b859fdd33c0915b9a1f52fea13/docs/about.html" target="_blank">2e682ed</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-19
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/c8dd1c1bdc34650d4545b13a0c1fb7f52418469c/docs/about.html" target="_blank">c8dd1c1</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/7f6ef4daa4984a912c8b811d5aa5db4380d5639a/docs/about.html" target="_blank">7f6ef4d</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/9f0b8a5378cdf173946f81daca799bfe9ebf3a97/docs/about.html" target="_blank">9f0b8a5</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/7fbf1073244cb752b730e8c350aa9fc6faf65fdc/docs/about.html" target="_blank">7fbf107</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/05b31cd4b0c49651e5668bc0af969f641d2885ce/docs/about.html" target="_blank">05b31cd</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/9daebeefef0c77801f5c6aaed9ece180908f64cd/docs/about.html" target="_blank">9daebee</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/b40af978b9f71e033562e1c7680a38138afa4e7a/docs/about.html" target="_blank">b40af97</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/7da692e6ae9275d99c0c81f3d7238e9da9020711/docs/about.html" target="_blank">7da692e</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/f07be574ff145880d5a9dc82890cdb62d37d5e9c/docs/about.html" target="_blank">f07be57</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/8f37735c743c91b8dcd61af5add2865e65cfccac/docs/about.html" target="_blank">8f37735</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/3da0ef1d35ca55a46654982a763ebd3ed118ccc4/docs/about.html" target="_blank">3da0ef1</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/d74021c2318e9c0ca4466e0f1be4a02b702cf64a/docs/about.html" target="_blank">d74021c</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-12
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/bd9db3cebcd665067cd14099a6ee936f57f82276/docs/about.html" target="_blank">bd9db3c</a>
-</td>
-<td>
-Sarah E Taylor
-</td>
-<td>
-2024-01-11
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/eb2a6cec8618d47d22e4f2743c5872cfd0785baa/docs/about.html" target="_blank">eb2a6ce</a>
-</td>
-<td>
-Sarah Taylor
-</td>
-<td>
-2023-11-17
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
 Rmd
 </td>
 <td>
-<a href="https://github.com/alls-e-t/LocksofLineage/blob/36907e82d9e15efa0b6e2149fe2b27d889904dc4/analysis/about.Rmd" target="_blank">36907e8</a>
+<a href="https://github.com/alls-e-t/LocksofLineage/blob/e18d74c1f5d749e55476cdecfdec063cad74935b/analysis/expanded_trait_data.Rmd" target="_blank">e18d74c</a>
 </td>
 <td>
-Sarah Taylor
+Sarah E Taylor
 </td>
 <td>
-2023-11-17
+2024-02-01
 </td>
 <td>
-Publish the initial files for LocksofLineage
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/alls-e-t/LocksofLineage/blob/b574957fe234f4f3df6ea68433adb5dca295b5be/analysis/about.Rmd" target="_blank">b574957</a>
-</td>
-<td>
-Sarah Taylor
-</td>
-<td>
-2023-11-17
-</td>
-<td>
-Start workflowr project.
+Added a page on cleaning my data.
 </td>
 </tr>
 </tbody>
@@ -756,12 +666,116 @@ Start workflowr project.
 </div>
 </div>
 </div>
-<p>We are using phylogenetic analysis to understand the relationship
-between and development of natal coats, sexual dichromatism and sexual
-dimorphism in the hair of non-human primates. We began with a literature
-review to create a database of 244 primate species across all 14
-families. We have also compiled the main hypotheses for the development
-of these traits both from the ultimate and proximate perspective.</p>
+<div id="loading-in-data" class="section level2">
+<h2>Loading in Data</h2>
+<pre class="r"><code># Read the CSV file
+data &lt;- read_csv(&quot;~/Desktop/Primates/Full_Hair_Traits_Updated_Names.csv&quot;)</code></pre>
+<pre><code>New names:
+Rows: 238 Columns: 17
+── Column specification
+──────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
+(16): family, Genus, species, subspecies, Sexual_dimorphism, Sexual_Dimo... lgl
+(1): ...7
+ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
+Specify the column types or set `show_col_types = FALSE` to quiet this message.
+• `` -&gt; `...7`</code></pre>
+</div>
+<div id="code-the-data" class="section level2">
+<h2>Code the Data</h2>
+<pre class="r"><code># Binarize the data
+data_test_multiple &lt;- data %&gt;%
+  mutate(across(c(Sexual_dimorphism, Natal_coat, Sexual_dichromatism), ~if_else(. == &quot;Yes&quot;, 1, 0)))</code></pre>
+<pre class="r"><code>#data_multiple_options &lt;- data_test_SC_NA %&gt;%
+  #mutate(Darker = match(Darker, unique(Darker)))
+
+data_multiple_multiple &lt;- data_test_multiple %&gt;%
+  mutate(across(c(Darker, Direction, Natal_Coat_Type), ~match(., unique(.)) - 1))
+
+write.csv(data_multiple_multiple, &quot;~/Github/LocksofLineage/data/data_multiple_multiple.csv&quot;, row.names = FALSE)
+
+#data_multiple_options &lt;- data %&gt;%
+  #mutate(Darker = if_else(is.na(Darker), NA_integer_, match(Darker, unique(Darker))))</code></pre>
+</div>
+<div id="create-the-legend" class="section level2">
+<h2>Create the Legend</h2>
+<pre class="r"><code>#Create the legend function
+create_legend &lt;- function(column) {
+  unique_values &lt;- unique(column)
+  encoded_values &lt;- match(unique_values, unique_values) - 1
+  legend &lt;- tibble(Original = unique_values, Code = encoded_values)
+  return(legend)
+}
+
+#Create the legends for the columns
+legend_Sexual_Dimorphism &lt;- create_legend(data$Sexual_dimorphism)
+legend_SD_Direction &lt;- create_legend(data$Direction)
+legend_Natal_coat &lt;- create_legend(data$Natal_coat)
+legend_Natal_coat_type &lt;- create_legend(data$Natal_Coat_Type)
+legend_Sexual_Dichrom &lt;- create_legend(data$Sexual_dichromatism)
+legend_Sexual_Dichrom_type &lt;- create_legend(data$Sexual_dichromatism_type)
+legend_Darker &lt;- create_legend(data$Darker)
+
+
+#Add column names
+legend_Sexual_Dimorphism &lt;- legend_Sexual_Dimorphism %&gt;% mutate(Column = &#39;Sexual_Dimorphism&#39;)
+legend_SD_Direction &lt;- legend_SD_Direction %&gt;% mutate(Column = &#39;SD_Direction&#39;)
+legend_Natal_coat &lt;- legend_Natal_coat %&gt;% mutate(Column = &#39;Natal_Coat&#39;)
+legend_Natal_coat_type &lt;- legend_Natal_coat_type %&gt;% mutate(Column = &#39;Natal_Coat_Type&#39;)
+legend_Sexual_Dichrom &lt;- legend_Sexual_Dichrom %&gt;% mutate(Column = &#39;Sexual_Dichromatism&#39;)
+legend_Sexual_Dichrom_type &lt;- legend_Sexual_Dichrom %&gt;% mutate(Column = &#39;Sexual_Dichrom_Type&#39;)
+legend_Darker &lt;- legend_Darker %&gt;% mutate(Column = &#39;Darker&#39;)
+
+#Combine the legends
+combined_legends &lt;- bind_rows(legend_Sexual_Dimorphism, legend_SD_Direction, legend_Natal_coat, legend_Natal_coat_type, legend_Sexual_Dichrom, legend_Sexual_Dichrom_type, legend_Darker)
+
+#Create a csv for the legend
+write.csv(combined_legends, &quot;~/Github/LocksofLineage/data/combined_legends.csv&quot;, row.names = FALSE)</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.2.1 (2022-06-23)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Big Sur ... 10.16
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] lubridate_1.9.2 forcats_1.0.0   stringr_1.5.0   dplyr_1.1.0    
+ [5] purrr_1.0.1     readr_2.1.4     tidyr_1.3.0     tibble_3.1.8   
+ [9] ggplot2_3.4.1   tidyverse_2.0.0 workflowr_1.7.1
+
+loaded via a namespace (and not attached):
+ [1] tidyselect_1.2.0 xfun_0.41        bslib_0.4.2      colorspace_2.0-3
+ [5] vctrs_0.5.2      generics_0.1.3   htmltools_0.5.4  yaml_2.3.7      
+ [9] utf8_1.2.2       rlang_1.0.6      jquerylib_0.1.4  later_1.3.1     
+[13] pillar_1.8.1     glue_1.6.2       withr_2.5.0      bit64_4.0.5     
+[17] lifecycle_1.0.3  munsell_0.5.0    gtable_0.3.1     evaluate_0.20   
+[21] knitr_1.42       tzdb_0.3.0       callr_3.7.3      fastmap_1.1.0   
+[25] httpuv_1.6.11    ps_1.7.2         parallel_4.2.1   fansi_1.0.3     
+[29] highr_0.10       Rcpp_1.0.11      promises_1.2.1   scales_1.2.1    
+[33] cachem_1.0.6     vroom_1.6.1      jsonlite_1.8.4   bit_4.0.5       
+[37] fs_1.6.1         hms_1.1.2        digest_0.6.30    stringi_1.7.8   
+[41] processx_3.8.0   getPass_0.2-2    rprojroot_2.0.4  grid_4.2.1      
+[45] cli_3.6.0        tools_4.2.1      magrittr_2.0.3   sass_0.4.5      
+[49] crayon_1.5.2     whisker_0.4.1    pkgconfig_2.0.3  ellipsis_0.3.2  
+[53] timechange_0.2.0 rmarkdown_2.20   httr_1.4.4       rstudioapi_0.14 
+[57] R6_2.5.1         git2r_0.32.0     compiler_4.2.1  </code></pre>
+</div>
+</div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
@@ -779,6 +793,8 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -811,6 +827,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
