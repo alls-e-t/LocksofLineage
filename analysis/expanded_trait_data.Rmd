@@ -17,7 +17,7 @@ library(dplyr)
 
 ```{r Load in the data}
 # Read the CSV file
-data <- read_csv("~/Desktop/Primates/Full_Hair_Traits_Updated_Names.csv")
+data <- read_csv("~/GitHub/LocksofLineage/data/Full_Hair_Traits_Updated_Names.csv")
 
 ```
 

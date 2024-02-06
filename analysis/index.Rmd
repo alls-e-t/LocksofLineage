@@ -18,6 +18,8 @@ Hair patterning serves as a mechanism for complex visual and social signaling in
 Cleaning the Data
 
 Click on this [link](expanded_trait_data.html) to see how I cleaned some of the data.
+Click on this [link](trait_matrix.html) to see the trait matrix for my basic categories.
+
 
 Natal Coat Regressions
 
