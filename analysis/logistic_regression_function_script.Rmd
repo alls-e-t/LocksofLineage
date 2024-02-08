@@ -1,0 +1,336 @@
+---
+title: "logistic regression function script"
+author: "Sarah E Taylor"
+date: "2024-02-08"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Creating the models
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+```
+
+```{r single model}
+# Load the function
+source("~/GitHub/LocksofLineage/analysis/phylogenetic_logistic_regression_function.R")
+
+# Define outcome and predictor variables
+outcome_variable <- "Sexual_Dimorphism"
+predictor_variable <- "Size_Dimorphism"
+
+# Run the phylogenetic logistic regression analysis
+summary <- run_phylogenetic_logistic_regression(outcome_variable, predictor_variable, "~/GitHub/LocksofLineage/data/Phylo_Project_Data/MamPhy_BDvr_Completed_v2_tree0000.tre", "~/GitHub/LocksofLineage/data/Phylo_Project_Data/Masters_Binary_Traits.csv")
+print(summary)
+str(summary)
+aic_value <- summary$aic
+print(aic_value)
+```
+
+```{r all binary models}
+# Load the custom function
+source("~/GitHub/LocksofLineage/analysis/phylogenetic_logistic_regression_function.R")
+
+# Load your dataset
+data_file_path <- "~/GitHub/LocksofLineage/data/Phylo_Project_Data/Masters_Binary_Traits.csv"
+primate_data <- read_csv(data_file_path)
+tree_file_path <- "~/GitHub/LocksofLineage/data/Phylo_Project_Data/MamPhy_BDvr_Completed_v2_tree0000.tre"
+
+# List all variable names (excluding species name if it's there)
+variable_names <- colnames(primate_data)[colnames(primate_data) != c("Family", "Genus_names", "species_name", "subspecies")]
+
+# Initialize a list (or another structure) to store summaries or results
+model_results <- list()
+
+# Loop over all variable combinations
+for (outcome_var in variable_names) {
+    for (predictor_var in variable_names) {
+        if (outcome_var != predictor_var) {
+            # Run the phylogenetic logistic regression analysis
+            model_summary <- run_phylogenetic_logistic_regression(outcome_var, predictor_var, tree_file_path, data_file_path)
+            
+            # Store the summary with a meaningful identifier
+            model_id <- paste(outcome_var, "vs", predictor_var, sep = "_")
+            model_results[[model_id]] <- model_summary
+            
+            # Optionally, print or inspect the summary
+             print(model_summary)
+        }
+    }
+}
+
+# At this point, `model_results` will contain all your model summaries or results,
+# which you can then examine, analyze further, or use for visualization.
+
+```
+
+# Creating an Association matrix of the binary traits
+```{r association matrix of binary traits BAD, include=FALSE}
+# List of binary traits
+binary_traits <- c("Size_Dimorphism", "Sexual_Dimorphism", "DM_Head", "Natal_Coat", "ConD", "ConM", "ConB", "Sexual_Dichromatism", "DC_Head")  
+
+# Assuming 'model_results' contains your fitted models
+# and 'binary_traits' lists the traits involved in those models
+
+# Initialize the association matrix for coefficients
+n_traits <- length(binary_traits)
+association_matrix <- matrix(NA, nrow = n_traits, ncol = n_traits, dimnames = list(binary_traits, binary_traits))
+
+# Iterate over the models to extract coefficients
+for (i in 1:n_traits) {
+  for (j in 1:n_traits) {
+    if (i != j) {
+      # Construct the model identifier used when storing the model
+      model_id <- paste(binary_traits[i], "vs", binary_traits[j], sep = "_")
+      
+      # Check if this model exists in the model_results
+      if (model_id %in% names(model_results)) {
+        # Extract the model from the list
+        model <- model_results[[model_id]]$model  # Adjust based on how you've stored the model
+        
+        # Proceed if the model is not NULL
+        if (!is.null(model)) {
+          # Extract coefficient (log odds ratio)
+          coefficient <- coef(model)[2]  # Assuming the second coefficient is the predictor of interest
+          
+          # Store coefficient in the association matrix
+          association_matrix[i, j] <- coefficient
+        }
+      }
+    }
+  }
+}
+
+# Visualize the association matrix as a heatmap
+heatmap(association_matrix, Rowv = NA, Colv = NA, col = heat.colors(10), scale = "none")
+
+```
+
+```{r association matrix of binary traits GOOD}
+# Initialize the association matrix with the correct dimensions and names
+n_variables <- length(variable_names)
+association_matrix <- matrix(NA, nrow = n_variables, ncol = n_variables, dimnames = list(variable_names, variable_names))
+
+# Loop over model_results to extract and store coefficients
+for (model_id in names(model_results)) {
+  model_summary <- model_results[[model_id]]
+  
+  if (!is.null(model_summary) && "summary.phyloglm" %in% class(model_summary)) {
+    # Extract coefficients matrix
+    coefficients_matrix <- model_summary$coefficients
+    
+    # Assuming you're interested in the first predictor's coefficient
+    # and that predictor variable names directly match those in variable_names
+    predictor_name <- gsub(".*vs_", "", model_id)  # Extract predictor variable name from model_id
+    if (predictor_name %in% rownames(coefficients_matrix)) {
+      coefficient <- coefficients_matrix[predictor_name, "Estimate"]
+      
+      # Determine indices for the association matrix based on variable names
+      outcome_var <- gsub("_vs.*", "", model_id)  # Extract outcome variable name from model_id
+      i <- which(variable_names == outcome_var)
+      j <- which(variable_names == predictor_name)
+      
+      # Populate the association matrix
+      if (length(i) == 1 && length(j) == 1) {  # Ensure valid indices
+        association_matrix[i, j] <- coefficient
+      }
+    }
+  }
+}
+
+# Now, the association matrix should be populated with the coefficients
+
+```
+
+```{r all models with explicit error catching, include=FALSE}
+# Initialize a list to store models and their fitting details
+model_details <- list()
+
+# Loop over all variable combinations
+for (outcome_var in variable_names) {
+    for (predictor_var in variable_names) {
+        if (outcome_var != predictor_var) {
+            model_id <- paste(outcome_var, "vs", predictor_var, sep = "_")
+            
+            # Initialize an empty list to store details for the current model
+            details <- list(model_id = model_id, model = NULL, error = NULL, warnings = list())
+            
+            # Capture both errors and warnings during model fitting
+            details$model <- withCallingHandlers(
+                tryCatch({
+                    run_phylogenetic_logistic_regression(outcome_var, predictor_var, tree_file_path, data_file_path)
+                }, error = function(e) {
+                    details$error <- toString(e)
+                    NULL  # Return NULL model in case of error
+                }),
+                warning = function(w) {
+                    # Capture and store the warning
+                    details$warnings <- c(details$warnings, toString(w$message))
+                }
+            )
+            
+            # Store the details in the main list
+            model_details[[model_id]] <- details
+        }
+    }
+}
+
+# After the loop, you can access warnings for each model separately
+#for (model_id in names(model_details)) {
+    model_warnings <- model_details[[model_id]]$warnings
+    if (length(model_warnings) > 0) {
+        cat("Warnings for", model_id, ":\n")
+        print(model_warnings)
+    }
+#}
+
+```
+
+# Finding the best fitting model
+```{r AIC value and best fit model id}
+# Assuming `model_results` is a list where each element is a model summary including AIC
+
+# Extract AIC values and model identifiers
+aic_values <- sapply(model_results, function(summary) summary$aic)  # Adjust extraction based on your summary structure
+model_ids <- names(model_results)
+
+# Combine into a data frame for easy sorting and viewing
+aic_df <- data.frame(model_id = model_ids, AIC = aic_values)
+
+# Sort by AIC values
+aic_sorted <- aic_df[order(aic_df$AIC), ]
+
+# View sorted models by AIC
+print(aic_sorted)
+
+# Identify best models (e.g., top 5 models with lowest AIC)
+best_models <- head(aic_sorted, 5)
+print(best_models)
+
+best_model_summary <- model_results[["ConM vs DM_Head"]]
+```
+
+#Plots
+```{r Plot the association matrix}
+#Basic r plotting
+heatmap(association_matrix, Rowv = NA, Colv = NA, col = heat.colors(10), scale = "none")
+
+library(ggplot2)
+
+# Convert matrix to long format for ggplot
+association_matrix_long <- reshape2::melt(association_matrix)
+
+ggplot(association_matrix_long, aes(Var1, Var2, fill = value)) +
+  geom_tile() +
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", midpoint = 0) +
+  theme_minimal() +
+  labs(x = "Predictor Variable", y = "Outcome Variable", fill = "Coefficient")
+
+```
+
+```{r plot the AICs for the model}
+# Assuming you have a dataframe 'aic_sorted' from previous steps, with columns 'model_id' and 'AIC'
+library(ggplot2)
+
+# Create the plot
+ggplot(aic_sorted, aes(x = reorder(model_id, AIC), y = AIC)) +
+  geom_bar(stat = "identity") +
+  theme_minimal() +
+  coord_flip() +  # Flip coordinates to make the plot horizontal; easier to read model names
+  labs(x = "Model", y = "AIC Value", title = "Comparison of Model AIC Values") +
+  geom_text(aes(label = sprintf("%.2f", AIC), hjust = -0.1))  # Add AIC values as text labels
+
+```
+
+```{r AIC Plot with specific predictor variable colored}
+#Designating a specific predictor variable to highlight. Change this variable to switch predictors
+specific_predictor <- "ConM"  
+
+ggplot(aic_sorted, aes(x = reorder(model_id, AIC), y = AIC, 
+                       fill = ifelse(grepl(specific_predictor, model_id), "With Predictor", "Without Predictor"))) +
+  geom_bar(stat = "identity") +
+  theme_minimal() +
+  coord_flip() +  # Make the plot horizontal
+  scale_fill_manual(values = c("With Predictor" = "red", "Without Predictor" = "blue"), 
+                    name = paste("Includes", specific_predictor)) +
+  labs(x = "Model", y = "AIC Value", title = paste("Comparison of Model AIC Values -", specific_predictor)) +
+  geom_text(aes(label = sprintf("%.2f", AIC), hjust = -0.1))  # Add AIC values as text labels
+
+```
+
+```{r plot the binary traits for the species}
+binary_matrix <- as.matrix(data_pruned_rownames[, -c(1,2)])
+pheatmap(binary_matrix, 
+         color = c("blue", "pink"),  # Example colors for absence/presence
+         display_numbers = FALSE) 
+
+```
+
+```{r Plot predicted probabilities, include=FALSE}
+# Load libraries
+library(ggplot2)
+
+# Define function to calculate predicted probabilities
+calculate_predicted_probabilities <- function(model, predictor_var1, predictor_var2, constant_var_value) {
+  # Generate data frame with all combinations of predictor variable values
+  predictor_values <- expand.grid(predictor_var1 = unique(predictor_var1),
+                                  predictor_var2 = unique(predictor_var2))
+  
+  # Add constant value for the other predictor variable
+  predictor_values$constant_var_value <- constant_var_value
+  
+  # Calculate predicted probabilities
+  predicted_probabilities <- predict(model, newdata = predictor_values, type = "response")
+  
+  # Return data frame with predictor values and predicted probabilities
+  return(data.frame(predictor_var1 = predictor_values$predictor_var1,
+                    predictor_var2 = predictor_values$predictor_var2,
+                    constant_var_value = predictor_values$constant_var_value,
+                    predicted_probability = predicted_probabilities))
+}
+
+# Define function to plot predicted probabilities
+plot_predicted_probabilities <- function(predicted_probabilities, predictor_var1_name, predictor_var2_name) {
+  # Plot predicted probabilities
+  ggplot(predicted_probabilities, aes(x = predictor_var1, y = predicted_probability, color = as.factor(constant_var_value))) +
+    geom_line() +
+    facet_wrap(~ constant_var_value, scales = "free_y") +
+    labs(x = predictor_var1_name, y = "Predicted Probability") +
+    theme_minimal()
+}
+
+# Example usage:
+# predicted_probabilities <- calculate_predicted_probabilities(SizeHSD, data_pruned_rownames$Size_Dimorphism, data_pruned_rownames$Trait_1, constant_var_value = "Constant Value")
+# plot_predicted_probabilities(predicted_probabilities, "Size Dimorphism", "Trait 1")
+
+```
+
+```{r fix the names of the models, include=FALSE}
+# Replace spaces with underscores in all element names
+names(model_results) <- gsub(" ", "_", names(model_results))
+
+# Print the updated names to verify
+print(names(model_results))
+
+```
+
+```{r check for errors, include=FALSE}
+# Example: Directly fit the model of interest and check for errors
+model_test <- run_phylogenetic_logistic_regression("ConM", "DM_Head", tree_file_path, data_file_path)
+if(is.null(model_test)) {
+    print("Model fitting returned NULL. Check function and data inputs.")
+} else {
+    print("Model fitting successful.")
+}
+
+# Assuming 'model' is your logistic regression model for ConM vs DM_Head
+primate_data$predicted_ConM <- predict(SizeHSD, type = "response")
+
+# Optional: Convert probabilities to binary predictions based on a threshold (e.g., 0.5)
+primate_data$predicted_ConM_binary <- ifelse(primate_data$predicted_ConM > 0.5, 1, 0)
+
+```
+

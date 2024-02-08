@@ -30,3 +30,52 @@ print(my_matrix)
 
 ```
 
+```{r}
+# Load the CSV file (adjust the path to your actual file)
+data <- read.csv("~/GitHub/LocksofLineage/data/Full_Hair_Traits_Updated_Names.csv")
+
+# Loop through each row in the CSV data
+for(i in 1:nrow(data)) {
+  row_label <- data$RowLabel[i] # Adjust RowLabel to your actual column name
+  col_label <- data$ColLabel[i] # Adjust ColLabel to your actual column name
+  
+  # Check if both the row_label and col_label exist in the matrix labels
+  if(row_label %in% labels && col_label %in% labels) {
+    # Update the count in the corresponding cell, if not diagonal
+    if(!is.na(my_matrix[row_label, col_label])) {
+      my_matrix[row_label, col_label] <- my_matrix[row_label, col_label] + 1
+    }
+  }
+}
+
+```
+
+```{r}
+# Assuming you've already read the CSV data into 'data'
+data <- read.csv("~/GitHub/LocksofLineage/data/Full_Hair_Traits_Updated_Names.csv")
+
+# Assuming 'locations' and 'directions' are vectors containing the unique values for those attributes
+locations <- unique(data$Location)
+directions <- unique(data$Direction)
+
+# Initialize the matrix
+n <- max(length(locations), length(directions)) # Adjust based on actual data
+my_matrix <- matrix(0, nrow=n, ncol=n, dimnames=list(locations, directions))
+
+# Set the diagonal elements to NA
+diag(my_matrix) <- NA
+
+# Loop through each row in the CSV data
+for(i in 1:nrow(data)) {
+  location <- data$Location[i]
+  direction <- data$Direction[i]
+  
+  # Update the matrix if location and direction are valid (not NA and exist in labels)
+  if(!is.na(location) && !is.na(direction) && location %in% locations && direction %in% directions) {
+    # Increment the count for the cell corresponding to the location and direction
+    my_matrix[location, direction] <- my_matrix[location, direction] + 1
+  }
+}
+
+```
+
