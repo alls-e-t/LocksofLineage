@@ -67,6 +67,85 @@ for (outcome_var in variable_names) {
 
 ```
 
+# Logistic regression with prerequisite trait
+```{r Making a prerequisite table}
+prerequisite_mapping <- list(
+  ConM = "Natal_Coat",
+  ConB = "Natal_Coat",
+  ConD = "Natal_Coat",
+  DM_Head = "Sexual_Dimorphism",
+  DC_Head = "Sexual_Dichromatism"
+)
+
+```
+
+```{r}
+# Load the custom function
+source("~/GitHub/LocksofLineage/analysis/phylogenetic_logistic_regression_function.R")
+
+# Load your dataset
+data_file_path <- "~/GitHub/LocksofLineage/data/Phylo_Project_Data/Masters_Binary_Traits.csv"
+primate_data <- read_csv(data_file_path)
+tree_file_path <- "~/GitHub/LocksofLineage/data/Phylo_Project_Data/MamPhy_BDvr_Completed_v2_tree0000.tre"
+
+# List all variable names (excluding species name if it's there)
+variable_names <- colnames(primate_data)[colnames(primate_data) != c("Family", "Genus_names", "species_name", "subspecies")]
+
+# Initialize a list (or another structure) to store summaries or results
+model_results_prereq <- list()
+
+# Loop over all variable combinations
+for (outcome_var in variable_names) {
+    for (predictor_var in variable_names) {
+        if (outcome_var != predictor_var) {
+            #Check if the current predictor_var has a prerequisite
+            prerequisite_trait <- ifelse(predictor_var %in% names(prerequisite_mapping), prerequisite_mapping[[predictor_var]], "")
+            
+            # Run the phylogenetic logistic regression analysis
+            model_summary_prereq <- run_phylogenetic_logistic_regression(outcome_var, predictor_var, tree_file_path, data_file_path)
+            
+            # Store the summary with a meaningful identifier
+            model_id <- paste(outcome_var, "vs", predictor_var, sep = "_")
+            model_results_prereq[[model_id]] <- model_summary_prereq
+            
+            # Optionally, print or inspect the summary
+             print(model_summary_prereq)
+        }
+    }
+}
+
+```
+
+```{r Logistic Regression with prerequisites}
+source("~/GitHub/LocksofLineage/analysis/run_phylogenetic_logistic_regression_function_with_prereq.R")
+
+# Load your dataset
+data_file_path <- "~/GitHub/LocksofLineage/data/Phylo_Project_Data/Masters_Binary_Traits.csv"
+primate_data <- read_csv(data_file_path)
+tree_file_path <- "~/GitHub/LocksofLineage/data/Phylo_Project_Data/MamPhy_BDvr_Completed_v2_tree0000.tre"
+
+for (outcome_var in variable_names) {
+    for (predictor_var in variable_names) {
+        if (outcome_var != predictor_var) {
+            #Check if the current predictor_var has a prerequisite
+            prerequisite_trait <- ifelse(predictor_var %in% names(prerequisite_mapping), prerequisite_mapping[[predictor_var]], NULL)
+            
+            # Construct a model ID for reference
+            model_id <- paste(outcome_var, "vs", predictor_var, sep = "_")
+            
+            # Run the model
+            model_summary_prereq <- run_phylogenetic_logistic_regression_with_prereq(outcome_var, predictor_var, tree_file_path, data_file_path)
+            
+            # Store the model summary in the model_results list
+            model_results[[model_id]] <- model_summary_prereq
+            
+            # Optionally, print or log the completion of each model
+            cat("Completed model with", ifelse(is.null(prerequisite_trait), "no prerequisite", paste("prerequisite:", prerequisite_trait)), ":", model_id, "\n")
+        }
+    }
+}
+```
+
 # Creating an Association matrix of the binary traits
 ```{r association matrix of binary traits BAD, include=FALSE}
 # List of binary traits
@@ -213,6 +292,23 @@ print(best_models)
 best_model_summary <- model_results[["ConM vs DM_Head"]]
 ```
 
+```{r AIC values with prereqs}
+aic_values <- sapply(model_results_prereq, function(summary) summary$aic)
+model_ids <- names(model_results_prereq)
+# Combine into a data frame for easy sorting and viewing
+aic_df_prereq <- data.frame(model_id = model_ids, AIC = aic_values)
+
+# Sort by AIC values
+aic_sorted_prereq <- aic_df[order(aic_df_prereq$AIC),]
+
+# View sorted models by AIC
+print(aic_sorted_prereq)
+
+# Identify best models (e.g., top 5 models with lowest AIC)
+best_models <- head(aic_sorted_prereq, 5)
+print(best_models)
+```
+
 #Plots
 ```{r Plot the association matrix}
 #Basic r plotting
@@ -235,7 +331,7 @@ ggplot(association_matrix_long, aes(Var1, Var2, fill = value)) +
 # Assuming you have a dataframe 'aic_sorted' from previous steps, with columns 'model_id' and 'AIC'
 library(ggplot2)
 
-# Create the plot
+# Create the plot for AIC of unadjusted models
 ggplot(aic_sorted, aes(x = reorder(model_id, AIC), y = AIC)) +
   geom_bar(stat = "identity") +
   theme_minimal() +
@@ -243,6 +339,13 @@ ggplot(aic_sorted, aes(x = reorder(model_id, AIC), y = AIC)) +
   labs(x = "Model", y = "AIC Value", title = "Comparison of Model AIC Values") +
   geom_text(aes(label = sprintf("%.2f", AIC), hjust = -0.1))  # Add AIC values as text labels
 
+# Create the plot for AIC of models with prerequisites
+ggplot(aic_sorted_prereq, aes(x = reorder(model_id, AIC), y = AIC)) +
+  geom_bar(stat = "identity") +
+  theme_minimal() +
+  coord_flip() +  # Flip coordinates to make the plot horizontal; easier to read model names
+  labs(x = "Model", y = "AIC Value", title = "Comparison of Model AIC Values with Prerequisites") +
+  geom_text(aes(label = sprintf("%.2f", AIC), hjust = -0.1))  # Add AIC values as text labels
 ```
 
 ```{r AIC Plot with specific predictor variable colored}
