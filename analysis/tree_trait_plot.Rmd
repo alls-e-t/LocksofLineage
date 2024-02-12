@@ -1,0 +1,41 @@
+---
+title: "tree_trait_plot"
+author: "Sarah E Taylor"
+date: "2024-02-09"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+```{r Load Libraries}
+library(ape)
+library(ggtree)
+```
+
+```{r Prepare the data}
+#Format the names
+data_multiple_names = data_multiple_multiple %>% unite("species",'Genus', 'species') %>% mutate(species = str_to_title(species))
+
+#Separate the trait data
+trait_data <- data.frame(species = rownames(data_multiple_names), Darker = data_multiple_names$Darker)
+
+#Align the tree and the trait data
+aligned_data <- trait_data[match(pruned.tree$tip.label, trait_data$species), ]
+```
+
+```{r}
+p <- ggtree(pruned.tree) + geom_tiplab()
+
+# Visualize the tree, coloring tips based on the "Darker" trait
+p + geom_tippoint(aes(color = factor(aligned_data$Darker))) +
+  scale_color_manual(values = c("0" = "coral1", "1" = "coral2", "2" = "coral3", "3" = "coral4")) +
+  labs(color = "Darker Trait")
+
+#ggtree(tree_with_traits) +
+  #geom_tippoint(aes(color = factor(Darker))) +
+  #scale_color_manual(values = c("0" = "coral1", "1" = "coral2", "2" = "coral3", "3" = "coral4")) +
+  #theme(legend.title = element_text("Darker Trait"), legend.position = "right")
+```
+
