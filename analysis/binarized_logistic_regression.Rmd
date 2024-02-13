@@ -11,13 +11,13 @@ editor_options:
 
 ```{r Making a prerequisite table}
 prerequisite_mapping <- list(
-  ConM = "Natal_Coat",
-  ConB = "Natal_Coat",
-  ConD = "Natal_Coat",
-  incon = "Natal_Coat",
-  SD_Location_Head = "Sexual_Dimorphism",
-  Direction_Male = "Sexual_Dimorphism",
-  Darker_Male = "Sexual_Dichromatism"
+  ConM = "Natal_coat",
+  ConB = "Natal_coat",
+  ConD = "Natal_coat",
+  incon = "Natal_coat",
+  SD_Location_Head = "Sexual_dimorphism",
+  Direction_Male = "Sexual_dimorphism",
+  Darker_Male = "Sexual_dichromatism"
 )
 
 ```

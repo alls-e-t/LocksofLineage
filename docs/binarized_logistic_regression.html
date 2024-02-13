@@ -428,10 +428,10 @@ changes </a>
 <div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R
-Markdown file created these results, you’ll want to first commit it to
-the Git repo. If you’re still working on the analysis, you can ignore
-this warning. When you’re finished, you can run
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
 <code>wflow_publish</code> to commit the R Markdown file and build the
 HTML.</p>
 </div>
@@ -566,15 +566,15 @@ data/Phylo_Project_Data/MamPhy_BDvr_Completed_v2_tree0000.tre
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree9ac420b4d087108082718a209efcd7712cea0199targetblank9ac420ba">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetreebc5e788d46a400db6fe0eacdc44e80907087c8a1targetblankbc5e788a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/alls-e-t/LocksofLineage/tree/9ac420b4d087108082718a209efcd7712cea0199" target="_blank">9ac420b</a>
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/bc5e788d46a400db6fe0eacdc44e80907087c8a1" target="_blank">bc5e788</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree9ac420b4d087108082718a209efcd7712cea0199targetblank9ac420ba"
+id="strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetreebc5e788d46a400db6fe0eacdc44e80907087c8a1targetblankbc5e788a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -584,7 +584,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/alls-e-t/LocksofLineage/tree/9ac420b4d087108082718a209efcd7712cea0199" target="_blank">9ac420b</a>.
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/bc5e788d46a400db6fe0eacdc44e80907087c8a1" target="_blank">bc5e788</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -604,15 +604,8 @@ Ignored files:
     Ignored:    .Rproj.user/
     Ignored:    data/.DS_Store
 
-Untracked files:
-    Untracked:  analysis/binarized_logistic_regression.Rmd
-    Untracked:  analysis/binarized_phylogenetic_logistic_regression_function.R
-    Untracked:  data/data_binarized_Feb13.csv
-
 Unstaged changes:
-    Modified:   analysis/Dimorphism_on_the_Head.Rmd
-    Modified:   analysis/expanded_trait_data.Rmd
-    Modified:   analysis/logistic_regression_function_script.Rmd
+    Modified:   analysis/binarized_logistic_regression.Rmd
 
 </code></pre>
 <p>
@@ -627,10 +620,75 @@ have uncommitted changes.
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with
-<code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were
+made to the R Markdown
+(<code>analysis/binarized_logistic_regression.Rmd</code>) and HTML
+(<code>docs/binarized_logistic_regression.html</code>) files. If you’ve
+configured a remote Git repository (see <code>?wflow_git_remote</code>),
+click on the hyperlinks in the table below to view the files as they
+were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/alls-e-t/LocksofLineage/blob/bc5e788d46a400db6fe0eacdc44e80907087c8a1/analysis/binarized_logistic_regression.Rmd" target="_blank">bc5e788</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-02-13
+</td>
+<td>
+Added the looped logistic regressions and their figures.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/bc5e788d46a400db6fe0eacdc44e80907087c8a1/docs/binarized_logistic_regression.html" target="_blank">bc5e788</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-02-13
+</td>
+<td>
+Added the looped logistic regressions and their figures.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -638,13 +696,13 @@ There are no past versions. Publish this analysis with
 <div id="logistic-regression-model-creation" class="section level2">
 <h2>Logistic Regression Model Creation</h2>
 <pre class="r"><code>prerequisite_mapping &lt;- list(
-  ConM = &quot;Natal_Coat&quot;,
-  ConB = &quot;Natal_Coat&quot;,
-  ConD = &quot;Natal_Coat&quot;,
-  incon = &quot;Natal_Coat&quot;,
-  SD_Location_Head = &quot;Sexual_Dimorphism&quot;,
-  Direction_Male = &quot;Sexual_Dimorphism&quot;,
-  Darker_Male = &quot;Sexual_Dichromatism&quot;
+  ConM = &quot;Natal_coat&quot;,
+  ConB = &quot;Natal_coat&quot;,
+  ConD = &quot;Natal_coat&quot;,
+  incon = &quot;Natal_coat&quot;,
+  SD_Location_Head = &quot;Sexual_dimorphism&quot;,
+  Direction_Male = &quot;Sexual_dimorphism&quot;,
+  Darker_Male = &quot;Sexual_dichromatism&quot;
 )</code></pre>
 <pre class="r"><code># Load the custom function
 source(&quot;~/GitHub/LocksofLineage/analysis/binarized_phylogenetic_logistic_regression_function.R&quot;)
@@ -751,9 +809,83 @@ ggplot(aic_sorted, aes(x = reorder(model_id, AIC), y = AIC)) +
   labs(x = &quot;Model&quot;, y = &quot;AIC Value&quot;, title = &quot;Comparison of Model AIC Values with Prerequisites&quot;) +
   geom_text(aes(label = sprintf(&quot;%.2f&quot;, AIC), hjust = -0.1))  # Add AIC values as text labels</code></pre>
 <p><img src="figure/binarized_logistic_regression.Rmd/AIC%20Plot-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-AIC-Plot-1">
+Past versions of "AIC Plot-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-AIC-Plot-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/alls-e-t/LocksofLineage/blob/bc5e788d46a400db6fe0eacdc44e80907087c8a1/docs/figure/binarized_logistic_regression.Rmd/AIC Plot-1.png" target="_blank">bc5e788</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-02-13
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>#Basic r plotting
 heatmap(association_matrix, Rowv = NA, Colv = NA, col = heat.colors(10), scale = &quot;none&quot;)</code></pre>
 <p><img src="figure/binarized_logistic_regression.Rmd/Plot%20the%20association%20matrix-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-no-spaces-Plot-the-association-matrix-1">
+Past versions of "Plot the association matrix-1.png"
+</button>
+</p>
+<div id="fig-no-spaces-Plot-the-association-matrix-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/alls-e-t/LocksofLineage/blob/bc5e788d46a400db6fe0eacdc44e80907087c8a1/docs/figure/binarized_logistic_regression.Rmd/Plot the association matrix-1.png" target="_blank">bc5e788</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-02-13
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -787,24 +919,24 @@ loaded via a namespace (and not attached):
  [4] rprojroot_2.0.4     digest_0.6.30       utf8_1.2.2         
  [7] parallelly_1.36.0   R6_2.5.1            evaluate_0.23      
 [10] highr_0.10          pillar_1.8.1        rlang_1.1.2        
-[13] rstudioapi_0.14     jquerylib_0.1.4     rmarkdown_2.20     
-[16] labeling_0.4.2      bit_4.0.5           munsell_0.5.0      
-[19] compiler_4.2.1      httpuv_1.6.11       xfun_0.41          
-[22] pkgconfig_2.0.3     globals_0.16.2      htmltools_0.5.4    
-[25] tidyselect_1.2.0    workflowr_1.7.1     codetools_0.2-18   
-[28] fansi_1.0.3         future_1.33.0       crayon_1.5.2       
-[31] tzdb_0.3.0          withr_2.5.0         later_1.3.1        
-[34] grid_4.2.1          nlme_3.1-160        jsonlite_1.8.8     
-[37] gtable_0.3.1        lifecycle_1.0.3     git2r_0.32.0       
-[40] magrittr_2.0.3      scales_1.2.1        vroom_1.6.1        
-[43] future.apply_1.11.0 cli_3.6.2           stringi_1.7.8      
-[46] cachem_1.0.6        farver_2.1.1        fs_1.6.1           
-[49] promises_1.2.1      bslib_0.4.2         ellipsis_0.3.2     
-[52] vctrs_0.5.2         generics_0.1.3      tools_4.2.1        
-[55] bit64_4.0.5         glue_1.6.2          hms_1.1.2          
-[58] parallel_4.2.1      fastmap_1.1.0       yaml_2.3.7         
-[61] timechange_0.2.0    colorspace_2.0-3    knitr_1.42         
-[64] sass_0.4.5         </code></pre>
+[13] rstudioapi_0.14     whisker_0.4.1       jquerylib_0.1.4    
+[16] rmarkdown_2.20      labeling_0.4.2      bit_4.0.5          
+[19] munsell_0.5.0       compiler_4.2.1      httpuv_1.6.11      
+[22] xfun_0.41           pkgconfig_2.0.3     globals_0.16.2     
+[25] htmltools_0.5.4     tidyselect_1.2.0    workflowr_1.7.1    
+[28] codetools_0.2-18    fansi_1.0.3         future_1.33.0      
+[31] crayon_1.5.2        tzdb_0.3.0          withr_2.5.0        
+[34] later_1.3.1         grid_4.2.1          nlme_3.1-160       
+[37] jsonlite_1.8.8      gtable_0.3.1        lifecycle_1.0.3    
+[40] git2r_0.32.0        magrittr_2.0.3      scales_1.2.1       
+[43] vroom_1.6.1         future.apply_1.11.0 cli_3.6.2          
+[46] stringi_1.7.8       cachem_1.0.6        farver_2.1.1       
+[49] fs_1.6.1            promises_1.2.1      bslib_0.4.2        
+[52] ellipsis_0.3.2      vctrs_0.5.2         generics_0.1.3     
+[55] tools_4.2.1         bit64_4.0.5         glue_1.6.2         
+[58] hms_1.1.2           parallel_4.2.1      fastmap_1.1.0      
+[61] yaml_2.3.7          timechange_0.2.0    colorspace_2.0-3   
+[64] knitr_1.42          sass_0.4.5         </code></pre>
 </div>
 </div>
 
