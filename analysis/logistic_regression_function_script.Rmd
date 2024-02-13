@@ -30,7 +30,7 @@ aic_value <- summary$aic
 print(aic_value)
 ```
 
-```{r all binary models}
+```{r all binary models, echo=TRUE, results="hide", message=FALSE, warning=FALSE}
 # Load the custom function
 source("~/GitHub/LocksofLineage/analysis/phylogenetic_logistic_regression_function.R")
 
@@ -79,7 +79,7 @@ prerequisite_mapping <- list(
 
 ```
 
-```{r}
+```{r Logistic Regression, echo=TRUE, results="hide", message=FALSE, warning=FALSE}
 # Load the custom function
 source("~/GitHub/LocksofLineage/analysis/phylogenetic_logistic_regression_function.R")
 
@@ -340,7 +340,7 @@ ggplot(aic_sorted, aes(x = reorder(model_id, AIC), y = AIC)) +
   geom_text(aes(label = sprintf("%.2f", AIC), hjust = -0.1))  # Add AIC values as text labels
 
 # Create the plot for AIC of models with prerequisites
-ggplot(aic_sorted_prereq, aes(x = reorder(model_id, AIC), y = AIC)) +
+ggplot(aic_sorted_preq, aes(x = reorder(model_id, AIC), y = AIC)) +
   geom_bar(stat = "identity") +
   theme_minimal() +
   coord_flip() +  # Flip coordinates to make the plot horizontal; easier to read model names

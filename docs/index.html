@@ -289,7 +289,7 @@ $(document).ready(function () {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -300,8 +300,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -310,13 +310,13 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-02-06
+<strong>Last updated:</strong> 2024-02-13
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>LocksofLineage/</code> <span
@@ -339,33 +339,36 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetreec51166cc7bfc39752024fda74c5c3baef60e32e5targetblankc51166ca">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree9ac420b4d087108082718a209efcd7712cea0199targetblank9ac420ba">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/alls-e-t/LocksofLineage/tree/c51166cc7bfc39752024fda74c5c3baef60e32e5" target="_blank">c51166c</a>
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/9ac420b4d087108082718a209efcd7712cea0199" target="_blank">9ac420b</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetreec51166cc7bfc39752024fda74c5c3baef60e32e5targetblankc51166ca"
+id="strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree9ac420b4d087108082718a209efcd7712cea0199targetblank9ac420ba"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -375,7 +378,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/alls-e-t/LocksofLineage/tree/c51166cc7bfc39752024fda74c5c3baef60e32e5" target="_blank">c51166c</a>.
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/9ac420b4d087108082718a209efcd7712cea0199" target="_blank">9ac420b</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -395,8 +398,16 @@ Ignored files:
     Ignored:    .Rproj.user/
     Ignored:    data/.DS_Store
 
+Untracked files:
+    Untracked:  analysis/binarized_logistic_regression.Rmd
+    Untracked:  analysis/binarized_phylogenetic_logistic_regression_function.R
+    Untracked:  data/data_binarized_Feb13.csv
+
 Unstaged changes:
-    Modified:   analysis/trait_matrix.Rmd
+    Modified:   analysis/Dimorphism_on_the_Head.Rmd
+    Modified:   analysis/expanded_trait_data.Rmd
+    Modified:   analysis/index.Rmd
+    Modified:   analysis/logistic_regression_function_script.Rmd
 
 </code></pre>
 <p>
@@ -441,6 +452,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/cce01fc1b4b9ed900c2730e77c328e04a055e915/docs/index.html" target="_blank">cce01fc</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-02-06
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -936,6 +964,36 @@ delivers a detailed trait-wise analysis across primate species,
 providing key insights that pave the way for future studies on both
 social signaling mechanisms and biological underpinnings of sexual
 dimorphism in primates.</p>
+</div>
+<div id="automated-model-regressions" class="section level1">
+<h1>Automated Model Regressions</h1>
+<p>Click on this <a href="binarized_logistic_regression.html">link</a>
+to see how I automated my logistics regression for all of my traits of
+interest. For this model the traits of interest are:</p>
+<ol style="list-style-type: decimal">
+<li>Presence of Sexual Dimorphism</li>
+</ol>
+<ul>
+<li><p>whether sexual dimorphism is on the head</p></li>
+<li><p>whether sexual dimorphism is expressed as male-directed growth
+from the juvenile state</p></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Presence of Natal Coats</li>
+</ol>
+<ul>
+<li><p>whether these natal coats were contrasting to both
+parents</p></li>
+<li><p>just mom or dad</p></li>
+<li><p>inconspicuous compared to the adult coat</p></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Presence of Sexual Dichromatism</li>
+</ol>
+<ul>
+<li>whether the males with sexual dichromatism were darker than the
+females</li>
+</ul>
 </div>
 <div id="cleaning-the-data" class="section level1">
 <h1>Cleaning the Data</h1>

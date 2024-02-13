@@ -15,6 +15,27 @@ Primates" coming soon to an AABA poster session!__
 
 Hair patterning serves as a mechanism for complex visual and social signaling in primates. Our study offers a comprehensive analysis, focusing on two primary aspects: 1) Natal Coats and 2) Adult Sexual Dimorphism. Adult Sexual Dimorphism is divided into two sub-aspects: 2a) Sexual Dichromatism and 2b) Hair Morphology Dimorphism (beards, capes, etc). We analyzed data from 244 primate species to investigate these traits and their interrelationships in a phylogenetic context. Natal coats were observed in 50% of the species. Using phylogenetic logistic regression, we found that 82% of species with hair morphology dimorphism and 84% of species with sexual dichromatism exhibited natal coats. In other words, species with some form of adult hair sexual dimorphism were more likely to have natal coats. Sexual dichromatism was present in 33% of species (partial and complete), with females lighter than males in 58% of these species. Among the 15 species with complete (full-body) dichromatism, only one had darker females. For partial dichromatism, no single body part was consistently affected across species. Hair morphology dimorphism was observed in 23% of species. In a focused analysis of 55 species with dimorphism, 23 displayed dimorphism exclusively on the head and face, 6 solely on the pubis, and dimorphism varied across affected body parts in the remaining species. Our research delivers a detailed trait-wise analysis across primate species, providing key insights that pave the way for future studies on both social signaling mechanisms and biological underpinnings of sexual dimorphism in primates.
 
+# Automated Model Regressions 
+Click on this [link](binarized_logistic_regression.html) to see how I automated my logistics regression for all of my traits of interest. For this model the traits of interest are:
+
+1. Presence of Sexual Dimorphism
+
+  - whether sexual dimorphism is on the head
+  
+  - whether sexual dimorphism is expressed as male-directed growth from the juvenile state
+  
+2. Presence of Natal Coats
+
+  - whether these natal coats were contrasting to both parents
+  
+  - just mom or dad
+  
+  - inconspicuous compared to the adult coat
+  
+3. Presence of Sexual Dichromatism
+
+  - whether the males with sexual dichromatism were darker than the females
+
 # Cleaning the Data
 
 Click on this [link](expanded_trait_data.html) to see how I cleaned some of the data.

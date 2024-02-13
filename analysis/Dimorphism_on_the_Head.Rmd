@@ -72,4 +72,35 @@ HeadSDC_DM <- phyloglm(DC_Head ~ DM_Head, data_pruned_rownames, phy = pruned.tre
 summary(HeadSDC_DM)
 ```
 
+```{r}
+# Filter out rows where DC_Head is not finite
+filtered_data <- data_pruned_rownames[is.finite(data_pruned_rownames$DC_Head), ]
+
+# Now generate the sequence using the filtered data
+DC_Head_range <- seq(min(filtered_data$DC_Head), max(filtered_data$DC_Head), length.out = 100)
+
+# Assuming the rest of your data is consistent and there are no other issues,
+# you can proceed with creating the new data frame for predictions
+new_data <- data.frame(DC_Head = DC_Head_range)
+
+# Assuming you have a phyloglm model object named HeadSDM_DC
+# and your predictor variable is named DC_Head in data_pruned_rownames
+
+# Step 1: Extract model coefficients
+coefficients <- coef(HeadSDM_DC)
+
+# For simplicity, assuming a model with an intercept and one predictor
+beta_0 <- coefficients[1]  # Intercept
+beta_1 <- coefficients[2]  # Coefficient for DC_Head
+
+# Step 2: Calculate predicted probabilities manually for each DC_Head value
+new_data$predicted_prob <- 1 / (1 + exp(-(beta_0 + beta_1 * new_data$DC_Head)))
+
+# Step 3: Plotting (assuming new_data is your prediction data frame)
+plot(data_pruned_rownames$DC_Head, data_pruned_rownames$DM_Head, col = "red", pch = 16,
+     xlab = "DC_Head", ylab = "Probability of DM_Head",
+     main = "Observed Data and Predicted Probabilities")
+lines(new_data$DC_Head, new_data$predicted_prob, col = "blue", lwd = 2)
+
+```
 
