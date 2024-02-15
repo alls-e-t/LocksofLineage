@@ -1,0 +1,278 @@
+---
+title: "logical_analysis"
+author: "Sarah E Taylor"
+date: "2024-02-13"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Load the Data
+
+```{r Load-in-the-libraries}
+#Library to read in the data file
+library(readr)
+#Library to run the phylogenetic analyses
+library(ape)
+#Library to clean and organize the data
+library(tidyverse)
+#Library to run the phylogenetic regressions
+library(phylolm)
+```
+
+```{r Load-in-the-Data}
+# Make sure that the NAs are explicit
+data_to_use <- read_csv("data/data_to_use.csv", na = "NA")
+```
+
+## Clean the Data
+```{r Remove-extraneous-columns}
+data_traits = select(data_to_use, -4,-6,-7,-12,-17)
+# Column 4 is the subspecies, the data is separated based on species, so the subspecies do not add information needed for the analysis
+# Column 6 was the description of sexual dimorphism from the sources
+# Column 7 was a blank column to make it easier to view the description in excel
+# Column 11 was the description of natal coats from the sources
+# Column 17 was the description of sexual dichromatism from the sources
+```
+
+```{r Add-columns-for-all-locations-of-sexual-dichromatism}
+#Add a column for each occurence of sexual dichromatism at a different body part, if one species has multiple values (body parts) they will be counted in each column that they occur ie head,flank is 1 for head and 1 for flank
+
+data_traits <- data_traits %>%
+  mutate(DC_Body = case_when(
+                grepl("Body", Where) ~ 1,
+                !is.na(Where) ~ 0,
+                TRUE ~ as.integer(NA)),
+         DC_Head = case_when(
+                grepl("Head", Where) ~ 1,
+                !is.na(Where) ~ 0,
+                TRUE ~ as.integer(NA)),
+         DC_Multiple = case_when(
+                grepl("Multiple", Where) ~ 1,
+                !is.na(Where) ~ 0,
+                TRUE ~ as.integer(NA)),
+         DC_Cape = case_when(
+                grepl("Cape", Where) ~ 1,
+                !is.na(Where) ~ 0,
+                TRUE ~ as.integer(NA)),
+         DC_Pubis = case_when(
+                grepl("Pubis", Where) ~ 1,
+                !is.na(Where) ~ 0,
+                TRUE ~ as.integer(NA)),
+         DC_Tail = case_when(
+                grepl("Tail", Where) ~ 1,
+                !is.na(Where) ~ 0,
+                TRUE ~ as.integer(NA)))
+
+
+```
+
+```{r Add-columns-for-all-locations-of-sexual-dimorphim}
+
+data_traits <- data_traits %>%
+mutate(
+    DM_Head = case_when(
+      grepl("Head", Location) ~ 1,
+      !is.na(Location) ~ 0,
+      TRUE ~ as.integer(NA)
+    ),
+    DM_Body = case_when(
+      grepl("Body", Location) ~ 1,
+      !is.na(Location) ~ 0,
+      TRUE ~ as.integer(NA)
+    ),
+    DM_Pubis = case_when(
+      grepl("Pubis", Location) ~ 1,
+      !is.na(Location) ~ 0,
+      TRUE ~ as.integer(NA)
+    ),
+    DM_Tail = case_when(
+      grepl("Tail", Location) ~ 1,
+      !is.na(Location) ~ 0,
+      TRUE ~ as.integer(NA)
+    ),
+    DM_Cape = case_when(
+      grepl("Cape", Location) ~ 1,
+      !is.na(Location) ~ 0,
+      TRUE ~ as.integer(NA)
+    ),
+    DM_Mane = case_when(
+      grepl("Mane", Location) ~ 1,
+      !is.na(Location) ~ 0,
+      TRUE ~ as.integer(NA)
+    ),
+    DM_Multiple = case_when(
+      grepl("Multiple", Location) ~ 1, 
+      #grepl(",", Location) ,  Add with | if wanting to split commas to indicates multiple locations
+      !is.na(Location) ~ 0,
+      TRUE ~ as.integer(NA)
+    ),  
+    DM_All = case_when(
+      grepl("All", Location) ~ 1, 
+      !is.na(Location) ~ 0,
+      TRUE ~ as.integer(NA)
+    )
+    
+  
+  )
+```
+
+```{r Add-columns-for-all-growth-directions-of-sexual-dimorphim}
+data_traits <- data_traits %>%
+  mutate(DM_Male_Growth = case_when(
+                grepl("M", Direction) ~ 1,
+                !is.na(Direction) ~ 0,
+                TRUE ~ as.integer(NA)),
+         DM_Female_Growth = case_when(
+                grepl("F", Direction) ~ 1,
+                !is.na(Direction) ~ 0,
+                TRUE ~ as.integer(NA)),
+         DM_Both = case_when(
+                grepl("Both", Direction) ~ 1,
+                !is.na(Direction) ~ 0,
+                TRUE ~ as.integer(NA)),
+        )
+```
+
+```{r Add-columns-for-which-sex-is-darker}
+data_traits <- data_traits %>%
+  mutate(DC_Male_Darker = case_when(
+                grepl("M", Darker) ~ 1,
+                !is.na(Darker) ~ 0,
+                TRUE ~ as.integer(NA)),
+         DC_Female_Darker = case_when(
+                grepl("F", Darker) ~ 1,
+                !is.na(Darker) ~ 0,
+                TRUE ~ as.integer(NA)),
+         DC_Varies = case_when(
+                grepl("Varies", Darker) ~ 1,
+                !is.na(Darker) ~ 0,
+                TRUE ~ as.integer(NA)),
+        )
+
+```
+
+```{r Add-columns-for-each-natal-coat-type}
+data_traits <- data_traits %>%
+  mutate(NC_incon = case_when(
+                grepl("incon", Natal_Coat_Type) ~ 1,
+                !is.na(Natal_Coat_Type) ~ 0,
+                TRUE ~ as.integer(NA)),
+         NC_con_mom = case_when(
+                grepl("con to mom", Natal_Coat_Type) ~ 1,
+                !is.na(Natal_Coat_Type) ~ 0,
+                TRUE ~ as.integer(NA)),
+         NC_con_dad = case_when(
+                grepl("Con to dad", Natal_Coat_Type) ~ 1,
+                !is.na(Natal_Coat_Type) ~ 0,
+                TRUE ~ as.integer(NA)),
+         NC_con_both = case_when(
+                grepl("con to both", Natal_Coat_Type) ~ 1,
+                !is.na(Natal_Coat_Type) ~ 0,
+                TRUE ~ as.integer(NA))
+        )
+#Natal coats can be inconspicuous (close in color to parents) or conspicuous (obviously a different color). When they are conspicuous they can be contrasting to either the mothers coats or the fathers or both. 
+
+```
+
+```{r Add-columns-for-each-sexual-dichromatism-type}
+data_traits <- data_traits %>%
+  mutate(DC_Complete = case_when(
+                grepl("Complete", Sexual_dichromatism_type) ~ 1,
+                !is.na(Sexual_dichromatism_type) ~ 0,
+                TRUE ~ as.integer(NA)),
+         DC_Partial = case_when(
+                grepl("Partial", Sexual_dichromatism_type) ~ 1,
+                !is.na(Sexual_dichromatism_type) ~ 0,
+                TRUE ~ as.integer(NA))
+        )
+```
+
+```{r Save-updated-file-to-output}
+write_csv(data_traits, "output/data_traits_expanded_columns.csv")
+```
+
+```{r Adding-a-Column}
+data_traits_combined <- left_join(data_traits_combined, data_pruned %>% select(species, Size_Dimorphism), by = "species")
+```
+
+```{r Removing-Extra-Columns}
+data_traits_combined <- data_traits_combined %>%
+  select(-Size_Dimorphism.x, -Size_Dimorphism.y)
+```
+
+```{r Saving-the-dataframe-with-size-dimorphism}
+write_csv(data_traits_combined, "output/data_traits_with_size_dimorph.csv")
+```
+
+## Running the Analyses
+
+```{r Read-Mammal-Tree-Upham, echo=FALSE}
+#read in mammal tree
+mammaltree <- read.tree("data/Phylo_Project_Data/MamPhy_BDvr_Completed_v2_tree0000.tre")
+summary(mammaltree)
+```
+
+
+```{r Read-Masters-Binary-Data, echo=TRUE}
+#read in the data
+Binary_traits <- read_csv("data/Phylo_Project_Data/Data_That_Works.csv")
+head(Binary_traits)
+```
+
+## Format Data
+
+```{r Format-Binary-Data-SpeciesNames, echo=TRUE}
+#combine genus and species names and capitalize first letter
+Binary_traits_combined = data_traits_with_size_dimorph %>% unite("species",`Genus_names`, `species_names`) %>% mutate(species = str_to_title(species))
+head(Binary_traits_combined)
+```
+
+
+```{r Prune-Tree-For-Species-in-Data, echo=TRUE}
+# prune tree for species in data
+species_not_in_tree=setdiff(mammaltree$tip.label, Binary_traits_combined$species)
+pruned.tree<-drop.tip(mammaltree,species_not_in_tree)
+summary(pruned.tree)
+```
+
+
+```{r Prune-Data-For-Species-From-Tree, echo=TRUE}
+#prune data for species in tree
+data_pruned = Binary_traits_combined %>% filter(species %in% pruned.tree$tip.label)
+head(data_pruned)
+```
+
+
+```{r Format-Data-Phylolm, echo=TRUE}
+#put data into useful form for phylolm
+colnames(data_pruned) = gsub(" ", "_", colnames(data_pruned))
+data_pruned_rownames = column_to_rownames(data_pruned, var = "species")
+head(data_pruned_rownames)
+```
+
+# Question 1: Do Natal Coats predict adult Sexual Dimorphism?
+## Sexual Dichromatism from Natal Coats Regression
+
+```{r Run-phylolm}
+# run phylolm and get summary
+SDCfromNC <- phyloglm(Sexual_dichromatism ~ Natal_coat, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(SDCfromNC)
+```
+
+## Sexual Hair Dimorphism from Natal Coats Regression
+
+```{r Run-phylolm}
+# run phylolm and get summary
+SDMfromNC <- phyloglm(Sexual_dimorphism ~ Natal_coat, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(SDMfromNC)
+```
+
+## Size Dimorphism from Natal Coats Regression
+
+```{r Run-phylolm}
+# run phylolm and get summary
+SzDfromNC <- phyloglm(Size_Dimorphism ~ Natal_coat, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(SzDfromNC)
+```
+
