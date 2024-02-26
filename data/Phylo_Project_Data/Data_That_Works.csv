@@ -1,239 +1,239 @@
-family,Genus_names,species_names,Sexual_dimorphism,Location,Direction,Natal_coat,Natal_Coat_Type,Sexual_dichromatism,Sexual_dichromatism_type,Where,Darker,DC_Body,DC_Head,DC_Multiple,DC_Cape,DC_Pubis,DC_Tail,DM_Head,DM_Body,DM_Pubis,DM_Tail,DM_Cape,DM_Mane,DM_Multiple,DM_All,DM_Male_Growth,DM_Female_Growth,DM_Both,DC_Male_Darker,DC_Female_Darker,DC_Varies,NC_incon,NC_con_mom,NC_con_dad,NC_con_both,DC_Complete,DC_Partial,Size_Dimorphism
-cercopithecidae,Allenopithecus,nigroviridis,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-cheirogaleidae,Allocebus,trichotis,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-cebidae,Alouatta,belzebul,0,NA,NA,0,NA,1,Partial,Body,M,1,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,NA,NA,NA,NA,0,1,1
-cebidae,Alouatta,caraya,1,Head,M,1,Con to dad,1,Complete,NA,M,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,1,0,1
-cebidae,Alouatta,guariba,1,Head,M,1,incon,1,Complete,NA,M,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,1,0,1
-cebidae,Alouatta,palliata,1,"Head, Flank",F,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,0,1,0,NA,NA,NA,1,0,0,0,NA,NA,1
-cebidae,Alouatta,pigra,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-cebidae,Alouatta,sara,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,0
-cebidae,Alouatta,seniculus,1,Head,M,0,no,1,Partial,Head,M,0,1,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,1
-cebidae,Aotus,nigriceps,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-cebidae,Aotus,trivirgatus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-loridae,Arctocebus,aureus,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,0
-loridae,Arctocebus,calabarensis,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,0
-cebidae,Ateles,belzebuth,0,NA,NA,0,no,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,NA,NA,0
-cebidae,Ateles,chamek,0,NA,NA,0,no,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,NA,NA,0
-cebidae,Ateles,fusciceps,0,NA,NA,0,no,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,NA,NA,0
-cebidae,Ateles,geoffroyi,0,NA,NA,1,incon,0,Partial,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,1,0
-cebidae,Ateles,marginatus,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,0
-cebidae,Ateles,paniscus,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,0
-indridae,Avahi,laniger,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-cebidae,Brachyteles,arachnoides,0,NA,NA,1,incon,1,Partial,Body,F,1,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,1,0,0,0,0,1,1
-cebidae,Cacajao,calvus,0,NA,NA,0,no,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,NA,NA,1
-cebidae,Cacajao,melanocephalus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-cebidae,Callicebus,brunneus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-cebidae,Callicebus,caligatus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-cebidae,Callicebus,cinerascens,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-cebidae,Callicebus,cupreus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-cebidae,Callicebus,donacophilus,0,NA,NA,0,NA,0,Partial,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0
-cebidae,Callicebus,dubius,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-cebidae,Callicebus,hoffmannsi,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-cebidae,Callicebus,moloch,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-cebidae,Callicebus,personatus,0,NA,NA,1,incon,1,Partial,Multiple,F,0,0,1,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,1,0,0,0,0,1,0
-cebidae,Callicebus,torquatus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-callitrichidae,Callimico,goeldii,0,NA,NA,0,no,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,NA,NA,0
-callitrichidae,Mico,argentata,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-callitrichidae,Callithrix,aurita,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-callitrichidae,Callithrix,flaviceps,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-callitrichidae,Callithrix,geoffroyi,0,NA,NA,0,no,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,NA,NA,1
-callitrichidae,Mico,humeralifer,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-callitrichidae,Callithrix,jacchus,0,NA,NA,0,no,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,NA,NA,0
-callitrichidae,Callithrix,kuhlii,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-callitrichidae,Mico,mauesi,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-callitrichidae,Mico,nigriceps,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-callitrichidae,Callithrix,penicillata,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-cebidae,Cebus,albifrons,1,Head,F,0,no,1,Partial,Multiple,Varies,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1,1
-cebidae,Sapajus,apella,0,NA,NA,1,incon,1,Partial,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,1,1
-cebidae,Cebus,capucinus,1,"Head,Body",F,0,no,1,Partial,Multiple,M,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,1
-cebidae,Cebus,olivaceus,0,NA,NA,0,no,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,NA,NA,1
-cercopithecidae,Cercocebus,agilis,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-cercopithecidae,Cercocebus,galeritus,1,Body,F,1,incon,1,Partial,Cape,M,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,0,0,0,1,1
-cercopithecidae,Cercocebus,torquatus,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-cercopithecidae,Cercocebus,atys,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,0
-cercopithecidae,Cercopithecus,ascanius,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-cercopithecidae,Cercopithecus,campbelli,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-cercopithecidae,Cercopithecus,cephus,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-cercopithecidae,Cercopithecus,diana,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-cercopithecidae,Cercopithecus,dryas,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-cercopithecidae,Cercopithecus,erythrogaster,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-cercopithecidae,Cercopithecus,erythrotis,1,Pubis,M,1,incon,1,Partial,Multiple,M,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,1,0
-cercopithecidae,Cercopithecus,hamlyni,0,NA,NA,1,con to both,1,Partial,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,1,0,1,1
-cercopithecidae,Cercopithecus,lhoesti,0,NA,NA,1,incon,1,Partial,Pubis,F,0,0,0,0,1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,1,0,0,0,0,1,1
-cercopithecidae,Cercopithecus,mitis,1,"Head,Body",F,1,incon,1,Partial,NA,NA,NA,NA,NA,NA,NA,NA,1,1,0,0,0,0,0,0,0,1,0,NA,NA,NA,1,0,0,0,0,1,1
-cercopithecidae,Cercopithecus,mona,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-cercopithecidae,Cercopithecus,neglectus,0,NA,NA,1,incon,1,Partial,Pubis,M,0,0,0,0,1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,1,0,0,0,0,1,1
-cercopithecidae,Cercopithecus,nictitans,1,Pubis,F,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,1,0,0,0,0,0,0,1,0,NA,NA,NA,1,0,0,0,NA,NA,1
-cercopithecidae,Cercopithecus,petaurista,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-cercopithecidae,Cercopithecus,pogonias,0,NA,NA,0,NA,1,Partial,Body,M,1,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,NA,NA,NA,NA,0,1,1
-cercopithecidae,Cercopithecus,preussi,1,Pubis,F,0,NA,1,Partial,Pubis,F,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,1,0,0,1,0,NA,NA,NA,NA,0,1,0
-cercopithecidae,Cercopithecus,sclateri,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-cercopithecidae,Cercopithecus,solatus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-cheirogaleidae,Cheirogaleus,major,0,NA,NA,1,maybe,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,NA,NA,1
-cheirogaleidae,Cheirogaleus,medius,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-cebidae,Chiropotes,albinasus,1,Head,M,0,no,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,1,0,0,NA,NA,NA,0,0,0,0,NA,NA,1
-cebidae,Chiropotes,chiropotes,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,0
-cebidae,Chiropotes,satanas,1,Head,M,1,incon,1,Partial,Cape,M,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,1,0
-cercopithecidae,Chlorocebus,aethiops,0,NA,NA,1,con to both,0,Partial,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,1,0,1,1
-cercopithecidae,Colobus,angolensis,1,Tail,F,1,con to both,1,Partial,Pubis,F,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,1,1
-cercopithecidae,Colobus,guereza,0,NA,NA,1,con to both,1,Partial,Pubis,F,0,0,0,0,1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,0,0,0,1,0,1,1
-cercopithecidae,Colobus,polykomos,0,NA,NA,1,con to both,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,1,NA,NA,1
-cercopithecidae,Colobus,satanas,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-cercopithecidae,Colobus,vellerosus,0,NA,NA,1,con to both,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,1,NA,NA,1
-daubentoniidae,Daubentonia,madagascariensis,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-cercopithecidae,Erythrocebus,patas,0,NA,NA,1,con to both,1,Partial,Head,M,0,1,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,1,0,1,1
-lemuridae,Eulemur,coronatus,0,NA,NA,0,NA,1,Partial,Head,M,0,1,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,NA,NA,NA,NA,0,1,1
-lemuridae,Eulemur,fulvus,1,Head,M,1,con to mom,1,Partial,Head,Varies,0,1,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1,0,0,0,1,0
-lemuridae,Eulemur,flavifrons,1,Head,M,1,con to mom,1,Complete,NA,M,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,1,0,0,1,0,0
-lemuridae,Eulemur,macaco,1,Head,F,1,NA,1,Complete,NA,M,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,0,1,0,1,0,0,NA,NA,NA,NA,1,0,0
-lemuridae,Eulemur,mongoz,0,NA,NA,1,Con to dad,1,Complete,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,1,0,1,0,0
-lemuridae,Eulemur,rubriventer,0,NA,NA,0,no,1,Partial,"Head,Pubis",Varies,0,1,0,0,1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,1,0,0,0,0,0,1,0
-galagonidae,Euoticus,elegantulus,0,NA,NA,0,no,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,NA,NA,0
-galagonidae,Euoticus,pallidus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-galagonidae,Sciurocheirus,alleni,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-galagonidae,Galago,gallarum,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-galagonidae,Galago,matschiei,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-galagonidae,Galago,moholi,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-galagonidae,Galago,senegalensis,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-galagonidae,Galagoides,demidoff,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-galagonidae,Galagoides,thomasi,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-galagonidae,Galagoides,zanzibaricus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-hominidae,Gorilla,beringei,0,NA,NA,1,incon,1,Partial,Body,F,1,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,1,0,0,0,0,1,1
-hominidae,Gorilla,gorilla,1,Head,M,1,incon,1,Partial,Body,F,1,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,1,1
-lemuridae,Hapalemur,aureus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-lemuridae,Hapalemur,griseus,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,0
-lemuridae,Prolemur,simus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-hylobatidae,Hoolock,hoolock,1,Pubis,M,1,Con to dad,1,Complete,NA,M,NA,NA,NA,NA,NA,NA,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,1,0,1
-hylobatidae,Nomascus,concolor,0,NA,NA,1,Con to dad,1,Complete,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,1,0,1,0,0
-hylobatidae,Nomascus,gabriellae,0,NA,NA,1,Con to dad,1,Complete,NA,M,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,1,0,1,0,0
-hylobatidae,Nomascus,leucogenys,1,Head,M,1,Con to dad,1,Complete,NA,M,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,1,0,1
-hylobatidae,Symphalangus,syndactylus,1,Pubis,M,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,1,0,0,0,0,0,1,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-hylobatidae,Hylobates,agilis,1,"Head,Pubis",M,1,incon,1,Partial,Multiple,F,0,0,1,0,0,0,1,0,1,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,1,0
-hylobatidae,Hylobates,klossii,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-hylobatidae,Hylobates,lar,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-hylobatidae,Hylobates,moloch,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-hylobatidae,Hylobates,muelleri,0,NA,NA,1,con to both,1,Partial,Head,F,0,1,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,0,0,0,1,0,1,0
-hylobatidae,Hylobates,pileatus,1,Pubis,M,1,Con to dad,1,Complete,NA,M,NA,NA,NA,NA,NA,NA,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,1,0,1
-indridae,Indri,indri,0,NA,NA,1,con to both,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,1,NA,NA,1
-cebidae,Oreonax,flavicauda,1,Pubis,Both,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,1,0,0,0,0,0,0,0,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-cebidae,Lagothrix,lagotricha,1,Pubis,Both,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,1,0,0,0,0,0,0,0,1,NA,NA,NA,1,0,0,0,NA,NA,0
-lemuridae,Lemur,catta,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-callitrichidae,Leontopithecus,caissara,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-callitrichidae,Leontopithecus,chrysomelas,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-callitrichidae,Leontopithecus,chrysopygus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-callitrichidae,Leontopithecus,rosalia,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,0
-megaladapidae,Lepilemur,dorsalis,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-megaladapidae,Lepilemur,edwardsi,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-megaladapidae,Lepilemur,leucopus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-megaladapidae,Lepilemur,microdon,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-megaladapidae,Lepilemur,mustelinus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-megaladapidae,Lepilemur,ruficaudatus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-megaladapidae,Lepilemur,septentrionalis,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-cercopithecidae,Lophocebus,albigena,0,NA,NA,1,incon,1,Partial,Multiple,M,0,0,1,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,1,0,0,0,0,1,1
-cercopithecidae,Lophocebus,aterrimus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-loridae,Loris,tardigradus,0,NA,NA,1,incon,1,Complete,NA,Varies,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,1,1,0,0,0,1,0,1
-cercopithecidae,Macaca,arctoides,1,"Head,Body",Both,1,con to both,1,Partial,Body,M,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,0,1,1
-cercopithecidae,Macaca,assamensis,1,Head,F,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,0,1,0,NA,NA,NA,1,0,0,0,NA,NA,1
-cercopithecidae,Macaca,cyclopis,0,NA,NA,1,incon,1,Partial,Body,M,1,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,1,0,0,0,0,1,1
-cercopithecidae,Macaca,fascicularis,1,Head,Both,1,incon,1,Partial,Head,F,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,1,1
-cercopithecidae,Macaca,fuscata,0,NA,NA,1,incon,1,Partial,Body,M,1,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,1,0,0,0,0,1,1
-cercopithecidae,Macaca,hecki,1,Head,M,1,incon,1,Partial,Head,M,0,1,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,1,0
-cercopithecidae,Macaca,maura,0,NA,NA,1,incon,1,Partial,Multiple,M,0,0,1,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,1,0,0,0,0,1,1
-cercopithecidae,Macaca,mulatta,1,All,F,1,incon,1,Partial,Multiple,M,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,1,0,0,0,0,1,1
-cercopithecidae,Macaca,nemestrina,1,Mane,M,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,0,1,0,0,1,0,0,NA,NA,NA,1,0,0,0,NA,NA,1
-cercopithecidae,Macaca,nigra,0,NA,NA,1,incon,1,Partial,Body,M,1,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,1,0,0,0,0,1,1
-cercopithecidae,Macaca,nigrescens,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,0
-cercopithecidae,Macaca,ochreata,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,0
-cercopithecidae,Macaca,radiata,0,NA,NA,1,incon,1,Partial,Body,M,1,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,1,0,0,0,0,1,1
-cercopithecidae,Macaca,silenus,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-cercopithecidae,Macaca,sinica,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-cercopithecidae,Macaca,sylvanus,1,Head,M,1,maybe,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,1,0,0,NA,NA,NA,0,0,0,0,NA,NA,1
-cercopithecidae,Macaca,thibetana,1,Head,F,1,incon,1,Partial,Body,M,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,0,0,0,1,1
-cercopithecidae,Macaca,tonkeana,0,NA,NA,1,incon,1,Partial,Multiple,M,0,0,1,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,1,0,0,0,0,1,1
-cercopithecidae,Mandrillus,leucophaeus,1,"Head, Cape",M,1,incon,1,Partial,Head,M,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,1,0,0,1,0,0,0,0,1,1
-cercopithecidae,Mandrillus,sphinx,1,Multiple,M,1,incon,1,Partial,Multiple,M,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,0,1,0,0,0,0,1,1
-cheirogaleidae,Microcebus,murinus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-cheirogaleidae,Microcebus,myoxinus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-cheirogaleidae,Microcebus,rufus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-cheirogaleidae,Mizra,coquereli,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-cercopithecidae,Miopithecus,talapoin,0,NA,NA,1,incon,1,Partial,Body,M,1,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,1,0,0,0,0,1,1
-cercopithecidae,Simias,concolor,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-cercopithecidae,Nasalis,larvatus,1,Cape,M,1,incon,1,Partial,Multiple,F,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,0,0,0,1,1
-loridae,Nycticebus,coucang,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,0
-loridae,Nycticebus,pygmaeus,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-galagonidae,Otolemur,crassicaudatus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-galagonidae,Otolemur,garnettii,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-hominidae,Pan,paniscus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-hominidae,Pan,troglodytes,1,Head,F,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,0,1,0,NA,NA,NA,1,0,0,0,NA,NA,1
-cercopithecidae,Papio,anubis,1,Mane,M,1,incon,1,Partial,Multiple,M,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,1,0,0,0,0,1,1
-cercopithecidae,Papio,cynocephalus,1,Mane,M,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,0,1,0,0,1,0,0,NA,NA,NA,1,0,0,0,NA,NA,1
-cercopithecidae,Papio,hamadryas,1,"Head, Cape",M,1,incon,1,Complete,NA,M,NA,NA,NA,NA,NA,NA,1,0,0,0,1,0,0,0,1,0,0,1,0,0,1,0,0,0,1,0,1
-cercopithecidae,Papio,papio,1,"Head, Cape",M,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,1,0,0,0,1,0,0,NA,NA,NA,1,0,0,0,NA,NA,0
-cercopithecidae,Papio,ursinus,1,Mane,M,1,incon,1,Partial,Body,M,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,1,0,0,0,0,1,1
-loridae,Perodicticus,potto,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,0
-cheirogaleidae,Phaner,furcifer,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-cebidae,Pithecia,aequatorialis,0,NA,NA,0,NA,1,Partial,Head,F,0,1,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,NA,NA,NA,NA,0,1,0
-cebidae,Pithecia,albicans,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,0
-cebidae,Pithecia,irrorata,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-cebidae,Pithecia,monachus,0,NA,NA,1,incon,1,Partial,Head,F,0,1,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,1,0,0,0,0,1,1
-cebidae,Pithecia,pithecia,1,Head,M,1,Con to dad,1,Complete,NA,M,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,1,0,1
-pongidae,Pongo,abelii,1,Multiple,M,0,NA,1,Partial,Head,F,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,NA,NA,NA,NA,0,1,1
-pongidae,Pongo,pygmaeus,1,Multiple,M,1,maybe,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,0,0,1,0,1,0,0,NA,NA,NA,0,0,0,0,NA,NA,1
-cercopithecidae,Presbytis,comata,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,0
-cercopithecidae,Presbytis,femoralis,0,NA,NA,1,maybe,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,NA,NA,0
-cercopithecidae,Presbytis,frontata,0,NA,NA,1,con to both,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,1,NA,NA,0
-cercopithecidae,Presbytis,hosei,0,NA,NA,1,con to both,1,Partial,Head,F,0,1,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,0,0,0,1,0,1,1
-cercopithecidae,Presbytis,melalophos,0,NA,NA,1,con to both,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,1,NA,NA,0
-cercopithecidae,Presbytis,potenziani,0,NA,NA,1,con to both,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,1,NA,NA,0
-cercopithecidae,Presbytis,rubicunda,0,NA,NA,1,con to both,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,1,NA,NA,0
-cercopithecidae,Presbytis,thomasi,0,NA,NA,1,con to both,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,1,NA,NA,0
-cercopithecidae,Procolobus,badius,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,0
-cercopithecidae,Procolobus,pennantii,0,NA,NA,1,maybe,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,NA,NA,1
-cercopithecidae,Procolobus,preussi,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,0
-cercopithecidae,Procolobus,rufomitratus,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-cercopithecidae,Procolobus,verus,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-indridae,Propithecus,diadema,0,NA,NA,0,no,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,NA,NA,0
-indridae,Propithecus,tattersalli,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-indridae,Propithecus,verreauxi,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,0
-cercopithecidae,Pygathrix,cinerea,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-cercopithecidae,Pygathrix,nemaeus,1,Head,M,1,incon,1,Partial,Body,F,1,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,1,1
-cercopithecidae,Pygathrix,nigripes,1,Head,M,1,incon,1,Partial,Body,F,1,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,1,1
-cercopithecidae,Rhinopithecus,avunculus,1,Multiple,M,1,incon,1,Partial,Multiple,F,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,1,0,0,0,0,1,1
-cercopithecidae,Rhinopithecus,bieti,1,"Cape,Body",M,1,incon,1,Partial,Multiple,F,0,0,1,0,0,0,0,1,0,0,1,0,0,0,1,0,0,0,1,0,1,0,0,0,0,1,1
-cercopithecidae,Rhinopithecus,brelichi,1,Cape,M,1,incon,1,Partial,Multiple,F,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,0,0,0,1,1
-cercopithecidae,Rhinopithecus,roxellana,1,Cape,M,1,con to both,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,1,0,0,0,1,0,0,NA,NA,NA,0,0,0,1,NA,NA,1
-callitrichidae,Saguinus,bicolor,0,NA,NA,0,no,1,Partial,Tail,F,0,0,0,0,0,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,0,0,0,0,0,1,0
-callitrichidae,Leontocebus,fuscicollis,0,NA,NA,0,no,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,NA,NA,1
-callitrichidae,Saguinus,geoffroyi,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-callitrichidae,Saguinus,imperator,1,Head,M,1,incon,1,Partial,Body,NA,1,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,NA,NA,NA,1,0,0,0,0,1,0
-callitrichidae,Saguinus,inustus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-callitrichidae,Saguinus,labiatus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-callitrichidae,Saguinus,leucopus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-callitrichidae,Saguinus,midas,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-callitrichidae,Saguinus,mystax,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-callitrichidae,Leontocebus,nigricollis,0,NA,NA,0,no,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,NA,NA,0
-callitrichidae,Saguinus,oedipus,0,NA,NA,0,no,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,NA,NA,0
-callitrichidae,Leontocebus,tripartitus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-cebidae,Saimiri,boliviensis,0,NA,NA,0,NA,1,Partial,Head,F,0,1,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,NA,NA,NA,NA,0,1,1
-cebidae,Saimiri,oerstedii,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-cebidae,Saimiri,sciureus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-cebidae,Saimiri,ustus,0,NA,NA,0,NA,1,Partial,Head,F,0,1,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,NA,NA,NA,NA,0,1,1
-cebidae,Saimiri,vanzolinii,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-cercopithecidae,Semnopithecus,entellus,1,Head,M,1,con to both,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,1,0,0,NA,NA,NA,0,0,0,1,NA,NA,1
-tarsiidae,Tarsius,bancanus,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,0
-tarsiidae,Tarsius,dentatus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-tarsiidae,Tarsius,pumilus,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
-tarsiidae,Tarsius,tarsier,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-tarsiidae,Tarsius,syrichta,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-cercopithecidae,Theropithecus,gelada,1,Cape,M,1,incon,1,Partial,Cape,M,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1,0,0,1,0,0,1,0,0,0,0,1,1
-cercopithecidae,Trachypithecus,johnii,0,NA,NA,1,con to both,1,Partial,Pubis,M,0,0,0,0,1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,1,0,1,1
-cercopithecidae,Trachypithecus,vetulus,0,NA,NA,1,incon,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,NA,NA,1
-cercopithecidae,Trachypithecus,auratus,0,NA,NA,1,con to both,1,Partial,Pubis,M,0,0,0,0,1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,1,0,1,1
-cercopithecidae,Trachypithecus,cristatus,0,NA,NA,1,con to both,1,Partial,Pubis,M,0,0,0,0,1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,1,0,1,1
-cercopithecidae,Trachypithecus,delacouri,0,NA,NA,1,incon,1,Partial,Pubis,M,0,0,0,0,1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,1,0,0,0,0,1,0
-cercopithecidae,Trachypithecus,francoisi,0,NA,NA,1,con to both,1,Partial,Pubis,M,0,0,0,0,1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,1,0,1,1
-cercopithecidae,Trachypithecus,geei,0,NA,NA,1,con to both,1,Partial,Tail,M,0,0,0,0,0,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,1,0,1,1
-cercopithecidae,Trachypithecus,obscurus,0,NA,NA,1,con to both,1,Partial,Pubis,F,0,0,0,0,1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,0,0,0,1,0,1,1
-cercopithecidae,Trachypithecus,phayrei,1,Head,Both,1,con to both,1,Partial,Pubis,M,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,0,1,1
-cercopithecidae,Trachypithecus,pileatus,0,NA,NA,1,con to both,1,Partial,Body,M,1,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,1,0,1,1
-lemuridae,Varecia,variegata,0,NA,NA,0,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0
+family,Genus,species,Sexual_dimorphism,Location,Direction,Natal_coat,Natal_Coat_Type,Sexual_dichromatism,Sexual_dichromatism_type,Where,Darker,Size_Dimorphism,DC_Body,DC_Head,DC_Multiple,DC_Cape,DC_Pubis,DC_Tail,DM_Head,DM_Body,DM_Pubis,DM_Tail,DM_Cape,DM_Mane,DM_Multiple,DM_All,DM_Male_Growth,DM_Female_Growth,DM_Both,DC_Male_Darker,DC_Female_Darker,DC_Varies,NC_incon,NC_con_mom,NC_con_dad,NC_con_both,conspicuous_coat,DC_Complete,DC_Partial
+cercopithecidae,allenopithecus,nigroviridis,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cheirogaleidae,allocebus,trichotis,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cebidae,alouatta,belzebul,0,NA,NA,0,NA,1,Partial,Body,M,1,1,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,NA,NA,NA,NA,NA,0,1
+cebidae,alouatta,caraya,1,Head,M,1,Con to dad,1,Complete,NA,M,1,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,1,1,0
+cebidae,alouatta,guariba,1,Head,M,1,incon,1,Complete,NA,M,1,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,1,0
+cebidae,alouatta,palliata,1,"Head, Flank",F,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,0,1,0,NA,NA,NA,1,0,0,0,0,NA,NA
+cebidae,alouatta,pigra,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cebidae,alouatta,sara,0,NA,NA,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cebidae,alouatta,seniculus,1,Head,M,0,no,1,Partial,Head,M,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,1,0,1
+cebidae,aotus,nigriceps,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cebidae,aotus,trivirgatus,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+loridae,arctocebus,aureus,0,NA,NA,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+loridae,arctocebus,calabarensis,0,NA,NA,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cebidae,ateles,belzebuth,0,NA,NA,0,no,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,1,NA,NA
+cebidae,ateles,chamek,0,NA,NA,0,no,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,1,NA,NA
+cebidae,ateles,fusciceps,0,NA,NA,0,no,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,1,NA,NA
+cebidae,ateles,geoffroyi,0,NA,NA,1,incon,0,Partial,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,1
+cebidae,ateles,marginatus,0,NA,NA,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cebidae,ateles,paniscus,0,NA,NA,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+indridae,avahi,laniger,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cebidae,brachyteles,arachnoides,0,NA,NA,1,incon,1,Partial,Body,F,1,1,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,1,0,0,0,0,0,1
+cebidae,cacajao,calvus,0,NA,NA,0,no,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,1,NA,NA
+cebidae,cacajao,melanocephalus,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cebidae,callicebus,brunneus,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cebidae,callicebus,caligatus,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cebidae,callicebus,cinerascens,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cebidae,callicebus,cupreus,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cebidae,callicebus,donacophilus,0,NA,NA,0,NA,0,Partial,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1
+cebidae,callicebus,dubius,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cebidae,callicebus,hoffmannsi,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cebidae,callicebus,moloch,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cebidae,callicebus,personatus,0,NA,NA,1,incon,1,Partial,Multiple,F,0,0,0,1,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,1,0,0,0,0,0,1
+cebidae,callicebus,torquatus,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+callitrichidae,callimico,goeldii,0,NA,NA,0,no,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,1,NA,NA
+callitrichidae,mico,argentata,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+callitrichidae,callithrix,aurita,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+callitrichidae,callithrix,flaviceps,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+callitrichidae,callithrix,geoffroyi,0,NA,NA,0,no,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,1,NA,NA
+callitrichidae,mico,humeralifer,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+callitrichidae,callithrix,jacchus,0,NA,NA,0,no,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,1,NA,NA
+callitrichidae,callithrix,kuhlii,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+callitrichidae,mico,mauesi,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+callitrichidae,mico,nigriceps,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+callitrichidae,callithrix,penicillata,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cebidae,cebus,albifrons,1,Head,F,0,no,1,Partial,Multiple,Varies,1,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,1
+cebidae,sapajus,apella,0,NA,NA,1,incon,1,Partial,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,1
+cebidae,cebus,capucinus,1,"Head,Body",F,0,no,1,Partial,Multiple,M,1,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1,0,1
+cebidae,cebus,olivaceus,0,NA,NA,0,no,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,1,NA,NA
+cercopithecidae,cercocebus,agilis,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,cercocebus,galeritus,1,Body,F,1,incon,1,Partial,Cape,M,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,1,0,0,1,0,0,0,0,0,1
+cercopithecidae,cercocebus,torquatus,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,cercocebus,atys,0,NA,NA,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,cercopithecus,ascanius,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,cercopithecus,campbelli,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,cercopithecus,cephus,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,cercopithecus,diana,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,cercopithecus,dryas,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,cercopithecus,erythrogaster,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,cercopithecus,erythrotis,1,Pubis,M,1,incon,1,Partial,Multiple,M,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,1
+cercopithecidae,cercopithecus,hamlyni,0,NA,NA,1,con to both,1,Partial,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,1,1,0,1
+cercopithecidae,cercopithecus,lhoesti,0,NA,NA,1,incon,1,Partial,Pubis,F,1,0,0,0,0,1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,1,0,0,0,0,0,1
+cercopithecidae,cercopithecus,mitis,1,"Head,Body",F,1,incon,1,Partial,NA,NA,1,NA,NA,NA,NA,NA,NA,1,1,0,0,0,0,0,0,0,1,0,NA,NA,NA,1,0,0,0,0,0,1
+cercopithecidae,cercopithecus,mona,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cercopithecidae,cercopithecus,neglectus,0,NA,NA,1,incon,1,Partial,Pubis,M,1,0,0,0,0,1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,1,0,0,0,0,0,1
+cercopithecidae,cercopithecus,nictitans,1,Pubis,F,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,0,0,1,0,0,0,0,0,0,1,0,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,cercopithecus,petaurista,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cercopithecidae,cercopithecus,pogonias,0,NA,NA,0,NA,1,Partial,Body,M,1,1,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,NA,NA,NA,NA,NA,0,1
+cercopithecidae,cercopithecus,preussi,1,Pubis,F,0,NA,1,Partial,Pubis,F,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,1,0,0,1,0,NA,NA,NA,NA,NA,0,1
+cercopithecidae,cercopithecus,sclateri,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cercopithecidae,cercopithecus,solatus,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cheirogaleidae,cheirogaleus,major,0,NA,NA,1,maybe,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,1,NA,NA
+cheirogaleidae,cheirogaleus,medius,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cebidae,chiropotes,albinasus,1,Head,M,0,no,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,1,0,0,NA,NA,NA,0,0,0,0,1,NA,NA
+cebidae,chiropotes,chiropotes,0,NA,NA,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cebidae,chiropotes,satanas,1,Head,M,1,incon,1,Partial,Cape,M,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,1
+cercopithecidae,chlorocebus,aethiops,0,NA,NA,1,con to both,0,Partial,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,1,1,0,1
+cercopithecidae,colobus,angolensis,1,Tail,F,1,con to both,1,Partial,Pubis,F,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,1,1,0,1
+cercopithecidae,colobus,guereza,0,NA,NA,1,con to both,1,Partial,Pubis,F,1,0,0,0,0,1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,0,0,0,1,1,0,1
+cercopithecidae,colobus,polykomos,0,NA,NA,1,con to both,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,1,1,NA,NA
+cercopithecidae,colobus,satanas,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,colobus,vellerosus,0,NA,NA,1,con to both,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,1,1,NA,NA
+daubentoniidae,daubentonia,madagascariensis,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cercopithecidae,erythrocebus,patas,0,NA,NA,1,con to both,1,Partial,Head,M,1,0,1,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,1,1,0,1
+lemuridae,eulemur,coronatus,0,NA,NA,0,NA,1,Partial,Head,M,1,0,1,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,NA,NA,NA,NA,NA,0,1
+lemuridae,eulemur,fulvus,1,Head,M,1,con to mom,1,Partial,Head,Varies,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1,0,0,1,0,1
+lemuridae,eulemur,flavifrons,1,Head,M,1,con to mom,1,Complete,NA,M,0,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,1,0,0,1,1,0
+lemuridae,eulemur,macaco,1,Head,F,1,NA,1,Complete,NA,M,0,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,0,1,0,1,0,0,NA,NA,NA,NA,NA,1,0
+lemuridae,eulemur,mongoz,0,NA,NA,1,Con to dad,1,Complete,NA,M,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,1,0,1,1,0
+lemuridae,eulemur,rubriventer,0,NA,NA,0,no,1,Partial,"Head,Pubis",Varies,0,0,1,0,0,1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,1,0,0,0,0,1,0,1
+galagonidae,euoticus,elegantulus,0,NA,NA,0,no,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,1,NA,NA
+galagonidae,euoticus,pallidus,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+galagonidae,sciurocheirus,alleni,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+galagonidae,galago,gallarum,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+galagonidae,galago,matschiei,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+galagonidae,galago,moholi,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+galagonidae,galago,senegalensis,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+galagonidae,galagoides,demidoff,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+galagonidae,galagoides,thomasi,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+galagonidae,galagoides,zanzibaricus,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hominidae,gorilla,beringei,0,NA,NA,1,incon,1,Partial,Body,F,1,1,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,1,0,0,0,0,0,1
+hominidae,gorilla,gorilla,1,Head,M,1,incon,1,Partial,Body,F,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,1
+lemuridae,hapalemur,aureus,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+lemuridae,hapalemur,griseus,0,NA,NA,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+lemuridae,prolemur,simus,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hylobatidae,hoolock,hoolock,1,Pubis,M,1,Con to dad,1,Complete,NA,M,1,NA,NA,NA,NA,NA,NA,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,1,1,0
+hylobatidae,nomascus,concolor,0,NA,NA,1,Con to dad,1,Complete,NA,M,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,1,0,1,1,0
+hylobatidae,nomascus,gabriellae,0,NA,NA,1,Con to dad,1,Complete,NA,M,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,1,0,1,1,0
+hylobatidae,nomascus,leucogenys,1,Head,M,1,Con to dad,1,Complete,NA,M,1,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,1,1,0
+hylobatidae,symphalangus,syndactylus,1,Pubis,M,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,0,0,1,0,0,0,0,0,1,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hylobatidae,hylobates,agilis,1,"Head,Pubis",M,1,incon,1,Partial,Multiple,F,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,1
+hylobatidae,hylobates,klossii,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hylobatidae,hylobates,lar,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hylobatidae,hylobates,moloch,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+hylobatidae,hylobates,muelleri,0,NA,NA,1,con to both,1,Partial,Head,F,0,0,1,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,0,0,0,1,1,0,1
+hylobatidae,hylobates,pileatus,1,Pubis,M,1,Con to dad,1,Complete,NA,M,1,NA,NA,NA,NA,NA,NA,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,1,1,0
+indridae,indri,indri,0,NA,NA,1,con to both,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,1,1,NA,NA
+cebidae,oreonax,flavicauda,1,Pubis,Both,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,0,0,1,0,0,0,0,0,0,0,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cebidae,lagothrix,lagotricha,1,Pubis,Both,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,0,0,1,0,0,0,0,0,0,0,1,NA,NA,NA,1,0,0,0,0,NA,NA
+lemuridae,lemur,catta,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+callitrichidae,leontopithecus,caissara,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+callitrichidae,leontopithecus,chrysomelas,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+callitrichidae,leontopithecus,chrysopygus,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+callitrichidae,leontopithecus,rosalia,0,NA,NA,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+megaladapidae,lepilemur,dorsalis,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+megaladapidae,lepilemur,edwardsi,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+megaladapidae,lepilemur,leucopus,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+megaladapidae,lepilemur,microdon,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+megaladapidae,lepilemur,mustelinus,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+megaladapidae,lepilemur,ruficaudatus,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+megaladapidae,lepilemur,septentrionalis,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cercopithecidae,lophocebus,albigena,0,NA,NA,1,incon,1,Partial,Multiple,M,1,0,0,1,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,1,0,0,0,0,0,1
+cercopithecidae,lophocebus,aterrimus,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+loridae,loris,tardigradus,0,NA,NA,1,incon,1,Complete,NA,Varies,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,1,1,0,0,0,0,1,0
+cercopithecidae,macaca,arctoides,1,"Head,Body",Both,1,con to both,1,Partial,Body,M,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,0,1
+cercopithecidae,macaca,assamensis,1,Head,F,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,0,1,0,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,macaca,cyclopis,0,NA,NA,1,incon,1,Partial,Body,M,1,1,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,1,0,0,0,0,0,1
+cercopithecidae,macaca,fascicularis,1,Head,Both,1,incon,1,Partial,Head,F,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,1
+cercopithecidae,macaca,fuscata,0,NA,NA,1,incon,1,Partial,Body,M,1,1,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,1,0,0,0,0,0,1
+cercopithecidae,macaca,hecki,1,Head,M,1,incon,1,Partial,Head,M,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,1
+cercopithecidae,macaca,maura,0,NA,NA,1,incon,1,Partial,Multiple,M,1,0,0,1,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,1,0,0,0,0,0,1
+cercopithecidae,macaca,mulatta,1,All,F,1,incon,1,Partial,Multiple,M,1,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,1,0,0,0,0,0,1
+cercopithecidae,macaca,nemestrina,1,Mane,M,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,0,0,0,0,0,1,0,0,1,0,0,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,macaca,nigra,0,NA,NA,1,incon,1,Partial,Body,M,1,1,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,1,0,0,0,0,0,1
+cercopithecidae,macaca,nigrescens,0,NA,NA,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,macaca,ochreata,0,NA,NA,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,macaca,radiata,0,NA,NA,1,incon,1,Partial,Body,M,1,1,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,1,0,0,0,0,0,1
+cercopithecidae,macaca,silenus,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,macaca,sinica,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,macaca,sylvanus,1,Head,M,1,maybe,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,1,0,0,NA,NA,NA,0,0,0,0,1,NA,NA
+cercopithecidae,macaca,thibetana,1,Head,F,1,incon,1,Partial,Body,M,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,0,0,0,0,1
+cercopithecidae,macaca,tonkeana,0,NA,NA,1,incon,1,Partial,Multiple,M,1,0,0,1,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,1,0,0,0,0,0,1
+cercopithecidae,mandrillus,leucophaeus,1,"Head, Cape",M,1,incon,1,Partial,Head,M,1,0,1,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,1
+cercopithecidae,mandrillus,sphinx,1,Multiple,M,1,incon,1,Partial,Multiple,M,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,0,1,0,0,0,0,0,1
+cheirogaleidae,microcebus,murinus,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cheirogaleidae,microcebus,myoxinus,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cheirogaleidae,microcebus,rufus,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cheirogaleidae,mizra,coquereli,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cercopithecidae,miopithecus,talapoin,0,NA,NA,1,incon,1,Partial,Body,M,1,1,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,1,0,0,0,0,0,1
+cercopithecidae,simias,concolor,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,nasalis,larvatus,1,Cape,M,1,incon,1,Partial,Multiple,F,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,1
+loridae,nycticebus,coucang,0,NA,NA,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+loridae,nycticebus,pygmaeus,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+galagonidae,otolemur,crassicaudatus,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+galagonidae,otolemur,garnettii,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hominidae,pan,paniscus,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+hominidae,pan,troglodytes,1,Head,F,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,0,1,0,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,papio,anubis,1,Mane,M,1,incon,1,Partial,Multiple,M,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,1,0,0,0,0,0,1
+cercopithecidae,papio,cynocephalus,1,Mane,M,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,0,0,0,0,0,1,0,0,1,0,0,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,papio,hamadryas,1,"Head, Cape",M,1,incon,1,Complete,NA,M,1,NA,NA,NA,NA,NA,NA,1,0,0,0,1,0,0,0,1,0,0,1,0,0,1,0,0,0,0,1,0
+cercopithecidae,papio,papio,1,"Head, Cape",M,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,1,0,0,0,1,0,0,0,1,0,0,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,papio,ursinus,1,Mane,M,1,incon,1,Partial,Body,M,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,1,0,0,0,0,0,1
+loridae,perodicticus,potto,0,NA,NA,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cheirogaleidae,phaner,furcifer,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cebidae,pithecia,aequatorialis,0,NA,NA,0,NA,1,Partial,Head,F,0,0,1,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,NA,NA,NA,NA,NA,0,1
+cebidae,pithecia,albicans,0,NA,NA,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cebidae,pithecia,irrorata,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cebidae,pithecia,monachus,0,NA,NA,1,incon,1,Partial,Head,F,1,0,1,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,1,0,0,0,0,0,1
+cebidae,pithecia,pithecia,1,Head,M,1,Con to dad,1,Complete,NA,M,1,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,1,1,0
+pongidae,pongo,abelii,1,Multiple,M,0,NA,1,Partial,Head,F,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,NA,NA,NA,NA,NA,0,1
+pongidae,pongo,pygmaeus,1,Multiple,M,1,maybe,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,0,0,0,0,0,0,1,0,1,0,0,NA,NA,NA,0,0,0,0,1,NA,NA
+cercopithecidae,presbytis,comata,0,NA,NA,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,presbytis,femoralis,0,NA,NA,1,maybe,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,1,NA,NA
+cercopithecidae,presbytis,frontata,0,NA,NA,1,con to both,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,1,1,NA,NA
+cercopithecidae,presbytis,hosei,0,NA,NA,1,con to both,1,Partial,Head,F,1,0,1,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,0,0,0,1,1,0,1
+cercopithecidae,presbytis,melalophos,0,NA,NA,1,con to both,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,1,1,NA,NA
+cercopithecidae,presbytis,potenziani,0,NA,NA,1,con to both,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,1,1,NA,NA
+cercopithecidae,presbytis,rubicunda,0,NA,NA,1,con to both,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,1,1,NA,NA
+cercopithecidae,presbytis,thomasi,0,NA,NA,1,con to both,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,1,1,NA,NA
+cercopithecidae,procolobus,badius,0,NA,NA,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,procolobus,pennantii,0,NA,NA,1,maybe,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,1,NA,NA
+cercopithecidae,procolobus,preussi,0,NA,NA,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,procolobus,rufomitratus,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,procolobus,verus,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+indridae,propithecus,diadema,0,NA,NA,0,no,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,1,NA,NA
+indridae,propithecus,tattersalli,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+indridae,propithecus,verreauxi,0,NA,NA,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,pygathrix,cinerea,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cercopithecidae,pygathrix,nemaeus,1,Head,M,1,incon,1,Partial,Body,F,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,1
+cercopithecidae,pygathrix,nigripes,1,Head,M,1,incon,1,Partial,Body,F,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,1
+cercopithecidae,rhinopithecus,avunculus,1,Multiple,M,1,incon,1,Partial,Multiple,F,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,1,0,0,0,0,0,1
+cercopithecidae,rhinopithecus,bieti,1,"Cape,Body",M,1,incon,1,Partial,Multiple,F,1,0,0,1,0,0,0,0,1,0,0,1,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,1
+cercopithecidae,rhinopithecus,brelichi,1,Cape,M,1,incon,1,Partial,Multiple,F,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,1
+cercopithecidae,rhinopithecus,roxellana,1,Cape,M,1,con to both,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,0,0,0,0,1,0,0,0,1,0,0,NA,NA,NA,0,0,0,1,1,NA,NA
+callitrichidae,saguinus,bicolor,0,NA,NA,0,no,1,Partial,Tail,F,0,0,0,0,0,0,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,0,0,0,0,1,0,1
+callitrichidae,leontocebus,fuscicollis,0,NA,NA,0,no,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,1,NA,NA
+callitrichidae,saguinus,geoffroyi,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+callitrichidae,saguinus,imperator,1,Head,M,1,incon,1,Partial,Body,NA,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,NA,NA,NA,1,0,0,0,0,0,1
+callitrichidae,saguinus,inustus,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+callitrichidae,saguinus,labiatus,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+callitrichidae,saguinus,leucopus,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+callitrichidae,saguinus,midas,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+callitrichidae,saguinus,mystax,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+callitrichidae,leontocebus,nigricollis,0,NA,NA,0,no,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,1,NA,NA
+callitrichidae,saguinus,oedipus,0,NA,NA,0,no,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,1,NA,NA
+callitrichidae,leontocebus,tripartitus,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cebidae,saimiri,boliviensis,0,NA,NA,0,NA,1,Partial,Head,F,1,0,1,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,NA,NA,NA,NA,NA,0,1
+cebidae,saimiri,oerstedii,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cebidae,saimiri,sciureus,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cebidae,saimiri,ustus,0,NA,NA,0,NA,1,Partial,Head,F,1,0,1,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,NA,NA,NA,NA,NA,0,1
+cebidae,saimiri,vanzolinii,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+cercopithecidae,semnopithecus,entellus,1,Head,M,1,con to both,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,0,0,1,0,0,NA,NA,NA,0,0,0,1,1,NA,NA
+tarsiidae,tarsius,bancanus,0,NA,NA,1,incon,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+tarsiidae,tarsius,dentatus,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+tarsiidae,tarsius,pumilus,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+tarsiidae,tarsius,tarsier,0,NA,NA,0,NA,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+tarsiidae,tarsius,syrichta,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,theropithecus,gelada,1,Cape,M,1,incon,1,Partial,Cape,M,1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,1
+cercopithecidae,trachypithecus,johnii,0,NA,NA,1,con to both,1,Partial,Pubis,M,1,0,0,0,0,1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,1,1,0,1
+cercopithecidae,trachypithecus,vetulus,0,NA,NA,1,incon,0,NA,NA,NA,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,NA,NA
+cercopithecidae,trachypithecus,auratus,0,NA,NA,1,con to both,1,Partial,Pubis,M,1,0,0,0,0,1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,1,1,0,1
+cercopithecidae,trachypithecus,cristatus,0,NA,NA,1,con to both,1,Partial,Pubis,M,1,0,0,0,0,1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,1,1,0,1
+cercopithecidae,trachypithecus,delacouri,0,NA,NA,1,incon,1,Partial,Pubis,M,0,0,0,0,0,1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,1,0,0,0,0,0,1
+cercopithecidae,trachypithecus,francoisi,0,NA,NA,1,con to both,1,Partial,Pubis,M,1,0,0,0,0,1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,1,1,0,1
+cercopithecidae,trachypithecus,geei,0,NA,NA,1,con to both,1,Partial,Tail,M,1,0,0,0,0,0,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,1,1,0,1
+cercopithecidae,trachypithecus,obscurus,0,NA,NA,1,con to both,1,Partial,Pubis,F,1,0,0,0,0,1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,1,0,0,0,0,1,1,0,1
+cercopithecidae,trachypithecus,phayrei,1,Head,Both,1,con to both,1,Partial,Pubis,M,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,0,1
+cercopithecidae,trachypithecus,pileatus,0,NA,NA,1,con to both,1,Partial,Body,M,1,1,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,0,0,0,0,0,1,1,0,1
+lemuridae,varecia,variegata,0,NA,NA,0,NA,0,NA,NA,NA,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA

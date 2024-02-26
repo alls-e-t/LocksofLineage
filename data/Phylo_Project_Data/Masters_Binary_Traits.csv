@@ -1,4 +1,4 @@
-Family,Genus_names,species_name,subspecies,Size_Dimorphism,Sexual_Dimorphism,DM_Head,Natal_Coat,ConD,ConM,ConB,Sexual_Dichromatism,DC_Head
+Family,Genus,species,subspecies,Size_Dimorphism,Sexual_Dimorphism,DM_Head,Natal_Coat,ConD,ConM,ConB,Sexual_Dichromatism,DC_Head
 cercopithecidae,allenopithecus,nigroviridis,NA,1,0,0,1,0,0,0,0,0
 cheirogaleidae,allocebus,trichotis,NA,1,0,0,0,0,0,0,0,0
 cebidae,alouatta,caraya,NA,1,1,1,1,1,0,0,1,0
