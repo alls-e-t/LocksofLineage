@@ -18,6 +18,8 @@ library(ape)
 library(tidyverse)
 #Library to run the phylogenetic regressions
 library(phylolm)
+#Libary to plot the trees
+library(ggtree)
 ```
 
 ```{r Load-in-the-Data}
@@ -35,8 +37,14 @@ data_traits = select(data_to_use, -4,-6,-7,-12,-17)
 # Column 17 was the description of sexual dichromatism from the sources
 ```
 
+```{r Binarize-the-main-three-traits}
+# Binarize the data
+data_traits <- data_traits %>%
+  mutate(across(c(Sexual_dimorphism, Natal_coat, Sexual_dichromatism), ~if_else(. == "Yes", 1, 0)))
+```
+
 ```{r Add-columns-for-all-locations-of-sexual-dichromatism}
-#Add a column for each occurence of sexual dichromatism at a different body part, if one species has multiple values (body parts) they will be counted in each column that they occur ie head,flank is 1 for head and 1 for flank
+#Add a column for each occurrence of sexual dichromatism at a different body part, if one species has multiple values (body parts) they will be counted in each column that they occur ie head,flank is 1 for head and 1 for flank
 
 data_traits <- data_traits %>%
   mutate(DC_Body = case_when(
@@ -171,6 +179,14 @@ data_traits <- data_traits %>%
                 !is.na(Natal_Coat_Type) ~ 0,
                 TRUE ~ as.integer(NA))
         )
+
+# Add a column with all conspicuous natal coats as 1 and inconspicuous as 0
+data_traits <- data_traits %>%
+  mutate(conspicuous_coat = case_when(
+    Natal_Coat_Type == "incon" ~ 0, 
+    Natal_Coat_Type != "incon" & !is.na(Natal_Coat_Type) ~ 1, 
+    TRUE ~ as.integer(NA) 
+  ))
 #Natal coats can be inconspicuous (close in color to parents) or conspicuous (obviously a different color). When they are conspicuous they can be contrasting to either the mothers coats or the fathers or both. 
 
 ```
@@ -188,22 +204,19 @@ data_traits <- data_traits %>%
         )
 ```
 
-```{r Save-updated-file-to-output}
-write_csv(data_traits, "output/data_traits_expanded_columns.csv")
+
+```{r Adding-the-Conspicuous-Coat-Column}
+data_traits <- data_traits %>%
+mutate(conspicuous_coat = case_when(
+  Natal_Coat_Type == "incon" ~ 0, Natal_Coat_Type != "incon" & !is.na(Natal_Coat_Type) ~ 1, 
+    TRUE ~ as.integer(NA) 
+  ))
 ```
 
-```{r Adding-a-Column}
-data_traits_combined <- left_join(data_traits_combined, data_pruned %>% select(species, Size_Dimorphism), by = "species")
+```{r Saving-the-New-Dataframe}
+write_csv(data_traits, "data/Phylo_Project_Data/Data_That_Works.csv")
 ```
 
-```{r Removing-Extra-Columns}
-data_traits_combined <- data_traits_combined %>%
-  select(-Size_Dimorphism.x, -Size_Dimorphism.y)
-```
-
-```{r Saving-the-dataframe-with-size-dimorphism}
-write_csv(data_traits_combined, "output/data_traits_with_size_dimorph.csv")
-```
 
 ## Running the Analyses
 
@@ -222,14 +235,14 @@ head(Binary_traits)
 
 ## Format Data
 
-```{r Format-Binary-Data-SpeciesNames, echo=TRUE}
+```{r Format-Binary-Data-SpeciesNames}
 #combine genus and species names and capitalize first letter
-Binary_traits_combined = data_traits_with_size_dimorph %>% unite("species",`Genus_names`, `species_names`) %>% mutate(species = str_to_title(species))
+Binary_traits_combined = Binary_traits %>% unite("species",`Genus`, `species`) %>% mutate(species = str_to_title(species))
 head(Binary_traits_combined)
 ```
 
 
-```{r Prune-Tree-For-Species-in-Data, echo=TRUE}
+```{r Prune-Tree-For-Species-in-Data}
 # prune tree for species in data
 species_not_in_tree=setdiff(mammaltree$tip.label, Binary_traits_combined$species)
 pruned.tree<-drop.tip(mammaltree,species_not_in_tree)
@@ -237,42 +250,340 @@ summary(pruned.tree)
 ```
 
 
-```{r Prune-Data-For-Species-From-Tree, echo=TRUE}
+```{r Prune-Data-For-Species-From-Tree}
 #prune data for species in tree
-data_pruned = Binary_traits_combined %>% filter(species %in% pruned.tree$tip.label)
+data_pruned <- Binary_traits_combined %>% filter(species %in% pruned.tree$tip.label)
 head(data_pruned)
 ```
 
 
-```{r Format-Data-Phylolm, echo=TRUE}
+```{r Format-Data-Phylolm}
 #put data into useful form for phylolm
 colnames(data_pruned) = gsub(" ", "_", colnames(data_pruned))
 data_pruned_rownames = column_to_rownames(data_pruned, var = "species")
 head(data_pruned_rownames)
 ```
 
-# Question 1: Do Natal Coats predict adult Sexual Dimorphism?
-## Sexual Dichromatism from Natal Coats Regression
+# Part 1: Logistic Regressions on Presence/Absence of Traits
 
-```{r Run-phylolm}
+# Question 1: Do Natal Coats predict adult Sexual Dimorphism?
+
+## Predictor: Natal Coats Outcome: Sexual Dichromatism Regression, YES
+
+```{r Run-phylolm SDCfromNC}
 # run phylolm and get summary
 SDCfromNC <- phyloglm(Sexual_dichromatism ~ Natal_coat, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
 summary(SDCfromNC)
 ```
 
-## Sexual Hair Dimorphism from Natal Coats Regression
+## Predictor: Natal Coats Outcome: Sexual Hair Dimorphism Regression, YES
 
-```{r Run-phylolm}
+```{r Run-phylolm SDMfromNC}
 # run phylolm and get summary
 SDMfromNC <- phyloglm(Sexual_dimorphism ~ Natal_coat, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
 summary(SDMfromNC)
 ```
 
-## Size Dimorphism from Natal Coats Regression
+## Predictor: Natal Coats Outcome: Size Dimorphism Regression, NO
 
-```{r Run-phylolm}
+```{r Run-phylolm SzDfromNC}
 # run phylolm and get summary
 SzDfromNC <- phyloglm(Size_Dimorphism ~ Natal_coat, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
 summary(SzDfromNC)
+```
+
+# Question 2: Does adult Sexual Dimorphism predict Natal Coats?
+
+## Predictor: Sexual Dichromatism Outcome: Natal Coats Regression, YES
+
+```{r Run-phylolm NCfromSDC}
+# run phylolm and get summary
+NCfromSDC <- phyloglm( Natal_coat ~ Sexual_dichromatism, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(NCfromSDC)
+```
+
+## Predictor: Sexual Hair Dimorphism Outcome: Natal Coats Regression, YES 
+
+```{r Run-phylolm NCfromSDM}
+# run phylolm and get summary
+NCfromSDM <- phyloglm(Natal_coat ~ Sexual_dimorphism, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(NCfromSDM)
+```
+
+## Predictor: Sexual Hair Dimorphism + Sexual Dichromatism Outcome: Natal Coats Regression, YES
+
+```{r Run-phylolm NCfromSDM_DC}
+# run phylolm and get summary
+NCfromSDM_DC <- phyloglm(Natal_coat ~ Sexual_dimorphism + Sexual_dichromatism, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(NCfromSDM_DC)
+```
+
+# Question 3: Does the presence of one sexually dimorphic trait predict another?
+
+## Predictor: Sexual Hair Dimorphism Outcome: Sexual Dichromatism Regression, YES 
+
+```{r Run-phylolm DCfromSDM}
+# run phylolm and get summary
+DCfromSDM <- phyloglm(Sexual_dichromatism ~ Sexual_dimorphism, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(DCfromSDM)
+```
+
+## Predictor: Sexual Dichromatism Outcome: Sexual Hair Dimorphism Regression, YES 
+
+```{r Run-phylolm SDMfromDC}
+# run phylolm and get summary
+SDMfromDC <- phyloglm(Sexual_dimorphism ~ Sexual_dichromatism, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(SDMfromDC)
+```
+
+## Predictor: Size Dimorphism Outcome: Sexual Dichromatism Regression, YES  
+
+```{r Run-phylolm DCfromSzD}
+# run phylolm and get summary
+DCfromSzD <- phyloglm(Sexual_dichromatism ~ Size_Dimorphism, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(DCfromSzD)
+```
+
+## Predictor: Size Dimorphism Outcome: Sexual Hair Dimorphism Regression, YES
+
+```{r Run-phylolm SDMfromSzD}
+# run phylolm and get summary
+SDMfromSzD <- phyloglm(Sexual_dimorphism ~ Size_Dimorphism, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(SDMfromSzD)
+```
+
+# Part 2: Second-level of analysis on traits. What type of each trait influence the others?
+
+# Question 4: Does Sexual Dichromatism Influences Conspicuous Natal Coats?
+To do this I need to subset my data so it only includes species with natal coats. Then run the phylogenetic logistic regression
+
+```{r Subset-the-data}
+# Subset data for species with Natal Coats
+data_with_NC <- subset(data_pruned_rownames, Natal_coat == 1)
+```
+
+## Predictor: Sexual Dichromatism Outcome: Conspicuous natal coats, marginally significant
+
+```{r Run-phylolm ConNCfromDC}
+# run phylolm and get summary
+ConNCfromDC <- phyloglm(conspicuous_coat ~ Sexual_dichromatism, data_with_NC, phy = pruned.tree, method="logistic_MPLE")
+summary(ConNCfromDC)
+```
+
+# Question 5: Does having dichromatism on the head increase the chances of having dimorphism on the head, and vice versa?
+
+## Predictor: Sexual Dichromatism on Head Outcome: Sexual Dimorphism on Head, NO
+```{r Run-phylolm DMHeadfromDCHead}
+DMHeadfromDCHead <- phyloglm(DM_Head ~ DC_Head, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(DMHeadfromDCHead)
+```
+
+## Predictor: Sexual Dimorphism on Head Outcome: Sexual Dichromatism on Head, YES-ish
+```{r Run-phylolm DCHeadfromDMHead}
+DCHeadfromDMHead <- phyloglm(DC_Head ~ DM_Head, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(DCHeadfromDMHead)
+```
+
+# Question 6: Does the direction of growth for sexaul hair dimorphism predict which sex is darker?
+
+## Predictor: Sexual Dimorphism direction=male Outcome: Sexual Dichromatism darker=male, NO
+```{r Run-phylolm DCdarkMfromDMdirectionM}
+DCdarkMfromDMdirectionM <- phyloglm(DC_Male_Darker ~ DM_Male_Growth, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(DCdarkMfromDMdirectionM)
+```
+
+## Predictor: Sexual Dichromatism darker=male Outcome: Sexual Dimorphism direction=male, NO
+```{r Run-phylolm DMdirectionMfromDCdarkM}
+DMdirectionMfromDCdarkM <- phyloglm(DM_Male_Growth ~ DC_Male_Darker, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(DMdirectionMfromDCdarkM)
+```
+
+## Predictor: Sexual Dimorphism direction=female Outcome: Sexual Dichromatism darker=female, NO
+```{r Run-phylolm DCdarkFfromDMdirectionF}
+DCdarkFfromDMdirectionF <- phyloglm(DC_Female_Darker ~ DM_Female_Growth, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(DCdarkFfromDMdirectionF)
+```
+
+## Predictor: Sexual Dichromatism darker=female Outcome: Sexual Dimorphism direction=female, YES
+```{r Run-phylolm DMdirectionFfromDCdarkF}
+DMdirectionFfromDCdarkF <- phyloglm(DM_Female_Growth ~ DC_Female_Darker, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(DMdirectionFfromDCdarkF)
+```
+
+``` {r Run-phylolm Subset DMdirectionFfromDCdarkF}
+# Subset data for species with Sexual Dimorphism
+data_with_SDM <- subset(data_pruned_rownames, Sexual_dimorphism == 1)
+
+#Rerun Analyses with this subsetted data to see if I get different values: Same
+DMdirectionFfromDCdarkF <- phyloglm(DM_Female_Growth ~ DC_Female_Darker, data_with_SDM, phy = pruned.tree,method="logistic_MPLE")
+summary(DMdirectionFfromDCdarkF)
+```
+
+# Question 7: Does a certain type of natal coat influence which sex is darker?
+
+## Predictor: Consipuous Natal Coats Contrasting to Both Outcome: Sexual Dichromatism darker=male, NO
+```{r Run-phylolm DCdarkMfromNCBoth}
+DCdarkMfromNCBoth <- phyloglm(DC_Male_Darker ~ NC_con_both, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(DCdarkMfromNCBoth)
+```
+
+## Predictor: Consipuous Natal Coats Contrasting to Dad Outcome: Sexual Dichromatism darker=male, EHHHH 
+```{r Run-phylolm DCdarkMfromNCDad}
+DCdarkMfromNCDad <- phyloglm(DC_Male_Darker ~ NC_con_dad, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(DCdarkMfromNCDad)
+```
+
+## Predictor: Inconsipuous Natal Coats Outcome: Sexual Dichromatism darker=male, NO 
+```{r Run-phylolm DCdarkMfromNCincon}
+DCdarkMfromNCincon <- phyloglm(DC_Male_Darker ~ NC_incon, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(DCdarkMfromNCincon)
+```
+
+## Predictor: Consipuous Natal Coats Contrasting to mom Outcome: Sexual Dichromatism darker=male, NO 
+```{r Run-phylolm DCdarkMfromNCmom}
+DCdarkMfromNCmom <- phyloglm(DC_Male_Darker ~ NC_con_mom, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(DCdarkMfromNCmom)
+```
+
+## Predictor: Consipuous Natal Coats Contrasting to mom Outcome: Sexual Dichromatism darker=female, NO 
+```{r Run-phylolm DCdarkFfromNCmom}
+DCdarkFfromNCmom <- phyloglm(DC_Female_Darker ~ NC_con_mom, data_pruned_rownames, phy = pruned.tree,method="logistic_MPLE")
+summary(DCdarkFfromNCmom)
+```
+
+# Part 3: Specific families or genera for analysis
+
+I would like to examine these traits in a subset of my whole tree. The first group I would like to examine are the gibbons. 
+
+```{r Subset-Data_using-genus-names}
+Gibbons <- subset(data_pruned, family == "hylobatidae")
+```
+
+```{r filter tree to only have gibbons}
+# Species to Keep
+Gibbon_species <- c("Hoolock_hoolock","Nomascus_concolor","Nomascus_gabriellae","Nomascus_leucogenys", "Symphalangus_syndactylus","Hylobates_agilis","Hylobates_klossii","Hylobates_lar",           
+ "Hylobates_moloch","Hylobates_muelleri","Hylobates_pileatus")
+
+# Define the desired order of species to match the order of tip labels in the tree
+desired_order <- c("Symphalangus_syndactylus", "Hylobates_pileatus", "Hylobates_lar", "Hylobates_muelleri",
+                   "Hylobates_moloch", "Hylobates_klossii", "Hylobates_agilis", "Nomascus_leucogenys",
+                  "Nomascus_gabriellae", "Nomascus_concolor", "Hoolock_hoolock")
+
+# Reorder the dataframe rows to match the desired order
+Gibbons <- Gibbons[match(desired_order, Gibbons$species), ]
+
+#Prune tree to only include gibbon species
+gibbon_pruned_tree <- keep.tip(pruned.tree, Gibbon_species)
+
+# First, create a ggtree object
+p <- ggtree(gibbon_pruned_tree) + theme_tree2()
+
+# Then, merge the tree with trait data
+p <- p %<+% Gibbons
+
+# Display the plot
+print(p)
+
+```
+
+# Part 4: Alternative Views of the Data
+
+```{r Network analysis}
+library(igraph)
+
+df_subset <- data_pruned_rownames[, c("Natal_coat", "Sexual_dichromatism", "Sexual_dimorphism")]
+
+# Assuming 'df' is your original dataframe with species as rows and traits as columns
+species_names <- rownames(df_subset)
+trait_names <- colnames(df_subset)
+
+# Creating a list of edges
+edges <- which(df_subset == 1, arr.ind = TRUE)
+
+edge_list <- apply(edges, 1, function(idx) {
+  return(c(species_names[idx[1]], trait_names[idx[2]]))
+})
+
+# Ensure edge_list is a two-column matrix
+edge_matrix <- matrix(unlist(edge_list), ncol = 2, byrow = TRUE)
+
+# Create the bipartite graph
+g <- graph_from_edgelist(edge_matrix, directed = FALSE)
+
+# Add attribute to distinguish between species and traits
+V(g)$type <- ifelse(V(g)$name %in% species_names, "species", "trait")
+V(g)$color <- ifelse(V(g)$type == "species", "red", "blue")
+
+layout <- layout_with_fr(g)
+
+# Plot the bipartite network
+#plot(g, vertex.color = V(g)$type, vertex.label.cex = 0.7, asp = 0)
+plot(g, layout = layout, vertex.color = V(g)$color, vertex.size = 5, vertex.label.cex = 0.5, asp = 0, main = "Bipartite Network of Species and Traits")
+```
+
+```{r show-communities-from-network-analysis}
+communities <- cluster_louvain(g)
+plot(g, vertex.color = communities$membership, vertex.label.cex = 0.5, asp = 0, main = "Community Structure")
+
+membership <- membership(communities)
+
+# Now create the dataframe
+community_df <- data.frame(name = V(g)$name, type = V(g)$type, community = as.numeric(membership))
+
+# Tabulate the number of species and traits in each community
+table(community_df$type, community_df$community)
+
+# Number of edges within communities
+internal_edges <- sapply(unique(membership), function(com) {
+  sum(ecount(subgraph(g, which(membership == com))))
+})
+
+# Number of edges between communities
+external_edges <- sapply(unique(membership), function(com) {
+  sum(ecount(subgraph.edges(g, which(membership != com))))
+})
+
+# Visualize connectivity within communities
+barplot(internal_edges, names.arg = unique(membership))
+
+# Visualize connectivity between communities
+barplot(external_edges, names.arg = unique(membership))
+
+modularity_score <- modularity(communities)
+```
+
+```{r filter-network-analysis}
+# Assuming you have a dataframe 'df' with species as rows and traits as columns:
+# Let's say the traits are named "trait1", "trait2", and "trait3".
+
+# Step 1: Filter the species with all three traits
+df_filtered <- df_subset[df_subset$Natal_coat == 1 & df_subset$Sexual_dimorphism == 1 & df_subset$Sexual_dichromatism == 1, ]
+
+species_names_filtered <- rownames(df_filtered)
+trait_names_filtered <- colnames(df_filtered)
+
+# Step 2: Create the edge list for the filtered dataframe
+edges_filtered <- which(df_filtered == 1, arr.ind = TRUE)
+
+edge_list_filtered <- apply(edges_filtered, 1, function(idx) {
+  return(c(species_names[idx[1]], trait_names[idx[2]]))
+})
+
+# Ensure edge_list is a two-column matrix
+edge_matrix_filtered <- matrix(unlist(edge_list), ncol = 2, byrow = TRUE)
+
+# Step 3: Create the graph
+g_filtered <- graph_from_edgelist(edge_matrix_filtered, directed = FALSE)
+
+V(g_filtered)$type <- ifelse(V(g_filtered)$name %in% species_names_filtered, "species", "trait")
+
+V(g_filtered)$color <- ifelse(V(g_filtered)$type == "species", "red", "blue")
+
+layout <- layout_with_fr(g_filtered)
+
+# Plot the bipartite network
+#plot(g, vertex.color = V(g)$type, vertex.label.cex = 0.7, asp = 0)
+plot(g_filtered, layout = layout, vertex.color = V(g_filtered)$color, vertex.size = 5, vertex.label.cex = 0.5, asp = 0, main = "Bipartite Network of Species with all three traits")
+
 ```
 
