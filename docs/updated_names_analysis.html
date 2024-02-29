@@ -521,15 +521,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetreeb54f044822f9f107980a0e0e916792346d77948etargetblankb54f044a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree5c2d3c1c8d842e7b042bf10b34fb54671482372atargetblank5c2d3c1a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/alls-e-t/LocksofLineage/tree/b54f044822f9f107980a0e0e916792346d77948e" target="_blank">b54f044</a>
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/5c2d3c1c8d842e7b042bf10b34fb54671482372a" target="_blank">5c2d3c1</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetreeb54f044822f9f107980a0e0e916792346d77948etargetblankb54f044a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree5c2d3c1c8d842e7b042bf10b34fb54671482372atargetblank5c2d3c1a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -539,7 +539,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/alls-e-t/LocksofLineage/tree/b54f044822f9f107980a0e0e916792346d77948e" target="_blank">b54f044</a>.
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/5c2d3c1c8d842e7b042bf10b34fb54671482372a" target="_blank">5c2d3c1</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -558,24 +558,6 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    data/.DS_Store
-
-Untracked files:
-    Untracked:  VennDiagram.2024-02-28_11-47-25.log
-    Untracked:  data/Raw_Data/
-    Untracked:  data/data_formatted_phylolm.csv
-    Untracked:  data/recoded_data.csv
-    Untracked:  output/DCandNCcounts.csv
-    Untracked:  output/Log_Odds_Ratio.png
-    Untracked:  output/Log_odds_ratio_more_DC.png
-    Untracked:  output/data_to_use.csv
-
-Unstaged changes:
-    Deleted:    analysis/logical_analysis.Rmd
-    Deleted:    data/Phylo_Project_Data/Data_That_Works.csv
-    Deleted:    data/Phylo_Project_Data/Full_Hair_Traits_Updated_Names.csv
-    Deleted:    data/Phylo_Project_Data/MamPhy_BDvr_Completed_v2_tree0000.tre
-    Deleted:    data/Phylo_Project_Data/Masters_Binary_Traits.csv
-    Deleted:    data/data_to_use.csv
 
 </code></pre>
 <p>
@@ -627,6 +609,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/alls-e-t/LocksofLineage/blob/5c2d3c1c8d842e7b042bf10b34fb54671482372a/analysis/updated_names_analysis.Rmd" target="_blank">5c2d3c1</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-02-29
+</td>
+<td>
+added upset plot
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/4e1c9c043af04183eb217cf2787e3f5961cbe59e/docs/updated_names_analysis.html" target="_blank">4e1c9c0</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-02-29
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/alls-e-t/LocksofLineage/blob/b54f044822f9f107980a0e0e916792346d77948e/analysis/updated_names_analysis.Rmd" target="_blank">b54f044</a>
 </td>
 <td>
@@ -647,81 +663,8 @@ matrices
 </div>
 </div>
 </div>
-<div id="recoding-the-data" class="section level2">
-<h2>Recoding the data</h2>
-<pre class="r"><code>#For data manipulation
-library(dplyr)</code></pre>
-<pre><code>
-Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>The following objects are masked from &#39;package:stats&#39;:
-
-    filter, lag</code></pre>
-<pre><code>The following objects are masked from &#39;package:base&#39;:
-
-    intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>#Library to read in the data file
-library(readr)
-#Library to run the phylogenetic analyses
-library(ape)</code></pre>
-<pre><code>
-Attaching package: &#39;ape&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:dplyr&#39;:
-
-    where</code></pre>
-<pre class="r"><code>#Library to clean and organize the data
-library(tidyverse)</code></pre>
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.4     ✔ tibble    3.1.8
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.1     </code></pre>
-<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-✖ ape::where()    masks dplyr::where()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<pre class="r"><code>#Library to run the phylogenetic regressions
-library(phylolm)
-#Libary to plot the trees
-library(ggtree)</code></pre>
-<pre><code>Warning: package &#39;ggtree&#39; was built under R version 4.2.2</code></pre>
-<pre><code>ggtree v3.6.2 For help: https://yulab-smu.top/treedata-book/
-
-If you use the ggtree package suite in published research, please cite
-the appropriate paper(s):
-
-Guangchuang Yu, David Smith, Huachen Zhu, Yi Guan, Tommy Tsan-Yuk Lam.
-ggtree: an R package for visualization and annotation of phylogenetic
-trees with their covariates and other associated data. Methods in
-Ecology and Evolution. 2017, 8(1):28-36. doi:10.1111/2041-210X.12628
-
-Guangchuang Yu.  Data Integration, Manipulation and Visualization of
-Phylogenetic Trees (1st edition). Chapman and Hall/CRC. 2022,
-doi:10.1201/9781003279242
-
-S Xu, Z Dai, P Guo, X Fu, S Liu, L Zhou, W Tang, T Feng, M Chen, L
-Zhan, T Wu, E Hu, Y Jiang, X Bo, G Yu. ggtreeExtra: Compact
-visualization of richly annotated phylogenetic data. Molecular Biology
-and Evolution. 2021, 38(9):4039-4042. doi: 10.1093/molbev/msab166
-
-Attaching package: &#39;ggtree&#39;
-
-The following object is masked from &#39;package:tidyr&#39;:
-
-    expand
-
-The following object is masked from &#39;package:ape&#39;:
-
-    rotate</code></pre>
-<pre class="r"><code>#Library for other phylogenetic analyses
-library(phytools)</code></pre>
-<pre><code>Loading required package: maps
-
-Attaching package: &#39;maps&#39;
-
-The following object is masked from &#39;package:purrr&#39;:
-
-    map</code></pre>
+<div id="recoding-the-data" class="section level1">
+<h1>Recoding the data</h1>
 <pre class="r"><code>data &lt;- read_csv(&quot;data/Raw_Data/data_to_use.csv&quot;)</code></pre>
 <pre><code>Rows: 238 Columns: 17
 ── Column specification ────────────────────────────────────────────────────────
@@ -1077,19 +1020,9 @@ Dimorphism_on_Natal_and_Dichrom_results &lt;- run_phylolm_analyses(data,phylo_tr
 Dimorphism_on_Natal_and_Dichrom_model_stats &lt;- extract_model_stats(Dimorphism_on_Natal_and_Dichrom_results, independent_vars, dependent_vars)
 Dimorphism_on_Natal_and_Dichrom_odds_ratio_matrix &lt;- Dimorphism_on_Natal_and_Dichrom_model_stats$odds_ratios
 Dimorphism_on_Natal_and_Dichrom_p_value_matrix &lt;- Dimorphism_on_Natal_and_Dichrom_model_stats$p_values</code></pre>
-<pre class="r"><code>library(ggplot2)
-library(gridExtra)</code></pre>
-<pre><code>
-Attaching package: &#39;gridExtra&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:dplyr&#39;:
-
-    combine</code></pre>
-<pre class="r"><code>library(reshape2)</code></pre>
-<pre><code>
-Attaching package: &#39;reshape2&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:tidyr&#39;:
-
-    smiths</code></pre>
+</div>
+<div id="visualizations" class="section level1">
+<h1>Visualizations</h1>
 <pre class="r"><code># Function to determine significance symbols based on p-values
 get_significance_symbol &lt;- function(p_value) {
   ifelse(p_value &lt; 0.001, &#39;***&#39;,
@@ -1129,14 +1062,48 @@ create_heatmap &lt;- function(odds_ratio_matrix, p_value_matrix, title_prefix) {
   return(heatmap)
 }
 
-# Example usage:
+# usage:
 heatmap1 &lt;- create_heatmap(Natal_on_Dichromatism_odds_ratio_matrix, Natal_on_Dichromatism_p_value_matrix, &quot;Effect of Natal Coat on Sexual Dichromatism&quot;)
 heatmap2 &lt;- create_heatmap(Dichromatism_on_Natal_odds_ratio_matrix, Dichromatism_on_Natal_p_value_matrix, &quot;Effect of Sexual Dichromatism on Natal Coat&quot;)
 heatmap3 &lt;- create_heatmap( Dimorphism_on_Natal_and_Dichrom_odds_ratio_matrix, Dimorphism_on_Natal_and_Dichrom_p_value_matrix, &quot;Sexual Dimorphism Impacting other Characteristics&quot;)
 
 # Print heatmaps side by side
 grid.arrange(heatmap1, heatmap2, heatmap3, ncol = 3)</code></pre>
-<p><img src="figure/updated_names_analysis.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/updated_names_analysis.Rmd/Heatmaps-1.png" width="4800" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Define the traits
+set_attributes &lt;- c(
+  &#39;Natal_Coat_Conspicuous&#39;, 
+  &#39;Natal_Coat_Inconspicuous&#39;, 
+  &#39;Natal_Coat_Present&#39;,
+  &#39;Sexual_Dichromatism_Complete&#39;, 
+  &#39;Sexual_Dichromatism_Partial&#39;, 
+  &#39;Sexual_Dichromatism_Present&#39;,
+  &#39;Maturation_Males_Only&#39;, 
+  &#39;Maturation_Females_Only&#39;, 
+  &#39;Maturation_Both&#39;,
+  &#39;Sexual_dimorphism&#39;)
+
+# Create the plot
+upset(
+    data_pruned_rownames,
+    set_attributes,
+    base_annotations=list(
+        &#39;Intersection size&#39;=intersection_size(
+            counts=TRUE,
+            mapping=aes(fill=family) 
+        ) 
+    ),
+    width_ratio=0.1
+)</code></pre>
+<pre><code>Warning in upset_data(data, intersect, mode = mode, encode_sets = encode_sets,
+: Converting non-logical columns to binary: Natal_Coat_Conspicuous,
+Natal_Coat_Inconspicuous, Natal_Coat_Present, Sexual_Dichromatism_Complete,
+Sexual_Dichromatism_Partial, Sexual_Dichromatism_Present,
+Maturation_Males_Only, Maturation_Females_Only, Maturation_Both,
+Sexual_dimorphism</code></pre>
+<pre><code>Warning in upset_data(data, intersect, mode = mode, encode_sets = encode_sets,
+: Detected missing values in the columns indicating sets, coercing to FALSE</code></pre>
+<p><img src="figure/updated_names_analysis.Rmd/Upset-Plot-1.png" width="2700" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1161,11 +1128,11 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] reshape2_1.4.4  gridExtra_2.3   phytools_2.0-3  maps_3.4.1     
- [5] ggtree_3.6.2    phylolm_2.6.2   lubridate_1.9.2 forcats_1.0.0  
- [9] stringr_1.5.0   purrr_1.0.1     tidyr_1.3.0     tibble_3.1.8   
-[13] ggplot2_3.4.4   tidyverse_2.0.0 ape_5.7         readr_2.1.4    
-[17] dplyr_1.1.0     workflowr_1.7.1
+ [1] ComplexUpset_1.3.3 reshape2_1.4.4     gridExtra_2.3      phytools_2.0-3    
+ [5] maps_3.4.1         ggtree_3.6.2       phylolm_2.6.2      lubridate_1.9.2   
+ [9] forcats_1.0.0      stringr_1.5.0      purrr_1.0.1        tidyr_1.3.0       
+[13] tibble_3.1.8       ggplot2_3.4.4      tidyverse_2.0.0    ape_5.7           
+[17] readr_2.1.4        dplyr_1.1.0        workflowr_1.7.1   
 
 loaded via a namespace (and not attached):
  [1] nlme_3.1-160            fs_1.6.1                bit64_4.0.5            
