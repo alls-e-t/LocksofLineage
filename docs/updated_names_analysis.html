@@ -521,15 +521,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree5c2d3c1c8d842e7b042bf10b34fb54671482372atargetblank5c2d3c1a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree0c8f572681c0edc7a74dc1dec9c734c403d600e5targetblank0c8f572a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/alls-e-t/LocksofLineage/tree/5c2d3c1c8d842e7b042bf10b34fb54671482372a" target="_blank">5c2d3c1</a>
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/0c8f572681c0edc7a74dc1dec9c734c403d600e5" target="_blank">0c8f572</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree5c2d3c1c8d842e7b042bf10b34fb54671482372atargetblank5c2d3c1a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree0c8f572681c0edc7a74dc1dec9c734c403d600e5targetblank0c8f572a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -539,7 +539,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/alls-e-t/LocksofLineage/tree/5c2d3c1c8d842e7b042bf10b34fb54671482372a" target="_blank">5c2d3c1</a>.
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/0c8f572681c0edc7a74dc1dec9c734c403d600e5" target="_blank">0c8f572</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -604,6 +604,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/alls-e-t/LocksofLineage/blob/0c8f572681c0edc7a74dc1dec9c734c403d600e5/analysis/updated_names_analysis.Rmd" target="_blank">0c8f572</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-02-29
+</td>
+<td>
+changed axis labels on heatmaps
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/385c10ff5a6e79ba9bc18b53cad0865bf652f3bd/docs/updated_names_analysis.html" target="_blank">385c10f</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-02-29
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1056,7 +1090,7 @@ create_heatmap &lt;- function(odds_ratio_matrix, p_value_matrix, title_prefix) {
     geom_text(aes(label = sprintf(&quot;%.2f&quot;, value)), size = 3, vjust = -1) +
     geom_text(aes(label = significance), size = 3, vjust = 1) +
     theme_minimal() +
-    labs(title = paste(title_prefix, &quot;Log Scale&quot;), x = &quot;Column Traits&quot;, y = &quot;Row Traits&quot;) +
+    labs(title = paste(title_prefix, &quot;Log Scale&quot;), x = &quot;Dependent Characteristics&quot;, y = &quot;Independent Characteristics&quot;) +
     theme(axis.text.x = element_text(angle = 45, hjust = 1), axis.text.y = element_text(angle = 45, vjust = 1))
   
   return(heatmap)
@@ -1070,6 +1104,43 @@ heatmap3 &lt;- create_heatmap( Dimorphism_on_Natal_and_Dichrom_odds_ratio_matrix
 # Print heatmaps side by side
 grid.arrange(heatmap1, heatmap2, heatmap3, ncol = 3)</code></pre>
 <p><img src="figure/updated_names_analysis.Rmd/Heatmaps-1.png" width="4800" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-Heatmaps-1">
+Past versions of Heatmaps-1.png
+</button>
+</p>
+<div id="fig-Heatmaps-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/alls-e-t/LocksofLineage/blob/385c10ff5a6e79ba9bc18b53cad0865bf652f3bd/docs/figure/updated_names_analysis.Rmd/Heatmaps-1.png" target="_blank">385c10f</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-02-29
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code># Define the traits
 set_attributes &lt;- c(
   &#39;Natal_Coat_Conspicuous&#39;, 
@@ -1104,6 +1175,43 @@ Sexual_dimorphism</code></pre>
 <pre><code>Warning in upset_data(data, intersect, mode = mode, encode_sets = encode_sets,
 : Detected missing values in the columns indicating sets, coercing to FALSE</code></pre>
 <p><img src="figure/updated_names_analysis.Rmd/Upset-Plot-1.png" width="2700" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-Upset-Plot-1">
+Past versions of Upset-Plot-1.png
+</button>
+</p>
+<div id="fig-Upset-Plot-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/alls-e-t/LocksofLineage/blob/385c10ff5a6e79ba9bc18b53cad0865bf652f3bd/docs/figure/updated_names_analysis.Rmd/Upset-Plot-1.png" target="_blank">385c10f</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-02-29
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
