@@ -1,0 +1,290 @@
+---
+title: "updated_names_analysis"
+author: "Sarah E Taylor"
+date: "2024-02-29"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Recoding the data
+
+```{r Load-Libraries, results='hide'}
+#For data manipulation
+library(dplyr)
+#Library to read in the data file
+library(readr)
+#Library to run the phylogenetic analyses
+library(ape)
+#Library to clean and organize the data
+library(tidyverse)
+#Library to run the phylogenetic regressions
+library(phylolm)
+#Libary to plot the trees
+library(ggtree)
+#Library for other phylogenetic analyses
+library(phytools)
+```
+
+```{r Read-in-the-data}
+data <- read_csv("data/Raw_Data/data_to_use.csv")
+# 5 species were recorded as maybe having a natal coat because the sources were conflicting, for now they will be counted as not having a natal coat
+# Cheirogaleus major, Macaca sylvanus, Procolobus pennantii, Presbytis femoralis, Pongo pygmaeus
+
+```
+
+```{r Binarize-the-yes-no-values}
+data <- data %>%
+  mutate(across(c(Sexual_dimorphism, Natal_coat, Sexual_dichromatism), ~if_else(. == "Yes", 1, 0)))
+```
+
+
+```{r Recode-natal-coat-variables}
+# Reclassifying how we distinguish natal coat types
+data <- data %>%
+  mutate(Simple_Natal_Coat_Type = case_when(
+    Natal_Coat_Type %in% c("Con to dad", "con to both", "con to mom") ~ "conspicuous",
+    Natal_Coat_Type == "incon" ~ "inconspicuous",
+    TRUE ~ "none"  # This will catch all other cases not specified above
+  ))
+
+# Add a column with all conspicuous natal coats as 1 and inconspicuous as 0
+data <- data %>%
+  mutate(
+    Natal_Coat_Conspicuous = ifelse(Simple_Natal_Coat_Type == "conspicuous", 1, 0),
+    Natal_Coat_Inconspicuous = ifelse(Simple_Natal_Coat_Type == "inconspicuous", 1, 0),
+    Natal_Coat_Present = ifelse(Simple_Natal_Coat_Type %in% c("conspicuous", "inconspicuous"), 1, 0)
+  )
+
+#Natal coats can be inconspicuous (close in color to parents) or conspicuous (obviously a different color). #When they are conspicuous they can be contrasting to either the mothers coats or the fathers or both. 
+```
+
+```{r Recode-Maturation-Color-Change-Variables}
+# This is recoding the different types of conspicuous natal coats and sexual dichromatism from separate traits into a continuous change ie infant -> adult female (change/no change), infant -> adult male (change/no change), if both change is another category. If a natal coat is conspicuous to dad it is similar or inconspicuous to mom so the males change when they mature.
+
+data <- data %>%
+  mutate(Maturation_Color_Change = case_when(
+    Natal_Coat_Type == "Con to dad" ~ "Males only",
+    Natal_Coat_Type == "con to both" ~ "Both", 
+    Natal_Coat_Type == "con to mom" ~ "Females only",
+    TRUE ~ "None"))
+
+# Add binary columns for the different maturation changes
+data <- data %>%
+  mutate(Maturation_Males_Only = ifelse(Maturation_Color_Change == "Males only", 1, 0),
+         Maturation_Females_Only = ifelse(Maturation_Color_Change == "Females only", 1, 0),
+         Maturation_Both = ifelse(Maturation_Color_Change == "Both", 1, 0),
+         Maturation_None = ifelse(Maturation_Color_Change == "None", 1, 0))
+```
+
+```{r Recode-Sexual-Dichromatism-Variables}
+data <- data %>%
+  mutate(Sexual_Dichromatism_Complete = ifelse(Sexual_dichromatism_type == "Complete", 1, 0),
+         Sexual_Dichromatism_Partial = ifelse(Sexual_dichromatism_type == "Partial", 1, 0),
+         Sexual_Dichromatism_Present = ifelse(Sexual_dichromatism_type %in% c("Complete", "Partial"), 1, 0))
+```
+
+```{r Save-recoded-data-set}
+write_csv(data, "data/recoded_data.csv")
+```
+
+# Format data for phylolm
+```{r Read-Mammal-Tree-Upham, echo=FALSE}
+#read in mammal tree
+mammaltree <- read.tree("data/Raw_Data/MamPhy_BDvr_Completed_v2_tree0000.tre")
+summary(mammaltree)
+```
+
+
+```{r Read-Masters-Binary-Data, echo=FALSE}
+#read in the data
+Binary_traits <- read_csv("data/recoded_data.csv")
+head(Binary_traits)
+```
+
+```{r Format-Binary-Data-SpeciesNames}
+#combine genus and species names and capitalize first letter
+Binary_traits_combined = Binary_traits %>% unite("species",`Genus`, `species`) %>% mutate(species = str_to_title(species))
+head(Binary_traits_combined)
+```
+
+```{r Prune-Tree-For-Species-in-Data}
+# prune tree for species in data
+species_not_in_tree=setdiff(mammaltree$tip.label, Binary_traits_combined$species)
+pruned.tree<-drop.tip(mammaltree,species_not_in_tree)
+summary(pruned.tree)
+```
+
+```{r Prune-Data-For-Species-From-Tree}
+#prune data for species in tree
+data_pruned <- Binary_traits_combined %>% filter(species %in% pruned.tree$tip.label)
+head(data_pruned)
+```
+
+```{r Re-order-Data-to-match-tiplabels}
+# get the order of the tip labels
+tip_order <- pruned.tree$tip.label
+
+# Match the order of species in the dataframe to the order of tip labels in the tree
+ordered_indices <- match(tip_order, data_pruned$species)
+
+# Reorder the dataframe based on the indices obtained
+data_pruned_ordered <- Binary_traits_combined[ordered_indices, ]
+```
+
+```{r Format-Data-Phylolm}
+#put data into useful form for phylolm
+colnames(data_pruned_ordered) = gsub(" ", "_", colnames(data_pruned))
+data_pruned_rownames = column_to_rownames(data_pruned_ordered, var = "species")
+head(data_pruned_rownames)
+```
+
+```{r Save-Data-Formatted-for-phylolm}
+write_csv(data_pruned_rownames, "data/data_formatted_phylolm.csv")
+```
+
+# Run the Logistic Regressions
+```{r Functions-for-phylolm-and-odds-ratio}
+# Create the phylolm function
+run_phylolm_analyses <- function(data, phylo_tree, independent_vars, dependent_vars){ 
+  results <- list()
+  for (ind_var in independent_vars){
+    for (dep_var in dependent_vars){
+      formula <- as.formula(paste(dep_var, "~", ind_var))
+      model <- phyloglm(formula, data=data, phy=phylo_tree, method = "logistic_MPLE")
+      results[[paste(ind_var, dep_var, sep = "_vs_")]] <- summary(model)
+  }
+  }
+  return(results)
+}
+
+#Function to extract model stats, odds ratio, p-value
+extract_model_stats <- function(results_list, independent_vars, dependent_vars) {
+  # Initialize a matrix to store the odds ratios
+  odds_ratios <- matrix(NA, 
+                        nrow = length(dependent_vars), 
+                        ncol = length(independent_vars),
+                        dimnames = list(dependent_vars, independent_vars))
+  p_values <- matrix(NA, 
+                     nrow = length(dependent_vars), 
+                     ncol = length(independent_vars),
+                     dimnames = list(dependent_vars, independent_vars))
+  
+  # Iterate through the results to extract coefficients
+  for (dep_var in dependent_vars) {
+    for (ind_var in independent_vars) {
+      # Construct the result name used as the key in the results list
+      result_key <- paste(ind_var, dep_var, sep = "_vs_")
+      
+      # Check if the result exists and extract the coefficients
+      if (result_key %in% names(results_list)) {
+        # Extract the model summary
+        model_summary <- results_list[[result_key]]
+        
+        # Check if the model summary is indeed a list with a coefficients data frame
+        if (is.list(model_summary) && "coefficients" %in% names(model_summary)) {
+          # Extract the estimate for the independent variable
+          if (ind_var %in% rownames(model_summary$coefficients)) {
+            estimate <- model_summary$coefficients[ind_var, "Estimate"]
+            p_value <- model_summary$coefficients[ind_var, "p.value"]
+            odds_ratios[dep_var, ind_var] <- exp(estimate)
+            p_values[dep_var, ind_var] <- p_value
+          }
+        }
+      }
+    }
+  }
+  
+  return(list(odds_ratios = odds_ratios, p_values = p_values))
+}
+
+
+```
+
+```{r Ind-Natal-Coats-Dep-Sexual-Dichromatism, warning=FALSE}
+data <- data_pruned_rownames
+phylo_tree <- pruned.tree
+independent_vars <- c("Natal_Coat_Conspicuous", "Natal_Coat_Inconspicuous", "Natal_Coat_Present")
+dependent_vars <- c("Sexual_Dichromatism_Complete", "Sexual_Dichromatism_Partial", "Sexual_Dichromatism_Present", "Maturation_Males_Only", "Maturation_Females_Only", "Maturation_Both")
+Natal_on_Dichromatism_results <- run_phylolm_analyses(data,phylo_tree, independent_vars, dependent_vars)
+Natal_on_Dichromatism_model_stats <- extract_model_stats(Natal_on_Dichromatism_results, independent_vars, dependent_vars)
+Natal_on_Dichromatism_odds_ratio_matrix <- Natal_on_Dichromatism_model_stats$odds_ratios
+Natal_on_Dichromatism_p_value_matrix <- Natal_on_Dichromatism_model_stats$p_values
+```
+
+```{r Ind-Sexual-Dichromatism-Dep-Natal-Coats, warning=FALSE}
+data <- data_pruned_rownames
+phylo_tree <- pruned.tree
+independent_vars <- c("Sexual_Dichromatism_Complete", "Sexual_Dichromatism_Partial", "Sexual_Dichromatism_Present", "Maturation_Males_Only", "Maturation_Females_Only", "Maturation_Both")
+dependent_vars <- c("Natal_Coat_Conspicuous", "Natal_Coat_Inconspicuous", "Natal_Coat_Present")
+Dichromatism_on_Natal_results <- run_phylolm_analyses(data,phylo_tree, independent_vars, dependent_vars)
+Dichromatism_on_Natal_model_stats <- extract_model_stats(Dichromatism_on_Natal_results, independent_vars, dependent_vars)
+Dichromatism_on_Natal_odds_ratio_matrix <- Dichromatism_on_Natal_model_stats$odds_ratios
+Dichromatism_on_Natal_p_value_matrix <- Dichromatism_on_Natal_model_stats$p_values
+```
+
+```{r Ind-Sexual-Dimorphism-Dep-Natal-and-Dichromatism, warning=FALSE}
+data <- data_pruned_rownames
+phylo_tree <- pruned.tree
+independent_vars <- c("Sexual_dimorphism", "Size_Dimorphism")
+dependent_vars <- c("Sexual_Dichromatism_Complete", "Sexual_Dichromatism_Partial", "Sexual_Dichromatism_Present", "Maturation_Males_Only", "Maturation_Females_Only", "Maturation_Both","Natal_Coat_Conspicuous", "Natal_Coat_Inconspicuous", "Natal_Coat_Present")
+Dimorphism_on_Natal_and_Dichrom_results <- run_phylolm_analyses(data,phylo_tree, independent_vars, dependent_vars)
+Dimorphism_on_Natal_and_Dichrom_model_stats <- extract_model_stats(Dimorphism_on_Natal_and_Dichrom_results, independent_vars, dependent_vars)
+Dimorphism_on_Natal_and_Dichrom_odds_ratio_matrix <- Dimorphism_on_Natal_and_Dichrom_model_stats$odds_ratios
+Dimorphism_on_Natal_and_Dichrom_p_value_matrix <- Dimorphism_on_Natal_and_Dichrom_model_stats$p_values
+```
+
+```{r}
+library(ggplot2)
+library(gridExtra)
+library(reshape2)
+
+# Function to determine significance symbols based on p-values
+get_significance_symbol <- function(p_value) {
+  ifelse(p_value < 0.001, '***',
+         ifelse(p_value < 0.01, '**',
+                ifelse(p_value < 0.05, '*', '')))
+}
+  
+# Function to create a heatmap with significance symbols
+create_heatmap <- function(odds_ratio_matrix, p_value_matrix, title_prefix) {
+  # Melt the odds ratio matrix and p-value matrix into data frames
+  df_odds <- melt(odds_ratio_matrix)
+  df_pvals <- melt(p_value_matrix)
+  
+  # Add column names for merging
+  colnames(df_odds) <- c("RowTraits", "ColTraits", "value")
+  colnames(df_pvals) <- c("RowTraits", "ColTraits", "p_value")
+  
+  # Merge the data frames
+  df_merged <- merge(df_odds, df_pvals, by = c("RowTraits", "ColTraits"))
+  
+  # Apply logarithmic transformation to the odds ratio values
+  df_merged$value_log <- log(df_merged$value + 1)
+  
+  # Calculate significance symbols
+  df_merged$significance <- get_significance_symbol(df_merged$p_value)
+  
+  # Create the heatmap
+  heatmap <- ggplot(df_merged, aes(RowTraits, ColTraits, fill = value_log)) + 
+    geom_tile() +
+    scale_fill_gradient2(low = "white", high = "red", mid = "blue", midpoint = log(1 + 1), space = "Lab", name="Log Odds Ratio") +
+    geom_text(aes(label = sprintf("%.2f", value)), size = 3, vjust = -1) +
+    geom_text(aes(label = significance), size = 3, vjust = 1) +
+    theme_minimal() +
+    labs(title = paste(title_prefix, "Log Scale"), x = "Column Traits", y = "Row Traits") +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1), axis.text.y = element_text(angle = 45, vjust = 1))
+  
+  return(heatmap)
+}
+
+# Example usage:
+heatmap1 <- create_heatmap(Natal_on_Dichromatism_odds_ratio_matrix, Natal_on_Dichromatism_p_value_matrix, "Effect of Natal Coat on Sexual Dichromatism")
+heatmap2 <- create_heatmap(Dichromatism_on_Natal_odds_ratio_matrix, Dichromatism_on_Natal_p_value_matrix, "Effect of Sexual Dichromatism on Natal Coat")
+heatmap3 <- create_heatmap( Dimorphism_on_Natal_and_Dichrom_odds_ratio_matrix, Dimorphism_on_Natal_and_Dichrom_p_value_matrix, "Sexual Dimorphism Impacting other Characteristics")
+
+# Print heatmaps side by side
+grid.arrange(heatmap1, heatmap2, heatmap3, ncol = 3)
+
+```
+
