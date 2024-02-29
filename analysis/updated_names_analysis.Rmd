@@ -7,9 +7,9 @@ editor_options:
   chunk_output_type: console
 ---
 
-## Recoding the data
+# Recoding the data
 
-```{r Load-Libraries, results='hide'}
+```{r Load-Libraries, include=FALSE}
 #For data manipulation
 library(dplyr)
 #Library to read in the data file
@@ -24,6 +24,12 @@ library(phylolm)
 library(ggtree)
 #Library for other phylogenetic analyses
 library(phytools)
+#Libaries for heatmap
+library(ggplot2)
+library(gridExtra)
+library(reshape2)
+#Library for upset plot
+library(ComplexUpset)
 ```
 
 ```{r Read-in-the-data}
@@ -197,8 +203,6 @@ extract_model_stats <- function(results_list, independent_vars, dependent_vars) 
   
   return(list(odds_ratios = odds_ratios, p_values = p_values))
 }
-
-
 ```
 
 ```{r Ind-Natal-Coats-Dep-Sexual-Dichromatism, warning=FALSE}
@@ -234,11 +238,8 @@ Dimorphism_on_Natal_and_Dichrom_odds_ratio_matrix <- Dimorphism_on_Natal_and_Dic
 Dimorphism_on_Natal_and_Dichrom_p_value_matrix <- Dimorphism_on_Natal_and_Dichrom_model_stats$p_values
 ```
 
-```{r}
-library(ggplot2)
-library(gridExtra)
-library(reshape2)
-
+# Visualizations
+```{r Heatmaps, fig.width=16, fig.height=4, dpi=300}
 # Function to determine significance symbols based on p-values
 get_significance_symbol <- function(p_value) {
   ifelse(p_value < 0.001, '***',
@@ -278,7 +279,7 @@ create_heatmap <- function(odds_ratio_matrix, p_value_matrix, title_prefix) {
   return(heatmap)
 }
 
-# Example usage:
+# usage:
 heatmap1 <- create_heatmap(Natal_on_Dichromatism_odds_ratio_matrix, Natal_on_Dichromatism_p_value_matrix, "Effect of Natal Coat on Sexual Dichromatism")
 heatmap2 <- create_heatmap(Dichromatism_on_Natal_odds_ratio_matrix, Dichromatism_on_Natal_p_value_matrix, "Effect of Sexual Dichromatism on Natal Coat")
 heatmap3 <- create_heatmap( Dimorphism_on_Natal_and_Dichrom_odds_ratio_matrix, Dimorphism_on_Natal_and_Dichrom_p_value_matrix, "Sexual Dimorphism Impacting other Characteristics")
@@ -286,5 +287,33 @@ heatmap3 <- create_heatmap( Dimorphism_on_Natal_and_Dichrom_odds_ratio_matrix, D
 # Print heatmaps side by side
 grid.arrange(heatmap1, heatmap2, heatmap3, ncol = 3)
 
+```
+
+```{r Upset-Plot, fig.width=9, fig.height=6, dpi=300}
+# Define the traits
+set_attributes <- c(
+  'Natal_Coat_Conspicuous', 
+  'Natal_Coat_Inconspicuous', 
+  'Natal_Coat_Present',
+  'Sexual_Dichromatism_Complete', 
+  'Sexual_Dichromatism_Partial', 
+  'Sexual_Dichromatism_Present',
+  'Maturation_Males_Only', 
+  'Maturation_Females_Only', 
+  'Maturation_Both',
+  'Sexual_dimorphism')
+
+# Create the plot
+upset(
+    data_pruned_rownames,
+    set_attributes,
+    base_annotations=list(
+        'Intersection size'=intersection_size(
+            counts=TRUE,
+            mapping=aes(fill=family) 
+        ) 
+    ),
+    width_ratio=0.1
+)
 ```
 
