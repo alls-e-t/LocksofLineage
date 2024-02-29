@@ -273,7 +273,7 @@ create_heatmap <- function(odds_ratio_matrix, p_value_matrix, title_prefix) {
     geom_text(aes(label = sprintf("%.2f", value)), size = 3, vjust = -1) +
     geom_text(aes(label = significance), size = 3, vjust = 1) +
     theme_minimal() +
-    labs(title = paste(title_prefix, "Log Scale"), x = "Column Traits", y = "Row Traits") +
+    labs(title = paste(title_prefix, "Log Scale"), x = "Dependent Characteristics", y = "Independent Characteristics") +
     theme(axis.text.x = element_text(angle = 45, hjust = 1), axis.text.y = element_text(angle = 45, vjust = 1))
   
   return(heatmap)
