@@ -521,15 +521,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree0c8f572681c0edc7a74dc1dec9c734c403d600e5targetblank0c8f572a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetreee7f94869764f2dfbebee44fade11690060dac0f2targetblanke7f9486a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/alls-e-t/LocksofLineage/tree/0c8f572681c0edc7a74dc1dec9c734c403d600e5" target="_blank">0c8f572</a>
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/e7f94869764f2dfbebee44fade11690060dac0f2" target="_blank">e7f9486</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree0c8f572681c0edc7a74dc1dec9c734c403d600e5targetblank0c8f572a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetreee7f94869764f2dfbebee44fade11690060dac0f2targetblanke7f9486a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -539,7 +539,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/alls-e-t/LocksofLineage/tree/0c8f572681c0edc7a74dc1dec9c734c403d600e5" target="_blank">0c8f572</a>.
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/e7f94869764f2dfbebee44fade11690060dac0f2" target="_blank">e7f9486</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -558,6 +558,11 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    data/.DS_Store
+
+Untracked files:
+    Untracked:  VennDiagram.2024-02-29_15-50-13.log
+    Untracked:  VennDiagram.2024-02-29_15-55-51.log
+    Untracked:  output/Recoded_Odds_Ratio.png
 
 </code></pre>
 <p>
@@ -604,6 +609,41 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/alls-e-t/LocksofLineage/blob/e7f94869764f2dfbebee44fade11690060dac0f2/analysis/updated_names_analysis.Rmd" target="_blank">e7f9486</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-02-29
+</td>
+<td>
+Tried difference versions of heatmaps and venn diagrams. Added
+regressions for subset of species that have
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/05cdbbb4bf661c7a845bfb92fd8022f50a4ac8fd/docs/updated_names_analysis.html" target="_blank">05cdbbb</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-02-29
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1054,6 +1094,87 @@ Dimorphism_on_Natal_and_Dichrom_results &lt;- run_phylolm_analyses(data,phylo_tr
 Dimorphism_on_Natal_and_Dichrom_model_stats &lt;- extract_model_stats(Dimorphism_on_Natal_and_Dichrom_results, independent_vars, dependent_vars)
 Dimorphism_on_Natal_and_Dichrom_odds_ratio_matrix &lt;- Dimorphism_on_Natal_and_Dichrom_model_stats$odds_ratios
 Dimorphism_on_Natal_and_Dichrom_p_value_matrix &lt;- Dimorphism_on_Natal_and_Dichrom_model_stats$p_values</code></pre>
+<pre class="r"><code>data &lt;- data_pruned_rownames
+phylo_tree &lt;- pruned.tree
+independent_vars &lt;- c(&quot;Sexual_Dichromatism_Complete&quot;, &quot;Sexual_Dichromatism_Partial&quot;, &quot;Sexual_Dichromatism_Present&quot;, &quot;Maturation_Males_Only&quot;, &quot;Maturation_Females_Only&quot;, &quot;Maturation_Both&quot;,&quot;Natal_Coat_Conspicuous&quot;, &quot;Natal_Coat_Inconspicuous&quot;, &quot;Natal_Coat_Present&quot;) 
+dependent_vars &lt;- c(&quot;Sexual_dimorphism&quot;, &quot;Size_Dimorphism&quot;)
+Natal_and_Dichrom_on_Dimorphism_results &lt;- run_phylolm_analyses(data,phylo_tree, independent_vars, dependent_vars)</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): will drop from the tree 154 taxa with missing data
+
+Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): will drop from the tree 154 taxa with missing data
+
+Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): will drop from the tree 154 taxa with missing data
+
+Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): will drop from the tree 154 taxa with missing data</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): will drop from the tree 3 taxa with missing data</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): 3 taxa not in the tree: their data will be ignored</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): will drop from the tree 3 taxa with missing data</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): 3 taxa not in the tree: their data will be ignored</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): will drop from the tree 3 taxa with missing data</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): 3 taxa not in the tree: their data will be ignored</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): will drop from the tree 3 taxa with missing data</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): 3 taxa not in the tree: their data will be ignored</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): will drop from the tree 3 taxa with missing data</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): 3 taxa not in the tree: their data will be ignored</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method = &quot;logistic_MPLE&quot;): The estimated coefficients in the absence of phylogenetic signal lead
+  to some linear predictors beyond &#39;btol&#39;. Increase btol?
+  Starting from beta=0 other than intercept.</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): will drop from the tree 3 taxa with missing data</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): 3 taxa not in the tree: their data will be ignored</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method = &quot;logistic_MPLE&quot;): The estimated coefficients in the absence of phylogenetic signal lead
+  to some linear predictors beyond &#39;btol&#39;. Increase btol?
+  Starting from beta=0 other than intercept.</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): will drop from the tree 3 taxa with missing data</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): 3 taxa not in the tree: their data will be ignored</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): will drop from the tree 3 taxa with missing data</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): 3 taxa not in the tree: their data will be ignored</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): will drop from the tree 3 taxa with missing data</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): 3 taxa not in the tree: their data will be ignored</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): will drop from the tree 3 taxa with missing data</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): 3 taxa not in the tree: their data will be ignored</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): will drop from the tree 3 taxa with missing data</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): 3 taxa not in the tree: their data will be ignored</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): will drop from the tree 3 taxa with missing data</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): 3 taxa not in the tree: their data will be ignored</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): will drop from the tree 3 taxa with missing data</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): 3 taxa not in the tree: their data will be ignored</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): will drop from the tree 3 taxa with missing data</code></pre>
+<pre><code>Warning in phyloglm(formula, data = data, phy = phylo_tree, method =
+&quot;logistic_MPLE&quot;): 3 taxa not in the tree: their data will be ignored</code></pre>
+<pre class="r"><code>Natal_and_Dichrom_on_Dimorphism_model_stats &lt;- extract_model_stats(Natal_and_Dichrom_on_Dimorphism_results, independent_vars, dependent_vars)
+Natal_and_Dichrom_on_Dimorphism_odds_ratio_matrix &lt;- Natal_and_Dichrom_on_Dimorphism_model_stats$odds_ratios
+Natal_and_Dichrom_on_Dimorphism_p_value_matrix &lt;- Natal_and_Dichrom_on_Dimorphism_model_stats$p_values</code></pre>
 </div>
 <div id="visualizations" class="section level1">
 <h1>Visualizations</h1>
@@ -1100,9 +1221,9 @@ create_heatmap &lt;- function(odds_ratio_matrix, p_value_matrix, title_prefix) {
 heatmap1 &lt;- create_heatmap(Natal_on_Dichromatism_odds_ratio_matrix, Natal_on_Dichromatism_p_value_matrix, &quot;Effect of Natal Coat on Sexual Dichromatism&quot;)
 heatmap2 &lt;- create_heatmap(Dichromatism_on_Natal_odds_ratio_matrix, Dichromatism_on_Natal_p_value_matrix, &quot;Effect of Sexual Dichromatism on Natal Coat&quot;)
 heatmap3 &lt;- create_heatmap( Dimorphism_on_Natal_and_Dichrom_odds_ratio_matrix, Dimorphism_on_Natal_and_Dichrom_p_value_matrix, &quot;Sexual Dimorphism Impacting other Characteristics&quot;)
-
+heatmap4 &lt;- create_heatmap( Natal_and_Dichrom_on_Dimorphism_odds_ratio_matrix, Natal_and_Dichrom_on_Dimorphism_p_value_matrix, &quot;other Characteristics Impacting Sexual Dimorphism&quot;)
 # Print heatmaps side by side
-grid.arrange(heatmap1, heatmap2, heatmap3, ncol = 3)</code></pre>
+grid.arrange(heatmap1, heatmap2, heatmap3, heatmap4, ncol = 2, nrow = 2)</code></pre>
 <p><img src="figure/updated_names_analysis.Rmd/Heatmaps-1.png" width="4800" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-Heatmaps-1">
@@ -1128,6 +1249,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/alls-e-t/LocksofLineage/blob/05cdbbb4bf661c7a845bfb92fd8022f50a4ac8fd/docs/figure/updated_names_analysis.Rmd/Heatmaps-1.png" target="_blank">05cdbbb</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-02-29
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/alls-e-t/LocksofLineage/blob/385c10ff5a6e79ba9bc18b53cad0865bf652f3bd/docs/figure/updated_names_analysis.Rmd/Heatmaps-1.png" target="_blank">385c10f</a>
 </td>
 <td>
@@ -1141,16 +1273,106 @@ Sarah E Taylor
 </table>
 </div>
 </div>
+<pre class="r"><code>create_signif_heatmap &lt;- function(odds_ratio_matrix, p_value_matrix, title_prefix, signif_level = 0.05) {
+  # Melt the odds ratio matrix and p-value matrix into data frames
+  df_odds &lt;- melt(odds_ratio_matrix)
+  df_pvals &lt;- melt(p_value_matrix)
+  
+  # Add column names for merging
+  colnames(df_odds) &lt;- c(&quot;RowTraits&quot;, &quot;ColTraits&quot;, &quot;value&quot;)
+  colnames(df_pvals) &lt;- c(&quot;RowTraits&quot;, &quot;ColTraits&quot;, &quot;p_value&quot;)
+  
+  # Merge the data frames
+  df_merged &lt;- merge(df_odds, df_pvals, by = c(&quot;RowTraits&quot;, &quot;ColTraits&quot;))
+  
+  # Apply logarithmic transformation to the odds ratio values
+  df_merged$value_log &lt;- log(df_merged$value + 1)
+  
+  # Calculate significance symbols
+  df_merged$significance &lt;- get_significance_symbol(df_merged$p_value)
+  
+  # Create a new column for the fill color based on significance
+  df_merged$fill_color &lt;- ifelse(df_merged$p_value &lt; signif_level, &#39;significant&#39;, &#39;not_significant&#39;)
+  
+  # Create the heatmap
+  heatmap &lt;- ggplot(df_merged, aes(RowTraits, ColTraits)) + 
+    geom_tile(aes(fill = fill_color), color = &quot;black&quot;, size = 0.5) + # Add borders here
+    scale_fill_manual(values = c(&#39;significant&#39; = &#39;purple&#39;, &#39;not_significant&#39; = &#39;grey&#39;)) +
+    geom_text(aes(label = sprintf(&quot;%.2f&quot;, value)), size = 3, vjust = 1, color = &quot;white&quot;) + # Removed color mapping for text labels
+    geom_text(aes(label = significance), size = 3, vjust = 0.5, color = &quot;black&quot;) + # Removed color mapping for significance labels
+    theme_minimal() +
+    labs(title = paste(title_prefix, &quot;Log Scale&quot;), x = &quot;Dependent Characteristics&quot;, y = &quot;Independent Characteristics&quot;) +
+    theme(
+      axis.text.x = element_text(angle = 45, hjust = 1), 
+      axis.text.y = element_text(angle = 45, vjust = 1)
+    ) 
+  
+  return(heatmap)
+}
+
+signif_level &lt;- 0.05
+
+heatmapS1 &lt;- create_signif_heatmap(Natal_on_Dichromatism_odds_ratio_matrix, Natal_on_Dichromatism_p_value_matrix, &quot;Effect of Natal Coat on Sexual Dichromatism&quot;)</code></pre>
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+generated.</code></pre>
+<pre class="r"><code>heatmapS2 &lt;- create_signif_heatmap(Dichromatism_on_Natal_odds_ratio_matrix, Dichromatism_on_Natal_p_value_matrix, &quot;Effect of Sexual Dichromatism on Natal Coat&quot;)
+heatmapS3 &lt;- create_signif_heatmap( Dimorphism_on_Natal_and_Dichrom_odds_ratio_matrix, Dimorphism_on_Natal_and_Dichrom_p_value_matrix, &quot;Sexual Dimorphism Impacting other Characteristics&quot;)
+heatmapS4 &lt;- create_signif_heatmap( Natal_and_Dichrom_on_Dimorphism_odds_ratio_matrix, Natal_and_Dichrom_on_Dimorphism_p_value_matrix, &quot;other Characteristics Impacting Sexual Dimorphism&quot;)
+# Print heatmaps side by side
+grid.arrange(heatmapS1, heatmapS2, heatmapS3, heatmapS4, ncol = 2, nrow = 2)</code></pre>
+<p><img src="figure/updated_names_analysis.Rmd/Heatmap-with-colored-significance-1.png" width="4800" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>create_heatmap_non_sig_na_grey &lt;- function(odds_ratio_matrix, p_value_matrix, title_prefix, signif_level = 0.05) {
+  # Melt the odds ratio matrix and p-value matrix into data frames
+  df_odds &lt;- melt(odds_ratio_matrix)
+  df_pvals &lt;- melt(p_value_matrix)
+  
+  # Add column names for merging
+  colnames(df_odds) &lt;- c(&quot;RowTraits&quot;, &quot;ColTraits&quot;, &quot;value&quot;)
+  colnames(df_pvals) &lt;- c(&quot;RowTraits&quot;, &quot;ColTraits&quot;, &quot;p_value&quot;)
+  
+  # Merge the data frames
+  df_merged &lt;- merge(df_odds, df_pvals, by = c(&quot;RowTraits&quot;, &quot;ColTraits&quot;))
+  
+  # Apply logarithmic transformation to the odds ratio values
+  df_merged$value_log &lt;- log(df_merged$value + 1)
+  
+  # Calculate significance symbols and determine which values to grey out
+  df_merged$significance &lt;- get_significance_symbol(df_merged$p_value)
+  df_merged$fill &lt;- ifelse(df_merged$p_value &lt; signif_level, df_merged$value_log, NA)
+  
+  # Create the heatmap
+  heatmap &lt;- ggplot(df_merged, aes(RowTraits, ColTraits)) + 
+    geom_tile(aes(fill = fill), color = &quot;black&quot;, size = 0.3) +
+    scale_fill_gradient2(low = &quot;white&quot;, high = &quot;red&quot;, mid = &quot;blue&quot;,
+                         midpoint = log(1 + 1), space = &quot;Lab&quot;, name=&quot;Log Odds Ratio&quot;,
+                         na.value = &quot;grey&quot;, limits = range(df_merged$value_log, na.rm = TRUE)) +
+    geom_text(aes(label = ifelse(is.na(fill), &quot;&quot;, sprintf(&quot;%.2f&quot;, value))), size = 3, vjust = -1) +
+    geom_text(aes(label = significance), size = 3, vjust = 1) +
+    theme_minimal() +
+    labs(title = paste(title_prefix, &quot;Log Scale&quot;), x = &quot;Dependent Characteristics&quot;, y = &quot;Independent Characteristics&quot;) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1), axis.text.y = element_text(angle = 45, vjust = 1))
+  
+  return(heatmap)
+}
+
+heatmapSG1 &lt;- create_heatmap_non_sig_na_grey(Natal_on_Dichromatism_odds_ratio_matrix, Natal_on_Dichromatism_p_value_matrix, &quot;Effect of Natal Coat on Sexual Dichromatism&quot;)
+heatmapSG2 &lt;- create_heatmap_non_sig_na_grey(Dichromatism_on_Natal_odds_ratio_matrix, Dichromatism_on_Natal_p_value_matrix, &quot;Effect of Sexual Dichromatism on Natal Coat&quot;)
+heatmapSG3 &lt;- create_heatmap_non_sig_na_grey( Dimorphism_on_Natal_and_Dichrom_odds_ratio_matrix, Dimorphism_on_Natal_and_Dichrom_p_value_matrix, &quot;Sexual Dimorphism Impacting other Characteristics&quot;)
+heatmapSG4 &lt;- create_heatmap_non_sig_na_grey( Natal_and_Dichrom_on_Dimorphism_odds_ratio_matrix, Natal_and_Dichrom_on_Dimorphism_p_value_matrix, &quot;other Characteristics Impacting Sexual Dimorphism&quot;)
+# Print heatmaps side by side
+grid.arrange(heatmapSG1, heatmapSG2, heatmapSG3, heatmapSG4, ncol = 2, nrow = 2)</code></pre>
+<p><img src="figure/updated_names_analysis.Rmd/heatmap-grey-out-non-sig-still-heatmap-for-the-rest-1.png" width="4800" style="display: block; margin: auto;" /></p>
 <pre class="r"><code># Define the traits
 set_attributes &lt;- c(
   &#39;Natal_Coat_Conspicuous&#39;, 
-  &#39;Natal_Coat_Inconspicuous&#39;, 
-  &#39;Natal_Coat_Present&#39;,
+  &#39;Size_Dimorphism&#39;,
   &#39;Sexual_Dichromatism_Complete&#39;, 
-  &#39;Sexual_Dichromatism_Partial&#39;, 
-  &#39;Sexual_Dichromatism_Present&#39;,
-  &#39;Maturation_Males_Only&#39;, 
-  &#39;Maturation_Females_Only&#39;, 
+  &#39;Sexual_Dichromatism_Partial&#39;,
+  &#39;Maturation_Males_Only&#39;,
+  &#39;Maturation_Females_Only&#39;,
   &#39;Maturation_Both&#39;,
   &#39;Sexual_dimorphism&#39;)
 
@@ -1168,8 +1390,7 @@ upset(
 )</code></pre>
 <pre><code>Warning in upset_data(data, intersect, mode = mode, encode_sets = encode_sets,
 : Converting non-logical columns to binary: Natal_Coat_Conspicuous,
-Natal_Coat_Inconspicuous, Natal_Coat_Present, Sexual_Dichromatism_Complete,
-Sexual_Dichromatism_Partial, Sexual_Dichromatism_Present,
+Size_Dimorphism, Sexual_Dichromatism_Complete, Sexual_Dichromatism_Partial,
 Maturation_Males_Only, Maturation_Females_Only, Maturation_Both,
 Sexual_dimorphism</code></pre>
 <pre><code>Warning in upset_data(data, intersect, mode = mode, encode_sets = encode_sets,
@@ -1212,6 +1433,213 @@ Sarah E Taylor
 </table>
 </div>
 </div>
+<pre class="r"><code>library(ggvenn)</code></pre>
+<pre><code>Loading required package: grid</code></pre>
+<pre class="r"><code># Convert the specified columns to logical
+data_pruned_rownames$Natal_coat &lt;- as.logical(data_pruned_rownames$Natal_coat)
+data_pruned_rownames$Sexual_dichromatism &lt;- as.logical(data_pruned_rownames$Sexual_dichromatism)
+data_pruned_rownames$Sexual_dimorphism &lt;- as.logical(data_pruned_rownames$Sexual_dimorphism)
+
+# Create the Venn diagram 
+ggvenn(data_pruned_rownames, c(&quot;Natal_coat&quot;, &quot;Sexual_dichromatism&quot;, &quot;Sexual_dimorphism&quot;))</code></pre>
+<p><img src="figure/updated_names_analysis.Rmd/Venn-diagram-of-traits-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>#Venn to just show natal coat characteristics &quot;species inconspicuous and conspicuous relative to total species with and without natal coats
+
+data_pruned_rownames$Natal_Coat_Conspicuous &lt;- as.logical(data_pruned_rownames$Natal_Coat_Conspicuous)
+data_pruned_rownames$Natal_Coat_Inconspicuous &lt;- as.logical(data_pruned_rownames$Natal_Coat_Inconspicuous)
+
+ggvenn(data_pruned_rownames, c(&quot;Sexual_dichromatism&quot;, &quot;Natal_Coat_Conspicuous&quot;, &quot;Natal_Coat_Inconspicuous&quot;))</code></pre>
+<p><img src="figure/updated_names_analysis.Rmd/Venn-diagram-of-traits-2.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="subset-data-to-only-include-species-that-have-a-natal-coat"
+class="section level1">
+<h1>Subset Data to only include species that have a natal coat</h1>
+<pre class="r"><code>natal_coat_subset &lt;- Binary_traits_combined[Binary_traits_combined$Natal_coat == TRUE, ]</code></pre>
+<pre class="r"><code># prune tree for species in data
+nc_species_not_in_tree=setdiff(mammaltree$tip.label, natal_coat_subset$species)
+nc_pruned.tree&lt;-drop.tip(mammaltree,nc_species_not_in_tree)
+summary(nc_pruned.tree)</code></pre>
+<pre><code>
+Phylogenetic tree: nc_pruned.tree 
+
+  Number of tips: 129 
+  Number of nodes: 128 
+  Branch lengths:
+    mean: 3.372999 
+    variance: 27.42522 
+    distribution summary:
+       Min.     1st Qu.      Median     3rd Qu.        Max. 
+ 0.04705822  1.09667652  1.79498381  3.53188634 56.57782320 
+  No root edge.
+  First ten tip labels: Nycticebus_pygmaeus 
+                        Nycticebus_coucang
+                        Loris_tardigradus
+                        Perodicticus_potto
+                        Arctocebus_calabarensis
+                        Arctocebus_aureus
+                        Indri_indri
+                        Propithecus_verreauxi
+                        Avahi_laniger
+                        Hapalemur_griseus
+  No node labels.</code></pre>
+<pre class="r"><code>#prune data for species in tree
+nc_data_pruned &lt;- natal_coat_subset %&gt;% filter(species %in% nc_pruned.tree$tip.label)
+head(nc_data_pruned)</code></pre>
+<pre><code># A tibble: 6 × 28
+  family species subsp…¹ Sexua…² Sexua…³ Locat…⁴ Direc…⁵ Natal…⁶ Natal…⁷ NC_de…⁸
+  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  
+1 cerco… Alleno… &lt;NA&gt;          0 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;          1 incon   no tre…
+2 cebid… Alouat… &lt;NA&gt;          1 males … Head    M             1 Con to… infant…
+3 cebid… Alouat… &lt;NA&gt;          1 male s… Head    M             1 incon   possib…
+4 cebid… Alouat… pallia…       1 F: les… Head, … F             1 incon   incons…
+5 cebid… Alouat… &lt;NA&gt;          0 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;          1 incon   infant…
+6 cebid… Alouat… &lt;NA&gt;          0 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;          1 incon   incon …
+# … with 18 more variables: Sexual_dichromatism &lt;dbl&gt;,
+#   Sexual_dichromatism_type &lt;chr&gt;, Where &lt;chr&gt;, Darker &lt;chr&gt;,
+#   SDC_description &lt;chr&gt;, Size_Dimorphism &lt;dbl&gt;, Simple_Natal_Coat_Type &lt;chr&gt;,
+#   Natal_Coat_Conspicuous &lt;dbl&gt;, Natal_Coat_Inconspicuous &lt;dbl&gt;,
+#   Natal_Coat_Present &lt;dbl&gt;, Maturation_Color_Change &lt;chr&gt;,
+#   Maturation_Males_Only &lt;dbl&gt;, Maturation_Females_Only &lt;dbl&gt;,
+#   Maturation_Both &lt;dbl&gt;, Maturation_None &lt;dbl&gt;, …</code></pre>
+<pre class="r"><code># get the order of the tip labels
+nc_tip_order &lt;- nc_pruned.tree$tip.label
+
+# Match the order of species in the dataframe to the order of tip labels in the tree
+nc_ordered_indices &lt;- match(nc_tip_order, nc_data_pruned$species)
+
+# Reorder the dataframe based on the indices obtained
+nc_data_pruned_ordered &lt;- natal_coat_subset[nc_ordered_indices, ]</code></pre>
+<pre class="r"><code>#put data into useful form for phylolm
+colnames(nc_data_pruned_ordered) = gsub(&quot; &quot;, &quot;_&quot;, colnames(nc_data_pruned))
+nc_data_pruned_rownames = column_to_rownames(nc_data_pruned_ordered, var = &quot;species&quot;)
+head(nc_data_pruned_rownames)</code></pre>
+<pre><code>                         family
+Nycticebus_pygmaeus     loridae
+Nycticebus_coucang      loridae
+Loris_tardigradus       loridae
+Perodicticus_potto      loridae
+Arctocebus_calabarensis loridae
+Arctocebus_aureus       loridae
+                                                                     subspecies
+Nycticebus_pygmaeus                                                        &lt;NA&gt;
+Nycticebus_coucang                                                         &lt;NA&gt;
+Loris_tardigradus       NC: lydekkerianus, nordicus, nycticeboides, tardigradus
+Perodicticus_potto                                                         &lt;NA&gt;
+Arctocebus_calabarensis                                                    &lt;NA&gt;
+Arctocebus_aureus                                                          &lt;NA&gt;
+                        Sexual_dimorphism Sexual_Dimorph_type Location
+Nycticebus_pygmaeus                     0                &lt;NA&gt;     &lt;NA&gt;
+Nycticebus_coucang                      0                &lt;NA&gt;     &lt;NA&gt;
+Loris_tardigradus                       0                &lt;NA&gt;     &lt;NA&gt;
+Perodicticus_potto                      0                &lt;NA&gt;     &lt;NA&gt;
+Arctocebus_calabarensis                 0                &lt;NA&gt;     &lt;NA&gt;
+Arctocebus_aureus                       0                &lt;NA&gt;     &lt;NA&gt;
+                        Direction Natal_coat Natal_Coat_Type
+Nycticebus_pygmaeus          &lt;NA&gt;          1           incon
+Nycticebus_coucang           &lt;NA&gt;          1           incon
+Loris_tardigradus            &lt;NA&gt;          1           incon
+Perodicticus_potto           &lt;NA&gt;          1           incon
+Arctocebus_calabarensis      &lt;NA&gt;          1           incon
+Arctocebus_aureus            &lt;NA&gt;          1           incon
+                                                                                                                                                                                                                                                                                                                                                                           NC_description
+Nycticebus_pygmaeus                                                                                                                                                                                                                                        incon to both treves, darker orbital ring in juveniles, interocular strip is yellowish, more of a cinnamon color all over hill
+Nycticebus_coucang                                                                                                                                            gray body, silvery white limbs with long hairs* rowe 704, maybe incon to both treves 46,67, may only be one subspecies, but it seems to have been present in acharjyo, aposematism to warn against predators (Nekaris 2019)
+Loris_tardigradus       l.t.grandis incon to dad (females and infants darker hill), l.t.lydekkerianus incon to both (silver-gray dorsal, white ventral hill), l.t.nordicus incon to both (infants similar to ydekkerianus hill), l.t.nycticeboides incon to mom (dark gray hill), l.t.tardigradus incon to both (slaty-gray dorsum, white ventral, chestnut patches around the eyes hill)
+Perodicticus_potto                        p.p.edwardsi incon to both (juveniles have a silvery coat head changes first hill), p.p.ibeanus incon to both (woolly-coated , whitish with faint cinnamon wash hill), p.p.juju no , p.p.potto no contrast (juveniles darker hill) treves 67, unclear subspecies incon to bot treves 73,  full description of single infant in walker 1968 page
+Arctocebus_calabarensis                                                                                                                                                                                                                             contrasting reports in treves from hill 1953, maybe incon to both treves 67, im gonna go with yes, darker coats that lighten with age
+Arctocebus_aureus                                                                                                                                                                                                                                                                                                                              darker coats rowe, hill 1963 incon to both
+                        Sexual_dichromatism Sexual_dichromatism_type Where
+Nycticebus_pygmaeus                       0                     &lt;NA&gt;  &lt;NA&gt;
+Nycticebus_coucang                        0                     &lt;NA&gt;  &lt;NA&gt;
+Loris_tardigradus                         1                 Complete  &lt;NA&gt;
+Perodicticus_potto                        0                     &lt;NA&gt;  &lt;NA&gt;
+Arctocebus_calabarensis                   0                     &lt;NA&gt;  &lt;NA&gt;
+Arctocebus_aureus                         0                     &lt;NA&gt;  &lt;NA&gt;
+                        Darker
+Nycticebus_pygmaeus       &lt;NA&gt;
+Nycticebus_coucang        &lt;NA&gt;
+Loris_tardigradus       Varies
+Perodicticus_potto        &lt;NA&gt;
+Arctocebus_calabarensis   &lt;NA&gt;
+Arctocebus_aureus         &lt;NA&gt;
+                                                                                                                                            SDC_description
+Nycticebus_pygmaeus                                                                                                                                    &lt;NA&gt;
+Nycticebus_coucang                                                                                                                                     &lt;NA&gt;
+Loris_tardigradus       nycticeboides F:paler, tardigradus M:russet F: more brown, grandis M:dark grey or brown grey on the dorsum, white ventral F: darker
+Perodicticus_potto                                                                                                                                     &lt;NA&gt;
+Arctocebus_calabarensis                                                                                                                                &lt;NA&gt;
+Arctocebus_aureus                                                                                                                                      &lt;NA&gt;
+                        Size_Dimorphism Simple_Natal_Coat_Type
+Nycticebus_pygmaeus                   1          inconspicuous
+Nycticebus_coucang                    0          inconspicuous
+Loris_tardigradus                     1          inconspicuous
+Perodicticus_potto                    0          inconspicuous
+Arctocebus_calabarensis               0          inconspicuous
+Arctocebus_aureus                     0          inconspicuous
+                        Natal_Coat_Conspicuous Natal_Coat_Inconspicuous
+Nycticebus_pygmaeus                          0                        1
+Nycticebus_coucang                           0                        1
+Loris_tardigradus                            0                        1
+Perodicticus_potto                           0                        1
+Arctocebus_calabarensis                      0                        1
+Arctocebus_aureus                            0                        1
+                        Natal_Coat_Present Maturation_Color_Change
+Nycticebus_pygmaeus                      1                    None
+Nycticebus_coucang                       1                    None
+Loris_tardigradus                        1                    None
+Perodicticus_potto                       1                    None
+Arctocebus_calabarensis                  1                    None
+Arctocebus_aureus                        1                    None
+                        Maturation_Males_Only Maturation_Females_Only
+Nycticebus_pygmaeus                         0                       0
+Nycticebus_coucang                          0                       0
+Loris_tardigradus                           0                       0
+Perodicticus_potto                          0                       0
+Arctocebus_calabarensis                     0                       0
+Arctocebus_aureus                           0                       0
+                        Maturation_Both Maturation_None
+Nycticebus_pygmaeus                   0               1
+Nycticebus_coucang                    0               1
+Loris_tardigradus                     0               1
+Perodicticus_potto                    0               1
+Arctocebus_calabarensis               0               1
+Arctocebus_aureus                     0               1
+                        Sexual_Dichromatism_Complete
+Nycticebus_pygmaeus                               NA
+Nycticebus_coucang                                NA
+Loris_tardigradus                                  1
+Perodicticus_potto                                NA
+Arctocebus_calabarensis                           NA
+Arctocebus_aureus                                 NA
+                        Sexual_Dichromatism_Partial Sexual_Dichromatism_Present
+Nycticebus_pygmaeus                              NA                           0
+Nycticebus_coucang                               NA                           0
+Loris_tardigradus                                 0                           1
+Perodicticus_potto                               NA                           0
+Arctocebus_calabarensis                          NA                           0
+Arctocebus_aureus                                NA                           0</code></pre>
+<pre class="r"><code>data &lt;- nc_data_pruned_rownames
+phylo_tree &lt;- pruned.tree
+independent_vars &lt;- c(&quot;Natal_Coat_Conspicuous&quot;, &quot;Natal_Coat_Inconspicuous&quot;)
+dependent_vars &lt;- c(&quot;Sexual_Dichromatism_Complete&quot;, &quot;Sexual_Dichromatism_Partial&quot;, &quot;Sexual_Dichromatism_Present&quot;, &quot;Maturation_Males_Only&quot;, &quot;Maturation_Females_Only&quot;, &quot;Maturation_Both&quot;)
+subset_Natal_on_Dichromatism_results &lt;- run_phylolm_analyses(data,phylo_tree, independent_vars, dependent_vars)
+subset_Natal_on_Dichromatism_model_stats &lt;- extract_model_stats(subset_Natal_on_Dichromatism_results, independent_vars, dependent_vars)
+subset_Natal_on_Dichromatism_odds_ratio_matrix &lt;- subset_Natal_on_Dichromatism_model_stats$odds_ratios
+subset_Natal_on_Dichromatism_p_value_matrix &lt;- subset_Natal_on_Dichromatism_model_stats$p_values</code></pre>
+<pre class="r"><code>data &lt;- nc_data_pruned_rownames
+phylo_tree &lt;- pruned.tree
+independent_vars &lt;- c(&quot;Sexual_Dichromatism_Complete&quot;, &quot;Sexual_Dichromatism_Partial&quot;, &quot;Sexual_Dichromatism_Present&quot;, &quot;Maturation_Males_Only&quot;, &quot;Maturation_Females_Only&quot;, &quot;Maturation_Both&quot;)
+dependent_vars &lt;- c(&quot;Natal_Coat_Conspicuous&quot;, &quot;Natal_Coat_Inconspicuous&quot;)
+subset_Dichromatism_on_Natal_results &lt;- run_phylolm_analyses(data,phylo_tree, independent_vars, dependent_vars)
+subset_Dichromatism_on_Natal_model_stats &lt;- extract_model_stats(subset_Dichromatism_on_Natal_results, independent_vars, dependent_vars)
+subset_Dichromatism_on_Natal_odds_ratio_matrix &lt;- subset_Dichromatism_on_Natal_model_stats$odds_ratios
+subset_Dichromatism_on_Natal_p_value_matrix &lt;- subset_Dichromatism_on_Natal_model_stats$p_values</code></pre>
+<pre class="r"><code>heatmapSubset1 &lt;- create_heatmap_non_sig_na_grey(subset_Natal_on_Dichromatism_odds_ratio_matrix, subset_Natal_on_Dichromatism_p_value_matrix, &quot;Subset Effect of Natal Coat on Sexual Dichromatism&quot;)
+heatmapSubset2 &lt;- create_heatmap_non_sig_na_grey(subset_Dichromatism_on_Natal_odds_ratio_matrix, subset_Dichromatism_on_Natal_p_value_matrix, &quot;Subset Effect of Sexual Dichromatism on Natal Coat&quot;)
+
+# Print heatmaps side by side
+grid.arrange(heatmapSubset1, heatmapSubset2, ncol = 2)</code></pre>
+<p><img src="figure/updated_names_analysis.Rmd/subset-heatmaps-1.png" width="4800" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1233,49 +1661,49 @@ locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 
 attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
+[1] grid      stats     graphics  grDevices utils     datasets  methods  
+[8] base     
 
 other attached packages:
- [1] ComplexUpset_1.3.3 reshape2_1.4.4     gridExtra_2.3      phytools_2.0-3    
- [5] maps_3.4.1         ggtree_3.6.2       phylolm_2.6.2      lubridate_1.9.2   
- [9] forcats_1.0.0      stringr_1.5.0      purrr_1.0.1        tidyr_1.3.0       
-[13] tibble_3.1.8       ggplot2_3.4.4      tidyverse_2.0.0    ape_5.7           
-[17] readr_2.1.4        dplyr_1.1.0        workflowr_1.7.1   
+ [1] ggvenn_0.1.10      ComplexUpset_1.3.3 reshape2_1.4.4     gridExtra_2.3     
+ [5] phytools_2.0-3     maps_3.4.1         ggtree_3.6.2       phylolm_2.6.2     
+ [9] lubridate_1.9.2    forcats_1.0.0      stringr_1.5.0      purrr_1.0.1       
+[13] tidyr_1.3.0        tibble_3.1.8       ggplot2_3.4.4      tidyverse_2.0.0   
+[17] ape_5.7            readr_2.1.4        dplyr_1.1.0        workflowr_1.7.1   
 
 loaded via a namespace (and not attached):
- [1] nlme_3.1-160            fs_1.6.1                bit64_4.0.5            
- [4] doParallel_1.0.17       httr_1.4.4              rprojroot_2.0.4        
- [7] numDeriv_2016.8-1.1     tools_4.2.1             bslib_0.4.2            
-[10] utf8_1.2.2              R6_2.5.1                DBI_1.1.3              
-[13] lazyeval_0.2.2          colorspace_2.0-3        withr_2.5.0            
-[16] phangorn_2.11.1         mnormt_2.1.1            tidyselect_1.2.0       
-[19] processx_3.8.3          bit_4.0.5               compiler_4.2.1         
-[22] git2r_0.32.0            cli_3.6.2               expm_0.999-7           
-[25] labeling_0.4.2          sass_0.4.5              scales_1.2.1           
-[28] quadprog_1.5-8          callr_3.7.3             digest_0.6.30          
-[31] yulab.utils_0.0.6       rmarkdown_2.20          pkgconfig_2.0.3        
-[34] htmltools_0.5.7         parallelly_1.36.0       highr_0.10             
-[37] fastmap_1.1.0           rlang_1.1.2             rstudioapi_0.14        
-[40] optimParallel_1.0-2     farver_2.1.1            gridGraphics_0.5-1     
-[43] jquerylib_0.1.4         generics_0.1.3          combinat_0.0-8         
-[46] jsonlite_1.8.8          vroom_1.6.1             magrittr_2.0.3         
-[49] ggplotify_0.1.0         patchwork_1.1.2         Matrix_1.5-3           
-[52] Rcpp_1.0.11             munsell_0.5.0           fansi_1.0.3            
-[55] lifecycle_1.0.3         scatterplot3d_0.3-44    stringi_1.7.8          
-[58] whisker_0.4.1           yaml_2.3.7              clusterGeneration_1.3.8
-[61] MASS_7.3-58.1           plyr_1.8.9              grid_4.2.1             
-[64] parallel_4.2.1          listenv_0.9.0           promises_1.2.1         
-[67] crayon_1.5.2            lattice_0.20-45         hms_1.1.2              
-[70] knitr_1.42              ps_1.7.2                pillar_1.8.1           
-[73] igraph_1.5.1            future.apply_1.11.0     codetools_0.2-18       
-[76] fastmatch_1.1-3         glue_1.6.2              evaluate_0.23          
-[79] getPass_0.2-2           ggfun_0.0.9             vctrs_0.5.2            
-[82] treeio_1.22.0           tzdb_0.3.0              httpuv_1.6.11          
-[85] foreach_1.5.2           gtable_0.3.1            future_1.33.0          
-[88] cachem_1.0.6            xfun_0.41               tidytree_0.4.2         
-[91] coda_0.19-4             later_1.3.1             iterators_1.0.14       
-[94] aplot_0.1.9             timechange_0.2.0        globals_0.16.2         
-[97] ellipsis_0.3.2         </code></pre>
+ [1] colorspace_2.0-3        ellipsis_0.3.2          rprojroot_2.0.4        
+ [4] fs_1.6.1                aplot_0.1.9             rstudioapi_0.14        
+ [7] listenv_0.9.0           farver_2.1.1            optimParallel_1.0-2    
+[10] bit64_4.0.5             fansi_1.0.3             codetools_0.2-18       
+[13] mnormt_2.1.1            doParallel_1.0.17       cachem_1.0.6           
+[16] knitr_1.42              jsonlite_1.8.8          compiler_4.2.1         
+[19] httr_1.4.4              Matrix_1.5-3            fastmap_1.1.0          
+[22] lazyeval_0.2.2          cli_3.6.2               later_1.3.1            
+[25] htmltools_0.5.7         tools_4.2.1             igraph_1.5.1           
+[28] coda_0.19-4             gtable_0.3.1            glue_1.6.2             
+[31] clusterGeneration_1.3.8 fastmatch_1.1-3         Rcpp_1.0.11            
+[34] jquerylib_0.1.4         vctrs_0.5.2             nlme_3.1-160           
+[37] iterators_1.0.14        xfun_0.41               globals_0.16.2         
+[40] ps_1.7.2                timechange_0.2.0        lifecycle_1.0.3        
+[43] phangorn_2.11.1         future_1.33.0           getPass_0.2-2          
+[46] MASS_7.3-58.1           scales_1.2.1            vroom_1.6.1            
+[49] hms_1.1.2               promises_1.2.1          parallel_4.2.1         
+[52] expm_0.999-7            yaml_2.3.7              ggfun_0.0.9            
+[55] yulab.utils_0.0.6       sass_0.4.5              stringi_1.7.8          
+[58] highr_0.10              foreach_1.5.2           tidytree_0.4.2         
+[61] rlang_1.1.2             pkgconfig_2.0.3         evaluate_0.23          
+[64] lattice_0.20-45         treeio_1.22.0           patchwork_1.1.2        
+[67] labeling_0.4.2          bit_4.0.5               processx_3.8.3         
+[70] tidyselect_1.2.0        parallelly_1.36.0       plyr_1.8.9             
+[73] magrittr_2.0.3          R6_2.5.1                generics_0.1.3         
+[76] combinat_0.0-8          DBI_1.1.3               pillar_1.8.1           
+[79] whisker_0.4.1           withr_2.5.0             scatterplot3d_0.3-44   
+[82] future.apply_1.11.0     crayon_1.5.2            utf8_1.2.2             
+[85] tzdb_0.3.0              rmarkdown_2.20          callr_3.7.3            
+[88] git2r_0.32.0            digest_0.6.30           httpuv_1.6.11          
+[91] numDeriv_2016.8-1.1     gridGraphics_0.5-1      munsell_0.5.0          
+[94] ggplotify_0.1.0         bslib_0.4.2             quadprog_1.5-8         </code></pre>
 </div>
 </div>
 
