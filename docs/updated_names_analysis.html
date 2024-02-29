@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Sarah E Taylor" />
+
+<meta name="date" content="2024-02-29" />
+
+<title>updated_names_analysis</title>
+
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">LocksofLineage</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/alls-e-t/LocksofLineage">
+    <span class="fab fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">updated_names_analysis</h1>
+<h4 class="author">Sarah E Taylor</h4>
+<h4 class="date">2024-02-29</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2024-02-29
+</p>
+<p>
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>LocksofLineage/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.1). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20231117code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20231117)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20231117code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20231117)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetreeb54f044822f9f107980a0e0e916792346d77948etargetblankb54f044a">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/b54f044822f9f107980a0e0e916792346d77948e" target="_blank">b54f044</a>
+</a>
+</p>
+</div>
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetreeb54f044822f9f107980a0e0e916792346d77948etargetblankb54f044a"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/b54f044822f9f107980a0e0e916792346d77948e" target="_blank">b54f044</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    data/.DS_Store
+
+Untracked files:
+    Untracked:  VennDiagram.2024-02-28_11-47-25.log
+    Untracked:  data/Raw_Data/
+    Untracked:  data/data_formatted_phylolm.csv
+    Untracked:  data/recoded_data.csv
+    Untracked:  output/DCandNCcounts.csv
+    Untracked:  output/Log_Odds_Ratio.png
+    Untracked:  output/Log_odds_ratio_more_DC.png
+    Untracked:  output/data_to_use.csv
+
+Unstaged changes:
+    Deleted:    analysis/logical_analysis.Rmd
+    Deleted:    data/Phylo_Project_Data/Data_That_Works.csv
+    Deleted:    data/Phylo_Project_Data/Full_Hair_Traits_Updated_Names.csv
+    Deleted:    data/Phylo_Project_Data/MamPhy_BDvr_Completed_v2_tree0000.tre
+    Deleted:    data/Phylo_Project_Data/Masters_Binary_Traits.csv
+    Deleted:    data/data_to_use.csv
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were
+made to the R Markdown
+(<code>analysis/updated_names_analysis.Rmd</code>) and HTML
+(<code>docs/updated_names_analysis.html</code>) files. If you’ve
+configured a remote Git repository (see <code>?wflow_git_remote</code>),
+click on the hyperlinks in the table below to view the files as they
+were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/alls-e-t/LocksofLineage/blob/b54f044822f9f107980a0e0e916792346d77948e/analysis/updated_names_analysis.Rmd" target="_blank">b54f044</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-02-29
+</td>
+<td>
+Recoded the traits and re-did the logistic regressions and odds ratio
+matrices
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div id="recoding-the-data" class="section level2">
+<h2>Recoding the data</h2>
+<pre class="r"><code>#For data manipulation
+library(dplyr)</code></pre>
+<pre><code>
+Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:stats&#39;:
+
+    filter, lag</code></pre>
+<pre><code>The following objects are masked from &#39;package:base&#39;:
+
+    intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>#Library to read in the data file
+library(readr)
+#Library to run the phylogenetic analyses
+library(ape)</code></pre>
+<pre><code>
+Attaching package: &#39;ape&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:dplyr&#39;:
+
+    where</code></pre>
+<pre class="r"><code>#Library to clean and organize the data
+library(tidyverse)</code></pre>
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.1.8
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     </code></pre>
+<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ ape::where()    masks dplyr::where()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>#Library to run the phylogenetic regressions
+library(phylolm)
+#Libary to plot the trees
+library(ggtree)</code></pre>
+<pre><code>Warning: package &#39;ggtree&#39; was built under R version 4.2.2</code></pre>
+<pre><code>ggtree v3.6.2 For help: https://yulab-smu.top/treedata-book/
+
+If you use the ggtree package suite in published research, please cite
+the appropriate paper(s):
+
+Guangchuang Yu, David Smith, Huachen Zhu, Yi Guan, Tommy Tsan-Yuk Lam.
+ggtree: an R package for visualization and annotation of phylogenetic
+trees with their covariates and other associated data. Methods in
+Ecology and Evolution. 2017, 8(1):28-36. doi:10.1111/2041-210X.12628
+
+Guangchuang Yu.  Data Integration, Manipulation and Visualization of
+Phylogenetic Trees (1st edition). Chapman and Hall/CRC. 2022,
+doi:10.1201/9781003279242
+
+S Xu, Z Dai, P Guo, X Fu, S Liu, L Zhou, W Tang, T Feng, M Chen, L
+Zhan, T Wu, E Hu, Y Jiang, X Bo, G Yu. ggtreeExtra: Compact
+visualization of richly annotated phylogenetic data. Molecular Biology
+and Evolution. 2021, 38(9):4039-4042. doi: 10.1093/molbev/msab166
+
+Attaching package: &#39;ggtree&#39;
+
+The following object is masked from &#39;package:tidyr&#39;:
+
+    expand
+
+The following object is masked from &#39;package:ape&#39;:
+
+    rotate</code></pre>
+<pre class="r"><code>#Library for other phylogenetic analyses
+library(phytools)</code></pre>
+<pre><code>Loading required package: maps
+
+Attaching package: &#39;maps&#39;
+
+The following object is masked from &#39;package:purrr&#39;:
+
+    map</code></pre>
+<pre class="r"><code>data &lt;- read_csv(&quot;data/Raw_Data/data_to_use.csv&quot;)</code></pre>
+<pre><code>Rows: 238 Columns: 17
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (16): family, Genus, species, subspecies, Sexual_dimorphism, Sexual_Dimo...
+dbl  (1): Size_Dimorphism
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code># 5 species were recorded as maybe having a natal coat because the sources were conflicting, for now they will be counted as not having a natal coat
+# Cheirogaleus major, Macaca sylvanus, Procolobus pennantii, Presbytis femoralis, Pongo pygmaeus</code></pre>
+<pre class="r"><code>data &lt;- data %&gt;%
+  mutate(across(c(Sexual_dimorphism, Natal_coat, Sexual_dichromatism), ~if_else(. == &quot;Yes&quot;, 1, 0)))</code></pre>
+<pre class="r"><code># Reclassifying how we distinguish natal coat types
+data &lt;- data %&gt;%
+  mutate(Simple_Natal_Coat_Type = case_when(
+    Natal_Coat_Type %in% c(&quot;Con to dad&quot;, &quot;con to both&quot;, &quot;con to mom&quot;) ~ &quot;conspicuous&quot;,
+    Natal_Coat_Type == &quot;incon&quot; ~ &quot;inconspicuous&quot;,
+    TRUE ~ &quot;none&quot;  # This will catch all other cases not specified above
+  ))
+
+# Add a column with all conspicuous natal coats as 1 and inconspicuous as 0
+data &lt;- data %&gt;%
+  mutate(
+    Natal_Coat_Conspicuous = ifelse(Simple_Natal_Coat_Type == &quot;conspicuous&quot;, 1, 0),
+    Natal_Coat_Inconspicuous = ifelse(Simple_Natal_Coat_Type == &quot;inconspicuous&quot;, 1, 0),
+    Natal_Coat_Present = ifelse(Simple_Natal_Coat_Type %in% c(&quot;conspicuous&quot;, &quot;inconspicuous&quot;), 1, 0)
+  )
+
+#Natal coats can be inconspicuous (close in color to parents) or conspicuous (obviously a different color). #When they are conspicuous they can be contrasting to either the mothers coats or the fathers or both. </code></pre>
+<pre class="r"><code># This is recoding the different types of conspicuous natal coats and sexual dichromatism from separate traits into a continuous change ie infant -&gt; adult female (change/no change), infant -&gt; adult male (change/no change), if both change is another category. If a natal coat is conspicuous to dad it is similar or inconspicuous to mom so the males change when they mature.
+
+data &lt;- data %&gt;%
+  mutate(Maturation_Color_Change = case_when(
+    Natal_Coat_Type == &quot;Con to dad&quot; ~ &quot;Males only&quot;,
+    Natal_Coat_Type == &quot;con to both&quot; ~ &quot;Both&quot;, 
+    Natal_Coat_Type == &quot;con to mom&quot; ~ &quot;Females only&quot;,
+    TRUE ~ &quot;None&quot;))
+
+# Add binary columns for the different maturation changes
+data &lt;- data %&gt;%
+  mutate(Maturation_Males_Only = ifelse(Maturation_Color_Change == &quot;Males only&quot;, 1, 0),
+         Maturation_Females_Only = ifelse(Maturation_Color_Change == &quot;Females only&quot;, 1, 0),
+         Maturation_Both = ifelse(Maturation_Color_Change == &quot;Both&quot;, 1, 0),
+         Maturation_None = ifelse(Maturation_Color_Change == &quot;None&quot;, 1, 0))</code></pre>
+<pre class="r"><code>data &lt;- data %&gt;%
+  mutate(Sexual_Dichromatism_Complete = ifelse(Sexual_dichromatism_type == &quot;Complete&quot;, 1, 0),
+         Sexual_Dichromatism_Partial = ifelse(Sexual_dichromatism_type == &quot;Partial&quot;, 1, 0),
+         Sexual_Dichromatism_Present = ifelse(Sexual_dichromatism_type %in% c(&quot;Complete&quot;, &quot;Partial&quot;), 1, 0))</code></pre>
+<pre class="r"><code>write_csv(data, &quot;data/recoded_data.csv&quot;)</code></pre>
+</div>
+<div id="format-data-for-phylolm" class="section level1">
+<h1>Format data for phylolm</h1>
+<pre><code>
+Phylogenetic tree: mammaltree 
+
+  Number of tips: 5987 
+  Number of nodes: 5986 
+  Branch lengths:
+    mean: 2.680715 
+    variance: 24.17565 
+    distribution summary:
+       Min.     1st Qu.      Median     3rd Qu.        Max. 
+  0.0000000   0.5284341   1.3073255   2.9454665 106.6007500 
+  No root edge.
+  First ten tip labels: X_Shuotherium 
+                        X_Pseudotribos
+                        X_Asfaltomylos
+                        X_Obdurodon
+                        Zaglossus_bartoni
+                        Zaglossus_bruijnii
+                        Zaglossus_attenboroughi
+                        Tachyglossus_aculeatus
+                        Ornithorhynchus_anatinus
+                        X_Teinolophos
+  No node labels.</code></pre>
+<pre><code>Rows: 238 Columns: 29
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (15): family, Genus, species, subspecies, Sexual_Dimorph_type, Location,...
+dbl (14): Sexual_dimorphism, Natal_coat, Sexual_dichromatism, Size_Dimorphis...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre><code># A tibble: 6 × 29
+  family   Genus species subsp…¹ Sexua…² Sexua…³ Locat…⁴ Direc…⁵ Natal…⁶ Natal…⁷
+  &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;  
+1 cercopi… alle… nigrov… &lt;NA&gt;          0 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;          1 incon  
+2 cheirog… allo… tricho… &lt;NA&gt;          0 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;          0 &lt;NA&gt;   
+3 cebidae  alou… belzeb… &lt;NA&gt;          0 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;          0 &lt;NA&gt;   
+4 cebidae  alou… caraya  &lt;NA&gt;          1 males … Head    M             1 Con to…
+5 cebidae  alou… guariba &lt;NA&gt;          1 male s… Head    M             1 incon  
+6 cebidae  alou… pallia… pallia…       1 F: les… Head, … F             1 incon  
+# … with 19 more variables: NC_description &lt;chr&gt;, Sexual_dichromatism &lt;dbl&gt;,
+#   Sexual_dichromatism_type &lt;chr&gt;, Where &lt;chr&gt;, Darker &lt;chr&gt;,
+#   SDC_description &lt;chr&gt;, Size_Dimorphism &lt;dbl&gt;, Simple_Natal_Coat_Type &lt;chr&gt;,
+#   Natal_Coat_Conspicuous &lt;dbl&gt;, Natal_Coat_Inconspicuous &lt;dbl&gt;,
+#   Natal_Coat_Present &lt;dbl&gt;, Maturation_Color_Change &lt;chr&gt;,
+#   Maturation_Males_Only &lt;dbl&gt;, Maturation_Females_Only &lt;dbl&gt;,
+#   Maturation_Both &lt;dbl&gt;, Maturation_None &lt;dbl&gt;, …</code></pre>
+<pre class="r"><code>#combine genus and species names and capitalize first letter
+Binary_traits_combined = Binary_traits %&gt;% unite(&quot;species&quot;,`Genus`, `species`) %&gt;% mutate(species = str_to_title(species))
+head(Binary_traits_combined)</code></pre>
+<pre><code># A tibble: 6 × 28
+  family species subsp…¹ Sexua…² Sexua…³ Locat…⁴ Direc…⁵ Natal…⁶ Natal…⁷ NC_de…⁸
+  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  
+1 cerco… Alleno… &lt;NA&gt;          0 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;          1 incon   no tre…
+2 cheir… Alloce… &lt;NA&gt;          0 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;          0 &lt;NA&gt;    &lt;NA&gt;   
+3 cebid… Alouat… &lt;NA&gt;          0 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;          0 &lt;NA&gt;    &lt;NA&gt;   
+4 cebid… Alouat… &lt;NA&gt;          1 males … Head    M             1 Con to… infant…
+5 cebid… Alouat… &lt;NA&gt;          1 male s… Head    M             1 incon   possib…
+6 cebid… Alouat… pallia…       1 F: les… Head, … F             1 incon   incons…
+# … with 18 more variables: Sexual_dichromatism &lt;dbl&gt;,
+#   Sexual_dichromatism_type &lt;chr&gt;, Where &lt;chr&gt;, Darker &lt;chr&gt;,
+#   SDC_description &lt;chr&gt;, Size_Dimorphism &lt;dbl&gt;, Simple_Natal_Coat_Type &lt;chr&gt;,
+#   Natal_Coat_Conspicuous &lt;dbl&gt;, Natal_Coat_Inconspicuous &lt;dbl&gt;,
+#   Natal_Coat_Present &lt;dbl&gt;, Maturation_Color_Change &lt;chr&gt;,
+#   Maturation_Males_Only &lt;dbl&gt;, Maturation_Females_Only &lt;dbl&gt;,
+#   Maturation_Both &lt;dbl&gt;, Maturation_None &lt;dbl&gt;, …</code></pre>
+<pre class="r"><code># prune tree for species in data
+species_not_in_tree=setdiff(mammaltree$tip.label, Binary_traits_combined$species)
+pruned.tree&lt;-drop.tip(mammaltree,species_not_in_tree)
+summary(pruned.tree)</code></pre>
+<pre><code>
+Phylogenetic tree: pruned.tree 
+
+  Number of tips: 235 
+  Number of nodes: 234 
+  Branch lengths:
+    mean: 2.864158 
+    variance: 17.90887 
+    distribution summary:
+       Min.     1st Qu.      Median     3rd Qu.        Max. 
+ 0.04705822  0.88148065  1.69536613  3.05008500 49.61463191 
+  No root edge.
+  First ten tip labels: Nycticebus_pygmaeus 
+                        Nycticebus_coucang
+                        Loris_tardigradus
+                        Galagoides_thomasi
+                        Galago_matschiei
+                        Galago_moholi
+                        Galago_senegalensis
+                        Galago_gallarum
+                        Otolemur_garnettii
+                        Otolemur_crassicaudatus
+  No node labels.</code></pre>
+<pre class="r"><code>#prune data for species in tree
+data_pruned &lt;- Binary_traits_combined %&gt;% filter(species %in% pruned.tree$tip.label)
+head(data_pruned)</code></pre>
+<pre><code># A tibble: 6 × 28
+  family species subsp…¹ Sexua…² Sexua…³ Locat…⁴ Direc…⁵ Natal…⁶ Natal…⁷ NC_de…⁸
+  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  
+1 cerco… Alleno… &lt;NA&gt;          0 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;          1 incon   no tre…
+2 cheir… Alloce… &lt;NA&gt;          0 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;          0 &lt;NA&gt;    &lt;NA&gt;   
+3 cebid… Alouat… &lt;NA&gt;          0 &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;          0 &lt;NA&gt;    &lt;NA&gt;   
+4 cebid… Alouat… &lt;NA&gt;          1 males … Head    M             1 Con to… infant…
+5 cebid… Alouat… &lt;NA&gt;          1 male s… Head    M             1 incon   possib…
+6 cebid… Alouat… pallia…       1 F: les… Head, … F             1 incon   incons…
+# … with 18 more variables: Sexual_dichromatism &lt;dbl&gt;,
+#   Sexual_dichromatism_type &lt;chr&gt;, Where &lt;chr&gt;, Darker &lt;chr&gt;,
+#   SDC_description &lt;chr&gt;, Size_Dimorphism &lt;dbl&gt;, Simple_Natal_Coat_Type &lt;chr&gt;,
+#   Natal_Coat_Conspicuous &lt;dbl&gt;, Natal_Coat_Inconspicuous &lt;dbl&gt;,
+#   Natal_Coat_Present &lt;dbl&gt;, Maturation_Color_Change &lt;chr&gt;,
+#   Maturation_Males_Only &lt;dbl&gt;, Maturation_Females_Only &lt;dbl&gt;,
+#   Maturation_Both &lt;dbl&gt;, Maturation_None &lt;dbl&gt;, …</code></pre>
+<pre class="r"><code># get the order of the tip labels
+tip_order &lt;- pruned.tree$tip.label
+
+# Match the order of species in the dataframe to the order of tip labels in the tree
+ordered_indices &lt;- match(tip_order, data_pruned$species)
+
+# Reorder the dataframe based on the indices obtained
+data_pruned_ordered &lt;- Binary_traits_combined[ordered_indices, ]</code></pre>
+<pre class="r"><code>#put data into useful form for phylolm
+colnames(data_pruned_ordered) = gsub(&quot; &quot;, &quot;_&quot;, colnames(data_pruned))
+data_pruned_rownames = column_to_rownames(data_pruned_ordered, var = &quot;species&quot;)
+head(data_pruned_rownames)</code></pre>
+<pre><code>                              family subspecies Sexual_dimorphism
+Simias_concolor      cercopithecidae       &lt;NA&gt;                 0
+Miopithecus_talapoin cercopithecidae       &lt;NA&gt;                 0
+Lophocebus_albigena  cercopithecidae       &lt;NA&gt;                 0
+Galago_senegalensis      galagonidae       &lt;NA&gt;                 0
+Galago_gallarum          galagonidae       &lt;NA&gt;                 0
+Galago_matschiei         galagonidae       &lt;NA&gt;                 0
+                     Sexual_Dimorph_type Location Direction Natal_coat
+Simias_concolor                     &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;          1
+Miopithecus_talapoin                &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;          1
+Lophocebus_albigena                 &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;          1
+Galago_senegalensis                 &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;          0
+Galago_gallarum                     &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;          0
+Galago_matschiei                    &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;          0
+                     Natal_Coat_Type
+Simias_concolor                incon
+Miopithecus_talapoin           incon
+Lophocebus_albigena            incon
+Galago_senegalensis             &lt;NA&gt;
+Galago_gallarum                 &lt;NA&gt;
+Galago_matschiei                &lt;NA&gt;
+                                                                                                                                                                                                                    NC_description
+Simias_concolor                                                                                                                                                                                            lighter face in infants
+Miopithecus_talapoin                                                                                                        no treves 31,33,39, juveniles lack the black maxillary patches and have less yellow in the pelage hill
+Lophocebus_albigena  l.a.johnstoni no treves 28,33,43, in hill this subspecies was uniformly black and got more brown as it aged, infant is darker in zenkeri subspecies, overall the infants are darker with less color variation
+Galago_senegalensis                                                                                                                                                                                                   no treves 67
+Galago_gallarum                                                                                                                                                                                                               &lt;NA&gt;
+Galago_matschiei                                                                                                                                                                                                              &lt;NA&gt;
+                     Sexual_dichromatism Sexual_dichromatism_type    Where
+Simias_concolor                        0                     &lt;NA&gt;     &lt;NA&gt;
+Miopithecus_talapoin                   1                  Partial     Body
+Lophocebus_albigena                    1                  Partial Multiple
+Galago_senegalensis                    0                     &lt;NA&gt;     &lt;NA&gt;
+Galago_gallarum                        0                     &lt;NA&gt;     &lt;NA&gt;
+Galago_matschiei                       0                     &lt;NA&gt;     &lt;NA&gt;
+                     Darker
+Simias_concolor        &lt;NA&gt;
+Miopithecus_talapoin      M
+Lophocebus_albigena       M
+Galago_senegalensis    &lt;NA&gt;
+Galago_gallarum        &lt;NA&gt;
+Galago_matschiei       &lt;NA&gt;
+                                                                                                                   SDC_description
+Simias_concolor                                                                                                maybe? rowe 838, 80
+Miopithecus_talapoin                                                                          females are less richly colored hill
+Lophocebus_albigena  F: paler around ears, hind-neck, and mantle, fewer white rings on mantle hairs, underparts reddish black hill
+Galago_senegalensis                                                                                                           &lt;NA&gt;
+Galago_gallarum                                                                                                               &lt;NA&gt;
+Galago_matschiei                                                                                                              &lt;NA&gt;
+                     Size_Dimorphism Simple_Natal_Coat_Type
+Simias_concolor                    1          inconspicuous
+Miopithecus_talapoin               1          inconspicuous
+Lophocebus_albigena                1          inconspicuous
+Galago_senegalensis                1                   none
+Galago_gallarum                    0                   none
+Galago_matschiei                   0                   none
+                     Natal_Coat_Conspicuous Natal_Coat_Inconspicuous
+Simias_concolor                           0                        1
+Miopithecus_talapoin                      0                        1
+Lophocebus_albigena                       0                        1
+Galago_senegalensis                       0                        0
+Galago_gallarum                           0                        0
+Galago_matschiei                          0                        0
+                     Natal_Coat_Present Maturation_Color_Change
+Simias_concolor                       1                    None
+Miopithecus_talapoin                  1                    None
+Lophocebus_albigena                   1                    None
+Galago_senegalensis                   0                    None
+Galago_gallarum                       0                    None
+Galago_matschiei                      0                    None
+                     Maturation_Males_Only Maturation_Females_Only
+Simias_concolor                          0                       0
+Miopithecus_talapoin                     0                       0
+Lophocebus_albigena                      0                       0
+Galago_senegalensis                      0                       0
+Galago_gallarum                          0                       0
+Galago_matschiei                         0                       0
+                     Maturation_Both Maturation_None
+Simias_concolor                    0               1
+Miopithecus_talapoin               0               1
+Lophocebus_albigena                0               1
+Galago_senegalensis                0               1
+Galago_gallarum                    0               1
+Galago_matschiei                   0               1
+                     Sexual_Dichromatism_Complete Sexual_Dichromatism_Partial
+Simias_concolor                                NA                          NA
+Miopithecus_talapoin                            0                           1
+Lophocebus_albigena                             0                           1
+Galago_senegalensis                            NA                          NA
+Galago_gallarum                                NA                          NA
+Galago_matschiei                               NA                          NA
+                     Sexual_Dichromatism_Present
+Simias_concolor                                0
+Miopithecus_talapoin                           1
+Lophocebus_albigena                            1
+Galago_senegalensis                            0
+Galago_gallarum                                0
+Galago_matschiei                               0</code></pre>
+<pre class="r"><code>write_csv(data_pruned_rownames, &quot;data/data_formatted_phylolm.csv&quot;)</code></pre>
+</div>
+<div id="run-the-logistic-regressions" class="section level1">
+<h1>Run the Logistic Regressions</h1>
+<pre class="r"><code># Create the phylolm function
+run_phylolm_analyses &lt;- function(data, phylo_tree, independent_vars, dependent_vars){ 
+  results &lt;- list()
+  for (ind_var in independent_vars){
+    for (dep_var in dependent_vars){
+      formula &lt;- as.formula(paste(dep_var, &quot;~&quot;, ind_var))
+      model &lt;- phyloglm(formula, data=data, phy=phylo_tree, method = &quot;logistic_MPLE&quot;)
+      results[[paste(ind_var, dep_var, sep = &quot;_vs_&quot;)]] &lt;- summary(model)
+  }
+  }
+  return(results)
+}
+
+#Function to extract model stats, odds ratio, p-value
+extract_model_stats &lt;- function(results_list, independent_vars, dependent_vars) {
+  # Initialize a matrix to store the odds ratios
+  odds_ratios &lt;- matrix(NA, 
+                        nrow = length(dependent_vars), 
+                        ncol = length(independent_vars),
+                        dimnames = list(dependent_vars, independent_vars))
+  p_values &lt;- matrix(NA, 
+                     nrow = length(dependent_vars), 
+                     ncol = length(independent_vars),
+                     dimnames = list(dependent_vars, independent_vars))
+  
+  # Iterate through the results to extract coefficients
+  for (dep_var in dependent_vars) {
+    for (ind_var in independent_vars) {
+      # Construct the result name used as the key in the results list
+      result_key &lt;- paste(ind_var, dep_var, sep = &quot;_vs_&quot;)
+      
+      # Check if the result exists and extract the coefficients
+      if (result_key %in% names(results_list)) {
+        # Extract the model summary
+        model_summary &lt;- results_list[[result_key]]
+        
+        # Check if the model summary is indeed a list with a coefficients data frame
+        if (is.list(model_summary) &amp;&amp; &quot;coefficients&quot; %in% names(model_summary)) {
+          # Extract the estimate for the independent variable
+          if (ind_var %in% rownames(model_summary$coefficients)) {
+            estimate &lt;- model_summary$coefficients[ind_var, &quot;Estimate&quot;]
+            p_value &lt;- model_summary$coefficients[ind_var, &quot;p.value&quot;]
+            odds_ratios[dep_var, ind_var] &lt;- exp(estimate)
+            p_values[dep_var, ind_var] &lt;- p_value
+          }
+        }
+      }
+    }
+  }
+  
+  return(list(odds_ratios = odds_ratios, p_values = p_values))
+}</code></pre>
+<pre class="r"><code>data &lt;- data_pruned_rownames
+phylo_tree &lt;- pruned.tree
+independent_vars &lt;- c(&quot;Natal_Coat_Conspicuous&quot;, &quot;Natal_Coat_Inconspicuous&quot;, &quot;Natal_Coat_Present&quot;)
+dependent_vars &lt;- c(&quot;Sexual_Dichromatism_Complete&quot;, &quot;Sexual_Dichromatism_Partial&quot;, &quot;Sexual_Dichromatism_Present&quot;, &quot;Maturation_Males_Only&quot;, &quot;Maturation_Females_Only&quot;, &quot;Maturation_Both&quot;)
+Natal_on_Dichromatism_results &lt;- run_phylolm_analyses(data,phylo_tree, independent_vars, dependent_vars)
+Natal_on_Dichromatism_model_stats &lt;- extract_model_stats(Natal_on_Dichromatism_results, independent_vars, dependent_vars)
+Natal_on_Dichromatism_odds_ratio_matrix &lt;- Natal_on_Dichromatism_model_stats$odds_ratios
+Natal_on_Dichromatism_p_value_matrix &lt;- Natal_on_Dichromatism_model_stats$p_values</code></pre>
+<pre class="r"><code>data &lt;- data_pruned_rownames
+phylo_tree &lt;- pruned.tree
+independent_vars &lt;- c(&quot;Sexual_Dichromatism_Complete&quot;, &quot;Sexual_Dichromatism_Partial&quot;, &quot;Sexual_Dichromatism_Present&quot;, &quot;Maturation_Males_Only&quot;, &quot;Maturation_Females_Only&quot;, &quot;Maturation_Both&quot;)
+dependent_vars &lt;- c(&quot;Natal_Coat_Conspicuous&quot;, &quot;Natal_Coat_Inconspicuous&quot;, &quot;Natal_Coat_Present&quot;)
+Dichromatism_on_Natal_results &lt;- run_phylolm_analyses(data,phylo_tree, independent_vars, dependent_vars)
+Dichromatism_on_Natal_model_stats &lt;- extract_model_stats(Dichromatism_on_Natal_results, independent_vars, dependent_vars)
+Dichromatism_on_Natal_odds_ratio_matrix &lt;- Dichromatism_on_Natal_model_stats$odds_ratios
+Dichromatism_on_Natal_p_value_matrix &lt;- Dichromatism_on_Natal_model_stats$p_values</code></pre>
+<pre class="r"><code>data &lt;- data_pruned_rownames
+phylo_tree &lt;- pruned.tree
+independent_vars &lt;- c(&quot;Sexual_dimorphism&quot;, &quot;Size_Dimorphism&quot;)
+dependent_vars &lt;- c(&quot;Sexual_Dichromatism_Complete&quot;, &quot;Sexual_Dichromatism_Partial&quot;, &quot;Sexual_Dichromatism_Present&quot;, &quot;Maturation_Males_Only&quot;, &quot;Maturation_Females_Only&quot;, &quot;Maturation_Both&quot;,&quot;Natal_Coat_Conspicuous&quot;, &quot;Natal_Coat_Inconspicuous&quot;, &quot;Natal_Coat_Present&quot;)
+Dimorphism_on_Natal_and_Dichrom_results &lt;- run_phylolm_analyses(data,phylo_tree, independent_vars, dependent_vars)
+Dimorphism_on_Natal_and_Dichrom_model_stats &lt;- extract_model_stats(Dimorphism_on_Natal_and_Dichrom_results, independent_vars, dependent_vars)
+Dimorphism_on_Natal_and_Dichrom_odds_ratio_matrix &lt;- Dimorphism_on_Natal_and_Dichrom_model_stats$odds_ratios
+Dimorphism_on_Natal_and_Dichrom_p_value_matrix &lt;- Dimorphism_on_Natal_and_Dichrom_model_stats$p_values</code></pre>
+<pre class="r"><code>library(ggplot2)
+library(gridExtra)</code></pre>
+<pre><code>
+Attaching package: &#39;gridExtra&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:dplyr&#39;:
+
+    combine</code></pre>
+<pre class="r"><code>library(reshape2)</code></pre>
+<pre><code>
+Attaching package: &#39;reshape2&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:tidyr&#39;:
+
+    smiths</code></pre>
+<pre class="r"><code># Function to determine significance symbols based on p-values
+get_significance_symbol &lt;- function(p_value) {
+  ifelse(p_value &lt; 0.001, &#39;***&#39;,
+         ifelse(p_value &lt; 0.01, &#39;**&#39;,
+                ifelse(p_value &lt; 0.05, &#39;*&#39;, &#39;&#39;)))
+}
+  
+# Function to create a heatmap with significance symbols
+create_heatmap &lt;- function(odds_ratio_matrix, p_value_matrix, title_prefix) {
+  # Melt the odds ratio matrix and p-value matrix into data frames
+  df_odds &lt;- melt(odds_ratio_matrix)
+  df_pvals &lt;- melt(p_value_matrix)
+  
+  # Add column names for merging
+  colnames(df_odds) &lt;- c(&quot;RowTraits&quot;, &quot;ColTraits&quot;, &quot;value&quot;)
+  colnames(df_pvals) &lt;- c(&quot;RowTraits&quot;, &quot;ColTraits&quot;, &quot;p_value&quot;)
+  
+  # Merge the data frames
+  df_merged &lt;- merge(df_odds, df_pvals, by = c(&quot;RowTraits&quot;, &quot;ColTraits&quot;))
+  
+  # Apply logarithmic transformation to the odds ratio values
+  df_merged$value_log &lt;- log(df_merged$value + 1)
+  
+  # Calculate significance symbols
+  df_merged$significance &lt;- get_significance_symbol(df_merged$p_value)
+  
+  # Create the heatmap
+  heatmap &lt;- ggplot(df_merged, aes(RowTraits, ColTraits, fill = value_log)) + 
+    geom_tile() +
+    scale_fill_gradient2(low = &quot;white&quot;, high = &quot;red&quot;, mid = &quot;blue&quot;, midpoint = log(1 + 1), space = &quot;Lab&quot;, name=&quot;Log Odds Ratio&quot;) +
+    geom_text(aes(label = sprintf(&quot;%.2f&quot;, value)), size = 3, vjust = -1) +
+    geom_text(aes(label = significance), size = 3, vjust = 1) +
+    theme_minimal() +
+    labs(title = paste(title_prefix, &quot;Log Scale&quot;), x = &quot;Column Traits&quot;, y = &quot;Row Traits&quot;) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1), axis.text.y = element_text(angle = 45, vjust = 1))
+  
+  return(heatmap)
+}
+
+# Example usage:
+heatmap1 &lt;- create_heatmap(Natal_on_Dichromatism_odds_ratio_matrix, Natal_on_Dichromatism_p_value_matrix, &quot;Effect of Natal Coat on Sexual Dichromatism&quot;)
+heatmap2 &lt;- create_heatmap(Dichromatism_on_Natal_odds_ratio_matrix, Dichromatism_on_Natal_p_value_matrix, &quot;Effect of Sexual Dichromatism on Natal Coat&quot;)
+heatmap3 &lt;- create_heatmap( Dimorphism_on_Natal_and_Dichrom_odds_ratio_matrix, Dimorphism_on_Natal_and_Dichrom_p_value_matrix, &quot;Sexual Dimorphism Impacting other Characteristics&quot;)
+
+# Print heatmaps side by side
+grid.arrange(heatmap1, heatmap2, heatmap3, ncol = 3)</code></pre>
+<p><img src="figure/updated_names_analysis.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.2.1 (2022-06-23)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Big Sur ... 10.16
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] reshape2_1.4.4  gridExtra_2.3   phytools_2.0-3  maps_3.4.1     
+ [5] ggtree_3.6.2    phylolm_2.6.2   lubridate_1.9.2 forcats_1.0.0  
+ [9] stringr_1.5.0   purrr_1.0.1     tidyr_1.3.0     tibble_3.1.8   
+[13] ggplot2_3.4.4   tidyverse_2.0.0 ape_5.7         readr_2.1.4    
+[17] dplyr_1.1.0     workflowr_1.7.1
+
+loaded via a namespace (and not attached):
+ [1] nlme_3.1-160            fs_1.6.1                bit64_4.0.5            
+ [4] doParallel_1.0.17       httr_1.4.4              rprojroot_2.0.4        
+ [7] numDeriv_2016.8-1.1     tools_4.2.1             bslib_0.4.2            
+[10] utf8_1.2.2              R6_2.5.1                DBI_1.1.3              
+[13] lazyeval_0.2.2          colorspace_2.0-3        withr_2.5.0            
+[16] phangorn_2.11.1         mnormt_2.1.1            tidyselect_1.2.0       
+[19] processx_3.8.3          bit_4.0.5               compiler_4.2.1         
+[22] git2r_0.32.0            cli_3.6.2               expm_0.999-7           
+[25] labeling_0.4.2          sass_0.4.5              scales_1.2.1           
+[28] quadprog_1.5-8          callr_3.7.3             digest_0.6.30          
+[31] yulab.utils_0.0.6       rmarkdown_2.20          pkgconfig_2.0.3        
+[34] htmltools_0.5.7         parallelly_1.36.0       highr_0.10             
+[37] fastmap_1.1.0           rlang_1.1.2             rstudioapi_0.14        
+[40] optimParallel_1.0-2     farver_2.1.1            gridGraphics_0.5-1     
+[43] jquerylib_0.1.4         generics_0.1.3          combinat_0.0-8         
+[46] jsonlite_1.8.8          vroom_1.6.1             magrittr_2.0.3         
+[49] ggplotify_0.1.0         patchwork_1.1.2         Matrix_1.5-3           
+[52] Rcpp_1.0.11             munsell_0.5.0           fansi_1.0.3            
+[55] lifecycle_1.0.3         scatterplot3d_0.3-44    stringi_1.7.8          
+[58] whisker_0.4.1           yaml_2.3.7              clusterGeneration_1.3.8
+[61] MASS_7.3-58.1           plyr_1.8.9              grid_4.2.1             
+[64] parallel_4.2.1          listenv_0.9.0           promises_1.2.1         
+[67] crayon_1.5.2            lattice_0.20-45         hms_1.1.2              
+[70] knitr_1.42              ps_1.7.2                pillar_1.8.1           
+[73] igraph_1.5.1            future.apply_1.11.0     codetools_0.2-18       
+[76] fastmatch_1.1-3         glue_1.6.2              evaluate_0.23          
+[79] getPass_0.2-2           ggfun_0.0.9             vctrs_0.5.2            
+[82] treeio_1.22.0           tzdb_0.3.0              httpuv_1.6.11          
+[85] foreach_1.5.2           gtable_0.3.1            future_1.33.0          
+[88] cachem_1.0.6            xfun_0.41               tidytree_0.4.2         
+[91] coda_0.19-4             later_1.3.1             iterators_1.0.14       
+[94] aplot_0.1.9             timechange_0.2.0        globals_0.16.2         
+[97] ellipsis_0.3.2         </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
