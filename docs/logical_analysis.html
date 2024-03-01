@@ -1,0 +1,2157 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Sarah E Taylor" />
+
+<meta name="date" content="2024-02-13" />
+
+<title>logical_analysis</title>
+
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">LocksofLineage</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/alls-e-t/LocksofLineage">
+    <span class="fab fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">logical_analysis</h1>
+<h4 class="author">Sarah E Taylor</h4>
+<h4 class="date">2024-02-13</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2024-02-26
+</p>
+<p>
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>LocksofLineage/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.1). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20231117code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20231117)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20231117code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20231117)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree61dc0472048a39b162a06c82aa33068736057a66targetblank61dc047a">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/61dc0472048a39b162a06c82aa33068736057a66" target="_blank">61dc047</a>
+</a>
+</p>
+</div>
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree61dc0472048a39b162a06c82aa33068736057a66targetblank61dc047a"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/61dc0472048a39b162a06c82aa33068736057a66" target="_blank">61dc047</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    data/.DS_Store
+
+Untracked files:
+    Untracked:  data/Phylo_Project_Data/Full_Hair_Traits_Updated_Names.csv
+    Untracked:  output/Data_That_Works.csv
+    Untracked:  output/colored_tree_plot.pdf
+    Untracked:  output/colored_tree_plot.png
+    Untracked:  output/combined_legends.csv
+    Untracked:  output/data_binarized_Feb13.csv
+    Untracked:  output/data_pruned.csv
+    Untracked:  output/pruned_speciesnames.csv
+    Untracked:  output/pruned_tree.txt
+    Untracked:  output/pruned_tree_Jan23.pdf
+    Untracked:  output/pruned_tree_Jan23.png
+
+Unstaged changes:
+    Deleted:    analysis/BasicPipeline.Rmd
+    Deleted:    analysis/ConBDichromatism.Rmd
+    Deleted:    analysis/ConDDichromatism.Rmd
+    Deleted:    analysis/ConMDichromatism.Rmd
+    Deleted:    analysis/DichromFromDimorph.Rmd
+    Deleted:    analysis/DimorphFromDichrom.Rmd
+    Deleted:    analysis/DimorphismFromNatalCoat.Rmd
+    Deleted:    analysis/Dimorphism_on_the_Head.Rmd
+    Deleted:    analysis/HeadDichromatism.Rmd
+    Deleted:    analysis/HeadDimorphism.Rmd
+    Deleted:    analysis/JoinTreeDataTest.Rmd
+    Deleted:    analysis/SizeDichromatism.Rmd
+    Deleted:    analysis/SizeHairDimorphism.Rmd
+    Deleted:    analysis/binarized_logistic_regression.Rmd
+    Deleted:    analysis/binarized_phylogenetic_logistic_regression_function.R
+    Deleted:    analysis/expanded_trait_data.Rmd
+    Deleted:    analysis/logistic_regression_function_script.Rmd
+    Deleted:    analysis/phylogenetic_logistic_regression_function.R
+    Deleted:    analysis/run_phylogenetic_logistic_regression_with_prereq.R
+    Deleted:    analysis/trait_matrix.Rmd
+    Deleted:    analysis/tree_trait_plot.Rmd
+    Deleted:    colored_tree_plot.pdf
+    Deleted:    colored_tree_plot.png
+    Deleted:    combined_legends.csv
+    Deleted:    data/Full_Hair_Traits_Updated_Names.csv
+    Modified:   data/Phylo_Project_Data/Data_That_Works.csv
+    Modified:   data/Phylo_Project_Data/Masters_Binary_Traits.csv
+    Deleted:    data/Phylo_Project_Data/Phylo_Questions_Matrix .csv
+    Deleted:    data/Phylo_Project_Data/Primates_Mammals.docx
+    Deleted:    data/Phylo_Project_Data/primates_masters.csv
+    Modified:   data/README.md
+    Deleted:    data/combined_legends.csv
+    Deleted:    data/data_binarized_Feb13.csv
+    Deleted:    data/data_multiple_multiple.csv
+    Deleted:    data/data_pruned.csv
+    Modified:   data/data_to_use.csv
+    Deleted:    data/pruned_speciesnames.csv
+    Deleted:    data/pruned_tree.txt
+    Modified:   output/data_traits_expanded_columns.csv
+    Deleted:    pruned_tree_Jan23.pdf
+    Deleted:    pruned_tree_Jan23.png
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were
+made to the R Markdown (<code>analysis/logical_analysis.Rmd</code>) and
+HTML (<code>docs/logical_analysis.html</code>) files. If you’ve
+configured a remote Git repository (see <code>?wflow_git_remote</code>),
+click on the hyperlinks in the table below to view the files as they
+were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/alls-e-t/LocksofLineage/blob/61dc0472048a39b162a06c82aa33068736057a66/analysis/logical_analysis.Rmd" target="_blank">61dc047</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-02-26
+</td>
+<td>
+Removed unnecessary files and redid the analysis.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/alls-e-t/LocksofLineage/blob/915109e769850fc8b707d15c6e79a8b3f087eced/analysis/logical_analysis.Rmd" target="_blank">915109e</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-02-15
+</td>
+<td>
+Figuring out how to do the regression so I get what I got before.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/915109e769850fc8b707d15c6e79a8b3f087eced/docs/logical_analysis.html" target="_blank">915109e</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-02-15
+</td>
+<td>
+Figuring out how to do the regression so I get what I got before.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div id="load-the-data" class="section level2">
+<h2>Load the Data</h2>
+<pre class="r"><code>#Library to read in the data file
+library(readr)
+#Library to run the phylogenetic analyses
+library(ape)
+#Library to clean and organize the data
+library(tidyverse)</code></pre>
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.0     ✔ purrr     1.0.1
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.1.8
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::where()  masks ape::where()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>#Library to run the phylogenetic regressions
+library(phylolm)
+#Libary to plot the trees
+library(ggtree)</code></pre>
+<pre><code>Warning: package &#39;ggtree&#39; was built under R version 4.2.2</code></pre>
+<pre><code>ggtree v3.6.2 For help: https://yulab-smu.top/treedata-book/
+
+If you use the ggtree package suite in published research, please cite
+the appropriate paper(s):
+
+Guangchuang Yu, David Smith, Huachen Zhu, Yi Guan, Tommy Tsan-Yuk Lam.
+ggtree: an R package for visualization and annotation of phylogenetic
+trees with their covariates and other associated data. Methods in
+Ecology and Evolution. 2017, 8(1):28-36. doi:10.1111/2041-210X.12628
+
+Guangchuang Yu.  Data Integration, Manipulation and Visualization of
+Phylogenetic Trees (1st edition). Chapman and Hall/CRC. 2022,
+doi:10.1201/9781003279242
+
+S Xu, Z Dai, P Guo, X Fu, S Liu, L Zhou, W Tang, T Feng, M Chen, L
+Zhan, T Wu, E Hu, Y Jiang, X Bo, G Yu. ggtreeExtra: Compact
+visualization of richly annotated phylogenetic data. Molecular Biology
+and Evolution. 2021, 38(9):4039-4042. doi: 10.1093/molbev/msab166
+
+Attaching package: &#39;ggtree&#39;
+
+The following object is masked from &#39;package:tidyr&#39;:
+
+    expand
+
+The following object is masked from &#39;package:ape&#39;:
+
+    rotate</code></pre>
+<pre class="r"><code># Make sure that the NAs are explicit
+data_to_use &lt;- read_csv(&quot;data/data_to_use.csv&quot;, na = &quot;NA&quot;)</code></pre>
+<pre><code>Rows: 238 Columns: 18
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr (16): family, Genus, species, subspecies, Sexual_dimorphism, Sexual_Dimo...
+dbl  (1): Size_Dimorphism
+lgl  (1): ...7
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div id="clean-the-data" class="section level2">
+<h2>Clean the Data</h2>
+<pre class="r"><code>data_traits = select(data_to_use, -4,-6,-7,-12,-17)
+# Column 4 is the subspecies, the data is separated based on species, so the subspecies do not add information needed for the analysis
+# Column 6 was the description of sexual dimorphism from the sources
+# Column 7 was a blank column to make it easier to view the description in excel
+# Column 11 was the description of natal coats from the sources
+# Column 17 was the description of sexual dichromatism from the sources</code></pre>
+<pre class="r"><code># Binarize the data
+data_traits &lt;- data_traits %&gt;%
+  mutate(across(c(Sexual_dimorphism, Natal_coat, Sexual_dichromatism), ~if_else(. == &quot;Yes&quot;, 1, 0)))</code></pre>
+<pre class="r"><code>#Add a column for each occurrence of sexual dichromatism at a different body part, if one species has multiple values (body parts) they will be counted in each column that they occur ie head,flank is 1 for head and 1 for flank
+
+data_traits &lt;- data_traits %&gt;%
+  mutate(DC_Body = case_when(
+                grepl(&quot;Body&quot;, Where) ~ 1,
+                !is.na(Where) ~ 0,
+                TRUE ~ as.integer(NA)),
+         DC_Head = case_when(
+                grepl(&quot;Head&quot;, Where) ~ 1,
+                !is.na(Where) ~ 0,
+                TRUE ~ as.integer(NA)),
+         DC_Multiple = case_when(
+                grepl(&quot;Multiple&quot;, Where) ~ 1,
+                !is.na(Where) ~ 0,
+                TRUE ~ as.integer(NA)),
+         DC_Cape = case_when(
+                grepl(&quot;Cape&quot;, Where) ~ 1,
+                !is.na(Where) ~ 0,
+                TRUE ~ as.integer(NA)),
+         DC_Pubis = case_when(
+                grepl(&quot;Pubis&quot;, Where) ~ 1,
+                !is.na(Where) ~ 0,
+                TRUE ~ as.integer(NA)),
+         DC_Tail = case_when(
+                grepl(&quot;Tail&quot;, Where) ~ 1,
+                !is.na(Where) ~ 0,
+                TRUE ~ as.integer(NA)))</code></pre>
+<pre class="r"><code>data_traits &lt;- data_traits %&gt;%
+mutate(
+    DM_Head = case_when(
+      grepl(&quot;Head&quot;, Location) ~ 1,
+      !is.na(Location) ~ 0,
+      TRUE ~ as.integer(NA)
+    ),
+    DM_Body = case_when(
+      grepl(&quot;Body&quot;, Location) ~ 1,
+      !is.na(Location) ~ 0,
+      TRUE ~ as.integer(NA)
+    ),
+    DM_Pubis = case_when(
+      grepl(&quot;Pubis&quot;, Location) ~ 1,
+      !is.na(Location) ~ 0,
+      TRUE ~ as.integer(NA)
+    ),
+    DM_Tail = case_when(
+      grepl(&quot;Tail&quot;, Location) ~ 1,
+      !is.na(Location) ~ 0,
+      TRUE ~ as.integer(NA)
+    ),
+    DM_Cape = case_when(
+      grepl(&quot;Cape&quot;, Location) ~ 1,
+      !is.na(Location) ~ 0,
+      TRUE ~ as.integer(NA)
+    ),
+    DM_Mane = case_when(
+      grepl(&quot;Mane&quot;, Location) ~ 1,
+      !is.na(Location) ~ 0,
+      TRUE ~ as.integer(NA)
+    ),
+    DM_Multiple = case_when(
+      grepl(&quot;Multiple&quot;, Location) ~ 1, 
+      #grepl(&quot;,&quot;, Location) ,  Add with | if wanting to split commas to indicates multiple locations
+      !is.na(Location) ~ 0,
+      TRUE ~ as.integer(NA)
+    ),  
+    DM_All = case_when(
+      grepl(&quot;All&quot;, Location) ~ 1, 
+      !is.na(Location) ~ 0,
+      TRUE ~ as.integer(NA)
+    )
+    
+  
+  )</code></pre>
+<pre class="r"><code>data_traits &lt;- data_traits %&gt;%
+  mutate(DM_Male_Growth = case_when(
+                grepl(&quot;M&quot;, Direction) ~ 1,
+                !is.na(Direction) ~ 0,
+                TRUE ~ as.integer(NA)),
+         DM_Female_Growth = case_when(
+                grepl(&quot;F&quot;, Direction) ~ 1,
+                !is.na(Direction) ~ 0,
+                TRUE ~ as.integer(NA)),
+         DM_Both = case_when(
+                grepl(&quot;Both&quot;, Direction) ~ 1,
+                !is.na(Direction) ~ 0,
+                TRUE ~ as.integer(NA)),
+        )</code></pre>
+<pre class="r"><code>data_traits &lt;- data_traits %&gt;%
+  mutate(DC_Male_Darker = case_when(
+                grepl(&quot;M&quot;, Darker) ~ 1,
+                !is.na(Darker) ~ 0,
+                TRUE ~ as.integer(NA)),
+         DC_Female_Darker = case_when(
+                grepl(&quot;F&quot;, Darker) ~ 1,
+                !is.na(Darker) ~ 0,
+                TRUE ~ as.integer(NA)),
+         DC_Varies = case_when(
+                grepl(&quot;Varies&quot;, Darker) ~ 1,
+                !is.na(Darker) ~ 0,
+                TRUE ~ as.integer(NA)),
+        )</code></pre>
+<pre class="r"><code>data_traits &lt;- data_traits %&gt;%
+  mutate(NC_incon = case_when(
+                grepl(&quot;incon&quot;, Natal_Coat_Type) ~ 1,
+                !is.na(Natal_Coat_Type) ~ 0,
+                TRUE ~ as.integer(NA)),
+         NC_con_mom = case_when(
+                grepl(&quot;con to mom&quot;, Natal_Coat_Type) ~ 1,
+                !is.na(Natal_Coat_Type) ~ 0,
+                TRUE ~ as.integer(NA)),
+         NC_con_dad = case_when(
+                grepl(&quot;Con to dad&quot;, Natal_Coat_Type) ~ 1,
+                !is.na(Natal_Coat_Type) ~ 0,
+                TRUE ~ as.integer(NA)),
+         NC_con_both = case_when(
+                grepl(&quot;con to both&quot;, Natal_Coat_Type) ~ 1,
+                !is.na(Natal_Coat_Type) ~ 0,
+                TRUE ~ as.integer(NA))
+        )
+
+# Add a column with all conspicuous natal coats as 1 and inconspicuous as 0
+data_traits &lt;- data_traits %&gt;%
+  mutate(conspicuous_coat = case_when(
+    Natal_Coat_Type == &quot;incon&quot; ~ 0, 
+    Natal_Coat_Type != &quot;incon&quot; &amp; !is.na(Natal_Coat_Type) ~ 1, 
+    TRUE ~ as.integer(NA) 
+  ))
+#Natal coats can be inconspicuous (close in color to parents) or conspicuous (obviously a different color). When they are conspicuous they can be contrasting to either the mothers coats or the fathers or both. </code></pre>
+<pre class="r"><code>data_traits &lt;- data_traits %&gt;%
+  mutate(DC_Complete = case_when(
+                grepl(&quot;Complete&quot;, Sexual_dichromatism_type) ~ 1,
+                !is.na(Sexual_dichromatism_type) ~ 0,
+                TRUE ~ as.integer(NA)),
+         DC_Partial = case_when(
+                grepl(&quot;Partial&quot;, Sexual_dichromatism_type) ~ 1,
+                !is.na(Sexual_dichromatism_type) ~ 0,
+                TRUE ~ as.integer(NA))
+        )</code></pre>
+<pre class="r"><code>data_traits &lt;- data_traits %&gt;%
+mutate(conspicuous_coat = case_when(
+  Natal_Coat_Type == &quot;incon&quot; ~ 0, Natal_Coat_Type != &quot;incon&quot; &amp; !is.na(Natal_Coat_Type) ~ 1, 
+    TRUE ~ as.integer(NA) 
+  ))</code></pre>
+<pre class="r"><code>write_csv(data_traits, &quot;data/Phylo_Project_Data/Data_That_Works.csv&quot;)</code></pre>
+</div>
+<div id="running-the-analyses" class="section level2">
+<h2>Running the Analyses</h2>
+<pre><code>
+Phylogenetic tree: mammaltree 
+
+  Number of tips: 5987 
+  Number of nodes: 5986 
+  Branch lengths:
+    mean: 2.680715 
+    variance: 24.17565 
+    distribution summary:
+       Min.     1st Qu.      Median     3rd Qu.        Max. 
+  0.0000000   0.5284341   1.3073255   2.9454665 106.6007500 
+  No root edge.
+  First ten tip labels: X_Shuotherium 
+                        X_Pseudotribos
+                        X_Asfaltomylos
+                        X_Obdurodon
+                        Zaglossus_bartoni
+                        Zaglossus_bruijnii
+                        Zaglossus_attenboroughi
+                        Tachyglossus_aculeatus
+                        Ornithorhynchus_anatinus
+                        X_Teinolophos
+  No node labels.</code></pre>
+<pre class="r"><code>#read in the data
+Binary_traits &lt;- read_csv(&quot;data/Phylo_Project_Data/Data_That_Works.csv&quot;)</code></pre>
+<pre><code>Rows: 238 Columns: 40
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: &quot;,&quot;
+chr  (9): family, Genus, species, Location, Direction, Natal_Coat_Type, Sexu...
+dbl (31): Sexual_dimorphism, Natal_coat, Sexual_dichromatism, Size_Dimorphis...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre class="r"><code>head(Binary_traits)</code></pre>
+<pre><code># A tibble: 6 × 40
+  family   Genus species Sexua…¹ Locat…² Direc…³ Natal…⁴ Natal…⁵ Sexua…⁶ Sexua…⁷
+  &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;  
+1 cercopi… alle… nigrov…       0 &lt;NA&gt;    &lt;NA&gt;          1 incon         0 &lt;NA&gt;   
+2 cheirog… allo… tricho…       0 &lt;NA&gt;    &lt;NA&gt;          0 &lt;NA&gt;          0 &lt;NA&gt;   
+3 cebidae  alou… belzeb…       0 &lt;NA&gt;    &lt;NA&gt;          0 &lt;NA&gt;          1 Partial
+4 cebidae  alou… caraya        1 Head    M             1 Con to…       1 Comple…
+5 cebidae  alou… guariba       1 Head    M             1 incon         1 Comple…
+6 cebidae  alou… pallia…       1 Head, … F             1 incon         0 &lt;NA&gt;   
+# … with 30 more variables: Where &lt;chr&gt;, Darker &lt;chr&gt;, Size_Dimorphism &lt;dbl&gt;,
+#   DC_Body &lt;dbl&gt;, DC_Head &lt;dbl&gt;, DC_Multiple &lt;dbl&gt;, DC_Cape &lt;dbl&gt;,
+#   DC_Pubis &lt;dbl&gt;, DC_Tail &lt;dbl&gt;, DM_Head &lt;dbl&gt;, DM_Body &lt;dbl&gt;,
+#   DM_Pubis &lt;dbl&gt;, DM_Tail &lt;dbl&gt;, DM_Cape &lt;dbl&gt;, DM_Mane &lt;dbl&gt;,
+#   DM_Multiple &lt;dbl&gt;, DM_All &lt;dbl&gt;, DM_Male_Growth &lt;dbl&gt;,
+#   DM_Female_Growth &lt;dbl&gt;, DM_Both &lt;dbl&gt;, DC_Male_Darker &lt;dbl&gt;,
+#   DC_Female_Darker &lt;dbl&gt;, DC_Varies &lt;dbl&gt;, NC_incon &lt;dbl&gt;, …</code></pre>
+</div>
+<div id="format-data" class="section level2">
+<h2>Format Data</h2>
+<pre class="r"><code>#combine genus and species names and capitalize first letter
+Binary_traits_combined = Binary_traits %&gt;% unite(&quot;species&quot;,`Genus`, `species`) %&gt;% mutate(species = str_to_title(species))
+head(Binary_traits_combined)</code></pre>
+<pre><code># A tibble: 6 × 39
+  family   species Sexua…¹ Locat…² Direc…³ Natal…⁴ Natal…⁵ Sexua…⁶ Sexua…⁷ Where
+  &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;
+1 cercopi… Alleno…       0 &lt;NA&gt;    &lt;NA&gt;          1 incon         0 &lt;NA&gt;    &lt;NA&gt; 
+2 cheirog… Alloce…       0 &lt;NA&gt;    &lt;NA&gt;          0 &lt;NA&gt;          0 &lt;NA&gt;    &lt;NA&gt; 
+3 cebidae  Alouat…       0 &lt;NA&gt;    &lt;NA&gt;          0 &lt;NA&gt;          1 Partial Body 
+4 cebidae  Alouat…       1 Head    M             1 Con to…       1 Comple… &lt;NA&gt; 
+5 cebidae  Alouat…       1 Head    M             1 incon         1 Comple… &lt;NA&gt; 
+6 cebidae  Alouat…       1 Head, … F             1 incon         0 &lt;NA&gt;    &lt;NA&gt; 
+# … with 29 more variables: Darker &lt;chr&gt;, Size_Dimorphism &lt;dbl&gt;, DC_Body &lt;dbl&gt;,
+#   DC_Head &lt;dbl&gt;, DC_Multiple &lt;dbl&gt;, DC_Cape &lt;dbl&gt;, DC_Pubis &lt;dbl&gt;,
+#   DC_Tail &lt;dbl&gt;, DM_Head &lt;dbl&gt;, DM_Body &lt;dbl&gt;, DM_Pubis &lt;dbl&gt;, DM_Tail &lt;dbl&gt;,
+#   DM_Cape &lt;dbl&gt;, DM_Mane &lt;dbl&gt;, DM_Multiple &lt;dbl&gt;, DM_All &lt;dbl&gt;,
+#   DM_Male_Growth &lt;dbl&gt;, DM_Female_Growth &lt;dbl&gt;, DM_Both &lt;dbl&gt;,
+#   DC_Male_Darker &lt;dbl&gt;, DC_Female_Darker &lt;dbl&gt;, DC_Varies &lt;dbl&gt;,
+#   NC_incon &lt;dbl&gt;, NC_con_mom &lt;dbl&gt;, NC_con_dad &lt;dbl&gt;, NC_con_both &lt;dbl&gt;, …</code></pre>
+<pre class="r"><code># prune tree for species in data
+species_not_in_tree=setdiff(mammaltree$tip.label, Binary_traits_combined$species)
+pruned.tree&lt;-drop.tip(mammaltree,species_not_in_tree)
+summary(pruned.tree)</code></pre>
+<pre><code>
+Phylogenetic tree: pruned.tree 
+
+  Number of tips: 235 
+  Number of nodes: 234 
+  Branch lengths:
+    mean: 2.864158 
+    variance: 17.90887 
+    distribution summary:
+       Min.     1st Qu.      Median     3rd Qu.        Max. 
+ 0.04705822  0.88148065  1.69536613  3.05008500 49.61463191 
+  No root edge.
+  First ten tip labels: Nycticebus_pygmaeus 
+                        Nycticebus_coucang
+                        Loris_tardigradus
+                        Galagoides_thomasi
+                        Galago_matschiei
+                        Galago_moholi
+                        Galago_senegalensis
+                        Galago_gallarum
+                        Otolemur_garnettii
+                        Otolemur_crassicaudatus
+  No node labels.</code></pre>
+<pre class="r"><code>#prune data for species in tree
+data_pruned &lt;- Binary_traits_combined %&gt;% filter(species %in% pruned.tree$tip.label)
+head(data_pruned)</code></pre>
+<pre><code># A tibble: 6 × 39
+  family   species Sexua…¹ Locat…² Direc…³ Natal…⁴ Natal…⁵ Sexua…⁶ Sexua…⁷ Where
+  &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;
+1 cercopi… Alleno…       0 &lt;NA&gt;    &lt;NA&gt;          1 incon         0 &lt;NA&gt;    &lt;NA&gt; 
+2 cheirog… Alloce…       0 &lt;NA&gt;    &lt;NA&gt;          0 &lt;NA&gt;          0 &lt;NA&gt;    &lt;NA&gt; 
+3 cebidae  Alouat…       0 &lt;NA&gt;    &lt;NA&gt;          0 &lt;NA&gt;          1 Partial Body 
+4 cebidae  Alouat…       1 Head    M             1 Con to…       1 Comple… &lt;NA&gt; 
+5 cebidae  Alouat…       1 Head    M             1 incon         1 Comple… &lt;NA&gt; 
+6 cebidae  Alouat…       1 Head, … F             1 incon         0 &lt;NA&gt;    &lt;NA&gt; 
+# … with 29 more variables: Darker &lt;chr&gt;, Size_Dimorphism &lt;dbl&gt;, DC_Body &lt;dbl&gt;,
+#   DC_Head &lt;dbl&gt;, DC_Multiple &lt;dbl&gt;, DC_Cape &lt;dbl&gt;, DC_Pubis &lt;dbl&gt;,
+#   DC_Tail &lt;dbl&gt;, DM_Head &lt;dbl&gt;, DM_Body &lt;dbl&gt;, DM_Pubis &lt;dbl&gt;, DM_Tail &lt;dbl&gt;,
+#   DM_Cape &lt;dbl&gt;, DM_Mane &lt;dbl&gt;, DM_Multiple &lt;dbl&gt;, DM_All &lt;dbl&gt;,
+#   DM_Male_Growth &lt;dbl&gt;, DM_Female_Growth &lt;dbl&gt;, DM_Both &lt;dbl&gt;,
+#   DC_Male_Darker &lt;dbl&gt;, DC_Female_Darker &lt;dbl&gt;, DC_Varies &lt;dbl&gt;,
+#   NC_incon &lt;dbl&gt;, NC_con_mom &lt;dbl&gt;, NC_con_dad &lt;dbl&gt;, NC_con_both &lt;dbl&gt;, …</code></pre>
+<pre class="r"><code>#put data into useful form for phylolm
+colnames(data_pruned) = gsub(&quot; &quot;, &quot;_&quot;, colnames(data_pruned))
+data_pruned_rownames = column_to_rownames(data_pruned, var = &quot;species&quot;)
+head(data_pruned_rownames)</code></pre>
+<pre><code>                                     family Sexual_dimorphism    Location
+Allenopithecus_nigroviridis cercopithecidae                 0        &lt;NA&gt;
+Allocebus_trichotis          cheirogaleidae                 0        &lt;NA&gt;
+Alouatta_belzebul                   cebidae                 0        &lt;NA&gt;
+Alouatta_caraya                     cebidae                 1        Head
+Alouatta_guariba                    cebidae                 1        Head
+Alouatta_palliata                   cebidae                 1 Head, Flank
+                            Direction Natal_coat Natal_Coat_Type
+Allenopithecus_nigroviridis      &lt;NA&gt;          1           incon
+Allocebus_trichotis              &lt;NA&gt;          0            &lt;NA&gt;
+Alouatta_belzebul                &lt;NA&gt;          0            &lt;NA&gt;
+Alouatta_caraya                     M          1      Con to dad
+Alouatta_guariba                    M          1           incon
+Alouatta_palliata                   F          1           incon
+                            Sexual_dichromatism Sexual_dichromatism_type Where
+Allenopithecus_nigroviridis                   0                     &lt;NA&gt;  &lt;NA&gt;
+Allocebus_trichotis                           0                     &lt;NA&gt;  &lt;NA&gt;
+Alouatta_belzebul                             1                  Partial  Body
+Alouatta_caraya                               1                 Complete  &lt;NA&gt;
+Alouatta_guariba                              1                 Complete  &lt;NA&gt;
+Alouatta_palliata                             0                     &lt;NA&gt;  &lt;NA&gt;
+                            Darker Size_Dimorphism DC_Body DC_Head DC_Multiple
+Allenopithecus_nigroviridis   &lt;NA&gt;               1      NA      NA          NA
+Allocebus_trichotis           &lt;NA&gt;               1      NA      NA          NA
+Alouatta_belzebul                M               1       1       0           0
+Alouatta_caraya                  M               1      NA      NA          NA
+Alouatta_guariba                 M               1      NA      NA          NA
+Alouatta_palliata             &lt;NA&gt;               1      NA      NA          NA
+                            DC_Cape DC_Pubis DC_Tail DM_Head DM_Body DM_Pubis
+Allenopithecus_nigroviridis      NA       NA      NA      NA      NA       NA
+Allocebus_trichotis              NA       NA      NA      NA      NA       NA
+Alouatta_belzebul                 0        0       0      NA      NA       NA
+Alouatta_caraya                  NA       NA      NA       1       0        0
+Alouatta_guariba                 NA       NA      NA       1       0        0
+Alouatta_palliata                NA       NA      NA       1       0        0
+                            DM_Tail DM_Cape DM_Mane DM_Multiple DM_All
+Allenopithecus_nigroviridis      NA      NA      NA          NA     NA
+Allocebus_trichotis              NA      NA      NA          NA     NA
+Alouatta_belzebul                NA      NA      NA          NA     NA
+Alouatta_caraya                   0       0       0           0      0
+Alouatta_guariba                  0       0       0           0      0
+Alouatta_palliata                 0       0       0           0      0
+                            DM_Male_Growth DM_Female_Growth DM_Both
+Allenopithecus_nigroviridis             NA               NA      NA
+Allocebus_trichotis                     NA               NA      NA
+Alouatta_belzebul                       NA               NA      NA
+Alouatta_caraya                          1                0       0
+Alouatta_guariba                         1                0       0
+Alouatta_palliata                        0                1       0
+                            DC_Male_Darker DC_Female_Darker DC_Varies NC_incon
+Allenopithecus_nigroviridis             NA               NA        NA        1
+Allocebus_trichotis                     NA               NA        NA       NA
+Alouatta_belzebul                        1                0         0       NA
+Alouatta_caraya                          1                0         0        0
+Alouatta_guariba                         1                0         0        1
+Alouatta_palliata                       NA               NA        NA        1
+                            NC_con_mom NC_con_dad NC_con_both conspicuous_coat
+Allenopithecus_nigroviridis          0          0           0                0
+Allocebus_trichotis                 NA         NA          NA               NA
+Alouatta_belzebul                   NA         NA          NA               NA
+Alouatta_caraya                      0          1           0                1
+Alouatta_guariba                     0          0           0                0
+Alouatta_palliata                    0          0           0                0
+                            DC_Complete DC_Partial
+Allenopithecus_nigroviridis          NA         NA
+Allocebus_trichotis                  NA         NA
+Alouatta_belzebul                     0          1
+Alouatta_caraya                       1          0
+Alouatta_guariba                      1          0
+Alouatta_palliata                    NA         NA</code></pre>
+</div>
+<div id="part-1-logistic-regressions-on-presenceabsence-of-traits"
+class="section level1">
+<h1>Part 1: Logistic Regressions on Presence/Absence of Traits</h1>
+</div>
+<div id="question-1-do-natal-coats-predict-adult-sexual-dimorphism"
+class="section level1">
+<h1>Question 1: Do Natal Coats predict adult Sexual Dimorphism?</h1>
+<div
+id="predictor-natal-coats-outcome-sexual-dichromatism-regression-yes"
+class="section level2">
+<h2>Predictor: Natal Coats Outcome: Sexual Dichromatism Regression,
+YES</h2>
+<pre class="r"><code># run phylolm and get summary
+SDCfromNC &lt;- phyloglm(Sexual_dichromatism ~ Natal_coat, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)
+summary(SDCfromNC)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = Sexual_dichromatism ~ Natal_coat, data = data_pruned_rownames, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     262.1     -128.0     -125.4 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.2587127 
+
+Coefficients:
+            Estimate   StdErr z.value   p.value    
+(Intercept) -1.86372  0.31749 -5.8702 4.352e-09 ***
+Natal_coat   1.75499  0.36201  4.8480 1.247e-06 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.2587127</code></pre>
+</div>
+<div
+id="predictor-natal-coats-outcome-sexual-hair-dimorphism-regression-yes"
+class="section level2">
+<h2>Predictor: Natal Coats Outcome: Sexual Hair Dimorphism Regression,
+YES</h2>
+<pre class="r"><code># run phylolm and get summary
+SDMfromNC &lt;- phyloglm(Sexual_dimorphism ~ Natal_coat, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)
+summary(SDMfromNC)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = Sexual_dimorphism ~ Natal_coat, data = data_pruned_rownames, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     223.5     -108.7     -106.3 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.2494233 
+
+Coefficients:
+            Estimate   StdErr z.value   p.value    
+(Intercept) -2.22721  0.36955 -6.0268 1.673e-09 ***
+Natal_coat   1.50026  0.40871  3.6707 0.0002419 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.2494233</code></pre>
+</div>
+<div id="predictor-natal-coats-outcome-size-dimorphism-regression-no"
+class="section level2">
+<h2>Predictor: Natal Coats Outcome: Size Dimorphism Regression, NO</h2>
+<pre class="r"><code># run phylolm and get summary
+SzDfromNC &lt;- phyloglm(Size_Dimorphism ~ Natal_coat, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)
+summary(SzDfromNC)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = Size_Dimorphism ~ Natal_coat, data = data_pruned_rownames, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     292.5     -143.3     -140.5 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.1744491 
+
+Coefficients:
+            Estimate   StdErr z.value p.value  
+(Intercept) -0.13740  0.24825 -0.5535  0.5800  
+Natal_coat   0.66537  0.29117  2.2852  0.0223 *
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.1744491</code></pre>
+</div>
+</div>
+<div id="question-2-does-adult-sexual-dimorphism-predict-natal-coats"
+class="section level1">
+<h1>Question 2: Does adult Sexual Dimorphism predict Natal Coats?</h1>
+<div
+id="predictor-sexual-dichromatism-outcome-natal-coats-regression-yes"
+class="section level2">
+<h2>Predictor: Sexual Dichromatism Outcome: Natal Coats Regression,
+YES</h2>
+<pre class="r"><code># run phylolm and get summary
+NCfromSDC &lt;- phyloglm( Natal_coat ~ Sexual_dichromatism, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)
+summary(NCfromSDC)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = Natal_coat ~ Sexual_dichromatism, data = data_pruned_rownames, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     239.4     -116.7     -114.4 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.06237646 
+
+Coefficients:
+                    Estimate   StdErr z.value   p.value    
+(Intercept)         -0.27153  0.36814 -0.7376    0.4608    
+Sexual_dichromatism  1.24616  0.28087  4.4368 9.131e-06 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.06237646</code></pre>
+</div>
+<div
+id="predictor-sexual-hair-dimorphism-outcome-natal-coats-regression-yes"
+class="section level2">
+<h2>Predictor: Sexual Hair Dimorphism Outcome: Natal Coats Regression,
+YES</h2>
+<pre class="r"><code># run phylolm and get summary
+NCfromSDM &lt;- phyloglm(Natal_coat ~ Sexual_dimorphism, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)
+summary(NCfromSDM)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = Natal_coat ~ Sexual_dimorphism, data = data_pruned_rownames, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     248.6     -121.3     -119.0 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.08017307 
+
+Coefficients:
+                  Estimate   StdErr z.value   p.value    
+(Intercept)       -0.20718  0.32843 -0.6308 0.5281445    
+Sexual_dimorphism  1.25189  0.32802  3.8166 0.0001353 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.08017307</code></pre>
+</div>
+<div
+id="predictor-sexual-hair-dimorphism-sexual-dichromatism-outcome-natal-coats-regression-yes"
+class="section level2">
+<h2>Predictor: Sexual Hair Dimorphism + Sexual Dichromatism Outcome:
+Natal Coats Regression, YES</h2>
+<pre class="r"><code># run phylolm and get summary
+NCfromSDM_DC &lt;- phyloglm(Natal_coat ~ Sexual_dimorphism + Sexual_dichromatism, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)
+summary(NCfromSDM_DC)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = Natal_coat ~ Sexual_dimorphism + Sexual_dichromatism, 
+    data = data_pruned_rownames, phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     240.4     -116.2     -112.8 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.0692272 
+
+Coefficients:
+                    Estimate   StdErr z.value   p.value    
+(Intercept)         -0.27586  0.34003 -0.8113 0.4172057    
+Sexual_dimorphism    0.83592  0.35338  2.3655 0.0180048 *  
+Sexual_dichromatism  0.97548  0.29412  3.3166 0.0009111 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.0692272</code></pre>
+</div>
+</div>
+<div
+id="question-3-does-the-presence-of-one-sexually-dimorphic-trait-predict-another"
+class="section level1">
+<h1>Question 3: Does the presence of one sexually dimorphic trait
+predict another?</h1>
+<div
+id="predictor-sexual-hair-dimorphism-outcome-sexual-dichromatism-regression-yes"
+class="section level2">
+<h2>Predictor: Sexual Hair Dimorphism Outcome: Sexual Dichromatism
+Regression, YES</h2>
+<pre class="r"><code># run phylolm and get summary
+DCfromSDM &lt;- phyloglm(Sexual_dichromatism ~ Sexual_dimorphism, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)
+summary(DCfromSDM)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = Sexual_dichromatism ~ Sexual_dimorphism, data = data_pruned_rownames, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     250.2     -122.1     -119.6 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.1839146 
+
+Coefficients:
+                  Estimate   StdErr z.value   p.value    
+(Intercept)       -1.48223  0.26062 -5.6872 1.291e-08 ***
+Sexual_dimorphism  2.15919  0.35660  6.0550 1.404e-09 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.1839146</code></pre>
+</div>
+<div
+id="predictor-sexual-dichromatism-outcome-sexual-hair-dimorphism-regression-yes"
+class="section level2">
+<h2>Predictor: Sexual Dichromatism Outcome: Sexual Hair Dimorphism
+Regression, YES</h2>
+<pre class="r"><code># run phylolm and get summary
+SDMfromDC &lt;- phyloglm(Sexual_dimorphism ~ Sexual_dichromatism, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)
+summary(SDMfromDC)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = Sexual_dimorphism ~ Sexual_dichromatism, data = data_pruned_rownames, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+    203.71     -98.86     -96.31 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.2135431 
+
+Coefficients:
+                    Estimate   StdErr z.value   p.value    
+(Intercept)         -2.09973  0.30927 -6.7892 1.127e-11 ***
+Sexual_dichromatism  1.88227  0.35313  5.3302 9.811e-08 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.2135431</code></pre>
+</div>
+<div
+id="predictor-size-dimorphism-outcome-sexual-dichromatism-regression-yes"
+class="section level2">
+<h2>Predictor: Size Dimorphism Outcome: Sexual Dichromatism Regression,
+YES</h2>
+<pre class="r"><code># run phylolm and get summary
+DCfromSzD &lt;- phyloglm(Sexual_dichromatism ~ Size_Dimorphism, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)
+summary(DCfromSzD)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = Sexual_dichromatism ~ Size_Dimorphism, data = data_pruned_rownames, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     279.8     -136.9     -134.1 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.2702329 
+
+Coefficients:
+                Estimate   StdErr z.value   p.value    
+(Intercept)     -1.45834  0.28695 -5.0822 3.731e-07 ***
+Size_Dimorphism  1.08163  0.31933  3.3872 0.0007061 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.2702329</code></pre>
+</div>
+<div
+id="predictor-size-dimorphism-outcome-sexual-hair-dimorphism-regression-yes"
+class="section level2">
+<h2>Predictor: Size Dimorphism Outcome: Sexual Hair Dimorphism
+Regression, YES</h2>
+<pre class="r"><code># run phylolm and get summary
+SDMfromSzD &lt;- phyloglm(Sexual_dimorphism ~ Size_Dimorphism, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)
+summary(SDMfromSzD)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = Sexual_dimorphism ~ Size_Dimorphism, data = data_pruned_rownames, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     236.0     -115.0     -112.4 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.2786602 
+
+Coefficients:
+                Estimate   StdErr z.value   p.value    
+(Intercept)     -1.78100  0.32105 -5.5474 2.899e-08 ***
+Size_Dimorphism  0.81879  0.35050  2.3361   0.01949 *  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.2786602</code></pre>
+</div>
+</div>
+<div
+id="part-2-second-level-of-analysis-on-traits.-what-type-of-each-trait-influence-the-others"
+class="section level1">
+<h1>Part 2: Second-level of analysis on traits. What type of each trait
+influence the others?</h1>
+</div>
+<div
+id="question-4-does-sexual-dichromatism-influences-conspicuous-natal-coats"
+class="section level1">
+<h1>Question 4: Does Sexual Dichromatism Influences Conspicuous Natal
+Coats?</h1>
+<p>To do this I need to subset my data so it only includes species with
+natal coats. Then run the phylogenetic logistic regression</p>
+<pre class="r"><code># Subset data for species with Natal Coats
+data_with_NC &lt;- subset(data_pruned_rownames, Natal_coat == 1)</code></pre>
+<div
+id="predictor-sexual-dichromatism-outcome-conspicuous-natal-coats-marginally-significant"
+class="section level2">
+<h2>Predictor: Sexual Dichromatism Outcome: Conspicuous natal coats,
+marginally significant</h2>
+<pre class="r"><code># run phylolm and get summary
+ConNCfromDC &lt;- phyloglm(conspicuous_coat ~ Sexual_dichromatism, data_with_NC, phy = pruned.tree, method=&quot;logistic_MPLE&quot;)</code></pre>
+<pre><code>Warning in phyloglm(conspicuous_coat ~ Sexual_dichromatism, data_with_NC, :
+will drop from the tree 102 taxa with missing data</code></pre>
+<pre class="r"><code>summary(ConNCfromDC)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = conspicuous_coat ~ Sexual_dichromatism, data = data_with_NC, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+    134.56     -64.28     -62.25 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.1069787 
+
+Coefficients:
+                    Estimate   StdErr z.value  p.value   
+(Intercept)         -1.27137  0.43780 -2.9040 0.003684 **
+Sexual_dichromatism  0.58924  0.33905  1.7379 0.082226 . 
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.1069787</code></pre>
+</div>
+</div>
+<div
+id="question-5-does-having-dichromatism-on-the-head-increase-the-chances-of-having-dimorphism-on-the-head-and-vice-versa"
+class="section level1">
+<h1>Question 5: Does having dichromatism on the head increase the
+chances of having dimorphism on the head, and vice versa?</h1>
+<div
+id="predictor-sexual-dichromatism-on-head-outcome-sexual-dimorphism-on-head-no"
+class="section level2">
+<h2>Predictor: Sexual Dichromatism on Head Outcome: Sexual Dimorphism on
+Head, NO</h2>
+<pre class="r"><code>DMHeadfromDCHead &lt;- phyloglm(DM_Head ~ DC_Head, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)</code></pre>
+<pre><code>Warning in phyloglm(DM_Head ~ DC_Head, data_pruned_rownames, phy = pruned.tree,
+: will drop from the tree 205 taxa with missing data</code></pre>
+<pre class="r"><code>summary(DMHeadfromDCHead)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = DM_Head ~ DC_Head, data = data_pruned_rownames, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     39.90     -16.95     -16.53 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.1022922 
+
+Coefficients:
+            Estimate  StdErr z.value p.value
+(Intercept)  0.36190 0.63125  0.5733  0.5664
+DC_Head      1.17029 1.10285  1.0612  0.2886
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.1022922</code></pre>
+</div>
+<div
+id="predictor-sexual-dimorphism-on-head-outcome-sexual-dichromatism-on-head-yes-ish"
+class="section level2">
+<h2>Predictor: Sexual Dimorphism on Head Outcome: Sexual Dichromatism on
+Head, YES-ish</h2>
+<pre class="r"><code>DCHeadfromDMHead &lt;- phyloglm(DC_Head ~ DM_Head, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)</code></pre>
+<pre><code>Warning in phyloglm(DC_Head ~ DM_Head, data_pruned_rownames, phy = pruned.tree,
+: will drop from the tree 205 taxa with missing data</code></pre>
+<pre class="r"><code>summary(DCHeadfromDMHead)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = DC_Head ~ DM_Head, data = data_pruned_rownames, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     33.14     -13.57     -12.84 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.579734 
+
+Coefficients:
+            Estimate   StdErr z.value p.value  
+(Intercept) -2.18741  0.89554 -2.4425 0.01458 *
+DM_Head      1.47351  1.04204  1.4141 0.15735  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.579734</code></pre>
+</div>
+</div>
+<div
+id="question-6-does-the-direction-of-growth-for-sexaul-hair-dimorphism-predict-which-sex-is-darker"
+class="section level1">
+<h1>Question 6: Does the direction of growth for sexaul hair dimorphism
+predict which sex is darker?</h1>
+<div
+id="predictor-sexual-dimorphism-directionmale-outcome-sexual-dichromatism-darkermale-no"
+class="section level2">
+<h2>Predictor: Sexual Dimorphism direction=male Outcome: Sexual
+Dichromatism darker=male, NO</h2>
+<pre class="r"><code>DCdarkMfromDMdirectionM &lt;- phyloglm(DC_Male_Darker ~ DM_Male_Growth, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)</code></pre>
+<pre><code>Warning in phyloglm(DC_Male_Darker ~ DM_Male_Growth, data_pruned_rownames, :
+will drop from the tree 197 taxa with missing data</code></pre>
+<pre class="r"><code>summary(DCdarkMfromDMdirectionM)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = DC_Male_Darker ~ DM_Male_Growth, data = data_pruned_rownames, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     50.38     -22.19     -21.20 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.114755 
+
+Coefficients:
+               Estimate   StdErr z.value p.value
+(Intercept)    0.043514 0.713887  0.0610  0.9514
+DM_Male_Growth 0.498804 0.722998  0.6899  0.4903
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.114755</code></pre>
+</div>
+<div
+id="predictor-sexual-dichromatism-darkermale-outcome-sexual-dimorphism-directionmale-no"
+class="section level2">
+<h2>Predictor: Sexual Dichromatism darker=male Outcome: Sexual
+Dimorphism direction=male, NO</h2>
+<pre class="r"><code>DMdirectionMfromDCdarkM &lt;- phyloglm(DM_Male_Growth ~ DC_Male_Darker, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)</code></pre>
+<pre><code>Warning in phyloglm(DM_Male_Growth ~ DC_Male_Darker, data_pruned_rownames, :
+will drop from the tree 197 taxa with missing data</code></pre>
+<pre class="r"><code>summary(DMdirectionMfromDCdarkM)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = DM_Male_Growth ~ DC_Male_Darker, data = data_pruned_rownames, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     46.90     -20.45     -19.41 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.1913422 
+
+Coefficients:
+               Estimate   StdErr z.value p.value
+(Intercept)    0.885375 0.656228  1.3492  0.1773
+DC_Male_Darker 0.011865 0.750072  0.0158  0.9874
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.1913422</code></pre>
+</div>
+<div
+id="predictor-sexual-dimorphism-directionfemale-outcome-sexual-dichromatism-darkerfemale-no"
+class="section level2">
+<h2>Predictor: Sexual Dimorphism direction=female Outcome: Sexual
+Dichromatism darker=female, NO</h2>
+<pre class="r"><code>DCdarkFfromDMdirectionF &lt;- phyloglm(DC_Female_Darker ~ DM_Female_Growth, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)</code></pre>
+<pre><code>Warning in phyloglm(DC_Female_Darker ~ DM_Female_Growth, data_pruned_rownames,
+: will drop from the tree 197 taxa with missing data</code></pre>
+<pre class="r"><code>summary(DCdarkFfromDMdirectionF)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = DC_Female_Darker ~ DM_Female_Growth, data = data_pruned_rownames, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     44.86     -19.43     -18.50 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.0969039 
+
+Coefficients:
+                 Estimate   StdErr z.value p.value
+(Intercept)      -0.61571  0.60841 -1.0120  0.3115
+DM_Female_Growth  0.03001  0.66782  0.0449  0.9642
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.0969039</code></pre>
+</div>
+<div
+id="predictor-sexual-dichromatism-darkerfemale-outcome-sexual-dimorphism-directionfemale-yes"
+class="section level2">
+<h2>Predictor: Sexual Dichromatism darker=female Outcome: Sexual
+Dimorphism direction=female, YES</h2>
+<pre class="r"><code>DMdirectionFfromDCdarkF &lt;- phyloglm(DM_Female_Growth ~ DC_Female_Darker, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)</code></pre>
+<pre><code>Warning in phyloglm(DM_Female_Growth ~ DC_Female_Darker, data_pruned_rownames,
+: will drop from the tree 197 taxa with missing data</code></pre>
+<pre class="r"><code>summary(DMdirectionFfromDCdarkF)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = DM_Female_Growth ~ DC_Female_Darker, data = data_pruned_rownames, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     44.53     -19.26     -18.24 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.5222929 
+
+Coefficients:
+                 Estimate   StdErr z.value p.value  
+(Intercept)      -1.17932  0.48362 -2.4385 0.01475 *
+DC_Female_Darker -0.21840  0.87966 -0.2483 0.80392  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.5222929</code></pre>
+<pre class="r"><code># Subset data for species with Sexual Dimorphism
+data_with_SDM &lt;- subset(data_pruned_rownames, Sexual_dimorphism == 1)
+
+#Rerun Analyses with this subsetted data to see if I get different values: Same
+DMdirectionFfromDCdarkF &lt;- phyloglm(DM_Female_Growth ~ DC_Female_Darker, data_with_SDM, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)</code></pre>
+<pre><code>Warning in phyloglm(DM_Female_Growth ~ DC_Female_Darker, data_with_SDM, : will
+drop from the tree 197 taxa with missing data</code></pre>
+<pre class="r"><code>summary(DMdirectionFfromDCdarkF)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = DM_Female_Growth ~ DC_Female_Darker, data = data_with_SDM, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     44.53     -19.26     -18.24 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.5222929 
+
+Coefficients:
+                 Estimate   StdErr z.value p.value  
+(Intercept)      -1.17932  0.48362 -2.4385 0.01475 *
+DC_Female_Darker -0.21840  0.87966 -0.2483 0.80392  
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.5222929</code></pre>
+</div>
+</div>
+<div
+id="question-7-does-a-certain-type-of-natal-coat-influence-which-sex-is-darker"
+class="section level1">
+<h1>Question 7: Does a certain type of natal coat influence which sex is
+darker?</h1>
+<div
+id="predictor-consipuous-natal-coats-contrasting-to-both-outcome-sexual-dichromatism-darkermale-no"
+class="section level2">
+<h2>Predictor: Consipuous Natal Coats Contrasting to Both Outcome:
+Sexual Dichromatism darker=male, NO</h2>
+<pre class="r"><code>DCdarkMfromNCBoth &lt;- phyloglm(DC_Male_Darker ~ NC_con_both, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)</code></pre>
+<pre><code>Warning in phyloglm(DC_Male_Darker ~ NC_con_both, data_pruned_rownames, : will
+drop from the tree 168 taxa with missing data</code></pre>
+<pre class="r"><code>summary(DCdarkMfromNCBoth)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = DC_Male_Darker ~ NC_con_both, data = data_pruned_rownames, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     80.67     -37.33     -36.04 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.1365408 
+
+Coefficients:
+            Estimate   StdErr z.value p.value
+(Intercept)  0.17188  0.43658  0.3937  0.6938
+NC_con_both -0.22656  0.65012 -0.3485  0.7275
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.1365408</code></pre>
+</div>
+<div
+id="predictor-consipuous-natal-coats-contrasting-to-dad-outcome-sexual-dichromatism-darkermale-ehhhh"
+class="section level2">
+<h2>Predictor: Consipuous Natal Coats Contrasting to Dad Outcome: Sexual
+Dichromatism darker=male, EHHHH</h2>
+<pre class="r"><code>DCdarkMfromNCDad &lt;- phyloglm(DC_Male_Darker ~ NC_con_dad, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)</code></pre>
+<pre><code>Warning in phyloglm(DC_Male_Darker ~ NC_con_dad, data_pruned_rownames, phy =
+pruned.tree, : will drop from the tree 168 taxa with missing data</code></pre>
+<pre><code>Warning in phyloglm(DC_Male_Darker ~ NC_con_dad, data_pruned_rownames, phy = pruned.tree, : The estimated coefficients in the absence of phylogenetic signal lead
+  to some linear predictors beyond &#39;btol&#39;. Increase btol?
+  Starting from beta=0 other than intercept.</code></pre>
+<pre class="r"><code>summary(DCdarkMfromNCDad)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = DC_Male_Darker ~ NC_con_dad, data = data_pruned_rownames, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     68.63     -31.32     -31.20 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.08322719 
+
+Coefficients:
+            Estimate   StdErr z.value p.value  
+(Intercept) -0.10211  0.52259 -0.1954 0.84509  
+NC_con_dad   3.11677  1.72524  1.8066 0.07083 .
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.08322719</code></pre>
+</div>
+<div
+id="predictor-inconsipuous-natal-coats-outcome-sexual-dichromatism-darkermale-no"
+class="section level2">
+<h2>Predictor: Inconsipuous Natal Coats Outcome: Sexual Dichromatism
+darker=male, NO</h2>
+<pre class="r"><code>DCdarkMfromNCincon &lt;- phyloglm(DC_Male_Darker ~ NC_incon, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)</code></pre>
+<pre><code>Warning in phyloglm(DC_Male_Darker ~ NC_incon, data_pruned_rownames, phy =
+pruned.tree, : will drop from the tree 168 taxa with missing data</code></pre>
+<pre class="r"><code>summary(DCdarkMfromNCincon)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = DC_Male_Darker ~ NC_incon, data = data_pruned_rownames, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     79.98     -36.99     -35.56 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.1191337 
+
+Coefficients:
+            Estimate   StdErr z.value p.value
+(Intercept)  0.40189  0.52429  0.7665  0.4434
+NC_incon    -0.42864  0.55020 -0.7791  0.4359
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.1191337</code></pre>
+</div>
+<div
+id="predictor-consipuous-natal-coats-contrasting-to-mom-outcome-sexual-dichromatism-darkermale-no"
+class="section level2">
+<h2>Predictor: Consipuous Natal Coats Contrasting to mom Outcome: Sexual
+Dichromatism darker=male, NO</h2>
+<pre class="r"><code>DCdarkMfromNCmom &lt;- phyloglm(DC_Male_Darker ~ NC_con_mom, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)</code></pre>
+<pre><code>Warning in phyloglm(DC_Male_Darker ~ NC_con_mom, data_pruned_rownames, phy =
+pruned.tree, : will drop from the tree 168 taxa with missing data</code></pre>
+<pre class="r"><code>summary(DCdarkMfromNCmom)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = DC_Male_Darker ~ NC_con_mom, data = data_pruned_rownames, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     80.93     -37.46     -36.95 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.1477747 
+
+Coefficients:
+            Estimate   StdErr z.value p.value
+(Intercept)  0.16085  0.42004  0.3829  0.7018
+NC_con_mom  -0.56063  1.44272 -0.3886  0.6976
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.1477747</code></pre>
+</div>
+<div
+id="predictor-consipuous-natal-coats-contrasting-to-mom-outcome-sexual-dichromatism-darkerfemale-no"
+class="section level2">
+<h2>Predictor: Consipuous Natal Coats Contrasting to mom Outcome: Sexual
+Dichromatism darker=female, NO</h2>
+<pre class="r"><code>DCdarkFfromNCmom &lt;- phyloglm(DC_Female_Darker ~ NC_con_mom, data_pruned_rownames, phy = pruned.tree,method=&quot;logistic_MPLE&quot;)</code></pre>
+<pre><code>Warning in phyloglm(DC_Female_Darker ~ NC_con_mom, data_pruned_rownames, : will
+drop from the tree 168 taxa with missing data</code></pre>
+<pre><code>Warning in phyloglm(DC_Female_Darker ~ NC_con_mom, data_pruned_rownames, : The estimated coefficients in the absence of phylogenetic signal lead
+  to some linear predictors beyond &#39;btol&#39;. Increase btol?
+  Starting from beta=0 other than intercept.</code></pre>
+<pre class="r"><code>summary(DCdarkFfromNCmom)</code></pre>
+<pre><code>
+Call:
+phyloglm(formula = DC_Female_Darker ~ NC_con_mom, data = data_pruned_rownames, 
+    phy = pruned.tree, method = &quot;logistic_MPLE&quot;)
+       AIC     logLik Pen.logLik 
+     70.44     -32.22     -31.81 
+
+Method: logistic_MPLE
+Mean tip height: 66.17414
+Parameter estimate(s):
+alpha: 0.1145519 
+
+Coefficients:
+            Estimate   StdErr z.value p.value
+(Intercept) -0.40456  0.48125 -0.8407  0.4005
+NC_con_mom  -0.18076  1.40409 -0.1287  0.8976
+
+Note: Wald-type p-values for coefficients, conditional on alpha=0.1145519</code></pre>
+</div>
+</div>
+<div id="part-3-specific-families-or-genera-for-analysis"
+class="section level1">
+<h1>Part 3: Specific families or genera for analysis</h1>
+<p>I would like to examine these traits in a subset of my whole tree.
+The first group I would like to examine are the gibbons.</p>
+<pre class="r"><code>Gibbons &lt;- subset(data_pruned, family == &quot;hylobatidae&quot;)</code></pre>
+<pre class="r"><code># Species to Keep
+Gibbon_species &lt;- c(&quot;Hoolock_hoolock&quot;,&quot;Nomascus_concolor&quot;,&quot;Nomascus_gabriellae&quot;,&quot;Nomascus_leucogenys&quot;, &quot;Symphalangus_syndactylus&quot;,&quot;Hylobates_agilis&quot;,&quot;Hylobates_klossii&quot;,&quot;Hylobates_lar&quot;,           
+ &quot;Hylobates_moloch&quot;,&quot;Hylobates_muelleri&quot;,&quot;Hylobates_pileatus&quot;)
+
+# Define the desired order of species to match the order of tip labels in the tree
+desired_order &lt;- c(&quot;Symphalangus_syndactylus&quot;, &quot;Hylobates_pileatus&quot;, &quot;Hylobates_lar&quot;, &quot;Hylobates_muelleri&quot;,
+                   &quot;Hylobates_moloch&quot;, &quot;Hylobates_klossii&quot;, &quot;Hylobates_agilis&quot;, &quot;Nomascus_leucogenys&quot;,
+                  &quot;Nomascus_gabriellae&quot;, &quot;Nomascus_concolor&quot;, &quot;Hoolock_hoolock&quot;)
+
+# Reorder the dataframe rows to match the desired order
+Gibbons &lt;- Gibbons[match(desired_order, Gibbons$species), ]
+
+#Prune tree to only include gibbon species
+gibbon_pruned_tree &lt;- keep.tip(pruned.tree, Gibbon_species)
+
+# First, create a ggtree object
+p &lt;- ggtree(gibbon_pruned_tree) + theme_tree2()
+
+# Then, merge the tree with trait data
+p &lt;- p %&lt;+% Gibbons
+
+# Display the plot
+print(p)</code></pre>
+<p><img src="figure/logical_analysis.Rmd/filter%20tree%20to%20only%20have%20gibbons-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="part-4-alternative-views-of-the-data" class="section level1">
+<h1>Part 4: Alternative Views of the Data</h1>
+<pre class="r"><code>library(igraph)</code></pre>
+<pre><code>
+Attaching package: &#39;igraph&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:lubridate&#39;:
+
+    %--%, union</code></pre>
+<pre><code>The following objects are masked from &#39;package:dplyr&#39;:
+
+    as_data_frame, groups, union</code></pre>
+<pre><code>The following objects are masked from &#39;package:purrr&#39;:
+
+    compose, simplify</code></pre>
+<pre><code>The following object is masked from &#39;package:tidyr&#39;:
+
+    crossing</code></pre>
+<pre><code>The following object is masked from &#39;package:tibble&#39;:
+
+    as_data_frame</code></pre>
+<pre><code>The following objects are masked from &#39;package:ape&#39;:
+
+    degree, edges, mst, ring</code></pre>
+<pre><code>The following objects are masked from &#39;package:stats&#39;:
+
+    decompose, spectrum</code></pre>
+<pre><code>The following object is masked from &#39;package:base&#39;:
+
+    union</code></pre>
+<pre class="r"><code>df_subset &lt;- data_pruned_rownames[, c(&quot;Natal_coat&quot;, &quot;Sexual_dichromatism&quot;, &quot;Sexual_dimorphism&quot;)]
+
+# Assuming &#39;df&#39; is your original dataframe with species as rows and traits as columns
+species_names &lt;- rownames(df_subset)
+trait_names &lt;- colnames(df_subset)
+
+# Creating a list of edges
+edges &lt;- which(df_subset == 1, arr.ind = TRUE)
+
+edge_list &lt;- apply(edges, 1, function(idx) {
+  return(c(species_names[idx[1]], trait_names[idx[2]]))
+})
+
+# Ensure edge_list is a two-column matrix
+edge_matrix &lt;- matrix(unlist(edge_list), ncol = 2, byrow = TRUE)
+
+# Create the bipartite graph
+g &lt;- graph_from_edgelist(edge_matrix, directed = FALSE)
+
+# Add attribute to distinguish between species and traits
+V(g)$type &lt;- ifelse(V(g)$name %in% species_names, &quot;species&quot;, &quot;trait&quot;)
+V(g)$color &lt;- ifelse(V(g)$type == &quot;species&quot;, &quot;red&quot;, &quot;blue&quot;)
+
+layout &lt;- layout_with_fr(g)
+
+# Plot the bipartite network
+#plot(g, vertex.color = V(g)$type, vertex.label.cex = 0.7, asp = 0)
+plot(g, layout = layout, vertex.color = V(g)$color, vertex.size = 5, vertex.label.cex = 0.5, asp = 0, main = &quot;Bipartite Network of Species and Traits&quot;)</code></pre>
+<p><img src="figure/logical_analysis.Rmd/Network%20analysis-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>communities &lt;- cluster_louvain(g)
+plot(g, vertex.color = communities$membership, vertex.label.cex = 0.5, asp = 0, main = &quot;Community Structure&quot;)</code></pre>
+<p><img src="figure/logical_analysis.Rmd/show-communities-from-network-analysis-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>membership &lt;- membership(communities)
+
+# Now create the dataframe
+community_df &lt;- data.frame(name = V(g)$name, type = V(g)$type, community = as.numeric(membership))
+
+# Tabulate the number of species and traits in each community
+table(community_df$type, community_df$community)</code></pre>
+<pre><code>         
+           1  2  3
+  species 55 47 48
+  trait    1  1  1</code></pre>
+<pre class="r"><code># Number of edges within communities
+internal_edges &lt;- sapply(unique(membership), function(com) {
+  sum(ecount(subgraph(g, which(membership == com))))
+})
+
+# Number of edges between communities
+external_edges &lt;- sapply(unique(membership), function(com) {
+  sum(ecount(subgraph.edges(g, which(membership != com))))
+})
+
+# Visualize connectivity within communities
+barplot(internal_edges, names.arg = unique(membership))</code></pre>
+<p><img src="figure/logical_analysis.Rmd/show-communities-from-network-analysis-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Visualize connectivity between communities
+barplot(external_edges, names.arg = unique(membership))</code></pre>
+<p><img src="figure/logical_analysis.Rmd/show-communities-from-network-analysis-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>modularity_score &lt;- modularity(communities)</code></pre>
+<pre class="r"><code># Assuming you have a dataframe &#39;df&#39; with species as rows and traits as columns:
+# Let&#39;s say the traits are named &quot;trait1&quot;, &quot;trait2&quot;, and &quot;trait3&quot;.
+
+# Step 1: Filter the species with all three traits
+df_filtered &lt;- df_subset[df_subset$Natal_coat == 1 &amp; df_subset$Sexual_dimorphism == 1 &amp; df_subset$Sexual_dichromatism == 1, ]
+
+species_names_filtered &lt;- rownames(df_filtered)
+trait_names_filtered &lt;- colnames(df_filtered)
+
+# Step 2: Create the edge list for the filtered dataframe
+edges_filtered &lt;- which(df_filtered == 1, arr.ind = TRUE)
+
+edge_list_filtered &lt;- apply(edges_filtered, 1, function(idx) {
+  return(c(species_names[idx[1]], trait_names[idx[2]]))
+})
+
+# Ensure edge_list is a two-column matrix
+edge_matrix_filtered &lt;- matrix(unlist(edge_list), ncol = 2, byrow = TRUE)
+
+# Step 3: Create the graph
+g_filtered &lt;- graph_from_edgelist(edge_matrix_filtered, directed = FALSE)
+
+V(g_filtered)$type &lt;- ifelse(V(g_filtered)$name %in% species_names_filtered, &quot;species&quot;, &quot;trait&quot;)
+
+V(g_filtered)$color &lt;- ifelse(V(g_filtered)$type == &quot;species&quot;, &quot;red&quot;, &quot;blue&quot;)
+
+layout &lt;- layout_with_fr(g_filtered)
+
+# Plot the bipartite network
+#plot(g, vertex.color = V(g)$type, vertex.label.cex = 0.7, asp = 0)
+plot(g_filtered, layout = layout, vertex.color = V(g_filtered)$color, vertex.size = 5, vertex.label.cex = 0.5, asp = 0, main = &quot;Bipartite Network of Species with all three traits&quot;)</code></pre>
+<p><img src="figure/logical_analysis.Rmd/filter-network-analysis-1.png" width="672" style="display: block; margin: auto;" /></p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.2.1 (2022-06-23)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Big Sur ... 10.16
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] igraph_1.5.1    ggtree_3.6.2    phylolm_2.6.2   lubridate_1.9.2
+ [5] forcats_1.0.0   stringr_1.5.0   dplyr_1.1.0     purrr_1.0.1    
+ [9] tidyr_1.3.0     tibble_3.1.8    ggplot2_3.4.4   tidyverse_2.0.0
+[13] ape_5.7         readr_2.1.4     workflowr_1.7.1
+
+loaded via a namespace (and not attached):
+ [1] httr_1.4.4          sass_0.4.5          bit64_4.0.5        
+ [4] vroom_1.6.1         jsonlite_1.8.8      bslib_0.4.2        
+ [7] getPass_0.2-2       highr_0.10          yulab.utils_0.0.6  
+[10] yaml_2.3.7          globals_0.16.2      pillar_1.8.1       
+[13] lattice_0.20-45     glue_1.6.2          digest_0.6.30      
+[16] promises_1.2.1      colorspace_2.0-3    ggfun_0.0.9        
+[19] htmltools_0.5.7     httpuv_1.6.11       pkgconfig_2.0.3    
+[22] listenv_0.9.0       patchwork_1.1.2     tidytree_0.4.2     
+[25] scales_1.2.1        processx_3.8.3      ggplotify_0.1.0    
+[28] whisker_0.4.1       later_1.3.1         tzdb_0.3.0         
+[31] timechange_0.2.0    git2r_0.32.0        farver_2.1.1       
+[34] generics_0.1.3      ellipsis_0.3.2      cachem_1.0.6       
+[37] withr_2.5.0         lazyeval_0.2.2      cli_3.6.2          
+[40] crayon_1.5.2        magrittr_2.0.3      evaluate_0.23      
+[43] ps_1.7.2            fs_1.6.1            future_1.33.0      
+[46] fansi_1.0.3         parallelly_1.36.0   nlme_3.1-160       
+[49] tools_4.2.1         hms_1.1.2           lifecycle_1.0.3    
+[52] aplot_0.1.9         munsell_0.5.0       callr_3.7.3        
+[55] compiler_4.2.1      jquerylib_0.1.4     gridGraphics_0.5-1 
+[58] rlang_1.1.2         grid_4.2.1          rstudioapi_0.14    
+[61] labeling_0.4.2      rmarkdown_2.20      gtable_0.3.1       
+[64] codetools_0.2-18    DBI_1.1.3           R6_2.5.1           
+[67] knitr_1.42          fastmap_1.1.0       future.apply_1.11.0
+[70] bit_4.0.5           utf8_1.2.2          rprojroot_2.0.4    
+[73] treeio_1.22.0       stringi_1.7.8       parallel_4.2.1     
+[76] Rcpp_1.0.11         vctrs_0.5.2         tidyselect_1.2.0   
+[79] xfun_0.41          </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

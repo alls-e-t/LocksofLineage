@@ -8,47 +8,14 @@ editor_options:
   chunk_output_type: console
 ---
 
-"From Birth to Maturity: A Phylogenetic Investigation of Sexual Dimorphism in
-Primates" coming soon to an AABA poster session!
+__"From Birth to Maturity: A Phylogenetic Investigation of Sexual Dimorphism in
+Primates" coming soon to an AABA poster session!__
 
-Abstract
+# Abstract
 
 Hair patterning serves as a mechanism for complex visual and social signaling in primates. Our study offers a comprehensive analysis, focusing on two primary aspects: 1) Natal Coats and 2) Adult Sexual Dimorphism. Adult Sexual Dimorphism is divided into two sub-aspects: 2a) Sexual Dichromatism and 2b) Hair Morphology Dimorphism (beards, capes, etc). We analyzed data from 244 primate species to investigate these traits and their interrelationships in a phylogenetic context. Natal coats were observed in 50% of the species. Using phylogenetic logistic regression, we found that 82% of species with hair morphology dimorphism and 84% of species with sexual dichromatism exhibited natal coats. In other words, species with some form of adult hair sexual dimorphism were more likely to have natal coats. Sexual dichromatism was present in 33% of species (partial and complete), with females lighter than males in 58% of these species. Among the 15 species with complete (full-body) dichromatism, only one had darker females. For partial dichromatism, no single body part was consistently affected across species. Hair morphology dimorphism was observed in 23% of species. In a focused analysis of 55 species with dimorphism, 23 displayed dimorphism exclusively on the head and face, 6 solely on the pubis, and dimorphism varied across affected body parts in the remaining species. Our research delivers a detailed trait-wise analysis across primate species, providing key insights that pave the way for future studies on both social signaling mechanisms and biological underpinnings of sexual dimorphism in primates.
 
-Cleaning the Data
+# Recoded and Updated Charateristics for analysis
 
-Click on this [link](expanded_trait_data.html) to see how I cleaned some of the data.
-
-Click on this [link](trait_matrix.html) to see the trait matrix for my basic categories.
-
-
-Natal Coat Regressions
-
-Click on this [link](BasicPipeline.html) to see my results about sexual dichromatism from natal coats phylogenetic logistic regression.
-
-Click on this [link](DimorphismFromNatalCoat.html) to see my results about sexual dimorphism from natal coat phylogenetic logistic regression. 
-
-Click on this [link](ConMDichromatism.html) to see my results about natal coat contrast to mom phylogenetic logistic regression. 
-
-Click on this [link](ConDDichromatism.html) to see my results about natal coat contrast to dad (Father) phylogenetic logistic regression.
-
-Click on this [link](ConBDichromatism.html) to see my results about natal coat contrast to both parents phylogenetic logistic regression.
-
-Sex Traits Regressions
-
-Click on this [link](DichromFromDimorph.html) to see my results about sexual dichromatism from sexual dimorphism phylogenetic logistic regression.
-
-Click on this [link](DimorphFromDichrom.html) to see my results about sexual dimorphism from sexual dichromatism phylogenetic logistic regression.
-
-Click on this [link](HeadDichromatism.html) to see my results about head dichromatism from sexual dichromatism phylogenetic logistic regression.
-
-Click on this [link](HeadDimorphism.html) to see my results about head dimorphism from sexual dimorphism phylogenetic logistic regression.
-
-Click on this [link](SizeDichromatism.html) to see my results about sexual dichromatism from size dimorphism phylogenetic logistic regression.
-
-Click on this [link](SizeHairDimorphism.html) to see my results about sexual hair dimorphism from size dimorphism phylogenetic logistic regression.
-
-Click on this [link](Dimorphism_on_the_Head.html) to see my results about sexual hair dimorphism and dichromatism phylogenetic logistic regression.
-
-
+Here's a [link](updated_names_analysis.html) to my analysis!
 
