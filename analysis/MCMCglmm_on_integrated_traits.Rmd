@@ -1,0 +1,378 @@
+---
+title: "MCMCglmm_on_integrated_traits"
+author: "Sarah E Taylor"
+date: "2024-03-07"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+```{r setup}
+library(tidyverse)
+library(MCMCglmm)
+
+library(janitor)
+
+library(Matrix)
+```
+
+
+```{r import-trait-values}
+# Read in the data, recode variables, and select specific columns
+df_trait_values <- read_csv("data/Raw_Data/data_to_use.csv") %>%
+  # Clean the variable names for consistency
+  clean_names() %>%
+  # Binarize yes/no values for sexual_dimorphism, natal_coat, and sexual_dichromatism
+  mutate(
+    sexual_dimorphism = if_else(sexual_dimorphism == "Yes", 1, 0),
+    natal_coat = if_else(natal_coat == "Yes", 1, 0),
+    sexual_dichromatism = if_else(sexual_dichromatism == "Yes", 1, 0)
+  ) %>%
+  # Add a column to have natal coats and sexual dichromatism in one category
+  mutate(
+    natal_coat_and_sex_dichromatism = ifelse(
+                                  natal_coat == FALSE & sexual_dichromatism == FALSE, 1,
+                                  ifelse(natal_coat == TRUE & sexual_dichromatism == FALSE, 2,
+                                  ifelse(natal_coat == FALSE & sexual_dichromatism == TRUE, 3,
+                                  ifelse(natal_coat == TRUE & sexual_dichromatism == TRUE, 4, 0))
+    )
+  )
+  ) %>%
+  # Recode the natal_coat_type with simplified categories
+  mutate(
+    natal_coat_type = case_when(
+      natal_coat_type %in% c("Con to dad", "Con to both", "Con to mom") ~ "conspicuous",
+      natal_coat_type == "Incon" ~ "inconspicuous",
+      TRUE ~ "none"  # This will catch all other cases not specified above
+    )
+  ) %>%
+  # Create maturation variables based on the natal_coat_type
+  mutate(
+    maturation_color_change = case_when(
+      natal_coat_type == "Con to dad" ~ "Males only",
+      natal_coat_type == "Con to mom" ~ "Females only",
+      natal_coat_type == "Con to both" ~ "Both",
+      TRUE ~ "None"
+    ),
+    maturation_males_only = as.integer(maturation_color_change == "Males only"),
+    maturation_females_only = as.integer(maturation_color_change == "Females only"),
+    maturation_both = as.integer(maturation_color_change == "Both"),
+    maturation_none = as.integer(maturation_color_change == "None")
+  ) %>%
+  # Add a simplified column that codes maturation as none, one parent, or both parents
+  mutate(none_one_both_integrated_trait = ifelse(natal_coat == FALSE & sexual_dichromatism == FALSE, 1,
+                                   ifelse(natal_coat == TRUE & sexual_dichromatism == FALSE, 2,
+                                   ifelse(natal_coat == TRUE & sexual_dichromatism == TRUE & maturation_males_only == 1 & maturation_females_only == 1, 3,
+                                   ifelse(natal_coat == TRUE & sexual_dichromatism == TRUE & maturation_both == 1, 4, 0))))
+         ) %>%
+  # Add a step to create the integrated_trait column based on other columns with all cases
+  mutate(all_states_integrated_trait = ifelse(natal_coat == FALSE & sexual_dichromatism == FALSE, 1,
+                                   ifelse(natal_coat == TRUE & sexual_dichromatism == FALSE, 2,
+                                   ifelse(natal_coat == TRUE & sexual_dichromatism == TRUE & maturation_males_only == 1, 3,
+                                   ifelse(natal_coat == TRUE & sexual_dichromatism == TRUE & maturation_females_only == 1, 4, 
+                                   ifelse(natal_coat == TRUE & sexual_dichromatism == TRUE & maturation_both == 1, 5, 0)))))
+  ) %>%
+  # Rename the 'family' column to 'family_col'
+  rename(the_group_above_genus = family) %>%
+  # Select only the specified variables and reorder based on user preference
+  select(
+    the_group_above_genus, genus, species, 
+    sexual_dimorphism, natal_coat, natal_coat_type, 
+    sexual_dichromatism, sexual_dichromatism_type, 
+    natal_coat_and_sex_dichromatism, 
+    size_dimorphism, maturation_color_change,
+    maturation_males_only, maturation_females_only,
+    maturation_both, maturation_none, none_one_both_integrated_trait,
+    all_states_integrated_trait
+  )
+
+```
+
+
+```{r import-tree}
+
+#read in mammal tree
+mammaltree <- read.tree("data/Raw_Data/MamPhy_BDvr_Completed_v2_tree0000.tre")
+summary(mammaltree)
+
+```
+
+```{r}
+
+# Perform data cleaning, tree pruning, and data pruning in one streamlined pipeline
+Binary_traits_combined <- df_trait_values %>%
+  unite(species, genus, species, sep = "_") %>%
+  mutate(species = str_to_title(species)) %>%
+  clean_names() %>%
+  filter(species %in% mammaltree$tip.label) 
+
+# Prune the tree to only include species present in the data
+pruned.tree <- drop.tip(mammaltree, setdiff(mammaltree$tip.label, Binary_traits_combined$species))
+
+# Get the order of the tip labels from the pruned tree
+tip_order <- pruned.tree$tip.label
+
+# Match the order of species in the dataframe to the order of tip labels in the tree
+data_pruned_ordered <- Binary_traits_combined %>%
+  slice(match(tip_order, species))
+
+#Convert the tibble to a base r dataframe for MCMCglmm
+data_pruned_ordered_df <- as.data.frame(data_pruned_ordered)
+
+#Making sure that the response variables are factors
+data_pruned_ordered_df <- data_pruned_ordered_df %>%
+  # Convert specific variables to factors
+  mutate(
+    natal_coat = factor(natal_coat, levels = c("0", "1")),
+    sexual_dichromatism = factor(sexual_dichromatism, levels = c("0", "1")),
+    natal_coat_and_sexual_dichromatism = factor(natal_coat_and_sex_dichromatism, levels =c("0","1","2","3","4")),
+    none_one_both_integrated_trait = factor(none_one_both_integrated_trait, levels = c("0", "1", "2", "3", "4")),
+    all_states_integrated_trait = factor(all_states_integrated_trait, levels = c("0", "1", "2", "3", "4", "5"))
+  )
+
+# Adding a unique identifier for each observation in the dataset
+data_pruned_ordered_df$observation_id <- seq_len(nrow(data_pruned_ordered_df))
+
+data_pruned_rownames = column_to_rownames(data_pruned_ordered, var = "species")
+```
+
+# Part 5: Pagel '94 method to test for evolutionary rate
+
+```{r extract-discrete-characters}
+natal_coats <- setNames(data_pruned_rownames$natal_coat,rownames(data_pruned_rownames))
+sexual_dichromatism <- setNames(data_pruned_rownames$sexual_dichromatism,rownames(data_pruned_rownames)) 
+```
+
+```{r fit-correlational-model} 
+primates.pagel <- fitPagel(pruned.tree, sexual_dichromatism, natal_coats)
+```
+
+```{r test-for-a-difference-between-models}
+anova(primates.pagel)
+```{r troubleshooting}
+# Assuming 'copy_data' is your dataframe and 'species' is the column with species names
+# 'inv_regularized_matrix' is your matrix with species names as row and column names
+
+# Extract species names from both dataframe and matrix
+data_species <- copy_data$species
+matrix_species <- rownames(inv_regularized_matrix)
+
+# Check if all species in the dataframe are present in the matrix
+all(data_species %in% matrix_species) # Should return TRUE
+
+# Check if the order of species matches (if order matters for your analysis)
+all(data_species == matrix_species) # If this returns FALSE and order matters, you'll need to reorder
+
+inv_regularized_matrix_aligned <- inv_regularized_matrix[data_species, data_species]
+
+identical(rownames(inv_regularized_matrix_aligned), data_species) # Should return TRUE
+
+str(copy_data$species)
+
+copy_data$species <- as.factor(copy_data$species)
+
+levels(copy_data$species)
+
+rownames(inv_regularized_matrix)
+
+copy_data$species <- factor(copy_data$species, levels = rownames(inv_regularized_matrix))
+
+copy_data <- copy_data[order(copy_data$species), ]
+
+all(levels(copy_data$species) == rownames(inv_regularized_matrix))  # Should return TRUE
+
+# Extract unique species from the dataframe
+data_species <- unique(copy_data$species)
+
+# Extract species from the row names of the inverse matrix
+matrix_species <- rownames(inv_regularized_matrix)
+
+# Identify any species in the dataframe not present in the matrix
+missing_in_matrix <- setdiff(data_species, matrix_species)
+
+# Identify any species in the matrix not present in the dataframe
+missing_in_data <- setdiff(matrix_species, data_species)
+
+# Print missing species
+print(paste("Missing in matrix:", toString(missing_in_matrix)))
+print(paste("Missing in data:", toString(missing_in_data)))
+
+```
+
+```{r Cercopithecoid-subset}
+subset_copy_data <- copy_data %>%
+  filter(grepl("^Cercopithecus_", species))
+
+# Extract species names that match the genus of interest
+matrix_species_subset <- grep("^Cercopithecus_", rownames(inv_regularized_matrix), value = TRUE)
+
+# Subset the matrix to include only those species
+subset_inv_regularized_matrix <- inv_regularized_matrix[matrix_species_subset, matrix_species_subset]
+
+subset_copy_data$species <- droplevels(subset_copy_data$species)
+
+# Ensure that all species in the subset data are represented in the matrix
+all(levels(subset_copy_data$species) %in% rownames(subset_inv_regularized_matrix))
+
+# Ensure that the number of levels matches the dimensions of the matrix
+length(levels(subset_copy_data$species)) == dim(subset_inv_regularized_matrix)[1]
+
+subset_copy_data$species <- factor(subset_copy_data$species, levels = rownames(subset_inv_regularized_matrix))
+
+subset_copy_data <- subset_copy_data[order(subset_copy_data$species), ]
+
+model_natal_coat_subset <- MCMCglmm(Natal_coat ~ 1, random = ~species,
+                                    ginverse = list(species = subset_inv_regularized_matrix),
+                                    data = subset_copy_data, family = "categorical", prior = prior)
+
+```
+
+```{r MCMC-glmm}
+
+# Convert the phylogenetic tree to a covariance matrix
+phylo_cov_matrix <- vcv.phylo(pruned.tree)
+rownames(phylo_cov_matrix) <- pruned.tree$tip.label
+
+# Compute the inverse of the phylogenetic covariance matrix
+inv_phylo_cov_matrix <- solve(phylo_cov_matrix)
+
+# Convert the inverse matrix to a sparse matrix of class "dgCMatrix"
+M1 <- as(inv_phylo_cov_matrix, "dgCMatrix")
+
+# Manually set the dimension names (Dimnames) of the sparse matrix
+# Assuming your species names are stored in a variable called 'species_names'
+species_names <- rownames(inv_phylo_cov_matrix)
+M1@Dimnames <- list(species_names, species_names)
+
+# Define the priors for the models based on common priors used in phylogenetic analyses
+# Both priors have a fixed residual variance for categorical family
+Yule_tree_prior <- list(R = list(V = 1, fix = 1), G = list(G1 = list(V = 1, nu = 0.002)))
+# Specifying a stronger prior for random effects
+model_3_multicharacter_prior <- list(R = list(V = diag(4), fix = 1), G = list(G1 = list(V = 1, nu = 0.002)))  
+model_4_multicharacter_prior <- list(R = list(V = diag(4), fix = 1), G = list(G1 = list(V = 1, nu = 0.002))) 
+model_5_multicharacter_prior <- list(R = list(V = diag(5), fix = 1), G = list(G1 = list(V = 1, nu = 0.002)))
+
+### Model 1: Natal Coat
+model_natal_coat <- MCMCglmm(natal_coat ~ 1, random = ~species,
+                                   ginverse = list(species = M1),
+                                   data = data_pruned_ordered_df, family = "categorical", prior = Yule_tree_prior)
+
+### Model 2: Sexual Dichromatism
+model_sexual_dichromatism <- MCMCglmm(sexual_dichromatism ~ 1, random = ~species,
+                                      ginverse = list(species = M1),
+                                   data = data_pruned_ordered_df, family = "categorical", prior = Yule_tree_prior)
+
+### Model 3: Natal coats and sexual dichromatism
+model_nc_sdichrom_prior <- MCMCglmm(natal_coat_and_sexual_dichromatism ~ 1, random = ~species,
+                              ginverse = list(species = M1),
+                              data = data_pruned_ordered_df, family = "categorical",
+                              rcov = ~us(trait):observation_id, prior = model_3_multicharacter_prior)
+
+### Model 4: No maturation change, one sex changes, both sexes change
+model_N_O_B_prior <- MCMCglmm(none_one_both_integrated_trait ~ 1, random = ~species,
+                              ginverse = list(species = M1),
+                              data = data_pruned_ordered_df, family = "categorical",
+                              rcov = ~us(trait):observation_id, prior = model_4_multicharacter_prior)
+
+### Model 5: Integrated Trait
+model_all_integrated_trait <- MCMCglmm(all_states_integrated_trait ~ 1, random = ~species,
+                                   ginverse = list(species = M1),
+                                   data = data_pruned_ordered_df, family = "categorical",
+                                   rcov = ~us(trait):observation_id, prior = model_5_multicharacter_prior)
+
+### Compare Models
+# Using Deviance Information Criterion (DIC) as a comparison metric
+dic_values <- c(model_natal_coat$DIC,
+                model_sexual_dichromatism$DIC,
+                model_integrated_trait$DIC,
+                model_all_integrated_trait$DIC,
+                )
+
+names(dic_values) <- c("Natal_Coat", "Sexual_Dichromatism", "Integrated_Trait")
+
+# Print DIC values for comparison
+print(dic_values)
+
+# Lower DIC values indicate a better model fit.
+```
+
+```{r}
+# Convert the DIC values into a data frame for plotting
+dic_data <- data.frame(Model = names(dic_values), DIC = dic_values)
+
+# Create the bar plot
+ggplot(dic_data, aes(x = Model, y = DIC, fill = Model)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  geom_text(aes(label = sprintf("%.2f", DIC)), vjust = -0.5) +
+  labs(x = "Model", y = "DIC Value", title = "Comparison of Model DIC Values") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_manual(values = c("Natal_Coat" = "#D8EDDB", 
+                               "Sexual_Dichromatism" = "#F38C79", 
+                               "Integrated_Trait" = "#B579A4"))  
+
+```
+
+```{r}
+# Comparing models beyond DIC
+library(coda)
+# Assuming your MCMCglmm model output is stored in `model_output`
+mcmc_samples <- as.mcmc(model_natal_coat$Sol)
+plot(mcmc_samples)
+```
+
+
+```{r}
+# Compute the inverse of the phylogenetic covariance matrix
+inv_phylo_cov_matrix <- solve(phylo_cov_matrix)
+
+# Convert the inverse matrix to a sparse matrix of class "dgCMatrix"
+M1 <- as(inv_phylo_cov_matrix, "dgCMatrix")
+
+# Manually set the dimension names (Dimnames) of the sparse matrix
+# Assuming your species names are stored in a variable called 'species_names'
+species_names <- rownames(inv_phylo_cov_matrix)
+M1@Dimnames <- list(species_names, species_names)
+
+
+model_integrated_trait <- MCMCglmm(natal_coat ~ 1, random = ~species,
+                                   ginverse = list(species = M1),
+                                   data = data_pruned_ordered_df, family = "categorical", prior = prior)
+
+
+
+# Ensure phylo_cov_matrix is a matrix
+if (!is.matrix(phylo_cov_matrix)) {
+  phylo_cov_matrix <- as.matrix(phylo_cov_matrix)
+}
+
+# Compute the inverse
+inv_phylo_cov_matrix <- solve(phylo_cov_matrix)
+
+# Ensure the inverse is still a matrix
+if (!is.matrix(inv_phylo_cov_matrix)) {
+  inv_phylo_cov_matrix <- as.matrix(inv_phylo_cov_matrix)
+}
+
+# Check for problematic values
+sum(is.na(inv_phylo_cov_matrix))  # Should be 0
+sum(is.infinite(inv_phylo_cov_matrix))  # Should be 0
+
+model_natal_coat <- MCMCglmm(natal_coat ~ 1, random = ~ species,
+                             ginverse = list(species = inv_phylo_cov_matrix),
+                             data = data_pruned_ordered_df, family = "categorical")
+
+ginverse <- list(species = inv_regularized_matrix)
+
+print(ginverse)
+
+# Assuming subset_copy_data is your data and species is the factor of interest
+all(rownames(inv_regularized_matrix) %in% levels(copy_data$species)) # Should be TRUE
+all(levels(copy_data$species) %in% rownames(inv_regularized_matrix)) # Should be TRUE
+
+str(copy_data)
+
+```
+
