@@ -1,0 +1,219 @@
+---
+title: "Analysis for the AABA poster"
+author: "Sarah E Taylor"
+date: "2024-03-13"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Set up
+
+```{r Libraries}
+library(tidyverse)
+library(janitor)
+library(ape)
+library(phytools)
+#Library for upset plot
+library(ComplexUpset)
+library(eulerr)
+```
+
+```{r import-trait-values}
+
+#Map the families onto the superfamilies
+superfamily_mapping <- data.frame(
+  family = c("Lorisidae", "Galagonidae", "Daubentoniidae","Indridae", "Lemuridae", "Cheirogaleidae", "Megaladapidae", "Tarsiidae", "Cebidae", "Callitrichidae", "Hylobatidae",     "Pongidae", "Hominidae", "Cercopithecidae"),
+  superfamily = c("Lorisiformes", "Lorisiformes", "Lemuriformes", "Lemuriformes", "Lemuriformes", "Lemuriformes", "Lemuriformes","Tarsiiformes", "Platyrrhini", "Platyrrhini", "Hominoidea", "Hominoidea", "Hominoidea", "Cercopithecoidea"))
+
+
+df_trait_values <- read_csv("data/Raw_Data/data_to_use.csv") %>%
+  clean_names() %>%  
+  mutate(
+    natal_coat = if_else(natal_coat == "Yes", 1, 0),
+    sexual_dichromatism = if_else(sexual_dichromatism == "Yes", 1, 0)
+  ) %>%
+  mutate(
+    natal_coat_type_simple = case_when(
+      natal_coat_type %in% c("Con to dad", "con to both", "con to mom") ~ "conspicuous",
+      natal_coat_type == "incon" ~ "inconspicuous",
+      TRUE ~ "none"  # This catches all other cases
+    )
+  ) %>%
+  mutate(
+    natal_coat_conspicuous = ifelse(natal_coat_type_simple == "conspicuous", 1, 0),
+    natal_coat_inconspicuous = ifelse(natal_coat_type_simple == "inconspicuous", 1, 0),
+    natal_coat_present = ifelse(natal_coat_type_simple %in% c("conspicuous", "inconspicuous"), 1, 0)
+  ) %>%
+  mutate(
+    maturation_color_change = case_when(
+      natal_coat_type == "Con to dad" ~ "Males only",
+      natal_coat_type == "con to mom" ~ "Females only",
+      natal_coat_type == "con to both" ~ "Both",
+      TRUE ~ "None"
+    ),
+    maturation_males_only = as.integer(maturation_color_change == "Males only"),
+    maturation_females_only = as.integer(maturation_color_change == "Females only"),
+    maturation_both = as.integer(maturation_color_change == "Both"),
+    maturation_none = as.integer(maturation_color_change == "None")
+  ) %>%
+  mutate(sexual_dichromatism_complete = ifelse(sexual_dichromatism_type == "Complete", 1, 0),
+         sexual_dichromatism_partial = ifelse(sexual_dichromatism_type == "Partial", 1, 0),
+         sexual_dichromatism_present = ifelse(sexual_dichromatism_type %in% c("Complete", "Partial"), 1, 0)
+  ) %>%
+  mutate(
+  all_color_traits = ifelse(natal_coat | sexual_dichromatism | 
+                            maturation_both | maturation_females_only | maturation_males_only, 1, 0)
+)%>%
+  select(
+    family, genus, species,
+    natal_coat, natal_coat_type, natal_coat_type_simple, natal_coat_conspicuous,       natal_coat_inconspicuous, natal_coat_present,
+    sexual_dichromatism, sexual_dichromatism_type, sexual_dichromatism_complete, sexual_dichromatism_partial, sexual_dichromatism_present,
+    size_dimorphism, maturation_color_change,
+    maturation_males_only, maturation_females_only, 
+    maturation_both, maturation_none,
+    all_color_traits
+  )
+```
+
+```{r import-tree}
+#read in mammal tree
+mammaltree <- read.tree("data/Raw_Data/MamPhy_BDvr_Completed_v2_tree0000.tre")
+summary(mammaltree)
+```
+
+```{r format-data-to-match-tree}
+# Assuming mammaltree has already been loaded with read.tree() as in the provided code
+Binary_traits_combined <- df_trait_values %>%
+  unite("species", genus, species, sep = "_") %>%
+  mutate(species = str_to_title(species)) %>%
+  mutate(family = str_to_title(family)) %>%
+  filter(species %in% mammaltree$tip.label) 
+
+pruned.tree <- drop.tip(mammaltree, setdiff(mammaltree$tip.label, Binary_traits_combined$species))
+
+data_pruned_ordered <- Binary_traits_combined %>%
+  arrange(match(species, pruned.tree$tip.label)) %>%
+  left_join(superfamily_mapping, by = "family") %>%
+  column_to_rownames("species")
+
+```
+
+## Run the phytools fitPagel model
+
+```{r extract-discrete-characters}
+natal_coats <- setNames(data_pruned_ordered$natal_coat,rownames(data_pruned_ordered))
+sexual_dichromatism <- setNames(data_pruned_ordered$sexual_dichromatism,rownames(data_pruned_ordered)) 
+size_dimorphism <- setNames(data_pruned_ordered$size_dimorphism,rownames(data_pruned_ordered))
+all_color_traits <- setNames(data_pruned_ordered$all_color_traits,rownames(data_pruned_ordered))
+```
+
+```{r fit-correlational-model} 
+# Correlations between natal coats and sexual dichromatism
+natal_coats_and_sexual_dichrom_pagel <- fitPagel(pruned.tree, natal_coats, sexual_dichromatism)
+
+anova(natal_coats_and_sexual_dichrom_pagel)
+
+# Correlations between size dimorphism and the color traits (natal coats and sexual dichromatism)
+# size_and_color_pagel <- fitPagel(pruned.tree, size_dimorphism, all_color_traits)
+```
+
+```{r plot-pagel-model}
+# Plot the natal coat and sexual dichromatism model
+plot(natal_coats_and_sexual_dichrom_pagel, lwd.by.rate=TRUE)
+
+#plot(size_and_color_pagel, lwd.by.rate=TRUE)
+```
+
+## Other plots for the poster
+```{r upset-plot}
+#scale_fill_manual(values=c("Lorisidae" = "darkseagreen", "Galagonidae"= "mediumseagreen", "Daubentoniidae" = "chocolate4", "Indridae" = "chocolate2", "Lemuridae" = "salmon", "Cheirogaleidae" = "coral3", "Megaladapidae" = "sienna3", "Tarsiidae" = "gold", "Cebidae" = "cyan", "Callitrichidae" = "turquoise",   "Cercopithecidae" = "burlywood2", "Hylobatidae" = "maroon", "Pongidae" = "violetred2", "Hominidae" = "deeppink1"),)
+
+# Color palatte for streps
+tailwind_colors <- c(
+  "Blue" = "#000cee",
+  "Zaffre" = "#2107a7",
+  "ElectricIndigo" = "#6200ff",
+  "Indigo" = "#5c0096",
+  "DarkViolet" = "#9c00b8",
+  "HotMagenta" = "#ea2cda",
+  "Fandango" = "#b8008a",
+   "Cyan (RGB)" = "#00fffb",
+  "Spring Green" = "#00f56a",
+  "Forest Green" = "#009138",
+  "Gold" = "#ffd500",
+  "Pumpkin" = "#ff6a00",
+  "Turkey Red" = "#ac0000"
+)
+
+
+
+# Define the traits
+set_attributes <- c(
+  'natal_coat_present',
+  'natal_coat_conspicuous', 
+  'size_dimorphism',
+  'sexual_dichromatism_complete', 
+  'sexual_dichromatism_partial',
+  'maturation_males_only',
+  'maturation_females_only',
+  'maturation_both')
+
+# Create the plot
+upset(
+    data_pruned_ordered,
+    set_attributes,  
+    base_annotations = list(
+        'Intersection size' = intersection_size(
+            counts = TRUE,
+            mapping = aes(fill = family)  # Ensure 'family' is the correct column
+        ) + scale_fill_manual(values = c(
+            "Lorisidae" = "#ea2cda", 
+            "Galagonidae" = "#b8008a", 
+            "Daubentoniidae" = "#9c00b8", 
+            "Indridae" = "#5c0096", 
+            "Lemuridae" = "#000CEE", 
+            "Cheirogaleidae" = "#6200ff", 
+            "Megaladapidae" = "#2107a7", 
+            "Tarsiidae" = "#00fffb",  
+            "Cebidae" = "#00f56a", 
+            "Callitrichidae" = "#009138", 
+            "Cercopithecidae" = "#ffd500", 
+            "Hylobatidae" = "#ff6a00", 
+            "Pongidae" = "#ac0000", 
+            "Hominidae" = "#ac0000"
+        ))
+    ),
+    width_ratio = 0.1
+)
+```
+
+```{r Upset-plot-with-percentage-of-families-in-each-intersection}
+upset(
+    data_pruned_ordered, set_attributes, width_ratio=0.1,
+    annotations =list(
+        'Family Percentages'=list(
+            aes=aes(x=intersection, fill=family),
+            geom=list(
+                geom_bar(stat='count', position='fill', na.rm=TRUE),
+                geom_text(
+                    aes(
+                        label=!!aes_percentage(relative_to='group'),
+                        group=family,
+                        color=ifelse(family == 'Cercopithecidae', 'show', 'hide')
+                    ),
+                    stat='count',
+                    position=position_fill(vjust = .5)
+                ),
+                scale_y_continuous(labels=scales::percent_format())
+            )
+        )
+    )
+)
+```
+
+```{r Venn Diagram}
+VennDiag <- euler(c("A" = 62 + 67, "B" = 13 + 67, "A&B" = 67))
+plot(VennDiag, quantities = TRUE, font = 1, cex = 1, alpha = 0.5, fill=c("#F38C79","#D8EDDB"), labels = c("Natal Coats", "Sexual Dichromatism"))
+```
+
