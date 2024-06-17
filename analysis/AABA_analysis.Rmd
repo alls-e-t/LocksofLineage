@@ -90,6 +90,7 @@ Binary_traits_combined <- df_trait_values %>%
   mutate(family = str_to_title(family)) %>%
   filter(species %in% mammaltree$tip.label) 
 
+# Format tree to match data
 pruned.tree <- drop.tip(mammaltree, setdiff(mammaltree$tip.label, Binary_traits_combined$species))
 
 data_pruned_ordered <- Binary_traits_combined %>%
@@ -97,6 +98,14 @@ data_pruned_ordered <- Binary_traits_combined %>%
   left_join(superfamily_mapping, by = "family") %>%
   column_to_rownames("species")
 
+```
+
+```{r Save-data-pruned-ordered-and-tree}
+# Optionally save the data frame to a csv
+write.csv(data_pruned_ordered, file = "~/Desktop/GitHub/LocksofLineage/data/data_pruned_ordered.csv", row.names = TRUE)
+
+# Optionally save the tree into a .nex file
+write.nexus(pruned.tree, file = "pruned_tree.nex")
 ```
 
 ## Run the phytools fitPagel model
