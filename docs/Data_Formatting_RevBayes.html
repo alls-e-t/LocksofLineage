@@ -395,9 +395,9 @@ aria-hidden="true"></span> </a>
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 5
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 1
+aria-hidden="true"></span> 2
 </p>
 <p>
 <strong>Knit directory:</strong> <code>LocksofLineage/</code> <span
@@ -429,10 +429,10 @@ changes </a>
 <div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git. To know which version of the R
-Markdown file created these results, you’ll want to first commit it to
-the Git repo. If you’re still working on the analysis, you can ignore
-this warning. When you’re finished, you can run
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
 <code>wflow_publish</code> to commit the R Markdown file and build the
 HTML.</p>
 </div>
@@ -510,30 +510,56 @@ run.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongabsolute">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>File paths:</strong> absolute </a>
 </p>
 </div>
-<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div id="strongFilepathsstrongabsolute" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! Using relative paths to the files within your workflowr
-project makes it easier to run your code on other machines.</p>
+<p>
+Using absolute paths to the files within your workflowr project makes it
+difficult for you and others to run your code on a different machine.
+Change the absolute path(s) below to the suggested relative path(s) to
+make your code more reproducible.
+</p>
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th style="text-align:left;">
+absolute
+</th>
+<th style="text-align:left;">
+relative
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+/Users/taysarah/Desktop/GitHub/LocksofLineage
+</td>
+<td style="text-align:left;">
+.
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree24ecbbf5ce88f1a88d4c0223db86505583b98f2atargetblank24ecbbfa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree659ef2c3b75861a2c1cec4789de755780b69eadbtargetblank659ef2ca">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/alls-e-t/LocksofLineage/tree/24ecbbf5ce88f1a88d4c0223db86505583b98f2a" target="_blank">24ecbbf</a>
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/659ef2c3b75861a2c1cec4789de755780b69eadb" target="_blank">659ef2c</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree24ecbbf5ce88f1a88d4c0223db86505583b98f2atargetblank24ecbbfa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree659ef2c3b75861a2c1cec4789de755780b69eadbtargetblank659ef2ca"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -543,7 +569,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/alls-e-t/LocksofLineage/tree/24ecbbf5ce88f1a88d4c0223db86505583b98f2a" target="_blank">24ecbbf</a>.
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/659ef2c3b75861a2c1cec4789de755780b69eadb" target="_blank">659ef2c</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -561,11 +587,34 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+    Ignored:    data/.DS_Store
 
 Untracked files:
-    Untracked:  analysis/Data_Formatting_RevBayes.Rmd
-    Untracked:  data/NC_output_spaces.nex
-    Untracked:  data/SD_output_spaces.nex
+    Untracked:  code/mcmc_BiSSE.Rev
+    Untracked:  code/mcmc_ase_ERM.Rev
+    Untracked:  code/mcmc_ase_freeK.Rev
+    Untracked:  code/mcmc_ase_irrev.Rev
+    Untracked:  code/mcmc_corr_RJ.Rev
+    Untracked:  code/mcmc_scm_hrm.Rev
+    Untracked:  code/ml_ase_ERM.Rev
+    Untracked:  code/ml_ase_freeK.Rev
+    Untracked:  code/plot_anc_states_BiSSE.R
+    Untracked:  code/plot_anc_states_corr_RJ.R
+    Untracked:  code/plot_anc_states_freeK.R
+    Untracked:  code/plot_anc_states_hrm.R
+    Untracked:  code/plot_anc_states_irrev.R
+    Untracked:  code/plot_corr.R
+    Untracked:  code/plot_hrm.R
+    Untracked:  code/plot_iid_rates.R
+    Untracked:  code/plot_irrev.R
+    Untracked:  code/rb
+    Untracked:  data/RevBayes_Data/
+
+Unstaged changes:
+    Modified:   analysis/Data_Formatting_RevBayes.Rmd
+    Deleted:    data/NC_output_spaces.nex
+    Deleted:    data/SD_output_spaces.nex
+    Deleted:    data/data_pruned_ordered.csv
 
 </code></pre>
 <p>
@@ -580,17 +629,82 @@ have uncommitted changes.
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with
-<code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were
+made to the R Markdown
+(<code>analysis/Data_Formatting_RevBayes.Rmd</code>) and HTML
+(<code>docs/Data_Formatting_RevBayes.html</code>) files. If you’ve
+configured a remote Git repository (see <code>?wflow_git_remote</code>),
+click on the hyperlinks in the table below to view the files as they
+were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/alls-e-t/LocksofLineage/blob/659ef2c3b75861a2c1cec4789de755780b69eadb/analysis/Data_Formatting_RevBayes.Rmd" target="_blank">659ef2c</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-06-19
+</td>
+<td>
+Add RevBayes workflow documentation
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/659ef2c3b75861a2c1cec4789de755780b69eadb/docs/Data_Formatting_RevBayes.html" target="_blank">659ef2c</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-06-19
+</td>
+<td>
+Add RevBayes workflow documentation
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
 </div>
 <div id="set-working-directory" class="section level2">
 <h2>Set working directory</h2>
-<p>setwd(“/Users/taysarah/Desktop/GitHub/LOL_RevBayes/bin/RB_Practice_Old_Data”)</p>
+<p>setwd(“/Users/taysarah/Desktop/GitHub/LocksofLineage”)</p>
 </div>
 <div id="load-libraries-and-data" class="section level2">
 <h2>Load Libraries and Data</h2>
@@ -610,7 +724,7 @@ library(tidyverse)</code></pre>
 ✖ dplyr::where()  masks ape::where()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 <pre class="r"><code># Read the CSV file
-data &lt;- read.csv(&quot;data/data_pruned_ordered.csv&quot;, row.names = 1)</code></pre>
+data &lt;- read.csv(&quot;data/RevBayes_Data/data_pruned_ordered.csv&quot;, row.names = 1)</code></pre>
 </div>
 <div id="format-data" class="section level2">
 <h2>Format data</h2>
@@ -653,18 +767,18 @@ write_custom_nexus_spaces &lt;- function(data_matrix, file) {
   writeLines(&quot;End;&quot;, con)
   close(con)
 }</code></pre>
-<pre class="r"><code>write_custom_nexus_spaces(NCRB_Matrix, &quot;data/NC_output_spaces.nex&quot;)
-write_custom_nexus_spaces(SDRB_Matrix, &quot;data/SD_output_spaces.nex&quot;)</code></pre>
+<pre class="r"><code>write_custom_nexus_spaces(NCRB_Matrix, &quot;data/RevBayes_Data/NC_output_spaces.nex&quot;)
+write_custom_nexus_spaces(SDRB_Matrix, &quot;data/RevBayes_Data/SD_output_spaces.nex&quot;)</code></pre>
 </div>
 <div id="run-revbayes" class="section level2">
 <h2>Run RevBayes</h2>
 <pre class="bash"><code>#Running RevBayes
-#cd ~/Desktop/GitHub/LOL_RevBayes/bin/RB_Practice_Old_Data/
+#cd ~/Desktop/GitHub/LocksofLineage
 
 #Open RevBayes software
-#~/Desktop/GitHub/revbayes/bin/rb
+#~/Desktop/GitHub/LocksofLineage/code/rb
 
-#source(&quot;scripts/file.Rev&quot;)</code></pre>
+#source(&quot;code/file.Rev&quot;)</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -710,9 +824,10 @@ loaded via a namespace (and not attached):
 [37] vctrs_0.6.5       R6_2.5.1          lifecycle_1.0.4   git2r_0.33.0     
 [41] fs_1.6.4          pkgconfig_2.0.3   callr_3.7.6       gtable_0.3.5     
 [45] pillar_1.9.0      bslib_0.7.0       later_1.3.2       glue_1.7.0       
-[49] Rcpp_1.0.12       tidyselect_1.2.1  xfun_0.44         rstudioapi_0.16.0
-[53] knitr_1.45        htmltools_0.5.8.1 nlme_3.1-164      igraph_2.0.3     
-[57] rmarkdown_2.27    compiler_4.3.3    getPass_0.2-4     quadprog_1.5-8   </code></pre>
+[49] Rcpp_1.0.12       tidyselect_1.2.1  xfun_0.44         highr_0.10       
+[53] rstudioapi_0.16.0 knitr_1.45        htmltools_0.5.8.1 nlme_3.1-164     
+[57] igraph_2.0.3      rmarkdown_2.27    compiler_4.3.3    getPass_0.2-4    
+[61] quadprog_1.5-8   </code></pre>
 </div>
 </div>
 

@@ -9,7 +9,7 @@ editor_options:
 
 
 ## Set working directory
-setwd("/Users/taysarah/Desktop/GitHub/LOL_RevBayes/bin/RB_Practice_Old_Data")
+setwd("/Users/taysarah/Desktop/GitHub/LocksofLineage")
 
 ## Load Libraries and Data
 ```{r Load-Libraries}
@@ -21,7 +21,7 @@ library(tidyverse)
 
 ```{r Read-in-data}
 # Read the CSV file
-data <- read.csv("data/data_pruned_ordered.csv", row.names = 1)
+data <- read.csv("data/RevBayes_Data/data_pruned_ordered.csv", row.names = 1)
 ```
 
 ## Format data
@@ -73,18 +73,18 @@ write_custom_nexus_spaces <- function(data_matrix, file) {
 ```
 
 ```{r Save-NEXUS-files}
-write_custom_nexus_spaces(NCRB_Matrix, "data/NC_output_spaces.nex")
-write_custom_nexus_spaces(SDRB_Matrix, "data/SD_output_spaces.nex")
+write_custom_nexus_spaces(NCRB_Matrix, "data/RevBayes_Data/NC_output_spaces.nex")
+write_custom_nexus_spaces(SDRB_Matrix, "data/RevBayes_Data/SD_output_spaces.nex")
 ```
 
 ## Run RevBayes
 ```{bash Pipeline-to-run-RevBayes}
 #Running RevBayes
-#cd ~/Desktop/GitHub/LOL_RevBayes/bin/RB_Practice_Old_Data/
+#cd ~/Desktop/GitHub/LocksofLineage
 
 #Open RevBayes software
-#~/Desktop/GitHub/revbayes/bin/rb
+#~/Desktop/GitHub/LocksofLineage/code/rb
 
-#source("scripts/file.Rev")
+#source("code/file.Rev")
 ```
 
