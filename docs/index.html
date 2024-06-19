@@ -13,7 +13,7 @@
 
 <title>Home</title>
 
-<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -32,8 +32,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
 <link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
@@ -289,7 +289,7 @@ $(document).ready(function () {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -300,8 +300,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -310,13 +310,13 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-03-17
+<strong>Last updated:</strong> 2024-06-19
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>LocksofLineage/</code> <span
@@ -339,33 +339,36 @@ versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
-</a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate"
+<div id="strongRMarkdownfilestronguncommittedchanges"
 class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git
-repository, you know the exact version of the code that produced these
-results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of
+the R Markdown file created these results, you’ll want to first commit
+it to the Git repo. If you’re still working on the analysis, you can
+ignore this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree3818f0b9640f9f47a7feacfcd750ae32b8009addtargetblank3818f0ba">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree24ecbbf5ce88f1a88d4c0223db86505583b98f2atargetblank24ecbbfa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/alls-e-t/LocksofLineage/tree/3818f0b9640f9f47a7feacfcd750ae32b8009add" target="_blank">3818f0b</a>
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/24ecbbf5ce88f1a88d4c0223db86505583b98f2a" target="_blank">24ecbbf</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree3818f0b9640f9f47a7feacfcd750ae32b8009addtargetblank3818f0ba"
+id="strongRepositoryversionstrongahrefhttpsgithubcomallsetLocksofLineagetree24ecbbf5ce88f1a88d4c0223db86505583b98f2atargetblank24ecbbfa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -375,7 +378,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/alls-e-t/LocksofLineage/tree/3818f0b9640f9f47a7feacfcd750ae32b8009add" target="_blank">3818f0b</a>.
+<a href="https://github.com/alls-e-t/LocksofLineage/tree/24ecbbf5ce88f1a88d4c0223db86505583b98f2a" target="_blank">24ecbbf</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -393,39 +396,14 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    data/.DS_Store
-    Ignored:    output/.DS_Store
 
 Untracked files:
-    Untracked:  output/Euler_bigger_values.pdf
-    Untracked:  output/Euler_bigger_values.png
-    Untracked:  output/Euler_no_text.png
-    Untracked:  output/Resized_upset_plot.pdf
-    Untracked:  output/Resized_upset_plot.png
-    Untracked:  output/Upset_recolored_for_illustrator.pdf
-    Untracked:  output/Upset_recolored_for_illustrator.png
-    Untracked:  output/euler_pdf_for_illustrator.pdf
-    Untracked:  output/euler_pdf_for_illustrator.png
-    Untracked:  output/euler_venn_ncsd.pdf
-    Untracked:  output/euler_venn_ncsd.png
-    Untracked:  output/natal_coat_sex_dichrom_pagel.png
-    Untracked:  output/pagel_for_illustrator.pdf
-    Untracked:  output/pagel_for_illustrator.psd
-    Untracked:  output/pdf_pagel_ncsd_plot.pdf
-    Untracked:  output/recolored_upset_plot.png
-    Untracked:  output/size_dimorph_color_traits.png
-    Untracked:  output/upset_family_percentages.png
-    Untracked:  output/upset_tina_colors.pdf
-    Untracked:  output/upset_tina_colors.png
-    Untracked:  output/venn_size_natal_dichrom.png
+    Untracked:  analysis/Data_Formatting_RevBayes.Rmd
+    Untracked:  data/NC_output_spaces.nex
+    Untracked:  data/SD_output_spaces.nex
 
 Unstaged changes:
-    Deleted:    VennDiagram.2024-02-28_11-47-25.log
-    Deleted:    VennDiagram.2024-02-29_15-50-13.log
-    Deleted:    VennDiagram.2024-02-29_15-55-51.log
-    Deleted:    analysis/MCMCglmm_on_integrated_traits.Rmd
-    Deleted:    analysis/updated_names_analysis.Rmd
-    Modified:   data/Raw_Data/data_to_use.csv
+    Modified:   analysis/index.Rmd
 
 </code></pre>
 <p>
@@ -470,6 +448,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/alls-e-t/LocksofLineage/768856fc5689baedb3ab2fa747c2fcc5a07dbebc/docs/index.html" target="_blank">768856f</a>
+</td>
+<td>
+Sarah E Taylor
+</td>
+<td>
+2024-03-17
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1157,6 +1152,12 @@ dimorphism in primates.</p>
 <div id="analysis-for-the-2024-aaba-poster" class="section level1">
 <h1>Analysis for the 2024 AABA Poster</h1>
 <p>Here’s a <a href="AABA_analysis.html">link</a> to my analysis!</p>
+</div>
+<div id="revbayes-analysis" class="section level1">
+<h1>RevBayes Analysis</h1>
+<p>Here is a <a href="Data_Formatting_RevBayes.Rmd">link</a> to the
+basic pipeline to format the data for RevBayes and instructions to run
+it in the terminal!</p>
 </div>
 
 

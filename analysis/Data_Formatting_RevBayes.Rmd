@@ -1,0 +1,90 @@
+---
+title: "Data Formatting for RevBayes and Work Flow"
+author: "Sarah E Taylor"
+date: "2024-06-19"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+
+## Set working directory
+setwd("/Users/taysarah/Desktop/GitHub/LOL_RevBayes/bin/RB_Practice_Old_Data")
+
+## Load Libraries and Data
+```{r Load-Libraries}
+# Load libraries
+library(ape)
+library(phangorn)
+library(tidyverse)
+```
+
+```{r Read-in-data}
+# Read the CSV file
+data <- read.csv("data/data_pruned_ordered.csv", row.names = 1)
+```
+
+## Format data
+```{r Extract-traits-of-interest}
+#Extract natal coat trait and species names
+NatalCoatRevBayes <- data[, "natal_coat", drop = FALSE]
+
+#Extract sexual dichromatism trait and species names
+SexDichromRevBayes <- data[, "sexual_dichromatism", drop = FALSE]
+
+```
+
+```{r Convert-data-frame-to-matrix}
+#Convert the data frame into a matrix
+NCRB_Matrix <- as.matrix(NatalCoatRevBayes)
+
+SDRB_Matrix <- as.matrix(SexDichromRevBayes)
+```
+
+## Save to NEXUS file format
+```{r Function-to-save-matrix-to-NEXUS-file}
+# Function to create the nexus file
+write_custom_nexus_spaces <- function(data_matrix, file) {
+  ntax <- nrow(data_matrix)
+  nchar <- ncol(data_matrix)
+
+  # Calculate the maximum length of species names for consistent formatting
+  max_name_length <- max(nchar(rownames(data_matrix)))
+
+  con <- file(file, "w")
+  writeLines("#NEXUS\n", con)
+  writeLines("Begin data;", con)
+  writeLines(paste("Dimensions ntax=", ntax, " nchar=", nchar, ";", sep=""), con)
+  writeLines('Format datatype=Standard symbols="01" missing=? gap=-;', con)
+  writeLines("Matrix", con)
+
+  for (i in 1:ntax) {
+    species_name <- rownames(data_matrix)[i]
+    species_name_padded <- sprintf("%-*s", max_name_length + 2, species_name)  # Ensure 2 spaces after the name
+    state <- paste(data_matrix[i, ], collapse="")
+    line <- paste0(species_name_padded, state)
+    writeLines(line, con)
+  }
+
+  writeLines(";", con)
+  writeLines("End;", con)
+  close(con)
+}
+```
+
+```{r Save-NEXUS-files}
+write_custom_nexus_spaces(NCRB_Matrix, "data/NC_output_spaces.nex")
+write_custom_nexus_spaces(SDRB_Matrix, "data/SD_output_spaces.nex")
+```
+
+## Run RevBayes
+```{bash Pipeline-to-run-RevBayes}
+#Running RevBayes
+#cd ~/Desktop/GitHub/LOL_RevBayes/bin/RB_Practice_Old_Data/
+
+#Open RevBayes software
+#~/Desktop/GitHub/revbayes/bin/rb
+
+#source("scripts/file.Rev")
+```
+

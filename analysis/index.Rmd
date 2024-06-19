@@ -18,3 +18,6 @@ Hair patterning serves as a mechanism for complex visual and social signaling in
 # Analysis for the 2024 AABA Poster
 Here's a [link](AABA_analysis.html) to my analysis!
 
+# RevBayes Analysis
+Here is a [link](Data_Formatting_RevBayes.Rmd) to the basic pipeline to format the data for RevBayes and instructions to run it in the terminal! 
+
