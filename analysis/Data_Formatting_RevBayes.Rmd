@@ -88,3 +88,10 @@ write_custom_nexus_spaces(SDRB_Matrix, "data/RevBayes_Data/SD_output_spaces.nex"
 #source("code/file.Rev")
 ```
 
+## Different methods used, and associated code:
+
+Inferring ancestral states and rates of morphological evolution under an equal rates Markov (ERM) model
+- mcmc_ase_ERM.Rev
+- plot_anc_states.R
+[Ancestral State Reconstruction using Equal Rates](output/RevBayes/Primates_NC_ASE_ERM_MAP.pdf)
+
