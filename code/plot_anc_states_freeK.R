@@ -10,12 +10,12 @@
 library(RevGadgets)
 library(ggplot2)
 
-CHARACTER <- "SD"
+CHARACTER <- "NC_Con"
 NUM_STATES <- 2
 
 STATE_LABELS <- c("0" = "no", "1" = "yes")
 
-tree_file <- paste0("output/Sex_Dichrom_output/",CHARACTER,"_ase_freeK.tree")
+tree_file <- paste0("output/RevBayes/log/",CHARACTER,"_ase_freeK.tree")
 
 # process the ancestral states
 ase <- processAncStates(tree_file,
@@ -32,7 +32,7 @@ p <- plotAncStatesMAP(t = ase,
      # modify legend location using ggplot2
      theme(legend.position = c(0.92,0.81))
 
-ggsave(paste0("output/Sex_Dichrom_output/Primates_",CHARACTER,"_ASE_FreeK_MAP.pdf"), p, width = 11, height = 9)
+ggsave(paste0("output/RevBayes/plots/Primates_",CHARACTER,"_ASE_FreeK_MAP.pdf"), p, width = 11, height = 9)
 
 
 
@@ -43,4 +43,4 @@ p <- plotAncStatesPie(t = ase,
      # modify legend location using ggplot2
      theme(legend.position = c(0.92,0.81))
 
-ggsave(paste0("output/Sex_Dichrom_output/Primates_",CHARACTER,"_ASE_FreeK_Pie.pdf"), p, width = 11, height = 9)
+ggsave(paste0("output/RevBayes/plots/Primates_",CHARACTER,"_ASE_FreeK_Pie.pdf"), p, width = 11, height = 9)

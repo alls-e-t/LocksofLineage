@@ -10,19 +10,19 @@
 library(RevGadgets)
 library(ggplot2)
 
-CHARACTER  <- "SD"
+CHARACTER  <- "NC_Con"
 NUM_STATES <- 2
 NUM_RATES  <- NUM_STATES * (NUM_STATES-1)
 
 # specify the input file
-file <- paste0("output/Sex_Dichrom_output/",CHARACTER,"_freeK.log")
+file <- paste0("output/RevBayes/log/",CHARACTER,"_freeK.log")
 
 # read the trace and discard burnin
-trace_quant <- readTrace(path = file, burnin = 0.25)
+trace_quant <- readTrace(path = file, delim = "\t", skip = 1, burnin = 0.25)
 
 # produce the plot object, showing the posterior distributions of the rates.
 p <- plotTrace(trace = trace_quant, vars = paste0("rate[",1:NUM_RATES,"]"))[[1]] +
      # modify legend location using ggplot2
      theme(legend.position = c(0.88,0.85))
 
-ggsave(paste0("output/Sex_Dichrom_output/Primates_",CHARACTER,"_rates_freeK.pdf"), p, width = 5, height = 5)
+ggsave(paste0("output/RevBayes/plots/Primates_",CHARACTER,"_rates_freeK.pdf"), p, width = 5, height = 5)

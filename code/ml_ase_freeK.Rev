@@ -13,11 +13,11 @@
 # Reading in the Data #
 #######################
 
-CHARACTER = "SD"
+CHARACTER = "NC_Con"
 NUM_STATES = 2
 
 # Import the morphological character matrix #
-morpho <- readDiscreteCharacterData("data/SD_output_spaces.nex")
+morpho <- readDiscreteCharacterData("data/RevBayes_Data/"+CHARACTER+"_output.nex")
 
 # Create some vector for the moves and monitors of this analysis
 moves    = VectorMoves()
@@ -30,7 +30,7 @@ monitors = VectorMonitors()
 # Here we use a fixed tree topology of primates
 # Note that the readTrees function always returns a vector of trees,
 # so we simple take the first tree
-phylogeny <- readTrees("data/pruned_tree.nex")[1]
+phylogeny <- readTrees("data/RevBayes_Data/pruned_tree.nex")[1]
 
 
 #########################
@@ -84,16 +84,16 @@ phyMorpho.clamp(morpho)
 mymodel = model(phylogeny)
 
 ### Compute power posterior distributions
-pow_p = powerPosterior(mymodel, moves, monitors, "output/Sex_Dichrom_output/"+CHARACTER+"_freeK.out", cats=63, sampleFreq=10)
+pow_p = powerPosterior(mymodel, moves, monitors, "output/RevBayes/log/"+CHARACTER+"_freeK.out", cats=63, sampleFreq=10)
 pow_p.burnin(generations=2000,tuningInterval=250)
 pow_p.run(generations=1000)
 
 ### Use stepping-stone sampling to calculate marginal likelihoods
-ss = steppingStoneSampler(file="output/Sex_Dichrom_output/"+CHARACTER+"_freeK.out", powerColumnName="power", likelihoodColumnName="likelihood")
+ss = steppingStoneSampler(file="output/RevBayes/log/"+CHARACTER+"_freeK.out", powerColumnName="power", likelihoodColumnName="likelihood")
 ss.marginal()
 
 ### Use path-sampling to calculate marginal likelihoods
-ps = pathSampler(file="output/Sex_Dichrom_output/"+CHARACTER+"_freeK.out", powerColumnName="power", likelihoodColumnName="likelihood")
+ps = pathSampler(file="output/RevBayes/log/"+CHARACTER+"_freeK.out", powerColumnName="power", likelihoodColumnName="likelihood")
 ps.marginal()
 
 # Quit RevBayes #

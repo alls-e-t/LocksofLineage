@@ -10,12 +10,12 @@
 library(RevGadgets)
 library(ggplot2)
 
-CHARACTER_A <- "NC"
+CHARACTER_A <- "NC_Con"
 CHARACTER_B <- "SD"
 
 STATE_LABELS <- c("0" = "no - no", "1" = "yes - no", "2" = "no - yes", "3" = "yes - yes")
 
-tree_file <- paste0("output/",CHARACTER_A,"_",CHARACTER_B,"_ase_corr_RJ.tree")
+tree_file <- paste0("output/RevBayes/log/",CHARACTER_A,"_",CHARACTER_B,"_ase_corr_RJ.tree")
 
 # process the ancestral states
 ase <- processAncStates(tree_file,
@@ -32,7 +32,7 @@ p <- plotAncStatesMAP(t = ase,
      # modify legend location using ggplot2
      theme(legend.position = c(0.92,0.81))
 
-ggsave(paste0("output/Primates_",CHARACTER_A,"_",CHARACTER_B,"_ASE_corr_RJ_MAP.pdf"), p, width = 11, height = 9)
+ggsave(paste0("output/RevBayes/plots/Primates_",CHARACTER_A,"_",CHARACTER_B,"_ASE_corr_RJ_MAP.pdf"), p, width = 11, height = 9)
 
 
 
@@ -43,7 +43,7 @@ p <- plotAncStatesPie(t = ase,
      # modify legend location using ggplot2
      theme(legend.position = c(0.92,0.81))
 
-ggsave(paste0("output/Primates_",CHARACTER_A,"_",CHARACTER_B,"_ASE_corr_RJ_Pie.pdf"), p, width = 11, height = 9)
+ggsave(paste0("output/RevBayes/plots/Primates_",CHARACTER_A,"_",CHARACTER_B,"_ASE_corr_RJ_Pie.pdf"), p, width = 11, height = 9)
 
 
 
@@ -73,7 +73,7 @@ invisible(t.col)
 }
 ## END
 
-character_file = paste0("output/",CHARACTER_A,"_",CHARACTER_B,"_corr_RJ_marginal_character.tree")
+character_file = paste0("output/RevBayes/log/",CHARACTER_A,"_",CHARACTER_B,"_corr_RJ_marginal_character.tree")
 
 sim2 = read.simmap(file=character_file, format="phylip")
 
@@ -101,7 +101,7 @@ cols = cols[col_idx]
 names(cols) <- col_names
 colors <- cols
 
-pdf( paste0("output/Primates_",CHARACTER_A,"_",CHARACTER_B,"_corr_RJ_simmap.pdf" ) )
+pdf( paste0("output/RevBayes/plots/Primates_",CHARACTER_A,"_",CHARACTER_B,"_corr_RJ_simmap.pdf" ) )
 
 plotSimmap(sim2, cols, fsize=0.5, lwd=1, split.vertical=TRUE, ftype="i")
 

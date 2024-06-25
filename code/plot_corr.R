@@ -10,11 +10,11 @@
 library(RevGadgets)
 library(ggplot2)
 
-CHARACTER_A <- "NC"
+CHARACTER_A <- "NC_Con"
 CHARACTER_B <- "SD"
 
 # specify the input file
-file <- paste0("output/",CHARACTER_A,"_",CHARACTER_B,"_corr_RJ.log")
+file <- paste0("output/RevBayes/log/",CHARACTER_A,"_",CHARACTER_B,"_corr_RJ.log")
 
 # read the trace and discard burnin
 trace_qual <- readTrace(path = file, burnin = 0.25)
@@ -31,4 +31,4 @@ p <- plotTrace(trace = trace_qual,
      # modify legend location using ggplot2
      theme(legend.position = c(0.40,0.825))
 
-ggsave(paste0("output/Primates_",CHARACTER_A,"_",CHARACTER_B,"_corr_RJ.pdf"), p, width = 5, height = 5)
+ggsave(paste0("output/RevBayes/plots/Primates_",CHARACTER_A,"_",CHARACTER_B,"_corr_RJ.pdf"), p, width = 5, height = 5)

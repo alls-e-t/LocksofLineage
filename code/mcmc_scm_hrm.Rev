@@ -10,12 +10,12 @@
 # Reading in the Data #
 #######################
 
-CHARACTER = "SD"
+CHARACTER = "NC_Con"
 NUM_STATES = 2
 NUM_HIDDEN_STATES = 2
 
 # Import the morphological character matrix #
-morpho <- readDiscreteCharacterData("data/SD_output_spaces.nex")
+morpho <- readDiscreteCharacterData("data/RevBayes_Data/"+CHARACTER+"_output.nex")
 morpho_exp = morpho.expandCharacters( NUM_HIDDEN_STATES )
 
 # Create some vector for the moves and monitors of this analysis
@@ -29,7 +29,7 @@ monitors = VectorMonitors()
 # Here we use a fixed tree topology of primates
 # Note that the readTrees function always returns a vector of trees,
 # so we simple take the first tree
-phylogeny <- readTrees("data/pruned_tree.nex")[1]
+phylogeny <- readTrees("data/RevBayes_Data/pruned_tree.nex")[1]
 
 
 #########################
@@ -112,20 +112,20 @@ phyMorpho.clamp(morpho_exp)
 mymodel = model(phylogeny)
 # Create a vector of monitors #
 # 1. for the full model #
-monitors.append( mnModel(filename="output/Sex_Dichrom_output/"+CHARACTER+"_hrm.log", printgen=1) )
+monitors.append( mnModel(filename="output/RevBayes/log/"+CHARACTER+"_hrm.log", printgen=1) )
 # 2. and a few select parameters to be printed to the screen #
 monitors.append( mnScreen(printgen=100) )
 # 3. add an ancestral state monitor
 monitors.append( mnJointConditionalAncestralState(tree=phylogeny,
                                                   ctmc=phyMorpho,
-                                                  filename="output/Sex_Dichrom_output/"+CHARACTER+"_hrm.states.txt",
+                                                  filename="output/RevBayes/log/"+CHARACTER+"_hrm.states.txt",
                                                   type="NaturalNumbers",
                                                   printgen=1,
                                                   withTips=true,
                                                   withStartStates=false) )
 # 4. add an stochastic character map monitor
 monitors.append( mnStochasticCharacterMap(ctmc=phyMorpho,
-                                          filename="output/Sex_Dichrom_output/"+CHARACTER+"_hrm_stoch_char_map.log",
+                                          filename="output/RevBayes/log/"+CHARACTER+"_hrm_stoch_char_map.log",
                                           printgen=1,
                                           include_simmap=true) )
 
@@ -139,18 +139,18 @@ mymcmc.run(generations=5000, tuningInterval=200)
 
 
 # Read in the tree trace and construct the ancestral states (ASE) #
-anc_states = readAncestralStateTrace("output/Sex_Dichrom_output/"+CHARACTER+"_hrm.states.txt")
-anc_tree = ancestralStateTree(tree=phylogeny, ancestral_state_trace_vector=anc_states, include_start_states=false, file="output/Sex_Dichrom_output/"+CHARACTER+"_ase_hrm.tree", burnin=0.25, summary_statistic="MAP", site=1, nStates=NUM_STATES*NUM_HIDDEN_STATES)
+anc_states = readAncestralStateTrace("output/RevBayes/log/"+CHARACTER+"_hrm.states.txt")
+anc_tree = ancestralStateTree(tree=phylogeny, ancestral_state_trace_vector=anc_states, include_start_states=false, file="output/RevBayes/log/"+CHARACTER+"_ase_hrm.tree", burnin=0.25, summary_statistic="MAP", site=1, nStates=NUM_STATES*NUM_HIDDEN_STATES)
 
 
 # read in the sampled character histories
-anc_states_stoch_map = readAncestralStateTrace("output/Sex_Dichrom_output/"+CHARACTER+"_hrm_stoch_char_map.log")
+anc_states_stoch_map = readAncestralStateTrace("output/RevBayes/log/"+CHARACTER+"_hrm_stoch_char_map.log")
 
 # make summary tree
 char_map_tree = characterMapTree(tree=phylogeny,
                  ancestral_state_trace_vector=anc_states_stoch_map,
-                 character_file="output/Sex_Dichrom_output/"+CHARACTER+"_hrm_marginal_character.tree",
-                 posterior_file="output/Sex_Dichrom_output/"+CHARACTER+"_hrm_marginal_posterior.tree",
+                 character_file="output/RevBayes/log/"+CHARACTER+"_hrm_marginal_character.tree",
+                 posterior_file="output/RevBayes/log/"+CHARACTER+"_hrm_marginal_posterior.tree",
                  burnin=0.25,
                  num_time_slices=500)
 

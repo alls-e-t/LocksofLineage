@@ -10,14 +10,14 @@
 # Reading in the Data #
 #######################
 
-CHARACTER_A = "NC"
+CHARACTER_A = "NC_Con"
 CHARACTER_B = "SD"
 NUM_STATES_A = 2
 NUM_STATES_B = 2
 
 # Import the morphological character matrix #
-morpho_A <- readDiscreteCharacterData("data/NC_output_spaces.nex")
-morpho_B <- readDiscreteCharacterData("data/SD_output_spaces.nex")
+morpho_A <- readDiscreteCharacterData("data/RevBayes_Data/"+CHARACTER_A+"_output.nex")
+morpho_B <- readDiscreteCharacterData("data/RevBayes_Data/"+CHARACTER_B+"_output_spaces.nex")
 
 morpho = combineCharacter( morpho_A, morpho_B )
 
@@ -32,7 +32,7 @@ monitors = VectorMonitors()
 # Here we use a fixed tree topology of primates
 # Note that the readTrees function always returns a vector of trees,
 # so we simple take the first tree
-phylogeny <- readTrees("data/pruned_tree.nex")[1]
+phylogeny <- readTrees("data/RevBayes_Data/pruned_tree.nex")[1]
 
 
 #########################
@@ -117,20 +117,20 @@ phyMorpho.clamp( morpho )
 mymodel = model(phylogeny)
 # Create a vector of monitors #
 # 1. for the full model #
-monitors.append( mnModel(filename="output/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ.log", printgen=1) )
+monitors.append( mnModel(filename="output/RevBayes/log/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ.log", printgen=1) )
 # 2. and a few select parameters to be printed to the screen #
 monitors.append( mnScreen(printgen=100) )
 # 3. add an ancestral state monitor
 monitors.append( mnJointConditionalAncestralState(tree=phylogeny,
                                                   ctmc=phyMorpho,
-                                                  filename="output/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ.states.txt",
+                                                  filename="output/RevBayes/log/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ.states.txt",
                                                   type="NaturalNumbers",
                                                   printgen=1,
                                                   withTips=true,
                                                   withStartStates=false) )
 # 4. add an stochastic character map monitor
 monitors.append( mnStochasticCharacterMap(ctmc=phyMorpho,
-                                          filename="output/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ_stoch_char_map.log",
+                                          filename="output/RevBayes/log/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ_stoch_char_map.log",
                                           printgen=1,
                                           include_simmap=true) )
 
@@ -143,10 +143,10 @@ mymcmc.run(generations=5000, tuningInterval=200)
 
 
 # Read in the tree trace and construct the ancestral states (ASE) #
-anc_states = readAncestralStateTrace("output/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ.states.txt")
+anc_states = readAncestralStateTrace("output/RevBayes/log/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ.states.txt")
 anc_tree = ancestralStateTree(tree=phylogeny,
                               ancestral_state_trace_vector=anc_states,
-                              include_start_states=false, file="output/"+CHARACTER_A+"_"+CHARACTER_B+"_ase_corr_RJ.tree",
+                              include_start_states=false, file="output/RevBayes/log/"+CHARACTER_A+"_"+CHARACTER_B+"_ase_corr_RJ.tree",
                               burnin=0.25,
                               summary_statistic="MAP",
                               site=1,
@@ -155,16 +155,16 @@ anc_tree = ancestralStateTree(tree=phylogeny,
 
 
 # read in the sampled character histories
-anc_states_stoch_map = readAncestralStateTrace("output/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ_stoch_char_map.log")
+anc_states_stoch_map = readAncestralStateTrace("output/RevBayes/log/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ_stoch_char_map.log")
 
-#summarizeCharacterMaps(anc_states_stoch_map, phylogeny, file="output/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ.events.tsv", burnin=0.25)
+#summarizeCharacterMaps(anc_states_stoch_map, phylogeny, file="output/RevBayes/log/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ.events.tsv", burnin=0.25)
 
 
 # make summary tree
 char_map_tree = characterMapTree(tree=phylogeny,
                  ancestral_state_trace_vector=anc_states_stoch_map,
-                 character_file="output/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ_marginal_character.tree",
-                 posterior_file="output/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ_marginal_posterior.tree",
+                 character_file="output/RevBayes/log/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ_marginal_character.tree",
+                 posterior_file="output/RevBayes/log/"+CHARACTER_A+"_"+CHARACTER_B+"_corr_RJ_marginal_posterior.tree",
                  burnin=0.25,
                  num_time_slices=500)
 

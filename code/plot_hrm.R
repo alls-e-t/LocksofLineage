@@ -10,10 +10,10 @@
 library(RevGadgets)
 library(ggplot2)
 
-CHARACTER  <- "SD"
+CHARACTER  <- "NC_Con"
 
 # specify the input file
-file <- paste0("output/Sex_Dichrom_output/",CHARACTER,"_hrm_RJ.log")
+file <- paste0("output/RevBayes/log/",CHARACTER,"_hrm.log")
 
 # read the trace and discard burnin
 trace_qual <- readTrace(path = file, burnin = 0.25)
@@ -24,4 +24,4 @@ p <- plotTrace(trace = trace_qual,
      # modify legend location using ggplot2
      theme(legend.position = c(0.15,0.85))
 
-ggsave(paste0("output/Sex_Dichrom_output/Primates_",CHARACTER,"_hrm_RJ.pdf"), p, width = 5, height = 5)
+ggsave(paste0("output/RevBayes/plots/Primates_",CHARACTER,"_hrm_RJ.pdf"), p, width = 5, height = 5)

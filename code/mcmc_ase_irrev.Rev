@@ -10,11 +10,11 @@
 # Reading in the Data #
 #######################
 
-CHARACTER = "SD"
+CHARACTER = "NC_Con"
 NUM_STATES = 2
 
 # Import the morphological character matrix #
-morpho <- readDiscreteCharacterData("data/SD_output_spaces.nex")
+morpho <- readDiscreteCharacterData("data/RevBayes_Data/"+CHARACTER+"_output.nex")
 
 
 # Create some vector for the moves and monitors of this analysis
@@ -29,7 +29,7 @@ monitors = VectorMonitors()
 # Here we use a fixed tree topology of mammals on a family level sampling
 # Note that the readTrees function always returns a vector of trees,
 # so we simple take the first tree
-phylogeny <- readTrees("data/pruned_tree.nex")[1]
+phylogeny <- readTrees("data/RevBayes_Data/pruned_tree.nex")[1]
 
 
 #########################
@@ -89,13 +89,13 @@ phyMorpho.clamp(morpho)
 mymodel = model(phylogeny)
 # Create a vector of monitors #
 # 1. for the full model #
-monitors.append( mnModel(filename="output/Sex_Dichrom_output/"+CHARACTER+"_irrev.log", printgen=1) )
+monitors.append( mnModel(filename="output/RevBayes/log/"+CHARACTER+"_irrev.log", printgen=1) )
 # 2. and a few select parameters to be printed to the screen #
 monitors.append( mnScreen(printgen=100) )
 # 3. add an ancestral state monitor
 monitors.append( mnJointConditionalAncestralState(tree=phylogeny,
                                                    ctmc=phyMorpho,
-                                                   filename="output/Sex_Dichrom_output/"+CHARACTER+"_irrev.states.txt",
+                                                   filename="output/RevBayes/log/"+CHARACTER+"_irrev.states.txt",
                                                    type="Standard",
                                                    printgen=1,
                                                    withTips=true,
@@ -109,8 +109,8 @@ mymcmc.run(generations=25000, tuningInterval=200)
 
 
 # Read in the tree trace and construct the ancestral states (ASE) #
-anc_states = readAncestralStateTrace("output/Sex_Dichrom_output/"+CHARACTER+"_irrev.states.txt")
-anc_tree = ancestralStateTree(tree=phylogeny, ancestral_state_trace_vector=anc_states, include_start_states=false, file="output/Sex_Dichrom_output/"+CHARACTER+"_ase_irrev.tree", burnin=0.25, summary_statistic="MAP", site=1)
+anc_states = readAncestralStateTrace("output/RevBayes/log/"+CHARACTER+"_irrev.states.txt")
+anc_tree = ancestralStateTree(tree=phylogeny, ancestral_state_trace_vector=anc_states, include_start_states=false, file="output/RevBayes/log/"+CHARACTER+"_ase_irrev.tree", burnin=0.25, summary_statistic="MAP", site=1)
 
 # Quit RevBayes #
 q()
