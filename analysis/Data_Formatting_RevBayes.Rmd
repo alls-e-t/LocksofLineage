@@ -22,6 +22,7 @@ library(tidyverse)
 ```{r Read-in-data}
 # Read the CSV file
 data <- read.csv("data/RevBayes_Data/data_pruned_ordered.csv", row.names = 1)
+colnames(data)
 ```
 
 ## Format data
@@ -32,6 +33,11 @@ NatalCoatRevBayes <- data[, "natal_coat", drop = FALSE]
 #Extract sexual dichromatism trait and species names
 SexDichromRevBayes <- data[, "sexual_dichromatism", drop = FALSE]
 
+#Extract conspicuous natal coat trait and species names
+NatalCoatConRevBayes <- data[, "natal_coat_conspicuous", drop = FALSE]
+
+#Extract all color traits to get the different stages
+AllColorStatesRevBayes <- data[, "all_color_traits", drop = FALSE]
 ```
 
 ```{r Convert-data-frame-to-matrix}
@@ -39,6 +45,10 @@ SexDichromRevBayes <- data[, "sexual_dichromatism", drop = FALSE]
 NCRB_Matrix <- as.matrix(NatalCoatRevBayes)
 
 SDRB_Matrix <- as.matrix(SexDichromRevBayes)
+
+NCRB_Con_Matrix <- as.matrix(NatalCoatConRevBayes)
+
+ACS_Matrix <- as.matrix(AllColorStatesRevBayes)
 ```
 
 ## Save to NEXUS file format
@@ -75,6 +85,9 @@ write_custom_nexus_spaces <- function(data_matrix, file) {
 ```{r Save-NEXUS-files}
 write_custom_nexus_spaces(NCRB_Matrix, "data/RevBayes_Data/NC_output_spaces.nex")
 write_custom_nexus_spaces(SDRB_Matrix, "data/RevBayes_Data/SD_output_spaces.nex")
+write_custom_nexus_spaces(NCRB_Con_Matrix, "data/RevBayes_Data/NC_Con_output.nex")
+write_custom_nexus_spaces(ACS_Matrix, "data/RevBayes_Data/ACS_output.nex")
+
 ```
 
 ## Run RevBayes
@@ -85,15 +98,82 @@ write_custom_nexus_spaces(SDRB_Matrix, "data/RevBayes_Data/SD_output_spaces.nex"
 #Open RevBayes software
 #~/Desktop/GitHub/LocksofLineage/code/rb
 
+#Edit the variables for the specific traits in that study in the CHARACTER slot
+#The logs from the .Rev scripts should go into the log folder in the output revbayes folder
+#The figures from the .R scripts should go into the plots folder
+
+#Run the code
 #source("code/file.Rev")
+
+#Plot the figure
+#source("code/file.R")
+
+#Check for convergence
+#install.packages("devtools")
+#library(devtools)
+#install_github("lfabreti/convenience")
+#library(convenience)
+
+#check_NC_Con <- checkConvergence( list_files = c("output/RevBayes/log/NC_Con_ERM_run_1.log", "output/RevBayes/log/NC_Con_ERM_run_2.log", "output/RevBayes/log/NC_Con_ase_ERM.tree"))
+
+#check_NC_Con
 ```
 
 ## Different methods used, and associated code:
 
-Inferring ancestral states and rates of morphological evolution under an equal rates Markov (ERM) model
+### Inferring ancestral states and rates of morphological evolution under an equal rates Markov (ERM) model
 
 - mcmc_ase_ERM.Rev
 
 - plot_anc_states.R
 
-![ Ancestral State Reconstruction using Equal Rates](output/RevBayes/Primates_NC_ASE_ERM_MAP.png)
+### Inferring ancestral states and rates of morphological evolution under an unequal rates (Independent rates) Markov model
+
+- mcmc_ase_freeK.Rev 
+
+- ml_ase_ERM.Rev
+
+- ml_ase_freeK.Rev
+
+~After each ml script record the marginal likelihood estimates into ("output/RevBayes/log/ml_estimates.txt")~
+
+- plot_anc_states_freeK.R
+
+- plot_iid_rates.R
+
+~Right now (June 24, 2024 at 3:25 pm MDT) the above plots arent working, probably due to something with RevGadgets where the functions are breaking, I don't know whats wrong~
+
+### Ancestral State Estimation and Irreversibility - Testing for Irreversibility
+
+- mcmc_ase_irrev.Rev
+
+- plot_anc_states_irrev.R
+
+- plot_irrev.R
+
+### Stochastic Character Mapping and Hidden Rates - Mapping Character Transitions and Testing for Rate Variation
+
+- mcmc_scm_hrm.Rev
+
+- plot_anc_states_hrm.R
+
+- plot_hrm.R
+
+### Correlation among Characters
+
+- mcmc_corr_RJ.Rev
+
+- plot_anc_states_corr_RJ.R
+
+- plot_corr.R
+
+## State-dependent diversification with BiSSE and MuSSE - Inference using the binary/multiple state-dependent speciation and extinction (BiSSE/MuSSE) branching process
+
+- mcmc_BiSSE.Rev
+
+- mcmc_MuSSE.Rev
+
+
+
+
+
