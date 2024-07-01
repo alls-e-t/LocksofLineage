@@ -1,0 +1,239 @@
+﻿family,Genus,species,Sexual_dimorphism,Natal_coat,Natal_Coat_Type,Sexual_dichromatism,Sexual_dichromatism_type
+cercopithecidae,allenopithecus,nigroviridis,No,Yes,incon,No,
+cheirogaleidae,allocebus,trichotis,No,No,,No,
+cebidae,alouatta,belzebul,No,No,,Yes,Partial
+cebidae,alouatta,caraya,Yes,Yes,Con to dad,Yes,Complete
+cebidae,alouatta,guariba,Yes,Yes,incon,Yes,Complete
+cebidae,alouatta,palliata,Yes,Yes,incon,No,
+cebidae,alouatta,pigra,No,Yes,incon,No,
+cebidae,alouatta,sara,No,Yes,incon,No,
+cebidae,alouatta,seniculus,Yes,No,no,Yes,Partial
+cebidae,aotus,nigriceps,No,No,,No,
+cebidae,aotus,trivirgatus,No,No,,No,
+loridae,arctocebus,aureus,No,Yes,incon,No,
+loridae,arctocebus,calabarensis,No,Yes,incon,No,
+cebidae,ateles,belzebuth,No,No,no,No,
+cebidae,ateles,chamek,No,No,no,No,
+cebidae,ateles,fusciceps,No,No,no,No,
+cebidae,ateles,geoffroyi,No,Yes,incon,No,Partial
+cebidae,ateles,marginatus,No,Yes,incon,No,
+cebidae,ateles,paniscus,No,Yes,incon,No,
+indridae,avahi,laniger,No,Yes,incon,No,
+cebidae,brachyteles,arachnoides,No,Yes,incon,Yes,Partial
+cebidae,cacajao,calvus,No,No,no,No,
+cebidae,cacajao,melanocephalus,No,No,,No,
+cebidae,callicebus,brunneus,No,No,,No,
+cebidae,callicebus,caligatus,No,No,,No,
+cebidae,callicebus,cinerascens,No,No,,No,
+cebidae,callicebus,cupreus,No,No,,No,
+cebidae,callicebus,donacophilus,No,No,,No,Partial
+cebidae,callicebus,dubius,No,No,,No,
+cebidae,callicebus,hoffmannsi,No,No,,No,
+cebidae,callicebus,moloch,No,No,,No,
+cebidae,callicebus,personatus,No,Yes,incon,Yes,Partial
+cebidae,callicebus,torquatus,No,No,,No,
+callitrichidae,callimico,goeldii,No,No,no,No,
+callitrichidae,mico,argentata,No,No,,No,
+callitrichidae,callithrix,aurita,No,No,,No,
+callitrichidae,callithrix,flaviceps,No,No,,No,
+callitrichidae,callithrix,geoffroyi,No,No,no,No,
+callitrichidae,mico,humeralifer,No,No,,No,
+callitrichidae,callithrix,jacchus,No,No,no,No,
+callitrichidae,callithrix,kuhlii,No,No,,No,
+callitrichidae,mico,mauesi,No,No,,No,
+callitrichidae,mico,nigriceps,No,No,,No,
+callitrichidae,callithrix,penicillata,No,Yes,incon,No,
+cebidae,cebus,albifrons,Yes,No,no,Yes,Partial
+cebidae,sapajus,apella,No,Yes,incon,Yes,Partial
+cebidae,cebus,capucinus,Yes,No,no,Yes,Partial
+cebidae,cebus,olivaceus,No,No,no,No,
+cercopithecidae,cercocebus,agilis,No,Yes,incon,No,
+cercopithecidae,cercocebus,galeritus,Yes,Yes,incon,Yes,Partial
+cercopithecidae,cercocebus,torquatus,No,Yes,incon,No,
+cercopithecidae,cercocebus,atys,No,Yes,incon,No,
+cercopithecidae,cercopithecus,ascanius,No,Yes,incon,No,
+cercopithecidae,cercopithecus,campbelli,No,Yes,incon,No,
+cercopithecidae,cercopithecus,cephus,No,Yes,incon,No,
+cercopithecidae,cercopithecus,diana,No,Yes,incon,No,
+cercopithecidae,cercopithecus,dryas,No,Yes,incon,No,
+cercopithecidae,cercopithecus,erythrogaster,No,Yes,incon,No,
+cercopithecidae,cercopithecus,erythrotis,Yes,Yes,incon,Yes,Partial
+cercopithecidae,cercopithecus,hamlyni,No,Yes,con to both,Yes,Partial
+cercopithecidae,cercopithecus,lhoesti,No,Yes,incon,Yes,Partial
+cercopithecidae,cercopithecus,mitis,Yes,Yes,incon,Yes,Partial
+cercopithecidae,cercopithecus,mona,No,No,,No,
+cercopithecidae,cercopithecus,neglectus,No,Yes,incon,Yes,Partial
+cercopithecidae,cercopithecus,nictitans,Yes,Yes,incon,No,
+cercopithecidae,cercopithecus,petaurista,No,No,,No,
+cercopithecidae,cercopithecus,pogonias,No,No,,Yes,Partial
+cercopithecidae,cercopithecus,preussi,Yes,No,,Yes,Partial
+cercopithecidae,cercopithecus,sclateri,No,No,,No,
+cercopithecidae,cercopithecus,solatus,No,No,,No,
+cheirogaleidae,cheirogaleus,major,No,Yes,maybe,No,
+cheirogaleidae,cheirogaleus,medius,No,No,,No,
+cebidae,chiropotes,albinasus,Yes,No,no,No,
+cebidae,chiropotes,chiropotes,No,Yes,incon,No,
+cebidae,chiropotes,satanas,Yes,Yes,incon,Yes,Partial
+cercopithecidae,chlorocebus,aethiops,No,Yes,con to both,No,Partial
+cercopithecidae,colobus,angolensis,Yes,Yes,con to both,Yes,Partial
+cercopithecidae,colobus,guereza,No,Yes,con to both,Yes,Partial
+cercopithecidae,colobus,polykomos,No,Yes,con to both,No,
+cercopithecidae,colobus,satanas,No,Yes,incon,No,
+cercopithecidae,colobus,vellerosus,No,Yes,con to both,No,
+daubentoniidae,daubentonia,madagascariensis,No,No,,No,
+cercopithecidae,erythrocebus,patas,No,Yes,con to both,Yes,Partial
+lemuridae,eulemur,coronatus,No,No,,Yes,Partial
+lemuridae,eulemur,fulvus,Yes,Yes,con to mom,Yes,Partial
+lemuridae,eulemur,flavifrons,Yes,Yes,con to mom,Yes,Complete
+lemuridae,eulemur,macaco,Yes,Yes,,Yes,Complete
+lemuridae,eulemur,mongoz,No,Yes,Con to dad,Yes,Complete
+lemuridae,eulemur,rubriventer,No,No,no,Yes,Partial
+galagonidae,euoticus,elegantulus,No,No,no,No,
+galagonidae,euoticus,pallidus,No,No,,No,
+galagonidae,sciurocheirus,alleni,No,No,,No,
+galagonidae,galago,gallarum,No,No,,No,
+galagonidae,galago,matschiei,No,No,,No,
+galagonidae,galago,moholi,No,No,,No,
+galagonidae,galago,senegalensis,No,No,,No,
+galagonidae,galagoides,demidoff,No,No,,No,
+galagonidae,galagoides,thomasi,No,No,,No,
+galagonidae,galagoides,zanzibaricus,No,No,,No,
+hominidae,gorilla,beringei,No,Yes,incon,Yes,Partial
+hominidae,gorilla,gorilla,Yes,Yes,incon,Yes,Partial
+lemuridae,hapalemur,aureus,No,No,,No,
+lemuridae,hapalemur,griseus,No,Yes,incon,No,
+lemuridae,prolemur,simus,No,No,,No,
+hylobatidae,hoolock,hoolock,Yes,Yes,Con to dad,Yes,Complete
+hylobatidae,nomascus,concolor,No,Yes,Con to dad,Yes,Complete
+hylobatidae,nomascus,gabriellae,No,Yes,Con to dad,Yes,Complete
+hylobatidae,nomascus,leucogenys,Yes,Yes,Con to dad,Yes,Complete
+hylobatidae,symphalangus ,syndactylus,Yes,No,,No,
+hylobatidae,hylobates,agilis,Yes,Yes,incon,Yes,Partial
+hylobatidae,hylobates,klossii,No,No,,No,
+hylobatidae,hylobates,lar,No,No,,No,
+hylobatidae,hylobates,moloch,No,Yes,incon,No,
+hylobatidae,hylobates,muelleri,No,Yes,con to both,Yes,Partial
+hylobatidae,hylobates,pileatus,Yes,Yes,Con to dad,Yes,Complete
+indridae,indri,indri,No,Yes,con to both,No,
+cebidae,oreonax,flavicauda,Yes,No,,No,
+cebidae,lagothrix,lagotricha,Yes,Yes,incon,No,
+lemuridae,lemur,catta,No,No,,No,
+callitrichidae,leontopithecus,caissara,No,No,,No,
+callitrichidae,leontopithecus,chrysomelas,No,No,,No,
+callitrichidae,leontopithecus,chrysopygus,No,No,,No,
+callitrichidae,leontopithecus,rosalia,No,Yes,incon,No,
+megaladapidae,lepilemur,dorsalis,No,No,,No,
+megaladapidae,lepilemur,edwardsi,No,No,,No,
+megaladapidae,lepilemur,leucopus,No,No,,No,
+megaladapidae,lepilemur,microdon,No,No,,No,
+megaladapidae,lepilemur,mustelinus,No,No,,No,
+megaladapidae,lepilemur,ruficaudatus,No,No,,No,
+megaladapidae,lepilemur,septentrionalis,No,No,,No,
+cercopithecidae,lophocebus,albigena,No,Yes,incon,Yes,Partial
+cercopithecidae,lophocebus,aterrimus,No,No,,No,
+loridae,loris,tardigradus,No,Yes,incon,Yes,Complete
+cercopithecidae,macaca,arctoides,Yes,Yes,con to both,Yes,Partial
+cercopithecidae,macaca,assamensis,Yes,Yes,incon,No,
+cercopithecidae,macaca,cyclopis,No,Yes,incon,Yes,Partial
+cercopithecidae,macaca,fascicularis,Yes,Yes,incon,Yes,Partial
+cercopithecidae,macaca,fuscata,No,Yes,incon,Yes,Partial
+cercopithecidae,macaca,hecki,Yes,Yes,incon,Yes,Partial
+cercopithecidae,macaca,maura,No,Yes,incon,Yes,Partial
+cercopithecidae,macaca,mulatta,Yes,Yes,incon,Yes,Partial
+cercopithecidae,macaca,nemestrina,Yes,Yes,incon,No,
+cercopithecidae,macaca,nigra,No,Yes,incon,Yes,Partial
+cercopithecidae,macaca,nigrescens,No,Yes,incon,No,
+cercopithecidae,macaca,ochreata,No,Yes,incon,No,
+cercopithecidae,macaca,radiata,No,Yes,incon,Yes,Partial
+cercopithecidae,macaca,silenus,No,Yes,incon,No,
+cercopithecidae,macaca,sinica,No,Yes,incon,No,
+cercopithecidae,macaca,sylvanus,Yes,Yes,maybe,No,
+cercopithecidae,macaca,thibetana,Yes,Yes,incon,Yes,Partial
+cercopithecidae,macaca,tonkeana,No,Yes,incon,Yes,Partial
+cercopithecidae,mandrillus,leucophaeus,Yes,Yes,incon,Yes,Partial
+cercopithecidae,mandrillus,sphinx,Yes,Yes,incon,Yes,Partial
+cheirogaleidae,microcebus,murinus,No,No,,No,
+cheirogaleidae,microcebus,myoxinus,No,No,,No,
+cheirogaleidae,microcebus,rufus,No,No,,No,
+cheirogaleidae,mizra,coquereli,No,No,,No,
+cercopithecidae,miopithecus,talapoin,No,Yes,incon,Yes,Partial
+cercopithecidae,simias,concolor,No,Yes,incon,No,
+cercopithecidae,nasalis,larvatus,Yes,Yes,incon,Yes,Partial
+loridae,nycticebus,coucang,No,Yes,incon,No,
+loridae,nycticebus,pygmaeus,No,Yes,incon,No,
+galagonidae,otolemur,crassicaudatus,No,No,,No,
+galagonidae,otolemur,garnettii,No,No,,No,
+hominidae,pan,paniscus,No,No,,No,
+hominidae,pan,troglodytes,Yes,Yes,incon,No,
+cercopithecidae,papio,anubis,Yes,Yes,incon,Yes,Partial
+cercopithecidae,papio,cynocephalus,Yes,Yes,incon,No,
+cercopithecidae,papio,hamadryas,Yes,Yes,incon,Yes,Complete
+cercopithecidae,papio,papio,Yes,Yes,incon,No,
+cercopithecidae,papio,ursinus,Yes,Yes,incon,Yes,Partial
+loridae,perodicticus,potto,No,Yes,incon,No,
+cheirogaleidae,phaner,furcifer,No,No,,No,
+cebidae,pithecia,aequatorialis,No,No,,Yes,Partial
+cebidae,pithecia,albicans,No,Yes,incon,No,
+cebidae,pithecia,irrorata,No,No,,No,
+cebidae,pithecia,monachus,No,Yes,incon,Yes,Partial
+cebidae,pithecia,pithecia,Yes,Yes,Con to dad,Yes,Complete
+pongidae,pongo,abelii,Yes,No,,Yes,Partial
+pongidae,pongo,pygmaeus,Yes,Yes,maybe,No,
+cercopithecidae,presbytis,comata,No,Yes,incon,No,
+cercopithecidae,presbytis,femoralis,No,Yes,maybe,No,
+cercopithecidae,presbytis,frontata,No,Yes,con to both,No,
+cercopithecidae,presbytis,hosei,No,Yes,con to both,Yes,Partial
+cercopithecidae,presbytis,melalophos,No,Yes,con to both,No,
+cercopithecidae,presbytis,potenziani,No,Yes,con to both,No,
+cercopithecidae,presbytis,rubicunda,No,Yes,con to both,No,
+cercopithecidae,presbytis,thomasi,No,Yes,con to both,No,
+cercopithecidae,procolobus (piliocolobus),badius,No,Yes,incon,No,
+cercopithecidae,procolobus (piliocolobus),pennantii,No,Yes,maybe,No,
+cercopithecidae,procolobus (piliocolobus),preussi,No,Yes,incon,No,
+cercopithecidae,procolobus (piliocolobus),rufomitratus,No,Yes,incon,No,
+cercopithecidae,procolobus (piliocolobus),verus,No,Yes,incon,No,
+indridae,propithecus,diadema,No,No,no,No,
+indridae,propithecus,tattersalli,No,No,,No,
+indridae,propithecus,verreauxi,No,Yes,incon,No,
+cercopithecidae,pygathrix,cinerea,No,No,,No,
+cercopithecidae,pygathrix,nemaeus,Yes,Yes,incon,Yes,Partial
+cercopithecidae,pygathrix,nigripes,Yes,Yes,incon,Yes,Partial
+cercopithecidae,rhinopithecus,avunculus,Yes,Yes,incon,Yes,Partial
+cercopithecidae,rhinopithecus,bieti,Yes,Yes,incon,Yes,Partial
+cercopithecidae,rhinopithecus,brelichi,Yes,Yes,incon,Yes,Partial
+cercopithecidae,rhinopithecus,roxellana,Yes,Yes,con to both,No,
+callitrichidae,saguinus,bicolor,No,No,no,Yes,Partial
+callitrichidae,leontocebus,fuscicollis,No,No,no,No,
+callitrichidae,saguinus,geoffroyi,No,No,,No,
+callitrichidae,saguinus,imperator,Yes,Yes,incon,Yes,Partial
+callitrichidae,saguinus,inustus,No,No,,No,
+callitrichidae,saguinus,labiatus,No,No,,No,
+callitrichidae,saguinus,leucopus,No,No,,No,
+callitrichidae,saguinus,midas,No,Yes,incon,No,
+callitrichidae,saguinus,mystax,No,No,,No,
+callitrichidae,leontocebus,nigricollis,No,No,no,No,
+callitrichidae,saguinus,oedipus,No,No,no,No,
+callitrichidae,leontocebus,tripartitus,No,No,,No,
+cebidae,saimiri,boliviensis,No,No,,Yes,Partial
+cebidae,saimiri,oerstedii,No,No,,No,
+cebidae,saimiri,sciureus,No,No,,No,
+cebidae,saimiri,ustus,No,No,,Yes,Partial
+cebidae,saimiri,vanzolinii,No,No,,No,
+cercopithecidae,semnopithecus,entellus,Yes,Yes,con to both,No,
+tarsiidae,tarsius,bancanus,No,Yes,incon,No,
+tarsiidae,tarsius,dentatus,No,No,,No,
+tarsiidae,tarsius,pumilus,No,No,,No,
+tarsiidae,tarsius,tarsier,No,No,,No,
+tarsiidae,tarsius,syrichta,No,Yes,incon,No,
+cercopithecidae,theropithecus,gelada,Yes,Yes,incon,Yes,Partial
+cercopithecidae,trachypithecus,johnii,No,Yes,con to both,Yes,Partial
+cercopithecidae,trachypithecus,vetulus,No,Yes,incon,No,
+cercopithecidae,trachypithecus,auratus,No,Yes,con to both,Yes,Partial
+cercopithecidae,trachypithecus,cristatus,No,Yes,con to both,Yes,Partial
+cercopithecidae,trachypithecus,delacouri,No,Yes,incon,Yes,Partial
+cercopithecidae,trachypithecus,francoisi,No,Yes,con to both,Yes,Partial
+cercopithecidae,trachypithecus,geei,No,Yes,con to both,Yes,Partial
+cercopithecidae,trachypithecus,obscurus,No,Yes,con to both,Yes,Partial
+cercopithecidae,trachypithecus,phayrei,Yes,Yes,con to both,Yes,Partial
+cercopithecidae,trachypithecus,pileatus,No,Yes,con to both,Yes,Partial
+lemuridae,varecia,variegata,No,No,,No,
