@@ -1,0 +1,202 @@
+---
+title: "Cluster testing and possible workflow"
+author: "Sarah E Taylor"
+date: "2024-07-02"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+This document will go through how to use the Umich Great Lakes ARC cluster to run the Locks Of Lineage analysis that runs in RevBayes. The RevBayes software is something that must be loaded and worked with in the terminal.
+
+## 1. Determining Potential Bottlenecks
+
+This step goes through the different parts of the mcmc_MuSSE.Rev script to determine which are the slowest and most computationally intensive to determine what would be best to potentially parallelize.
+
+```{bash Set-up-RevBayes}
+#Open RevBayes software in the terminal
+~/Desktop/GitHub/LocksofLineage/code/rb
+
+#Run the script in the revbayes program
+source("code/file.Rev")
+```
+These are the basic steps to run RevBayes in the terminal. Each of the RevBayes scripts, ending in .Rev, must have the correct variables defined depending on which trait is being analyzed. Each script has a line (q()) that quits the RevBayes software after the script has run. 
+
+### # Benchmark data reading
+```{bash Variables-Read-Data-Benchmarks}
+profile("start", "Step 1: Reading_Data")
+#Variables
+NUM_STATES = 5
+DATASET = "ACS"
+
+# Read in the data and the tree
+observed_phylogeny <- readTrees("data/RevBayes_Data/pruned_tree.nex")[1]
+data <- readCharacterData("data/RevBayes_Data/"+DATASET+"_output.nex")
+
+# Get some useful variables from the data
+taxa <- observed_phylogeny.taxa()
+
+profile("stop", "Step 1: Reading_Data")
+
+profile("reportTotalTime", "Step 1: Reading_Data")
+```
+This is the output for report Total Time:  2.795341 seconds
+
+
+### Benchmark setting up rates and moves
+```{bash Rates-Moves-Benchmark}
+profile("start", "Step 2: Rates_Moves")
+
+moves    = VectorMoves()
+monitors = VectorMonitors()
+
+# Constant
+H = 0.587405
+
+# Create the rates and specify a prior on the diversification and turnover rate
+for (i in 1:NUM_STATES) {
+
+     ### Create a loguniform distributed variable for the diversification rate
+    speciation[i] ~ dnLoguniform( 1E-6, 1E2)
+    speciation[i].setValue( ln(367.0/2.0) / observed_phylogeny.rootAge() )
+    moves.append( mvScale(speciation[i],lambda=0.20,tune=true,weight=3.0) )
+
+    ### Create a loguniform distributed variable for the turnover rate
+    extinction[i] ~ dnLoguniform( 1E-6, 1E2)
+    extinction[i].setValue( speciation[i]/10.0 )
+    moves.append( mvScale(extinction[i],lambda=0.20,tune=true,weight=3.0) )
+
+    diversification[i] := speciation[i] - extinction[i]
+
+}
+
+profile("stop", "Step 2: Rates_Moves")
+
+profile("reportTotalTime", "Step 2: Rates_Moves")
+```
+1.378395 seconds
+
+### Benchmarking the rate matrix
+
+```{bash Rate-Matrix-Benchmark}
+profile("start", "Step 3: Rates_Matrix")
+
+# Set up the transition rate matrix for observed states
+
+# Each transition rate between observed states are drawn
+# from an exponential distribution with a mean of 10
+# character state transitions over the tree.
+rate_pr := observed_phylogeny.treeLength() / 10
+for ( i in 1:(NUM_STATES*(NUM_STATES-1)) ) {
+    transition_rates[i] ~ dnExp(rate_pr)
+    moves.append( mvScale(transition_rates[i],lambda=0.20,tune=true,weight=3.0) )
+}
+
+# Create the rate matrix for the combined observed and hidden states
+rate_matrix := fnFreeBinary( transition_rates, rescaled=false)
+
+profile("stop", "Step 3: Rates_Matrix")
+
+profile("reportTotalTime", "Step 3: Rates_Matrix")
+```
+ 0.891422 seconds
+
+### Benchmarking the set up of the root state frequencies
+
+```{bash}
+profile("start", "Step 4: Root_Freqs")
+
+### Create a constant variable with the prior probabilities of each rate category at the root.
+rate_category_prior ~ dnDirichlet( rep(1,NUM_STATES) )
+moves.append( mvDirichletSimplex(rate_category_prior,tune=true,weight=2) )
+
+
+### Create the fix parameter for the age of the root set to the observed age
+root <- observed_phylogeny.rootAge()
+
+
+### rho is the probability of sampling species at the present
+### fix this to 233/367
+rho <- observed_phylogeny.ntips()/367
+
+
+#### construct a variable for the tree drawn from a birth death process
+timetree ~ dnCDBDP( rootAge           = root,
+                    speciationRates   = speciation,
+                    extinctionRates   = extinction,
+                    Q                 = rate_matrix,
+                    pi                = rate_category_prior,
+                    delta             = 1.0,
+                    rho               = rho,
+                    condition         = "time")
+
+### clamp the model with the "observed" tree
+timetree.clamp( observed_phylogeny )
+timetree.clampCharData( data )
+
+profile("stop", "Step 4: Root_Freqs")
+
+profile("reportTotalTime", "Step 4: Root_Freqs")
+```
+
+### Benchmarking the model set up and creation of monitors
+
+```{bash}
+profile("start", "Step 5: Model_Monitor")
+
+### workspace model wrapper ###
+mymodel = model(rate_matrix)
+
+### set up the monitors that will output parameter values to file and screen
+monitors.append( mnModel(filename="output/RevBayes/log/SSE_Models/primates_MuSSE_"+DATASET+".log", printgen=1) )
+monitors.append( mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type="Standard", printgen=1, withTips=true, withStartStates=false, filename="output/RevBayes/log/SSE_Models/primates_MuSSE_"+DATASET+"_anc_states.log") )
+monitors.append( mnStochasticCharacterMap(cdbdp=timetree, filename="output/RevBayes/log/SSE_Models/primates_MuSSE_"+DATASET+"_stoch_map.log", printgen=1) )
+monitors.append( mnScreen(printgen=10, speciation, extinction) )
+
+profile("stop", "Step 5: Model_Monitor")
+
+profile("reportTotalTime", "Step 5: Model_Monitor")
+```
+
+### Benchmarking the model analysis on one generation
+
+```{bash}
+profile("start", "Step 6: MCMC_1gen")
+
+# workspace mcmc
+mymcmc = mcmc(mymodel, monitors, moves, nruns=2, moveschedule="random", combine="mixed")
+
+# run the MCMC
+mymcmc.run(generations=1)
+
+profile("stop", "Step 6: MCMC_1gen")
+
+profile("reportTotalTime", "Step 6: MCMC_1gen")
+```
+
+
+```{r All-color-states-musse-plot}
+library(RevGadgets)
+library(ggplot2)
+
+# read in and process the log file
+musse_file <- paste0("output/RevBayes/log/SSE_Models/primates_MuSSE_ACS.log")
+pdata <- processSSE(musse_file)
+
+# plot the rates
+plot <- plotMuSSE(pdata) +
+        theme(legend.position = c(0.875,0.915),
+              legend.key.size = unit(0.4, 'cm'), #change legend key size
+              legend.title = element_text(size=8), #change legend title font size
+              legend.text = element_text(size=6))
+
+ggsave(paste0("output/RevBayes/plots/BiSSE_div_rates_activity_period.png"),plot, width=5, height=5)
+```
+
+```{r}
+
+
+```
+

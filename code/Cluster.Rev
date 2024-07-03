@@ -1,0 +1,193 @@
+################################################################################
+#
+# RevBayes Analysis: Bayesian inference of diversification rates under a
+#                    character-dependent birth-death model.
+#                    Here each transition rate between observed states is
+#                    drawn from an independent exponentially distributed
+#                    rate.
+#
+#
+# authors: Sebastian Hoehna, Will Freyman
+#
+################################################################################
+
+#######################
+# Reading in the Data #
+#######################
+
+
+profile("start", "Step 1: Reading_Data")
+#Variables
+NUM_STATES = 5
+DATASET = "ACS"
+
+# Read in the data and the tree
+observed_phylogeny <- readTrees("data/RevBayes_Data/pruned_tree.nex")[1]
+data <- readCharacterData("data/RevBayes_Data/"+DATASET+"_output.nex")
+
+# Get some useful variables from the data
+taxa <- observed_phylogeny.taxa()
+
+profile("stop", "Step 1: Reading_Data")
+
+profile("reportTotalTime", "Step 1: Reading_Data")
+
+#This is the output for report Total Time:  2.795341 seconds
+
+
+### Benchmark setting up rates and moves
+
+profile("start", "Step 2: Rates_Moves")
+
+moves    = VectorMoves()
+monitors = VectorMonitors()
+
+# Constant
+H = 0.587405
+
+# Create the rates and specify a prior on the diversification and turnover rate
+for (i in 1:NUM_STATES) {
+
+     ### Create a loguniform distributed variable for the diversification rate
+    speciation[i] ~ dnLoguniform( 1E-6, 1E2)
+    speciation[i].setValue( ln(367.0/2.0) / observed_phylogeny.rootAge() )
+    moves.append( mvScale(speciation[i],lambda=0.20,tune=true,weight=3.0) )
+
+    ### Create a loguniform distributed variable for the turnover rate
+    extinction[i] ~ dnLoguniform( 1E-6, 1E2)
+    extinction[i].setValue( speciation[i]/10.0 )
+    moves.append( mvScale(extinction[i],lambda=0.20,tune=true,weight=3.0) )
+
+    diversification[i] := speciation[i] - extinction[i]
+
+}
+
+profile("stop", "Step 2: Rates_Moves")
+
+profile("reportTotalTime", "Step 2: Rates_Moves")
+
+#1.378395 seconds
+
+### Benchmarking the rate matrix
+
+
+profile("start", "Step 3: Rates_Matrix")
+
+# Set up the transition rate matrix for observed states
+
+# Each transition rate between observed states are drawn
+# from an exponential distribution with a mean of 10
+# character state transitions over the tree.
+rate_pr := observed_phylogeny.treeLength() / 10
+for ( i in 1:(NUM_STATES*(NUM_STATES-1)) ) {
+    transition_rates[i] ~ dnExp(rate_pr)
+    moves.append( mvScale(transition_rates[i],lambda=0.20,tune=true,weight=3.0) )
+}
+
+# Create the rate matrix for the combined observed and hidden states
+rate_matrix := fnFreeK( transition_rates, rescaled=false)
+
+profile("stop", "Step 3: Rates_Matrix")
+
+profile("reportTotalTime", "Step 3: Rates_Matrix")
+
+## 0.891422 seconds
+
+### Benchmarking the set up of the root state frequencies
+
+
+profile("start", "Step 4: Root_Freqs")
+
+### Create a constant variable with the prior probabilities of each rate category at the root.
+rate_category_prior ~ dnDirichlet( rep(1,NUM_STATES) )
+moves.append( mvDirichletSimplex(rate_category_prior,tune=true,weight=2) )
+
+
+### Create the fix parameter for the age of the root set to the observed age
+root <- observed_phylogeny.rootAge()
+
+
+### rho is the probability of sampling species at the present
+### fix this to 233/367
+rho <- observed_phylogeny.ntips()/367
+
+
+#### construct a variable for the tree drawn from a birth death process
+timetree ~ dnCDBDP( rootAge           = root,
+                    speciationRates   = speciation,
+                    extinctionRates   = extinction,
+                    Q                 = rate_matrix,
+                    pi                = rate_category_prior,
+                    delta             = 1.0,
+                    rho               = rho,
+                    condition         = "time")
+
+### clamp the model with the "observed" tree
+timetree.clamp( observed_phylogeny )
+timetree.clampCharData( data )
+
+profile("stop", "Step 4: Root_Freqs")
+
+profile("reportTotalTime", "Step 4: Root_Freqs")
+
+
+### Benchmarking the model set up and creation of monitors
+
+
+profile("start", "Step 5: Model_Monitor")
+
+### workspace model wrapper ###
+mymodel = model(rate_matrix)
+
+### set up the monitors that will output parameter values to file and screen
+monitors.append( mnModel(filename="output/RevBayes/log/SSE_Models/primates_MuSSE_"+DATASET+".log", printgen=1) )
+monitors.append( mnJointConditionalAncestralState(tree=timetree, cdbdp=timetree, type="Standard", printgen=1, withTips=true, withStartStates=false, filename="output/RevBayes/log/SSE_Models/primates_MuSSE_"+DATASET+"_anc_states.log") )
+monitors.append( mnStochasticCharacterMap(cdbdp=timetree, filename="output/RevBayes/log/SSE_Models/primates_MuSSE_"+DATASET+"_stoch_map.log", printgen=1) )
+monitors.append( mnScreen(printgen=10, speciation, extinction) )
+
+profile("stop", "Step 5: Model_Monitor")
+
+profile("reportTotalTime", "Step 5: Model_Monitor")
+
+
+### Benchmarking the model analysis on one generation
+
+
+profile("start", "Step 6: MCMC_50gen")
+
+# workspace mcmc
+mymcmc = mcmc(mymodel, monitors, moves, nruns=2, moveschedule="random", combine="mixed")
+
+# run the MCMC
+mymcmc.run(generations=50)
+
+profile("stop", "Step 6: MCMC_50gen")
+
+profile("reportTotalTime", "Step 6: MCMC_50gen")
+# 1 gen is 12.74087 seconds
+# 10 gens is 80.38478, 161.5479 seconds
+# 100 gens is 353.7691 seconds
+
+profile("start", "Step 7: Ancestral_States")
+anc_states = readAncestralStateTrace("output/RevBayes/log/SSE_Models/primates_MuSSE_"+DATASET+"_anc_states.log")
+anc_tree = ancestralStateTree(tree=observed_phylogeny,
+                              ancestral_state_trace_vector=anc_states,
+                              include_start_states=false,
+                              file="output/RevBayes/log/SSE_Models/primates_MuSSE_"+DATASET+"_anc_states_results.tree",
+                              burnin=0.1,
+                              summary_statistic="MAP",
+                              site=1)
+
+
+anc_state_trace = readAncestralStateTrace("output/RevBayes/log/SSE_Models/primates_MuSSE_"+DATASET+"_stoch_map.log")
+characterMapTree(observed_phylogeny,
+                 anc_state_trace,
+                 character_file="output/RevBayes/log/SSE_Models/primates_MuSSE_"+DATASET+"_stoch_map_character.tree",
+                 posterior_file="output/RevBayes/log/SSE_Models/primates_MuSSE_"+DATASET+"_stoch_map_posterior.tree",
+                 burnin=0.1,
+                 reconstruction="marginal")
+
+profile("stop", "Step 7: Ancestral_States")
+
+profile("reportTotalTime", "Step 7: Ancestral_States")
+

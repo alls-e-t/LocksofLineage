@@ -1,9 +1,99 @@
-source("code/mcmc_ase_ERM.Rev")
-source("code/mcmc_ase_freeK.Rev")
-source("code/ml_ase_ERM.Rev")
-source("code/ml_ase_freeK.Rev")
-source("code/plot_anc_states_freeK.R")
-source("code/plot_anc_states.R")
-source("code/ml_ase_irrev.Rev")
-source("code/mcmc_scm_hrm.Rev")
-source("code/mcmc_corr_RJ.Rev")
+profile("start", "Step 3: Rates_Matrix")
+# Set up the transition rate matrix for observed states
+# Each transition rate between observed states are drawn
+# from an exponential distribution with a mean of 10
+# character state transitions over the tree.
+rate_pr := observed_phylogeny.treeLength() / 10
+for ( i in 1:(NUM_STATES*(NUM_STATES-1)) ) {
+    transition_rates[i] ~ dnExp(rate_pr)
+    moves.append( mvScale(transition_rates[i],lambda=0.20,tune=true,weight=3.0) )
+}
+# Create the rate matrix for the combined observed and hidden states
+rate_matrix := fnFreeBinary( transition_rates, rescaled=false)
+profile("stop", "Step 3: Rates_Matrix")
+profile("reportTotalTime", "Step 3: Rates_Matrix")
+profile("start", "Step 4: Root_Freqs")
+### Create a constant variable with the prior probabilities of each rate category at the root.
+rate_category_prior ~ dnDirichlet( rep(1,NUM_STATES) )
+moves.append( mvDirichletSimplex(rate_category_prior,tune=true,weight=2) )
+### Create the fix parameter for the age of the root set to the observed age
+root <- observed_phylogeny.rootAge()
+### rho is the probability of sampling species at the present
+### fix this to 233/367
+rho <- observed_phylogeny.ntips()/367
+#### construct a variable for the tree drawn from a birth death process
+timetree ~ dnCDBDP( rootAge           = root,
+                    speciationRates   = speciation,
+                    extinctionRates   = extinction,
+                    Q                 = rate_matrix,
+                    pi                = rate_category_prior,
+                    delta             = 1.0,
+                    rho               = rho,
+                    condition         = "time")
+### clamp the model with the "observed" tree
+timetree.clamp( observed_phyloge
+profile("start", "Step 4: Root_Freqs")
+### Create a constant variable with the prior probabilities of each rate category at the root.
+rate_category_prior ~ dnDirichlet( rep(1,NUM_STATES) )
+moves.append( mvDirichletSimplex(rate_category_prior,tune=true,weight=2) )
+### Create the fix parameter for the age of the root set to the observed age
+root <- observed_phylogeny.rootAge()
+### rho is the probability of sampling species at the present
+### fix this to 233/367
+rho <- observed_phylogeny.ntips()/367
+#### construct a variable for the tree drawn from a birth death process
+timetree ~ dnCDBDP( rootAge           = root,
+                    speciationRates   = speciation,
+                    extinctionRates   = extinction,
+                    Q                 = rate_matrix,
+                    pi                = rate_category_prior,
+                    delta             = 1.0,
+                    rho               = rho,
+                    condition         = "time")
+### clamp the model with the "observed" tree
+source("code/Cluster.Rev")
+dnCDBDP
+observed_phylogeny
+observed_phylogeny.rootAge()
+speciation
+extinction
+rate_matrix
+rate_category_prior
+rho
+condition
+source("code/Cluster.Rev")
+transition_rates
+source("code/Cluster.Rev")
+R
+source("code/Cluster.Rev")
+anc_states
+source("code/Cluster.Rev")
+anc_states[1]
+anc_states[0]
+print("Length of anc_states vector: " + anc_states.size())
+print("First element in anc_states: " + anc_states[1])
+print("First element in anc_states: " anc_states[1])
+print("Length of anc_state_trace vector: " + anc_state_trace.size())
+anc_states[471]
+anc_states = readAncestralStateTrace("output/RevBayes/log/SSE_Models/primates_MuSSE_"+DATASET+"_anc_states.log")
+anc_tree = ancestralStateTree(tree=observed_phylogeny,
+                              ancestral_state_trace_vector=anc_states,
+                              include_start_states=false,
+                              file="output/RevBayes/log/SSE_Models/primates_MuSSE_"+DATASET+"_anc_states_results.tree",
+                              burnin=0.1,
+                              summary_statistic="MAP",
+                              site=1)
+source("code/Cluster.Rev")
+print("First 5 elements in anc_states:")
+for i in 1:5 {
+    print("Element " + i + ": " + anc_states[i])
+print("First 5 elements in anc_states:")
+for i in 1:5 {
+    print("Element " + i + ": ")
+    print(anc_states[i])
+}
+    print(anc_states[0])
+NC_anc_states = readAncestralStateTrace("output/RevBayes/log/NC_Con_hrm.log")
+    print(NC_anc_states[0])
+q()
+source("code/Cluster.Rev")

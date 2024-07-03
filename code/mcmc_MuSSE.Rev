@@ -78,7 +78,7 @@ for ( i in 1:(NUM_STATES*(NUM_STATES-1)) ) {
 ######################################################################
 # Create the rate matrix for the combined observed and hidden states #
 ######################################################################
-rate_matrix := fnFreeBinary( transition_rates, rescaled=false)
+rate_matrix := fnFreeK( transition_rates, rescaled=false)
 
 
 #####################################

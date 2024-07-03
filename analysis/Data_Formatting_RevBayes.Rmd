@@ -91,7 +91,8 @@ write_custom_nexus_spaces(ACS_Matrix, "data/RevBayes_Data/ACS_output.nex")
 ```
 
 ## Run RevBayes
-```{bash Pipeline-to-run-RevBayes}
+
+```{bash Pipeline-to-run-RevBayes, eval=FALSE}
 #Running RevBayes
 #cd ~/Desktop/GitHub/LocksofLineage
 
@@ -112,9 +113,9 @@ write_custom_nexus_spaces(ACS_Matrix, "data/RevBayes_Data/ACS_output.nex")
 #install.packages("devtools")
 #library(devtools)
 #install_github("lfabreti/convenience")
-#library(convenience)
+library(convenience)
 
-#check_NC_Con <- checkConvergence( list_files = c("output/RevBayes/log/NC_Con_ERM_run_1.log", "output/RevBayes/log/NC_Con_ERM_run_2.log", "output/RevBayes/log/NC_Con_ase_ERM.tree"))
+check_MuSSE_ACS <- checkConvergence( list_files = c("output/RevBayes/log/SSE_Models/Primates_MuSSE_ACS_run_1.log", "output/RevBayes/log/SSE_Models/Primates_MuSSE_ACS_run_2.log", "output/RevBayes/log/SSE_Models/NC_Con_ase_ERM.tree"))
 
 #check_NC_Con
 ```

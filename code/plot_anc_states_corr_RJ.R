@@ -35,17 +35,24 @@ p <- plotAncStatesMAP(t = ase,
 ggsave(paste0("output/RevBayes/plots/Primates_",CHARACTER_A,"_",CHARACTER_B,"_ASE_corr_RJ_MAP.pdf"), p, width = 11, height = 9)
 
 
-
-
 p <- plotAncStatesPie(t = ase,
-                      tree_layout = "rect",
-                      tip_labels_size = 1) +
-     # modify legend location using ggplot2
-     theme(legend.position = c(0.92,0.81))
+tree_layout = "fan",
+tip_labels_size = 1) +
+#modify legend location using ggplot2
+theme(legend.position = c(0.92,0.81))
 
+#ggsave(paste0("output/RevBayes/plots/Primates_",CHARACTER_A,"_",CHARACTER_B,"_ASE_corr_RJ_Pie.pdf"), p, width = 11, height = 9)
+
+# p <- plotAncStatesPie(t = ase,
+#                       tip_labels_size = 1,
+#                       # Add nudging parameters
+#                       node_pie_nudge_x = 0.05,  # Adjust horizontally
+#                       node_pie_nudge_y = 0.1,   # Adjust vertically
+#                       tip_pie_nudge_x = 0.05,   # Adjust tip pies horizontally
+#                       tip_pie_nudge_y = 0.1) +
+#   theme(legend.position = c(0.92,0.81)) # modify legend location using ggplot2
+#
 ggsave(paste0("output/RevBayes/plots/Primates_",CHARACTER_A,"_",CHARACTER_B,"_ASE_corr_RJ_Pie.pdf"), p, width = 11, height = 9)
-
-
 
 library(plotrix)
 library(phytools)
