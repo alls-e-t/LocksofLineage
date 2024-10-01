@@ -1,0 +1,416 @@
+---
+title: "corHMM_analysis"
+author: "Sarah E Taylor"
+date: "2024-08-13"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+```{r Libraries}
+library(tidyverse)
+library(janitor)
+library(ape)
+library(phytools)
+library(geiger)
+library(corHMM)
+library(tidyverse)
+library(MuMIn)
+library(qgraph)
+```
+
+```{r trait-cleaning}
+superfamily_mapping <- data.frame(
+  family = c("Lorisidae", "Galagonidae", "Daubentoniidae","Indridae", "Lemuridae", "Cheirogaleidae", "Megaladapidae", "Tarsiidae", "Cebidae", "Callitrichidae", "Hylobatidae",     "Pongidae", "Hominidae", "Cercopithecidae"),
+  superfamily = c("Lorisiformes", "Lorisiformes", "Lemuriformes", "Lemuriformes", "Lemuriformes", "Lemuriformes", "Lemuriformes","Tarsiiformes", "Platyrrhini", "Platyrrhini", "Hominoidea", "Hominoidea", "Hominoidea", "Cercopithecoidea"))
+
+df_trait_updated <- read_csv("data/Raw_Data/data_to_use.csv") %>%
+  clean_names() %>%
+  mutate(
+    natal_coat = if_else(natal_coat == "Yes", 1, 0),
+    sexual_dichromatism = if_else(sexual_dichromatism == "Yes", 1, 0)
+  ) %>%
+  mutate(
+    natal_coat_type_simple = case_when(
+      natal_coat_type %in% c("Con to dad", "con to both", "con to mom") ~ "conspicuous",
+      natal_coat_type == "incon" ~ "inconspicuous",
+      TRUE ~ "none"
+    )
+  ) %>%
+  mutate(
+    natal_coat_conspicuous = ifelse(natal_coat_type_simple == "conspicuous", 1, 0),
+    natal_coat_inconspicuous = ifelse(natal_coat_type_simple == "inconspicuous", 1, 0),
+    natal_coat_present = ifelse(natal_coat_type_simple %in% c("conspicuous", "inconspicuous"), 1, 0)
+  ) %>%
+  mutate(
+    maturation_color_change = case_when(
+      natal_coat_type == "Con to dad" ~ "Males only",
+      natal_coat_type == "con to mom" ~ "Females only",
+      natal_coat_type == "con to both" ~ "Both",
+      TRUE ~ "None"
+    ),
+    maturation_color_change_numeric = case_when(
+      maturation_color_change == "None" ~ 0,
+      maturation_color_change == "Males only" ~ 1,
+      maturation_color_change == "Females only" ~ 2,
+      maturation_color_change == "Both" ~ 3
+    ),
+    maturation_color_change_letter = case_when(
+      maturation_color_change == "None" ~ "N",
+      maturation_color_change == "Males only" ~ "M",
+      maturation_color_change == "Females only" ~ "F",
+      maturation_color_change == "Both" ~ "B"
+    )
+  ) %>%
+  mutate(
+    sexual_dichromatism_complete = ifelse(sexual_dichromatism_type == "Complete", 1, 0),
+    sexual_dichromatism_partial = ifelse(sexual_dichromatism_type == "Partial", 1, 0),
+    sexual_dichromatism_present = ifelse(sexual_dichromatism_type %in% c("Complete", "Partial"), 1, 0)
+  ) %>%
+  mutate(
+    all_color_traits = paste(natal_coat_type_simple, 
+                             sexual_dichromatism_type, 
+                             maturation_color_change_letter, 
+                             sep = "_")
+  )%>%
+  select(
+    family, genus, species,
+    natal_coat, natal_coat_type, natal_coat_type_simple, natal_coat_conspicuous,       natal_coat_inconspicuous, natal_coat_present,
+    sexual_dichromatism, sexual_dichromatism_type, sexual_dichromatism_complete, sexual_dichromatism_partial, sexual_dichromatism_present,
+    size_dimorphism, maturation_color_change,
+    maturation_color_change_numeric, maturation_color_change_letter,
+    all_color_traits
+  )
+
+```
+
+```{r Unique-Combinations}
+# Count the number of unique combinations
+num_unique_combinations <- n_distinct(df_trait_updated$all_color_traits)
+
+# Display the number of unique combinations
+print(num_unique_combinations)
+
+# List all unique combinations
+unique_combinations <- unique(df_trait_updated$all_color_traits)
+print(unique_combinations)
+
+# Group by the 'all_color_traits' column and count the number of species in each group
+species_counts <- df_trait_updated %>%
+  group_by(all_color_traits) %>%
+  summarise(count = n())
+
+# Print the result
+print(species_counts)
+
+# Add a unique numerical identifier for each combination
+df_trait_updated$trait_combination <- as.factor(df_trait_updated$all_color_traits)
+df_trait_updated$trait_id <- as.numeric(df_trait_updated$trait_combination)
+
+# Define a mapping from numbers to letters
+state_mapping <- c("1" = "A", "2" = "B", "3" = "C", "4" = "D", "5" = "E", 
+                   "6" = "F", "7" = "G", "8" = "H", "9" = "I", "10" = "J", "11" = "K")
+
+# Replace numeric states with corresponding letters
+df_trait_updated$trait_id_letter <- state_mapping[as.character(df_trait_updated$trait_id)]
+
+# Print the updated data frame
+print(df_trait_updated$trait_id_letter)
+
+
+
+# Create the legend table
+legend_table <- df_trait_updated %>%
+  select(trait_id, all_color_traits, trait_id_letter) %>%
+  distinct() %>%
+  arrange(trait_id)
+
+# View the legend table
+print(legend_table)
+```
+
+
+```{r import-tree}
+#read in mammal tree
+mammaltree <- read.tree("data/Raw_Data/MamPhy_BDvr_Completed_v2_tree0000.tre")
+summary(mammaltree)
+```
+
+```{r format-data-to-match-tree}
+# Format data to match tree
+Updated_traits_combined <- df_trait_updated %>%
+  unite("species", genus, species, sep = "_") %>%
+  mutate(species = str_to_title(species)) %>%
+  mutate(family = str_to_title(family)) %>%
+  filter(species %in% mammaltree$tip.label) 
+
+# Format tree to match data
+updated_pruned.tree <- drop.tip(mammaltree, setdiff(mammaltree$tip.label, Updated_traits_combined$species))
+
+data_pruned_updated_ordered <- Updated_traits_combined %>%
+  arrange(match(species, updated_pruned.tree$tip.label)) %>%
+  left_join(superfamily_mapping, by = "family") #%>%
+  #column_to_rownames("species")
+
+
+```
+
+```{r Save-data-pruned-ordered-and-tree}
+# Optionally save the data frame to a csv
+write.csv(data_pruned_updated_ordered, file = "~/Desktop/GitHub/LocksofLineage/data/data_pruned_updated_ordered.csv", row.names = TRUE)
+
+# Optionally save legend table
+write.csv(legend_table, "data/trait_legend.csv", row.names = FALSE)
+
+# Optionally save the tree into a .nex or .tre file
+write.nexus(updated_pruned.tree, file = "~/Desktop/GitHub/LocksofLineage/data/updated_pruned_tree.nex")
+write.tree(updated_pruned.tree, file = "~/Desktop/GitHub/LocksofLineage/data/updated_pruned_tree.tre")
+```
+
+
+### Model Visualization ###
+
+```{r}
+# input the data and the tree
+phy<-read.tree("data/updated_pruned_tree.tre")
+full_dat<-read_csv("data/data_pruned_updated_ordered.csv")
+
+#Refine data to only include the species and the all combinations trait
+dat <- full_dat %>%
+  select(...1, trait_id)
+
+# Rename the columns
+colnames(dat) <- c("species", "trait_id")
+```
+
+```{r Converting-Data-to-Matrix-For-model-building}
+# Convert dat to a matrix
+dat <- as.matrix(dat)
+
+# Set up rate matrices
+q<-list()
+```
+
+```{r Null-Models}
+## ER
+q$er<-getStateMat4Dat(dat, model="ER")
+q$er$model<-"ER"
+q$er$rate.cat<-1
+q$er$root.p="maddfitz"
+q$er
+
+## SYM
+q$sym<-getStateMat4Dat(dat, model="SYM")
+q$sym$model<-"SYM"
+q$sym$rate.cat<-1
+q$sym$root.p="maddfitz"
+q$sym
+
+## ARD
+q$ard<-getStateMat4Dat(dat, model="ARD")
+q$ard$model<-"ARD"
+q$ard$rate.cat<-1
+q$ard$root.p="maddfitz"
+q$ard
+```
+
+```{r Sequential-Models}
+
+```
+
+
+```{r Plot}
+# Update the layout to accommodate 3 plots in one row
+par(mfrow=c(1,3))
+
+# Specify the plot order for 11 traits (adjust this order as needed)
+plot.order <- c(1,2,3,4,5,6,7,8,9,10,11)
+
+# Loop through the first three models in q
+for(i in 1:3){
+  
+  if(q[[i]]$rate.cat == 1){
+    
+    qgraph(q[[i]]$rate.mat[plot.order, plot.order],
+           title=names(q)[i],
+           #nodes:
+           labels=q[[i]]$legend[plot.order],
+           shape="rectangle",
+           vsize=10,
+           node.height=0.5,
+           #label.cex=3,
+           label.color=c("#24b9e9", "#009E73","gold","#55FF7E", "#f6776f", "#FF00FF", "#00FFFF", "#FFFF00", "#00FF00", "#FF0000"),
+           # edges:
+           fade=F,
+           esize=1.5,
+           edge.labels=T,
+           edge.label.cex=3,
+           asize=10,
+           posCol="black",
+           layout="circular",
+           directed=TRUE)
+  }
+}
+
+# Reset the plot layout to default
+par(mfrow=c(1,1))
+
+```
+
+```{r plot-with-edge-threshold}
+par(mfrow=c(1,3))  # Adjust layout for better spacing
+
+edge_threshold <- 1  # Only show edges with weights greater than this threshold
+
+for(i in 1:3) {
+  if(q[[i]]$rate.cat == 1) {
+    
+    rate.mat <- q[[i]]$rate.mat
+    rate.mat[rate.mat < edge_threshold] <- 0  # Filter out less significant edges
+    
+    qgraph(rate.mat[plot.order, plot.order],
+           title=names(q)[i],
+           labels=q[[i]]$legend[plot.order],
+           shape="rectangle",
+           vsize=10,  # Increase node size
+           esize=2,   # Increase edge size
+           label.color=c("#24b9e9", "#009E73","gold","#55FF7E", "#f6776f", "#FF00FF", "#00FFFF", "#FFFF00", "#00FF00", "#FF0000"),
+           fade=F,
+           edge.labels=T,
+           edge.label.cex=2,  # Adjust edge label size
+           asize=10,
+           posCol="black",
+           layout="spring",  # Try a different layout
+           directed=TRUE)
+  }
+}
+
+par(mfrow=c(1,1))  # Reset to default plotting layout
+
+```
+
+### Running the model ###
+```{r Converting-dat-back-to-df}
+dat <- as.data.frame(dat, stringsAsFactors = FALSE)
+summary(as.factor(dat$trait_id))
+name.check(phy, data.names = dat$species)
+```
+
+```{r formatting-the-models-for-corHMM}
+# append shared argument to models
+q<-lapply(q, FUN=append,
+          list(phy=phy,
+               data=dat,
+               node.states="none",
+               get.tip.states=F,
+               nstarts = 25,
+               n.cores = 2)) 
+
+# remove the 'legend' term to allow do.call to run
+for(i in 1:length(q)){
+  q[[i]]$legend<-NULL
+}
+
+
+# check that no ancestral states or tip states are being inferred and check rootstate settings
+sapply(X=q, `[[`, "root.p")
+sapply(X=q, `[[`, "node.states")
+sapply(X=q, `[[`, "get.tip.states")
+
+```
+
+```{r run-corHMM}
+# function to run corHMM
+run.corHMM<-function(i) {
+  tmp<-do.call(corHMM, args=q[[i]])
+  if(!dir.exists("output/corHMM_output")) dir.create("output/corHMM_output")
+  saveRDS(tmp,file = paste0("corHMM_output/",i,"_",names(q)[i], ".rds"))
+  return(tmp)
+}
+
+#test
+# Run the ER model (i = 1)
+run.corHMM(i = 1)
+# Run the SYM model (i = 2)
+run.corHMM(i = 2)
+# Run the ARD model (i = 3)
+run.corHMM(i = 3)
+
+# loop through all models in parallel
+corHMM_fit<-list()
+corHMM_fit<-mclapply(FUN=run.corHMM,
+           X=1:length(q),
+           mc.cores = 2) 
+
+# assign names
+names(corHMM_fit)<-names(q)
+
+########
+save.image("corHMM_3models.RData")
+saveRDS(corHMM_fit, "corHMM_fit_3models.rds")
+########
+```
+
+```{r summarize-models}
+fit_sum<-data.frame(models=names(corHMM_fit),
+                    loglik=sapply(corHMM_fit[sapply(corHMM_fit, length)>1], `[[`, "loglik")[names(corHMM_fit)],
+                    AIC=sapply(corHMM_fit[sapply(corHMM_fit, length)>1], `[[`, "AIC")[names(corHMM_fit)],
+                    AICc=sapply(corHMM_fit[sapply(corHMM_fit, length)>1], `[[`, "AICc")[names(corHMM_fit)])
+
+# add Akaike weights
+AcW<-Weights(fit_sum$AICc[!is.na(fit_sum$AICc)])
+names(AcW)<-fit_sum$models[!is.na(fit_sum$AICc)]
+fit_sum$AcW<-AcW[as.character(fit_sum$models)]
+
+Aw<-Weights(fit_sum$AIC[!is.na(fit_sum$AIC)])
+names(Aw)<-fit_sum$models[!is.na(fit_sum$AIC)]
+fit_sum$Aw<-Aw[as.character(fit_sum$models)]
+
+
+(fit_sum<-fit_sum[order(fit_sum$AcW, decreasing = T, na.last = T),])
+
+# export summary
+write.csv(fit_sum, "3models_fit_summary.csv", row.names = T)
+
+save.image("corHMM_3models.RData")
+```
+
+```{r}
+# Prepare the combined states and data
+full_dat$combined_NCSD <- paste(full_dat$natal_coat_present, full_dat$sexual_dichromatism_present, sep = "_")
+
+dat_NCSD <- full_dat %>%
+  select(...1, combined_NCSD)
+
+dat_NCSD <- as.data.frame(dat_NCSD)
+colnames(dat_NCSD) <- c("species", "state")
+
+# Ensure that the state labels are correct and consistent
+unique(dat_NCSD$state)  # Should return "0_0", "0_1", "1_0", "1_1"
+
+# Create a custom transition matrix
+q1 <- list()
+q1$custom_model$rate.mat <- matrix(0, nrow = 4, ncol = 4)
+rownames(q1$custom_model$rate.mat) <- c("0_0", "0_1", "1_0", "1_1")
+colnames(q1$custom_model$rate.mat) <- c("0_0", "0_1", "1_0", "1_1")
+
+# Set the transition rates
+q1$custom_model$rate.mat["0_0", "0_1"] <- 0.026
+q1$custom_model$rate.mat["0_1", "0_0"] <- 0.483
+q1$custom_model$rate.mat["1_0", "1_1"] <- 0.319
+q1$custom_model$rate.mat["1_1", "1_0"] <- 0.379
+
+# Set the model parameters
+q1$custom_model$model <- "ARD"
+q1$custom_model$rate.cat <- 1
+q1$custom_model$root.p <- c(1, 0, 0, 0)  # Ensure this matches your root state
+q1$custom_model$nstarts <- 5
+q1$custom_model$n.cores <- 1
+
+# Run the corHMM model
+result_test <- corHMM(phy = phy, data = dat_NCSD, rate.cat = 1, model = "ER")
+result_NCSD <- corHMM(phy = phy, data = dat_NCSD, rate.cat = 1, model = "ARD")
+
+```
+

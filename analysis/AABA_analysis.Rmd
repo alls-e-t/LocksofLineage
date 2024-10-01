@@ -221,8 +221,34 @@ upset(
 )
 ```
 
-```{r Venn Diagram}
+```{r Venn-Diagram}
 VennDiag <- euler(c("A" = 62 + 67, "B" = 13 + 67, "A&B" = 67))
 plot(VennDiag, quantities = TRUE, font = 1, cex = 1, alpha = 0.5, fill=c("#F38C79","#D8EDDB"), labels = c("Natal Coats", "Sexual Dichromatism"))
 ```
+
+```{r More-complex-pagel}
+pagel_dat <- read.csv("data/data_pruned_ordered.csv")
+
+pagel_tree <- readNexus("pruned_tree.nex")
+
+rownames(pagel_dat) <- pagel_dat$X
+
+name.check(pagel_tree, data.names = pagel_dat$X)
+
+natal_coat_con <- setNames(pagel_dat$natal_coat_conspicuous,rownames(pagel_dat))
+natal_coat <- setNames(pagel_dat$natal_coat_present,rownames(pagel_dat))
+sexual_dichromatism_comp <- setNames(pagel_dat$sexual_dichromatism_complete,rownames(pagel_dat)) 
+sexual_dichromatism <- setNames(pagel_dat$sexual_dichromatism_present,rownames(pagel_dat))
+
+pagel_NCSD <- fitPagel(pagel_tree, natal_coat, sexual_dichromatism)
+
+summary(pagel_NCSD)
+
+anova(pagel_NCSD)
+```
+
+
+
+
+
 

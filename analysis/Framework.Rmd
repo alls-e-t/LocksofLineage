@@ -1,0 +1,170 @@
+---
+title: "Framework"
+author: "Sarah E Taylor"
+date: "2024-10-01"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+```{r}
+# Load libraries
+library(tidyverse)
+library(janitor)
+library(ape)
+library(phytools)
+```
+
+
+```{r}
+# Load the CSV file
+data <- read.csv("~/Desktop/GitHub/LocksofLineage/data/Raw_Data/data_to_use.csv")
+```
+
+## Intersect Maturation and Adult Differences
+5 Phenotypes from poster:
+NO NC -> NO SC
+BOTH NC -> NO SC
+F NC -> COM SC
+M NC -> COM SC
+BOTH NC -> COM SC
+
+First step: formalize what the heck we did with both maturing, ie does it mean that both sexes become the same color or different colors
+```{r Both-contrasting}
+# How many cases of both sexes contrasting to natal coat with sexual dichromatism
+BCon_SC <- data[grepl("con to both", data$Natal_Coat_Type, ignore.case = TRUE)  & 
+                                data$Sexual_dichromatism == "Yes", ]
+
+print(nrow(BCon_SC))
+
+# How many cases of both sexes contrasting to natal coat with no sexual dichromatism
+BCon_NOSC <- data[grepl("con to both", data$Natal_Coat_Type, ignore.case = TRUE)  & 
+                                data$Sexual_dichromatism == "No", ]
+print(nrow(BCon_NOSC))
+
+## Sanity check: These values should add up to BCon_SC
+
+# # How many cases of both sexes contrasting to natal coat with partial sexual dichromatism
+BCon_SC_Partial <- data[grepl("con to both", data$Natal_Coat_Type, ignore.case = TRUE)  & 
+                                data$Sexual_dichromatism == "Yes" &
+                                data$Sexual_dichromatism_type == "Partial", ]
+
+print(nrow(BCon_SC_Partial))
+
+# How many cases of both sexes contrasting to natal coat with complete sexual dichromatism
+BCon_SC_Complete <- data[grepl("con to both", data$Natal_Coat_Type, ignore.case = TRUE)  & 
+                                data$Sexual_dichromatism == "Yes" &
+                                data$Sexual_dichromatism_type == "Complete", ]
+
+print(nrow(BCon_SC_Complete))
+```
+Only partially dichromatic species have infants that are a completely different color
+
+Second Step: What color changes are happening in these both changing species?
+
+Its only partially sexually dichromatic, so what parts are different between sexes, do these change with age, what is the overall change?
+```{r Both-color-change}
+# Tally the body sites
+BCon_SC_Where <- table(BCon_SC$Where)
+print(BCon_SC_Where)
+
+# Tally which is darker
+BCon_SC_Darker <- table(BCon_SC$Darker)
+print(BCon_SC_Darker)
+```
+
+Third Step: Repeat this for Conspicuous to dad, or males changing
+```{r Both-contrasting}
+# How many cases of both sexes contrasting to natal coat with sexual dichromatism
+MCon_SC <- data[grepl("Con to dad", data$Natal_Coat_Type, ignore.case = TRUE)  & 
+                                data$Sexual_dichromatism == "Yes", ]
+
+print(nrow(BCon_SC))
+
+# How many cases of both sexes contrasting to natal coat with no sexual dichromatism
+BCon_NOSC <- data[grepl("con to both", data$Natal_Coat_Type, ignore.case = TRUE)  & 
+                                data$Sexual_dichromatism == "No", ]
+print(nrow(BCon_NOSC))
+
+## Sanity check: These values should add up to BCon_SC
+
+# # How many cases of both sexes contrasting to natal coat with partial sexual dichromatism
+BCon_SC_Partial <- data[grepl("con to both", data$Natal_Coat_Type, ignore.case = TRUE)  & 
+                                data$Sexual_dichromatism == "Yes" &
+                                data$Sexual_dichromatism_type == "Partial", ]
+
+print(nrow(BCon_SC_Partial))
+
+# How many cases of both sexes contrasting to natal coat with complete sexual dichromatism
+BCon_SC_Complete <- data[grepl("con to both", data$Natal_Coat_Type, ignore.case = TRUE)  & 
+                                data$Sexual_dichromatism == "Yes" &
+                                data$Sexual_dichromatism_type == "Complete", ]
+
+print(nrow(BCon_SC_Complete))
+```
+
+
+
+## Color Analysis (FOR LATER) Determining all of the different variations between natal coats and adult coats
+
+```{r}
+# Load the CSV file
+data <- read.csv("~/Desktop/GitHub/LocksofLineage/data/Raw_Data/data_to_use.csv")
+
+# Filter rows that contain "lighter" in the NC_description column
+lighter_rows <- data[grepl("lighter", data$NC_description, ignore.case = TRUE)  & 
+                                data$Natal_coat == "Yes", ]
+
+paler_rows <- data[grepl("paler", data$NC_description, ignore.case = TRUE)  & 
+                                data$Natal_coat == "Yes", ]
+
+darker_rows <- data[grepl("darker", data$NC_description, ignore.case = TRUE)  & 
+                                data$Natal_coat == "Yes", ]
+```
+
+In the spreadsheet, lighter is 20, 31, 42, 65, 69, 77, 120, 124, 129, 144, 146, 201
+
+```{r}
+natal_coat_species <- data[data$Natal_coat == "Yes", ]
+
+# Refining to capture specific descriptions
+natal_coat_species$Natal_coat_category <- ifelse(grepl("light|pale|whitish", natal_coat_species$NC_description, ignore.case = TRUE), "Light-colored",
+                             ifelse(grepl("dark|black|brownish", natal_coat_species$NC_description, ignore.case = TRUE), "Dark-colored",
+                             ifelse(grepl("mixed|varied|patches", natal_coat_species$NC_description, ignore.case = TRUE), "Mixed colors",
+                             ifelse(grepl("pattern|striped|spotted", natal_coat_species$NC_description, ignore.case = TRUE), "Patterned",
+                             ifelse(grepl("reddish-brown|brown|faint", natal_coat_species$NC_description, ignore.case = TRUE), "Reddish or Faint",
+                             "Other")))))
+
+# View the refined frequency of the new categories
+natal_coat_category_freq <- table(natal_coat_species$Natal_coat_category)
+
+print(natal_coat_category_freq)
+
+
+# Reorder columns to move 'Natal_coat_category' next to 'NC_description'
+cols <- c(names(natal_coat_species)[1:which(names(natal_coat_species) == "NC_description")], 
+          "Natal_coat_category", 
+          names(natal_coat_species)[(which(names(natal_coat_species) == "NC_description")+1):ncol(natal_coat_species)])
+
+natal_coat_species <- natal_coat_species[, cols]
+
+# Adding specific colors
+natal_coat_species$Natal_coat_color <- ifelse(grepl("white", natal_coat_species$NC_description, ignore.case = TRUE), "white",
+                             ifelse(grepl("black", natal_coat_species$NC_description, ignore.case = TRUE), "black",
+                             ifelse(grepl("brown", natal_coat_species$NC_description, ignore.case = TRUE), "brown",
+                             ifelse(grepl("red", natal_coat_species$NC_description, ignore.case = TRUE), "red",
+                             ifelse(grepl("yellow", natal_coat_species$NC_description, ignore.case = TRUE), "yellow",
+                             ifelse(grepl("gold|golden", natal_coat_species$NC_description, ignore.case = TRUE), "gold",
+                             ifelse(grepl("silver|gray|grey", natal_coat_species$NC_description, ignore.case = TRUE), "silver",
+                             "Other")))))))
+
+# View the refined frequency of the new categories
+natal_coat_color_freq <- table(natal_coat_species$Natal_coat_color)
+
+print(natal_coat_color_freq)
+
+# View the new structure of the dataframe
+head(natal_coat_species)
+```
+

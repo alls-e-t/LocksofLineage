@@ -11,7 +11,10 @@ editor_options:
 
 This document will go through how to use the Umich Great Lakes ARC cluster to run the Locks Of Lineage analysis that runs in RevBayes. The RevBayes software is something that must be loaded and worked with in the terminal.
 
-## 1. Determining Potential Bottlenecks
+## Getting into the Cluster in the terminal
+ssh taysarah@greatlakes.arc-ts.umich.edu
+
+## 2. Determining Potential Bottlenecks
 
 This step goes through the different parts of the mcmc_MuSSE.Rev script to determine which are the slowest and most computationally intensive to determine what would be best to potentially parallelize.
 

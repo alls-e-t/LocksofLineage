@@ -1,59 +1,3 @@
-profile("start", "Step 3: Rates_Matrix")
-# Set up the transition rate matrix for observed states
-# Each transition rate between observed states are drawn
-# from an exponential distribution with a mean of 10
-# character state transitions over the tree.
-rate_pr := observed_phylogeny.treeLength() / 10
-for ( i in 1:(NUM_STATES*(NUM_STATES-1)) ) {
-    transition_rates[i] ~ dnExp(rate_pr)
-    moves.append( mvScale(transition_rates[i],lambda=0.20,tune=true,weight=3.0) )
-}
-# Create the rate matrix for the combined observed and hidden states
-rate_matrix := fnFreeBinary( transition_rates, rescaled=false)
-profile("stop", "Step 3: Rates_Matrix")
-profile("reportTotalTime", "Step 3: Rates_Matrix")
-profile("start", "Step 4: Root_Freqs")
-### Create a constant variable with the prior probabilities of each rate category at the root.
-rate_category_prior ~ dnDirichlet( rep(1,NUM_STATES) )
-moves.append( mvDirichletSimplex(rate_category_prior,tune=true,weight=2) )
-### Create the fix parameter for the age of the root set to the observed age
-root <- observed_phylogeny.rootAge()
-### rho is the probability of sampling species at the present
-### fix this to 233/367
-rho <- observed_phylogeny.ntips()/367
-#### construct a variable for the tree drawn from a birth death process
-timetree ~ dnCDBDP( rootAge           = root,
-                    speciationRates   = speciation,
-                    extinctionRates   = extinction,
-                    Q                 = rate_matrix,
-                    pi                = rate_category_prior,
-                    delta             = 1.0,
-                    rho               = rho,
-                    condition         = "time")
-### clamp the model with the "observed" tree
-timetree.clamp( observed_phyloge
-profile("start", "Step 4: Root_Freqs")
-### Create a constant variable with the prior probabilities of each rate category at the root.
-rate_category_prior ~ dnDirichlet( rep(1,NUM_STATES) )
-moves.append( mvDirichletSimplex(rate_category_prior,tune=true,weight=2) )
-### Create the fix parameter for the age of the root set to the observed age
-root <- observed_phylogeny.rootAge()
-### rho is the probability of sampling species at the present
-### fix this to 233/367
-rho <- observed_phylogeny.ntips()/367
-#### construct a variable for the tree drawn from a birth death process
-timetree ~ dnCDBDP( rootAge           = root,
-                    speciationRates   = speciation,
-                    extinctionRates   = extinction,
-                    Q                 = rate_matrix,
-                    pi                = rate_category_prior,
-                    delta             = 1.0,
-                    rho               = rho,
-                    condition         = "time")
-### clamp the model with the "observed" tree
-source("code/Cluster.Rev")
-dnCDBDP
-observed_phylogeny
 observed_phylogeny.rootAge()
 speciation
 extinction
@@ -97,3 +41,59 @@ NC_anc_states = readAncestralStateTrace("output/RevBayes/log/NC_Con_hrm.log")
     print(NC_anc_states[0])
 q()
 source("code/Cluster.Rev")
+source("code/mcmc_MuSSE.Rev")
+quit
+q()
+NUM_STATES = 5
+DATASET = "ACS"
+observed_phylogeny <- readTrees("data/RevBayes_Data/pruned_tree.nex")[1]
+data <- readCharacterData("data/RevBayes_Data/"+DATASET+"_output.nex")
+taxa <- observed_phylogeny.taxa()
+moves    = VectorMoves()
+monitors = VectorMonitors()
+# Constant
+H = 0.587405
+# Create the rates and specify a prior on the diversification and turnover rate
+for (i in 1:NUM_STATES) {
+     ### Create a loguniform distributed variable for the diversification rate
+    speciation[i] ~ dnLoguniform( 1E-6, 1E2)
+    speciation[i].setValue( ln(367.0/2.0) / observed_phylogeny.rootAge() )
+    moves.append( mvScale(speciation[i],lambda=0.20,tune=true,weight=3.0) )
+    ### Create a loguniform distributed variable for the turnover rate
+    extinction[i] ~ dnLoguniform( 1E-6, 1E2)
+    extinction[i].setValue( speciation[i]/10.0 )
+    moves.append( mvScale(extinction[i],lambda=0.20,tune=true,weight=3.0) )
+    diversification[i] := speciation[i] - extinction[i]
+}
+rate_pr := observed_phylogeny.treeLength() / 10
+for ( i in 1:(NUM_STATES*(NUM_STATES-1)) ) {
+    transition_rates[i] ~ dnExp(rate_pr)
+    moves.append( mvScale(transition_rates[i],lambda=0.20,tune=true,weight=3.0) )
+}
+rate_matrix := fnFreeK( transition_rates, rescaled=false)
+rate_category_prior ~ dnDirichlet( rep(1,NUM_STATES) )
+moves.append( mvDirichletSimplex(rate_category_prior,tune=true,weight=2) )
+### Create the fix parameter for the age of the root set to the observed age
+root <- observed_phylogeny.rootAge()
+### rho is the probability of sampling species at the present
+### fix this to 233/367
+rho <- observed_phylogeny.ntips()/367
+#### construct a variable for the tree drawn from a birth death process
+timetree ~ dnCDBDP( rootAge           = root,
+                    speciationRates   = speciation,
+                    extinctionRates   = extinction,
+                    Q                 = rate_matrix,
+                    pi                = rate_category_prior,
+                    delta             = 1.0,
+                    rho               = rho,
+                    condition         = "time")
+### clamp the model with the "observed" tree
+timetree.clamp( observed_phylogeny )
+timetree.clampCharData( data )
+mymodel = model(rate_matrix)
+mymodel.graph("musse.dot")
+q()
+source("mcmc_MuSSE.Rev")
+source("code/mcmc_MuSSE.Rev")
+data <- readCharacterData("data/RevBayes_Data/"+DATASET+"_output.nex")
+source("code/mcmc_MuSSE.Rev")

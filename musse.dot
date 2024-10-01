@@ -1,0 +1,176 @@
+/* Graphical model description in DOT language                                    */
+/*    To view graph:                                                              */
+/*       open this file in the program Graphviz: http://www.graphviz.org          */
+/*       or paste contents into an online viewer: http://stamm-wilbrandt.de/GraphvizFiddle */
+
+digraph REVDAG {
+   n_rate_matrix [shape=oval, style="dashed,filled", fillcolor=white, label="rate_matrix\n[ fnFreeK(RealPos[][]|RealPos[]<any>) ]"]
+   n_transition_rates [shape=oval, style="dashed,filled", fillcolor=white, label="transition_rates\n[ v(RealPos<any>) ]"]
+   n_transition_rates_1 [shape=oval, style=filled, fillcolor=white, label="transition_rates[1]"]
+   n_rate_pr [shape=oval, style="dashed,filled", fillcolor=white, label="rate_pr\n[ div(RealPos<any>) ]"]
+   n_0x131e2b4d0 [shape=oval, style="dashed,filled", fillcolor=white, label="function\n[ treeLength()) ]"]
+   n_observed_phylogeny [shape=record, style=filled, fillcolor=white, label="{observed_phylogeny|...}"]
+   n_0x131e4df80 [shape=box, style=filled, fillcolor=white, label="10"]
+   n_transition_rates_2 [shape=oval, style=filled, fillcolor=white, label="transition_rates[2]"]
+   n_transition_rates_3 [shape=oval, style=filled, fillcolor=white, label="transition_rates[3]"]
+   n_transition_rates_4 [shape=oval, style=filled, fillcolor=white, label="transition_rates[4]"]
+   n_transition_rates_5 [shape=oval, style=filled, fillcolor=white, label="transition_rates[5]"]
+   n_transition_rates_6 [shape=oval, style=filled, fillcolor=white, label="transition_rates[6]"]
+   n_transition_rates_7 [shape=oval, style=filled, fillcolor=white, label="transition_rates[7]"]
+   n_transition_rates_8 [shape=oval, style=filled, fillcolor=white, label="transition_rates[8]"]
+   n_transition_rates_9 [shape=oval, style=filled, fillcolor=white, label="transition_rates[9]"]
+   n_transition_rates_10 [shape=oval, style=filled, fillcolor=white, label="transition_rates[10]"]
+   n_transition_rates_11 [shape=oval, style=filled, fillcolor=white, label="transition_rates[11]"]
+   n_transition_rates_12 [shape=oval, style=filled, fillcolor=white, label="transition_rates[12]"]
+   n_transition_rates_13 [shape=oval, style=filled, fillcolor=white, label="transition_rates[13]"]
+   n_transition_rates_14 [shape=oval, style=filled, fillcolor=white, label="transition_rates[14]"]
+   n_transition_rates_15 [shape=oval, style=filled, fillcolor=white, label="transition_rates[15]"]
+   n_transition_rates_16 [shape=oval, style=filled, fillcolor=white, label="transition_rates[16]"]
+   n_transition_rates_17 [shape=oval, style=filled, fillcolor=white, label="transition_rates[17]"]
+   n_transition_rates_18 [shape=oval, style=filled, fillcolor=white, label="transition_rates[18]"]
+   n_transition_rates_19 [shape=oval, style=filled, fillcolor=white, label="transition_rates[19]"]
+   n_transition_rates_20 [shape=oval, style=filled, fillcolor=white, label="transition_rates[20]"]
+   n_timetree [shape=oval, style=filled, fillcolor=gray, label="timetree"]
+   n_extinction [shape=oval, style="dashed,filled", fillcolor=white, label="extinction\n[ v(RealPos<any>) ]"]
+   n_extinction_1 [shape=oval, style=filled, fillcolor=white, label="extinction[1]"]
+   n_0x131ea1570 [shape=box, style=filled, fillcolor=white, label="1e-06"]
+   n_0x131ea16b0 [shape=box, style=filled, fillcolor=white, label="100"]
+   n_diversification_1 [shape=oval, style="dashed,filled", fillcolor=white, label="diversification[1]\n[ sub(Real<any>) ]"]
+   n_speciation_1 [shape=oval, style=filled, fillcolor=white, label="speciation[1]"]
+   n_0x131e55cf0 [shape=box, style=filled, fillcolor=white, label="1e-06"]
+   n_0x131ea2b00 [shape=box, style=filled, fillcolor=white, label="100"]
+   n_speciation [shape=oval, style="dashed,filled", fillcolor=white, label="speciation\n[ v(RealPos<any>) ]"]
+   n_speciation_2 [shape=oval, style=filled, fillcolor=white, label="speciation[2]"]
+   n_0x131ea3c50 [shape=box, style=filled, fillcolor=white, label="1e-06"]
+   n_0x131ea3d90 [shape=box, style=filled, fillcolor=white, label="100"]
+   n_diversification_2 [shape=oval, style="dashed,filled", fillcolor=white, label="diversification[2]\n[ sub(Real<any>) ]"]
+   n_extinction_2 [shape=oval, style=filled, fillcolor=white, label="extinction[2]"]
+   n_0x131ea4df0 [shape=box, style=filled, fillcolor=white, label="1e-06"]
+   n_0x131ea4f30 [shape=box, style=filled, fillcolor=white, label="100"]
+   n_diversification [shape=oval, style="dashed,filled", fillcolor=white, label="diversification\n[ v(Real<any>) ]"]
+   n_diversification_3 [shape=oval, style="dashed,filled", fillcolor=white, label="diversification[3]\n[ sub(Real<any>) ]"]
+   n_speciation_3 [shape=oval, style=filled, fillcolor=white, label="speciation[3]"]
+   n_0x131ea63e0 [shape=box, style=filled, fillcolor=white, label="1e-06"]
+   n_0x131ea6520 [shape=box, style=filled, fillcolor=white, label="100"]
+   n_extinction_3 [shape=oval, style=filled, fillcolor=white, label="extinction[3]"]
+   n_0x131ea72b0 [shape=box, style=filled, fillcolor=white, label="1e-06"]
+   n_0x131ea73f0 [shape=box, style=filled, fillcolor=white, label="100"]
+   n_diversification_4 [shape=oval, style="dashed,filled", fillcolor=white, label="diversification[4]\n[ sub(Real<any>) ]"]
+   n_speciation_4 [shape=oval, style=filled, fillcolor=white, label="speciation[4]"]
+   n_0x131ea8430 [shape=box, style=filled, fillcolor=white, label="1e-06"]
+   n_0x131ea8570 [shape=box, style=filled, fillcolor=white, label="100"]
+   n_extinction_4 [shape=oval, style=filled, fillcolor=white, label="extinction[4]"]
+   n_0x131ea9300 [shape=box, style=filled, fillcolor=white, label="1e-06"]
+   n_0x131ea9440 [shape=box, style=filled, fillcolor=white, label="100"]
+   n_diversification_5 [shape=oval, style="dashed,filled", fillcolor=white, label="diversification[5]\n[ sub(Real<any>) ]"]
+   n_speciation_5 [shape=oval, style=filled, fillcolor=white, label="speciation[5]"]
+   n_0x131eaa480 [shape=box, style=filled, fillcolor=white, label="1e-06"]
+   n_0x131eaa5c0 [shape=box, style=filled, fillcolor=white, label="100"]
+   n_extinction_5 [shape=oval, style=filled, fillcolor=white, label="extinction[5]"]
+   n_0x131eab350 [shape=box, style=filled, fillcolor=white, label="1e-06"]
+   n_0x131eab490 [shape=box, style=filled, fillcolor=white, label="100"]
+   n_rate_category_prior [shape=oval, style=filled, fillcolor=white, label="rate_category_prior"]
+   n_0x131eac250 [shape=box, style=filled, fillcolor=white, label="[ 1.000, 1.000, 1.000, 1.000, 1.000 ]"]
+   n_0x131eac400 [shape=box, style=filled, fillcolor=white, label="1"]
+   n_root [shape=record, style=filled, fillcolor=white, label="{root|66.17414}"]
+   n_rho [shape=record, style=filled, fillcolor=white, label="{rho|0.640327}"]
+   n_rate_matrix -> n_timetree
+   n_transition_rates -> n_rate_matrix[style=dashed]
+   n_transition_rates_1 -> n_transition_rates[style=dashed]
+   n_rate_pr -> n_transition_rates_2
+   n_rate_pr -> n_transition_rates_3
+   n_rate_pr -> n_transition_rates_4
+   n_rate_pr -> n_transition_rates_5
+   n_rate_pr -> n_transition_rates_6
+   n_rate_pr -> n_transition_rates_7
+   n_rate_pr -> n_transition_rates_8
+   n_rate_pr -> n_transition_rates_9
+   n_rate_pr -> n_transition_rates_10
+   n_rate_pr -> n_transition_rates_11
+   n_rate_pr -> n_transition_rates_12
+   n_rate_pr -> n_transition_rates_13
+   n_rate_pr -> n_transition_rates_14
+   n_rate_pr -> n_transition_rates_15
+   n_rate_pr -> n_transition_rates_16
+   n_rate_pr -> n_transition_rates_17
+   n_rate_pr -> n_transition_rates_18
+   n_rate_pr -> n_transition_rates_19
+   n_rate_pr -> n_transition_rates_20
+   n_rate_pr -> n_transition_rates_1
+   n_0x131e2b4d0 -> n_rate_pr[style=dashed]
+   n_observed_phylogeny -> n_0x131e2b4d0[style=dashed]
+   n_0x131e4df80 -> n_rate_pr[style=dashed]
+   n_transition_rates_2 -> n_transition_rates[style=dashed]
+   n_transition_rates_3 -> n_transition_rates[style=dashed]
+   n_transition_rates_4 -> n_transition_rates[style=dashed]
+   n_transition_rates_5 -> n_transition_rates[style=dashed]
+   n_transition_rates_6 -> n_transition_rates[style=dashed]
+   n_transition_rates_7 -> n_transition_rates[style=dashed]
+   n_transition_rates_8 -> n_transition_rates[style=dashed]
+   n_transition_rates_9 -> n_transition_rates[style=dashed]
+   n_transition_rates_10 -> n_transition_rates[style=dashed]
+   n_transition_rates_11 -> n_transition_rates[style=dashed]
+   n_transition_rates_12 -> n_transition_rates[style=dashed]
+   n_transition_rates_13 -> n_transition_rates[style=dashed]
+   n_transition_rates_14 -> n_transition_rates[style=dashed]
+   n_transition_rates_15 -> n_transition_rates[style=dashed]
+   n_transition_rates_16 -> n_transition_rates[style=dashed]
+   n_transition_rates_17 -> n_transition_rates[style=dashed]
+   n_transition_rates_18 -> n_transition_rates[style=dashed]
+   n_transition_rates_19 -> n_transition_rates[style=dashed]
+   n_transition_rates_20 -> n_transition_rates[style=dashed]
+   n_extinction -> n_timetree
+   n_extinction_1 -> n_diversification_1[style=dashed]
+   n_extinction_1 -> n_extinction[style=dashed]
+   n_0x131ea1570 -> n_extinction_1
+   n_0x131ea16b0 -> n_extinction_1
+   n_diversification_1 -> n_diversification[style=dashed]
+   n_speciation_1 -> n_speciation[style=dashed]
+   n_speciation_1 -> n_diversification_1[style=dashed]
+   n_0x131e55cf0 -> n_speciation_1
+   n_0x131ea2b00 -> n_speciation_1
+   n_speciation -> n_timetree
+   n_speciation_2 -> n_diversification_2[style=dashed]
+   n_speciation_2 -> n_speciation[style=dashed]
+   n_0x131ea3c50 -> n_speciation_2
+   n_0x131ea3d90 -> n_speciation_2
+   n_diversification_2 -> n_diversification[style=dashed]
+   n_extinction_2 -> n_diversification_2[style=dashed]
+   n_extinction_2 -> n_extinction[style=dashed]
+   n_0x131ea4df0 -> n_extinction_2
+   n_0x131ea4f30 -> n_extinction_2
+   n_diversification_3 -> n_diversification[style=dashed]
+   n_speciation_3 -> n_diversification_3[style=dashed]
+   n_speciation_3 -> n_speciation[style=dashed]
+   n_0x131ea63e0 -> n_speciation_3
+   n_0x131ea6520 -> n_speciation_3
+   n_extinction_3 -> n_diversification_3[style=dashed]
+   n_extinction_3 -> n_extinction[style=dashed]
+   n_0x131ea72b0 -> n_extinction_3
+   n_0x131ea73f0 -> n_extinction_3
+   n_diversification_4 -> n_diversification[style=dashed]
+   n_speciation_4 -> n_diversification_4[style=dashed]
+   n_speciation_4 -> n_speciation[style=dashed]
+   n_0x131ea8430 -> n_speciation_4
+   n_0x131ea8570 -> n_speciation_4
+   n_extinction_4 -> n_diversification_4[style=dashed]
+   n_extinction_4 -> n_extinction[style=dashed]
+   n_0x131ea9300 -> n_extinction_4
+   n_0x131ea9440 -> n_extinction_4
+   n_diversification_5 -> n_diversification[style=dashed]
+   n_speciation_5 -> n_diversification_5[style=dashed]
+   n_speciation_5 -> n_speciation[style=dashed]
+   n_0x131eaa480 -> n_speciation_5
+   n_0x131eaa5c0 -> n_speciation_5
+   n_extinction_5 -> n_diversification_5[style=dashed]
+   n_extinction_5 -> n_extinction[style=dashed]
+   n_0x131eab350 -> n_extinction_5
+   n_0x131eab490 -> n_extinction_5
+   n_rate_category_prior -> n_timetree
+   n_0x131eac250 -> n_rate_category_prior
+   n_0x131eac400 -> n_timetree
+   n_root -> n_timetree
+   n_rho -> n_timetree
+   {rank=same; n_timetree;}
+   graph [bgcolor=lavenderblush2, pad=0.25]
+}

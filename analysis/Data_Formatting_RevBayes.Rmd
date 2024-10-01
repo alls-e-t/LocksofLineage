@@ -21,8 +21,25 @@ library(tidyverse)
 
 ```{r Read-in-data}
 # Read the CSV file
-data <- read.csv("data/RevBayes_Data/data_pruned_ordered.csv", row.names = 1)
+data <- read.csv("data/data_pruned_ordered.csv", row.names = 1)
 colnames(data)
+```
+
+```{r Read-in-corHMM-data}
+data <- read.csv("data/data_pruned_updated_ordered.csv", row.names = 1)
+
+# Pad the trait_id with leading zeros (ensure each has at least two digits)
+data$trait_id_padded <- sprintf("%02d", data$trait_id)
+
+# Print the updated data frame
+print(data$trait_id_padded)
+
+# Enclose the trait_id in quotes
+data$trait_id_quoted <- paste0('"', data$trait_id, '"')
+
+# Print the updated data frame
+print(data$trait_id_quoted)
+
 ```
 
 ## Format data
@@ -37,7 +54,13 @@ SexDichromRevBayes <- data[, "sexual_dichromatism", drop = FALSE]
 NatalCoatConRevBayes <- data[, "natal_coat_conspicuous", drop = FALSE]
 
 #Extract all color traits to get the different stages
-AllColorStatesRevBayes <- data[, "all_color_traits", drop = FALSE]
+AllColorStatesRevBayes <- data[, "trait_id", drop = FALSE]
+
+AllColorStatesLettersRevBayes <- data[, "trait_id_letter", drop = FALSE]
+
+AllColorStatesPaddedRevBayes <- data[, "trait_id_padded", drop = FALSE]
+
+AllColorStatesQuotedRevBayes <- data[, "trait_id_quoted", drop = FALSE]
 ```
 
 ```{r Convert-data-frame-to-matrix}
@@ -49,6 +72,12 @@ SDRB_Matrix <- as.matrix(SexDichromRevBayes)
 NCRB_Con_Matrix <- as.matrix(NatalCoatConRevBayes)
 
 ACS_Matrix <- as.matrix(AllColorStatesRevBayes)
+
+ACSL_Matrix <- as.matrix(AllColorStatesLettersRevBayes)
+
+ACSP_Matrix <- as.matrix(AllColorStatesPaddedRevBayes)
+
+ACSQ_Matrix <- as.matrix(AllColorStatesQuotedRevBayes)
 ```
 
 ## Save to NEXUS file format
@@ -86,9 +115,34 @@ write_custom_nexus_spaces <- function(data_matrix, file) {
 write_custom_nexus_spaces(NCRB_Matrix, "data/RevBayes_Data/NC_output_spaces.nex")
 write_custom_nexus_spaces(SDRB_Matrix, "data/RevBayes_Data/SD_output_spaces.nex")
 write_custom_nexus_spaces(NCRB_Con_Matrix, "data/RevBayes_Data/NC_Con_output.nex")
-write_custom_nexus_spaces(ACS_Matrix, "data/RevBayes_Data/ACS_output.nex")
-
+write_custom_nexus_spaces(ACSL_Matrix, "data/RevBayes_Data/ACSL_output.nex")
+write_custom_nexus_spaces(ACSP_Matrix, "data/RevBayes_Data/ACSP_output.nex")
 ```
+
+```{r}
+# data_pruned_updated_ordered is from corHMM formatting Rmd
+nexus_data <- data_pruned_updated_ordered %>%
+  select(species, trait_id_letter) %>%
+  rename(taxon = species, state = trait_id_letter)
+
+# Write the Nexus file
+write_nexus <- function(data, file) {
+  sink(file)
+  cat("#NEXUS\n\n")
+  cat("Begin data;\n")
+  cat(sprintf("Dimensions ntax=%d nchar=1;\n", nrow(data)))
+  cat('Format datatype=Standard symbols="A B C D E F G H I J K" missing=? gap=-;\n')  # Adjust symbols based on your mapping
+  cat("Matrix\n")
+  apply(data, 1, function(x) cat(sprintf("%s\t%s\n", x["taxon"], x["state"])))
+  cat(";\nEnd;\n")
+  sink()
+}
+
+# Call the function to write the Nexus file
+write_nexus(nexus_data, "data/RevBayes_Data/ASCLU_output.nex")
+```
+
+
 
 ## Run RevBayes
 
