@@ -29,6 +29,12 @@ BOTH NC -> NO SC
 F NC -> COM SC
 M NC -> COM SC
 BOTH NC -> COM SC
+both change, maturation change, male, female, both
+unidirectional change, divergent (bifurcating)
+
+try not to use contrasting (this has hypotheses), instead what is the maturation/sexual development, recode this way
+
+evolution of sex, how to do you make a male mammal (ornamented female?)
 
 First step: formalize what the heck we did with both maturing, ie does it mean that both sexes become the same color or different colors
 ```{r Both-contrasting}
@@ -62,6 +68,7 @@ print(nrow(BCon_SC_Complete))
 Only partially dichromatic species have infants that are a completely different color
 
 Second Step: What color changes are happening in these both changing species?
+What is the nature of the change, if any?
 
 Its only partially sexually dichromatic, so what parts are different between sexes, do these change with age, what is the overall change?
 ```{r Both-color-change}
@@ -75,35 +82,478 @@ print(BCon_SC_Darker)
 ```
 
 Third Step: Repeat this for Conspicuous to dad, or males changing
-```{r Both-contrasting}
+```{r Male-contrasting}
 # How many cases of both sexes contrasting to natal coat with sexual dichromatism
+# is sexual dichromatism due to male maturation
 MCon_SC <- data[grepl("Con to dad", data$Natal_Coat_Type, ignore.case = TRUE)  & 
                                 data$Sexual_dichromatism == "Yes", ]
 
-print(nrow(BCon_SC))
+print(nrow(MCon_SC))
 
 # How many cases of both sexes contrasting to natal coat with no sexual dichromatism
-BCon_NOSC <- data[grepl("con to both", data$Natal_Coat_Type, ignore.case = TRUE)  & 
+MCon_NOSC <- data[grepl("Con to dad", data$Natal_Coat_Type, ignore.case = TRUE)  & 
                                 data$Sexual_dichromatism == "No", ]
-print(nrow(BCon_NOSC))
+print(nrow(MCon_NOSC))
 
 ## Sanity check: These values should add up to BCon_SC
 
 # # How many cases of both sexes contrasting to natal coat with partial sexual dichromatism
-BCon_SC_Partial <- data[grepl("con to both", data$Natal_Coat_Type, ignore.case = TRUE)  & 
+MCon_SC_Partial <- data[grepl("Con to dad", data$Natal_Coat_Type, ignore.case = TRUE)  & 
                                 data$Sexual_dichromatism == "Yes" &
                                 data$Sexual_dichromatism_type == "Partial", ]
 
-print(nrow(BCon_SC_Partial))
+print(nrow(MCon_SC_Partial))
 
 # How many cases of both sexes contrasting to natal coat with complete sexual dichromatism
-BCon_SC_Complete <- data[grepl("con to both", data$Natal_Coat_Type, ignore.case = TRUE)  & 
+MCon_SC_Complete <- data[grepl("Con to dad", data$Natal_Coat_Type, ignore.case = TRUE)  & 
                                 data$Sexual_dichromatism == "Yes" &
                                 data$Sexual_dichromatism_type == "Complete", ]
 
-print(nrow(BCon_SC_Complete))
+print(nrow(MCon_SC_Complete))
 ```
 
+```{r Male-color-change}
+# Tally the body sites
+MCon_SC_Where <- table(MCon_SC$Where)
+print(MCon_SC_Where)
+
+# Tally which is darker
+MCon_SC_Darker <- table(MCon_SC$Darker)
+print(MCon_SC_Darker)
+```
+
+Fourth Step: Repeat this for Conspicuous to mom, or Females changing
+```{r Female-contrasting}
+# How many cases of both sexes contrasting to natal coat with sexual dichromatism
+FCon_SC <- data[grepl("con to mom", data$Natal_Coat_Type, ignore.case = TRUE)  & 
+                                data$Sexual_dichromatism == "Yes", ]
+
+print(nrow(FCon_SC))
+
+# How many cases of both sexes contrasting to natal coat with no sexual dichromatism
+FCon_NOSC <- data[grepl("con to mom", data$Natal_Coat_Type, ignore.case = TRUE)  & 
+                                data$Sexual_dichromatism == "No", ]
+print(nrow(FCon_NOSC))
+
+## Sanity check: These values should add up to BCon_SC
+
+# # How many cases of both sexes contrasting to natal coat with partial sexual dichromatism
+FCon_SC_Partial <- data[grepl("con to mom", data$Natal_Coat_Type, ignore.case = TRUE)  & 
+                                data$Sexual_dichromatism == "Yes" &
+                                data$Sexual_dichromatism_type == "Partial", ]
+
+print(nrow(FCon_SC_Partial))
+
+# How many cases of both sexes contrasting to natal coat with complete sexual dichromatism
+FCon_SC_Complete <- data[grepl("con to mom", data$Natal_Coat_Type, ignore.case = TRUE)  & 
+                                data$Sexual_dichromatism == "Yes" &
+                                data$Sexual_dichromatism_type == "Complete", ]
+
+print(nrow(FCon_SC_Complete))
+```
+
+```{r Female-color-change}
+# Tally the body sites
+FCon_SC_Where <- table(FCon_SC$Where)
+print(FCon_SC_Where)
+
+# Tally which is darker
+FCon_SC_Darker <- table(FCon_SC$Darker)
+print(FCon_SC_Darker)
+```
+
+Step 5. Timing change
+
+```{r}
+# Make a dataframe with only natal coats
+natal_coat_species <- data[data$Natal_coat == "Yes", ]
+
+
+natal_coat_species$Natal_coat_category <- ifelse(grepl("change|phase|then|after", natal_coat_species$NC_description, ignore.case = TRUE), "multi-step",
+                             "Other")
+
+# View the refined frequency of the new categories
+natal_coat_category_freq <- table(natal_coat_species$Natal_coat_category)
+
+print(natal_coat_category_freq)
+
+# Filter the natal_coat_species dataframe to show only rows categorized as "multi-step"
+multi_step_species <- natal_coat_species[natal_coat_species$Natal_coat_category == "multi-step", ]
+
+```
+
+```{r color-test-classification}
+# Load your data
+data_test <- read.csv("~/Desktop/GitHub/LocksofLineage/data/Raw_Data/data_to_use.csv", stringsAsFactors = FALSE)
+
+# Step 1: Combine the relevant description columns into one text block
+all_descriptions <- paste(data_test$NC_description, data_test$SDC_description, collapse = " ")
+
+# Step 2: Tokenize the text into individual words
+words <- unlist(strsplit(all_descriptions, "\\W+"))
+
+# Step 3: Convert all words to lowercase to standardize
+words <- tolower(words)
+
+# Step 4: Remove common stop words (non-color words) using a predefined list
+stop_words <- c("and", "the", "with", "of", "a", "in", "on", "for", "is", 
+                "to", "it", "by", "at", "or", "as", "an", "from", "that", 
+                "which", "this", "has", "have", "be", "are", "was", "were", 
+                "no", "maybe", "might", "juju", "potto", "unclear", "bot", 
+                "full", "single", "walker", "page", "pads", "fine", "markings", 
+                "vol", "butt", "edwardsi", "ibeanus", "woolly", "seems", 
+                "been", "present", "acharjyo", "aposematism", "warn", 
+                "against", "predators", "nekaris", "orbital", "interocular", 
+                "strip", "grandis", "lydekkerianus", "nordicus", "ydekkerianus", 
+                "nycticeboides", "tardigradus", "reports", "gonna", "yes", 
+                "tatterstall", "tattersall", "its", "colquhoun", "underpants", 
+                "long", "gender", "species", "cooper", "hosey", "dichrom", 
+                "must", "tails", "week", "tailed", "explicitly", "described", 
+                "macaco", "sanfordi", "except", "spot", "occasional", "extends", 
+                "irwin", "wrong", "pigmented", "coats", "later", "develop", 
+                "tapanes", "extremely", "asexually", "polychromatic", 
+                "shortly", "after", "can", "either", "incomplete", 
+                "sub", "maturity", "center", "eyebrow", "zhenhe", "fingers", 
+                "toes", "ring", "variable", "accents", "hainanus", "range", 
+                "turn", "halo", "geissmann", "albibarbis", "offspring", 
+                "sex", "complete", "choudhury", "mootnick", "marshall", 
+                "eyebrows", "islam", "hindquarters", "major", "said", "mouse", 
+                "description", "actually", "month", "disappeared", "according", 
+                "fossey", "who", "contradicted", "another", "researcher", 
+                "hips", "amount", "texture", "distribution", "alley", "sagittal", 
+                "miller", "goodall", "did", "add", "them", "bibliography", 
+                "her", "large", "monographs", "underside", "outer", 
+                "rapaport", "phase", "where", "they", "before", 
+                "becoming", "hypoleucus", "jay", "basal", "third", 
+                "capes", "one", "fulvous", "poirier", "days", 
+                "thighs", "pubic", "rudran", "brandon", "jones", 
+                "ultimas", "changed", "bernstein", "all", "over", 
+                "francoisi", "specific", "poliocephalus", "hendershott", 
+                "leucophalus", "burton", "mukherjee", "saha", "within", 
+                "phayrei", "stanford", "still", "any", "beneath", 
+                "napier", "lippold", "wider", "cuffs", "arm", 
+                "circular", "spots", "gradually", "darken", "boonratana", 
+                "ventral", "medial", "faint", "flat", "tint", 
+                "bodies", "contrastingly", "mom", "dad", "kummer", 
+                "resemble", "years", "mostly", "dont", "extremities", 
+                "ruhiyat", "femoralis", "probably", "medway", "hosei", 
+                "down", "cruciger", "aimi", "couldnt", "temminckii", 
+                "beige", "badius", "tephrosceles", "struhsaker", 
+                "payne", "collar", "front", "cloak", "prominent", 
+                "chaplin", "coloring", "patterns", "altmann", "hendy", 
+                "snout", "maxillary", "lips", "older", "whiskers", 
+                "elsewhere", "cheeks", "starts", "ventrum", "tending", 
+                "greater", "predominance", "mane", "aurifrons", "sinica", 
+                "deep", "aspects", "bonnet", "what", "source", "slowly", 
+                "forequarters", "rump", "loins", "brighter", 
+                "lack", "elements", "spine", "multiple", "without", 
+                "differently", "genital", "coated", "dorsally", 
+                "lumbrosacral", "year", "fooden", "composition", 
+                "versus", "newborns", "slate", "shades", "line", 
+                "become", "mix", "crockett", "sparsely", "haired", 
+                "spinal", "streak", "roonwal", "slight", "differences", 
+                "arms", "legs", "maura", "broad", "oval", "circumgenital", 
+                "mark", "narrow", "stripe", "kikuyensis", "depth", "table", 
+                "oates", "unbroken", "circle", "region", "broken", 
+                "into", "polykomos", "follows", "colobus", "old", 
+                "palmer", "during", "pregnancy", "reverts", "johnstoni", 
+                "got", "aged", "zenkeri", "hind", "neck", "fewer", 
+                "rings", "chest", "because", "immaturity", "overall", 
+                "had", "pattern", "kingdon", "perineal", "boutourlinii", 
+                "diadem", "mitis", "opisthostictus", "wholly", "stuhlmanni", 
+                "values", "sexes", "schoutedeni", "completely", "generally", 
+                "perineum", "defined", "patches", "grayi", "nigripes", 
+                "under", "pubertal", "primate", "palette", "pygerythrus", 
+                "gartland", "sabaeus", "tantalus", "almost", "hilgerti", 
+                "hand", "zavattarii", "then", "six", "groves", 
+                "uniform", "colyn", "only", "grow", "chin", 
+                "throat", "pure", "scrotum", "bright", "instead", 
+                "stripes", "along", "sides", "expelled", "group", 
+                "arches", "differentiated", "vary", "temporal", "preauricular", 
+                "neonate", "cast", "chrysogaster", "especially", "nape", 
+                "torquatus", "sombrely", "cap", "few", "atys", 
+                "likely", "schmidtii", "brightness", "size", "buchanan", 
+                "milleri", "start", "changing", "chrysocephala", "occurs", 
+                "pithecia", "mask", "tinge", "usually", "untufted", 
+                "across", "cay", "jurnanus", "dorsum", "similar", 
+                "nigritus", "imitator", "just", "undeveloped", "nose", 
+                "underdeveloped", "unpigmented", "wash", "shoulders", "backs", 
+                "straw", "natal", "coat", "poeppigii", "there", 
+                "distinctly", "naked", "cant", "find", "article", 
+                "hood", "erect", "between")
+
+# Filter out stop words and short words (less than 3 letters) which are unlikely to be colors
+filtered_words <- words[!words %in% stop_words & nchar(words) > 2 & !grepl("[0-9]", words)]
+
+# Step 5: Get a list of unique words from the filtered list
+unique_words <- unique(filtered_words)
+
+# Display the list of potential color terms
+print(unique_words)
+
+# Expanded color patterns list
+color_patterns <- c("white", "black", "red", "yellow", "blue", "green", "brown", 
+                    "orange", "grey", "gray", "pink", "purple", "light", "dark", 
+                    "pale", "silvery", "golden", "buff", "chestnut", "russet", 
+                    "olive", "frosted", "silver", "cream", "charcoal", "beige", 
+                    "rufous", "ochre", "tan", "gingery", "tawny", "milky", 
+                    "copper", "buffy", "sandy", "dusky", "slate", "ashy", "rusty",
+                    "brownish", "black", "lighter", "darker", "blackish", "grayish",
+                    "paler", "lustrous", "yellow", "white", "yellowish", "brown",
+                    "frosted", "silvery", "pale", "buff", "golden", "light", "dark",
+                    "olive", "rufescence", "gold", "orange", "silver", "browner",
+                    "reddish", "whitish", "gray", "greyish", "rufous", "dusky",
+                    "ochraceous", "sooty", "buffy", "agouti", "charcoal", "green",
+                    "creamy", "greying", "unbanded", "greener", "darkens", "chocolate",
+                    "rustier", "sandier", "duller", "blue", "richly", "dull", "smoky",
+                    "sandy", "gingery", "cream", "milky", "fair", "copper", "tan", 
+                    "tawny", "ashy", "whiter", "yellower", "rufus", "brightly", 
+                    "chestnut", "reduced", "contrasting", "lighten", "slaty", 
+                    "russet", "cinnamon")
+
+# Filter words that match the color patterns
+color_words <- filtered_words[filtered_words %in% color_patterns]
+
+# Step 3: Get a list of unique color words found in the descriptions
+unique_color_words <- unique(color_words)
+
+# Display the list of unique color terms
+print(unique_color_words)
+
+# Step 1: Define a function to categorize color words into broader color categories
+categorize_color <- function(color_word) {
+  if (color_word %in% c("white", "light", "pale", "whitish", "cream", "milky", "fair","lighter", "paler", "creamy", "whiter", "lighten")) {
+    return("Light Colors")
+  } else if (color_word %in% c("black", "blackish", "dark", "darker", "charcoal", "dusky", "slaty", "sooty", "darkens")) {
+    return("Dark Colors")
+  } else if (color_word %in% c("red", "reddish", "rufous", "rusty", "rustier", "rufescence", "rufus", "chestnut")) {
+    return("Red Shades")
+  } else if (color_word %in% c("yellow", "yellowish", "golden", "gold", "buff", "tawny", "yellower", "orange")) {
+    return("Yellow Shades")
+  } else if (color_word %in% c("brown", "brownish", "olive", "chocolate", "tan", "sandy", "agouti", "ochraceous", "buffy", "sandier", "copper", "russet", "cinnamon")) {
+    return("Brown Shades")
+  } else if (color_word %in% c("grey", "gray", "greyish", "grayish", "ashy", "greying", "silver", "frosted", "silvery")) {
+    return("Grey Shades")
+  } else if (color_word %in% c("green", "greener")) {
+    return("Green Shades")
+  } else if (color_word %in% c("blue", "bluish")) {
+    return("Blue Shades")
+  } else if (color_word %in% c("pink", "pinkish", "purplish", "purple")) {
+    return("Pink/Purple Shades")
+  } else {
+    return("Other Colors")
+  }
+}
+
+# Step 2: Apply the function to your list of unique color words to categorize them
+categorized_colors <- sapply(unique_color_words, categorize_color)
+
+# Create a data frame to show the mapping of color words to their categories
+color_mapping <- data.frame(ColorWord = unique_color_words, Category = categorized_colors)
+
+# Display the mapping of color words to categories
+print(color_mapping)
+
+# Step 3: Add a new column to your dataset for color categories based on the descriptions. Update your dataset by assigning the most dominant color category from the description
+data_test$Natal_Color_Category <- sapply(data_test$NC_description, function(desc) {
+  # Extract all words from the description
+  words_in_desc <- unlist(strsplit(tolower(desc), "\\W+"))
+  # Find matching color words in the description
+  found_colors <- intersect(words_in_desc, color_patterns)
+  
+  # If multiple colors are found, prioritize the first one that matches the category
+  if (length(found_colors) > 0) {
+    return(categorize_color(found_colors[1]))  # Assign the category of the first matching color word
+  } else {
+    return("Unknown")  # If no color words are found
+  }
+})
+```
+
+```{r sex-color-category}
+# Function to extract color words from a description, with flexibility for inconsistent formats
+# Revised function to extract color words from a description with a gender marker
+extract_colors <- function(description, gender_marker = NULL) {
+  color_list <- c()
+  
+  # Check if a gender-specific marker (e.g., 'M:' or 'F:') exists in the description
+  if (!is.null(gender_marker) && grepl(paste0(gender_marker, ":"), description, ignore.case = TRUE)) {
+    # Extract the color word(s) that follow the gender marker
+    color_match <- sub(paste0(".*", gender_marker, ": ([^,]*).*"), "\\1", description, ignore.case = TRUE)
+    color_list <- unlist(strsplit(color_match, "\\W+"))
+  }
+  
+  # Find all color words in the description regardless of the gender marker
+  words_in_desc <- unlist(strsplit(tolower(description), "\\W+"))
+  all_colors <- intersect(words_in_desc, color_patterns)
+  
+  # Combine the colors extracted by gender marker and pattern recognition
+  color_list <- unique(c(color_list, all_colors))
+  
+  # Return the identified colors, or NA if none found
+  if (length(color_list) > 0) {
+    return(color_list)
+  } else {
+    return(NA)
+  }
+}
+
+# Step 1: Create new columns for male and female color categories in your dataset
+data_test$Male_Color_Category <- NA
+data_test$Female_Color_Category <- NA
+
+# Step 2: Apply the extraction function and categorize the colors for each row
+for (i in 1:nrow(data_test)) {
+  # Extract and categorize male colors
+  male_colors <- extract_colors(data_test$SDC_description[i], gender_marker = "M")
+ if (!is.null(male_colors) && length(male_colors) > 0) {
+    # Categorize the male color based on the first identified color word
+    data_test$Male_Color_Category[i] <- categorize_color(male_colors[1])
+  } else {
+    data_test$Male_Color_Category[i] <- "Unknown"
+  }
+  
+  # Extract and categorize female colors
+  female_colors <- extract_colors(data_test$SDC_description[i], gender_marker = "F")
+   if (!is.null(female_colors) && length(female_colors) > 0){
+    # Categorize the female color based on the first identified color word
+    data_test$Female_Color_Category[i] <- categorize_color(female_colors[1])
+  } else {
+    data_test$Female_Color_Category[i] <- "Unknown"
+  }
+}
+
+# Step 3: View the updated data with the new Male_Color_Category and Female_Color_Category columns
+#head(data)
+
+# Optionally, save the updated dataset to a new CSV file
+#write.csv(data, "updated_data_with_male_female_color_categories.csv", row.names = FALSE)
+
+```
+ 
+```{r decision-tree}
+#Create a color change category
+data_test$Color_Change <- ifelse(data_test$Natal_Color_Category != "Unknown" & data_test$Natal_Color_Category != data_test$Male_Color_Category & data_test$Natal_Color_Category != data_test$Female_Color_Category, "Change", "No Change")
+
+#Save selected columns to a new data frame
+#decision_tree <- select(data_test, Name, Score)
+
+#Load libraries for decision tree
+library(rpart)
+library(rpart.plot)
+
+# Build the decision tree model to predict whether there's a color change and sexual dichromatism effect
+tree_model <- rpart(Color_Change ~ Natal_Color_Category + Male_Color_Category + Female_Color_Category + Sexual_dichromatism, 
+                    data = data_test, method = "class")
+
+# Visualize the decision tree
+rpart.plot(tree_model, type = 3, extra = 104, fallen.leaves = TRUE, main = "Decision Tree: Natal Coat Color Changes and Sex Differences")
+
+```
+
+```{r body-part-change}
+# Unique values for the first body part to change in Treves 1997
+first_change_words <- c("beard", "brow", "cheeks", "chest", "crown", "dorsal", 
+                        "face", "feet", "forehead", "hands", "head", "hind limbs", 
+                        "outer arms", "rump", "shoulders", "ventral")
+
+# Create an empty column for these values
+data_test$First_Change_Treves <- NA
+
+treves_species <- clean_names(data_test) %>% 
+  unite("species", genus, species, sep = "_") %>%
+  mutate(species = str_to_title(species)) %>%
+  mutate(family = str_to_title(family)) %>%
+  select(family, species,
+    natal_coat, natal_coat_type, nc_description, first_change_treves, sexual_dichromatism, where)
+
+# Save this file to csv
+write.csv(treves_species, "data/treves_species.csv", row.names = FALSE)
+```
+## ADDED TREVES DATA IN EXCEL
+```{r treves-data-freq}
+# Read in the updated dataframe that was adjusted in excel
+treves_data <- read_csv("data/treves_species.csv")
+
+# Your list of body parts to search for
+first_change_words <- c("beard", "brow", "cheeks", "chest", "crown", "dorsal", 
+                        "face", "feet", "forehead", "hands", "head", "hind limbs", 
+                        "outer arms", "rump", "shoulders", "ventral")
+
+# Combine the words into a single search pattern using the '|' symbol
+search_pattern <- paste(first_change_words, collapse = "|")
+
+# Create an empty vector to store frequency counts
+body_part_counts <- setNames(rep(0, length(first_change_words)), first_change_words)
+
+# Loop through each body part and count occurrences in the 'first_change_treves' column of your dataset
+for (body_part in first_change_words) {
+  body_part_counts[body_part] <- sum(grepl(body_part, treves_data$first_change_treves, ignore.case = TRUE))
+}
+
+
+# Convert the counts to a data frame for easier analysis
+body_part_counts_df <- data.frame(Body_Part = names(body_part_counts), Count = as.numeric(body_part_counts))
+
+# Display the counts
+print(body_part_counts_df)
+
+# Create a bar plot to visualize the frequency of each body part
+library(ggplot2)
+
+ggplot(body_part_counts_df, aes(x = reorder(Body_Part, -Count), y = Count)) +
+  geom_bar(stat = "identity") +
+  xlab("Body Part") +
+  ylab("Frequency") +
+  ggtitle("Frequency of Body Parts in the Dataset") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+```
+
+```{r}
+# Extract the 'where' column
+dichrom_where <- tolower(paste(treves_data$where, collapse = " "))
+
+# Split the text into individual words
+dichrom_words <- unlist(strsplit(dichrom_where, "\\W+"))
+
+# Get a list of unique words
+unique_dichrom_words <- unique(dichrom_words)
+
+# Display the unique words
+print(unique_dichrom_words)
+
+dichromatism_data <- Binary_traits_combined %>% select(species, sexual_dichromatism_partial)
+
+treves_data <- merge(treves_data, dichromatism_data, by = "species", all.x = TRUE)
+
+  
+# List of body parts to analyze
+body_part_words <- c("beard", "brow", "cheeks", "chest", "crown", "dorsal", 
+                        "face", "feet", "forehead", "hands", "head", "hind limbs", 
+                        "outer arms", "rump", "shoulders", "ventral", "tail", "body", "multiple", "cape", "pubis")
+
+# Create a data frame to store frequency counts for body parts by dichromatism status
+dichromatism_counts <- data.frame(Body_Part = body_part_words, 
+                                  Dichromatism_Yes = integer(length(body_part_words)),
+                                  Dichromatism_No = integer(length(body_part_words)))
+
+# Loop through each body part and calculate occurrences based on partial dichromatism status
+for (body_part in body_part_words) {
+  # Count occurrences for species with partial dichromatism
+  dichromatism_counts$Dichromatism_Yes[dichromatism_counts$Body_Part == body_part] <- 
+    sum(grepl(body_part, treves_data$first_change_treves[treves_data$sexual_dichromatism_partial == "Yes"], ignore.case = TRUE))
+  
+  # Count occurrences for species without partial dichromatism
+  dichromatism_counts$Dichromatism_No[dichromatism_counts$Body_Part == body_part] <- 
+    sum(grepl(body_part, treves_data$first_change_treves[treves_data$sexual_dichromatism_partial == "No"], ignore.case = TRUE))
+}
+
+# Display the table with counts, showing zeros for any body parts that were missing in either category
+print(dichromatism_counts)
+
+```
 
 
 ## Color Analysis (FOR LATER) Determining all of the different variations between natal coats and adult coats
